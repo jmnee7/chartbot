@@ -57,7 +57,11 @@ async function updateRealTimeChartStatus() {
             const currentRank = getRank(serviceData);
 
             if (rankElement && badgeElement) {
-                if (currentRank !== null) {
+                if (service === 'genie' && currentRank > 100) {
+                    rankElement.textContent = '-';
+                    badgeElement.textContent = '차트아웃';
+                    badgeElement.className = 'rank-badge out-chart';
+                } else if (currentRank !== null) {
                     rankElement.textContent = currentRank;
                     badgeElement.textContent = '차트인';
                     badgeElement.className = 'rank-badge in-chart';

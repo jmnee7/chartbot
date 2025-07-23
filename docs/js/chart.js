@@ -18,7 +18,10 @@ async function loadChartData() {
         timestamps.forEach(timestamp => {
             const data = historyData[timestamp];
             for (const service in datasets) {
-                const rank = data[service] && data[service][0] ? data[service][0].rank : null;
+                let rank = data[service] && data[service][0] ? data[service][0].rank : null;
+                if (service === 'genie' && rank > 100) {
+                    rank = null; // 100위 초과는 그래프에 표시하지 않음
+                }
                 datasets[service].data.push(rank);
             }
         });

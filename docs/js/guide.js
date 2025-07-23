@@ -66,10 +66,10 @@ function switchMainTab(tab) {
         document.getElementById('etcServiceTabs').style.display = 'flex';
         
         // 기타 가이드의 첫 번째 서비스 탭 활성화
-        document.querySelectorAll('#otherServiceTabs .service-tab').forEach(tab => {
+        document.querySelectorAll('#etcServiceTabs .service-tab').forEach(tab => {
             tab.classList.remove('active');
         });
-        document.querySelector('#otherServiceTabs .service-tab').classList.add('active');
+        document.querySelector('#etcServiceTabs .service-tab').classList.add('active');
         currentService = 'youtube';
     }
     

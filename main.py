@@ -460,7 +460,7 @@ def main():
     rank_tracker = RankTracker()
     
     # 트위터 봇 초기화
-    twitter_bot = TwitterBot()
+    twitter_bot = TwitterBot("docs/last_tweet_timestamp.json")
     
     # 크롤러 초기화
     crawlers = init_crawlers()

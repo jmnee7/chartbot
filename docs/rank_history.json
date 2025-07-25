@@ -1,52 +1,4 @@
 {
-  "2025-07-24 22:00:00": {
-    "_processed_at": "2025-07-24T22:32:16.942266",
-    "melon_top100": [
-      {
-        "rank": 72,
-        "timestamp": "2025-07-24 22:00",
-        "chart_type": "TOP100"
-      }
-    ],
-    "melon_hot100": [
-      {
-        "rank": 12,
-        "timestamp": "2025-07-24 22:00",
-        "chart_type": "HOT100"
-      }
-    ],
-    "melon": [
-      {
-        "rank": 72,
-        "timestamp": "2025-07-24 22:00",
-        "chart_type": "TOP100"
-      }
-    ],
-    "genie": [
-      {
-        "rank": null,
-        "timestamp": "2025-07-24 22:00:00"
-      }
-    ],
-    "bugs": [
-      {
-        "rank": null,
-        "timestamp": "2025-07-24 22:00:00"
-      }
-    ],
-    "vibe": [
-      {
-        "rank": null,
-        "timestamp": "2025-07-24 22:00:00"
-      }
-    ],
-    "flo": [
-      {
-        "rank": 90,
-        "timestamp": "2025-07-24 22:00"
-      }
-    ]
-  },
   "2025-07-24 23:00:00": {
     "_processed_at": "2025-07-24T23:51:39.887614",
     "melon_top100": [
@@ -1148,6 +1100,54 @@
       {
         "rank": 81,
         "timestamp": "2025-07-26 02:00"
+      }
+    ]
+  },
+  "2025-07-26 03:00:00": {
+    "_processed_at": "2025-07-26T03:57:01.269850",
+    "melon_top100": [
+      {
+        "rank": null,
+        "timestamp": "2025-07-26 03:00:00",
+        "chart_type": "TOP100"
+      }
+    ],
+    "melon_hot100": [
+      {
+        "rank": 7,
+        "timestamp": "2025-07-26 03:00",
+        "chart_type": "HOT100"
+      }
+    ],
+    "melon": [
+      {
+        "rank": 7,
+        "timestamp": "2025-07-26 03:00",
+        "chart_type": "HOT100"
+      }
+    ],
+    "genie": [
+      {
+        "rank": null,
+        "timestamp": "2025-07-26 03:00:00"
+      }
+    ],
+    "bugs": [
+      {
+        "rank": null,
+        "timestamp": "2025-07-26 03:00:00"
+      }
+    ],
+    "vibe": [
+      {
+        "rank": null,
+        "timestamp": "2025-07-26 03:00:00"
+      }
+    ],
+    "flo": [
+      {
+        "rank": 79,
+        "timestamp": "2025-07-26 03:00"
       }
     ]
   }

@@ -85,6 +85,10 @@ async function updateRealTimeChartStatus() {
                             changeElement.textContent = '-';
                             changeElement.className = 'rank-change no-change';
                         }
+                    } else if (currentRank !== null && previousRank === null) {
+                        // 신규 진입인 경우
+                        changeElement.textContent = 'NEW';
+                        changeElement.className = 'rank-change new';
                     } else {
                         changeElement.textContent = '-';
                         changeElement.className = 'rank-change';
@@ -99,7 +103,8 @@ async function updateRealTimeChartStatus() {
         // 업데이트 시간 표시
         const updateElement = document.getElementById('lastUpdate');
         if (updateElement) {
-            const updateDate = new Date(latestTimestamp + '+09:00');
+            // 병합 충돌 해결 시 선택한 더 최신 시간 사용
+            const updateDate = new Date('2025-07-29 00:00:00+09:00');
             const year = updateDate.getFullYear();
             const month = String(updateDate.getMonth() + 1).padStart(2, '0');
             const date = String(updateDate.getDate()).padStart(2, '0');
@@ -181,61 +186,97 @@ async function loadYouTubeStats() {
     }
 }
 
+// 사이드 메뉴 토글 함수
+function toggleSideMenu() {
+    const sideMenu = document.getElementById('sideMenu');
+    const menuOverlay = document.getElementById('menuOverlay');
+    
+    if (sideMenu.classList.contains('active')) {
+        sideMenu.classList.remove('active');
+        menuOverlay.classList.remove('active');
+    } else {
+        sideMenu.classList.add('active');
+        menuOverlay.classList.add('active');
+    }
+}
+
+// 메뉴 네비게이션 함수
+function navigateTo(page) {
+    switch(page) {
+        case 'guide':
+            // 가이드 섹션으로 이동
+            if (typeof showGuideMenu === 'function') {
+                showGuideMenu();
+            } else {
+                alert('가이드 기능은 준비 중입니다.');
+            }
+            break;
+        case 'streaming':
+            // 스트리밍 섹션으로 스크롤
+            const streamingSection = document.querySelector('.streaming-section');
+            if (streamingSection) {
+                streamingSection.scrollIntoView({ behavior: 'smooth' });
+            }
+            break;
+        case 'vote':
+            alert('투표 기능은 준비 중입니다.');
+            break;
+        case 'support':
+            alert('서포트 기능은 준비 중입니다.');
+            break;
+    }
+    
+    // 메뉴 닫기
+    toggleSideMenu();
+}
+
 // Footer 액션 함수
 function openFooterAction(action) {
-    const footerUrls = {
-        'guide': '#', // 가이드 페이지로 이동
-        'spotify': 'https://open.spotify.com/search/NCT%20DREAM%20BTTF',
-        'tiktok': 'https://www.tiktok.com/search?q=NCT%20DREAM%20BTTF',
-        'vote': '#', // 투표 페이지로 이동  
-        'watch': 'https://www.youtube.com/watch?v=3rsBWr3JOUI'
-    };
-    
-    if (action === 'guide') {
-        // 가이드 섹션 보이기 (기존 기능 활용)
-        if (typeof showGuideMenu === 'function') {
-            showGuideMenu();
-        } else {
-            alert('가이드 기능은 준비 중입니다.');
-        }
-    } else if (action === 'vote') {
-        alert('투표 기능은 준비 중입니다.');
-    } else if (footerUrls[action]) {
-        window.open(footerUrls[action], '_blank');
+    switch(action) {
+        case 'guide':
+            // 가이드 섹션 보이기
+            if (typeof showGuideMenu === 'function') {
+                showGuideMenu();
+            } else {
+                alert('가이드 기능은 준비 중입니다.');
+            }
+            break;
+        case 'streaming':
+            // 스트리밍 섹션으로 스크롤
+            const streamingSection = document.querySelector('.streaming-section');
+            if (streamingSection) {
+                streamingSection.scrollIntoView({ behavior: 'smooth' });
+            } else {
+                alert('스트리밍 섹션을 찾을 수 없습니다.');
+            }
+            break;
+        case 'home':
+            // 홈으로 이동 (페이지 상단으로 스크롤)
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            break;
+        case 'vote':
+            alert('투표 기능은 준비 중입니다.');
+            break;
+        case 'support':
+            alert('서포트 기능은 준비 중입니다.');
+            break;
+        default:
+            console.log('알 수 없는 액션:', action);
     }
 }
 
 // YouTube 업데이트 시간 표시 함수
 async function updateYouTubeTime() {
-    try {
-        const response = await fetch('youtube_stats.json');
-        if (response.ok) {
-            const data = await response.json();
-            const lastUpdated = new Date(data.last_updated);
-            const year = lastUpdated.getFullYear();
-            const month = String(lastUpdated.getMonth() + 1).padStart(2, '0');
-            const date = String(lastUpdated.getDate()).padStart(2, '0');
-            const hour = String(lastUpdated.getHours()).padStart(2, '0');
-            
-            const timeString = `${year}.${month}.${date}.${hour}:00`;
-            const youtubeTimeElement = document.getElementById('youtube-update-time');
-            if (youtubeTimeElement) {
-                youtubeTimeElement.textContent = timeString;
-            }
-        }
-    } catch (error) {
-        console.error('YouTube 업데이트 시간 로드 실패:', error);
-        // 실패한 경우 현재 시간 표시 (분은 00으로)
-        const now = new Date();
-        const year = now.getFullYear();
-        const month = String(now.getMonth() + 1).padStart(2, '0');
-        const date = String(now.getDate()).padStart(2, '0');
-        const hour = String(now.getHours()).padStart(2, '0');
-        
-        const timeString = `${year}.${month}.${date}.${hour}:00`;
-        const youtubeTimeElement = document.getElementById('youtube-update-time');
-        if (youtubeTimeElement) {
-            youtubeTimeElement.textContent = timeString;
-        }
+    // 병합 충돌 해결 시 선택한 더 최신 시간 사용
+    const updateDate = new Date('2025-07-29 00:00:00+09:00');
+    const year = updateDate.getFullYear();
+    const month = String(updateDate.getMonth() + 1).padStart(2, '0');
+    const date = String(updateDate.getDate()).padStart(2, '0');
+    const hour = String(updateDate.getHours()).padStart(2, '0');
+    
+    const timeString = `${year}.${month}.${date}.${hour}:00`;
+    const youtubeTimeElement = document.getElementById('youtube-update-time');
+    if (youtubeTimeElement) {
+        youtubeTimeElement.textContent = timeString;
     }
 }

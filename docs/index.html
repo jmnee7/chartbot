@@ -8,21 +8,11 @@
     <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
-    <!-- 메뉴 바 -->
-    <div class="menu-bar">
-        <div class="menu-container">
-            <a href="#" class="menu-logo" onclick="showMainContent()">🎯 NCT DREAM 차트</a>
-            <nav class="menu-nav">
-                <button class="menu-item active" onclick="showMainContent()">대시보드</button>
-                <button class="menu-item" onclick="showGuideMenu()">가이드</button>
-                <button class="menu-item" onclick="showAbout()">정보</button>
-            </nav>
-        </div>
-    </div>
+
 
     <!-- 상단 메뉴바 -->
     <div class="top-menu-bar">
-        <button class="hamburger-menu">
+        <button class="hamburger-menu" onclick="toggleSideMenu()">
             <span></span>
             <span></span>
             <span></span>
@@ -31,9 +21,37 @@
         <div class="menu-placeholder"></div>
     </div>
 
+    <!-- 사이드 메뉴 -->
+    <div class="side-menu" id="sideMenu">
+        <div class="side-menu-header">
+            <button class="close-menu" onclick="toggleSideMenu()">✕</button>
+        </div>
+        <div class="side-menu-content">
+            <div class="menu-item" onclick="navigateTo('guide')">
+                <span class="menu-text">가이드</span>
+                <span class="menu-arrow">⌄</span>
+            </div>
+            <div class="menu-item" onclick="navigateTo('streaming')">
+                <span class="menu-text">스트리밍</span>
+                <span class="menu-arrow">⌄</span>
+            </div>
+            <div class="menu-item" onclick="navigateTo('vote')">
+                <span class="menu-text">투표</span>
+                <span class="menu-arrow">⌄</span>
+            </div>
+            <div class="menu-item" onclick="navigateTo('support')">
+                <span class="menu-text">서포트</span>
+                <span class="menu-arrow">⌄</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 메뉴 오버레이 -->
+    <div class="menu-overlay" id="menuOverlay" onclick="toggleSideMenu()"></div>
+
     <!-- 아티스트 이미지 -->
     <div class="artist-hero">
-        <img src="https://via.placeholder.com/400x200/4A90E2/FFFFFF?text=NCT+WISH" alt="NCT WISH" class="artist-image">
+        <img src="home/home.jpeg" alt="NCT WISH" class="artist-image">
     </div>
 
     <div class="container">
@@ -303,21 +321,21 @@
                     <span class="footer-icon">📚</span>
                     <span class="footer-label">가이드</span>
                 </button>
-                <button class="footer-item" onclick="openFooterAction('spotify')">
+                <button class="footer-item" onclick="openFooterAction('streaming')">
                     <span class="footer-icon">🎵</span>
-                    <span class="footer-label">스포티파이</span>
+                    <span class="footer-label">스트리밍</span>
                 </button>
-                <button class="footer-item" onclick="openFooterAction('tiktok')">
-                    <span class="footer-icon">🎬</span>
-                    <span class="footer-label">틱톡</span>
+                <button class="footer-item" onclick="openFooterAction('home')">
+                    <span class="footer-icon">🏠</span>
+                    <span class="footer-label">홈</span>
                 </button>
                 <button class="footer-item" onclick="openFooterAction('vote')">
                     <span class="footer-icon">🗳️</span>
                     <span class="footer-label">투표</span>
                 </button>
-                <button class="footer-item" onclick="openFooterAction('watch')">
-                    <span class="footer-icon">👀</span>
-                    <span class="footer-label">시청로</span>
+                <button class="footer-item" onclick="openFooterAction('support')">
+                    <span class="footer-icon">💝</span>
+                    <span class="footer-label">서포트</span>
                 </button>
             </div>
         </div>

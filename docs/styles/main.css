@@ -512,11 +512,11 @@ body {
 }
 
 .rank-change.up {
-    color: #198754;
+    color: #ea4335;
 }
 
 .rank-change.down {
-    color: #dc3545;
+    color: #1a73e8;
 }
 
 /* Chart Layout */
@@ -573,11 +573,17 @@ body {
 }
 
 /* YouTube Section */
+.youtube-content {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 20px;
+    align-items: start;
+}
+
 .youtube-section .video-container {
     position: relative;
     width: 100%;
     padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-    margin-bottom: 15px;
 }
 
 .youtube-section .video-container iframe {
@@ -587,6 +593,58 @@ body {
     width: 100%;
     height: 100%;
     border-radius: 8px;
+}
+
+.youtube-stats-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.youtube-stat-item {
+    background-color: #f1f3f4;
+    border-radius: 8px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.2s ease;
+    border: 1px solid #e9ecef;
+}
+
+.youtube-stat-item:hover {
+    background-color: #e8eaed;
+}
+
+.youtube-stat-icon {
+    font-size: 1.5rem;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.youtube-stat-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+}
+
+.youtube-stat-label {
+    font-size: 0.8rem;
+    color: #5f6368;
+    font-weight: 500;
+}
+
+.youtube-stat-value {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #202124;
 }
 
 .youtube-section .youtube-stats-display {
@@ -830,6 +888,25 @@ body {
         font-size: 0.65rem;
     }
     
+    .youtube-content {
+        grid-template-columns: 1fr 250px;
+        gap: 15px;
+    }
+    
+    .youtube-stat-item {
+        padding: 12px;
+    }
+    
+    .youtube-stat-icon {
+        width: 32px;
+        height: 32px;
+        font-size: 1.2rem;
+    }
+    
+    .youtube-stat-value {
+        font-size: 1rem;
+    }
+    
     .video-stats {
         gap: 15px;
     }
@@ -968,6 +1045,35 @@ body {
     
     .rank-change {
         font-size: 0.6rem;
+    }
+    
+    .youtube-content {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .youtube-stats-grid {
+        flex-direction: row;
+        gap: 8px;
+    }
+    
+    .youtube-stat-item {
+        flex: 1;
+        padding: 10px;
+    }
+    
+    .youtube-stat-icon {
+        width: 28px;
+        height: 28px;
+        font-size: 1rem;
+    }
+    
+    .youtube-stat-label {
+        font-size: 0.7rem;
+    }
+    
+    .youtube-stat-value {
+        font-size: 0.9rem;
     }
     
     .video-stats {

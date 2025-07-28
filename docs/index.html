@@ -133,25 +133,31 @@
                 <h2>유튜브 뮤직비디오</h2>
                 <span class="update-time" id="youtube-update-time">업데이트 중...</span>
             </div>
-            <div class="video-container">
-                <iframe 
-                    src="https://www.youtube.com/embed/3rsBWr3JOUI" 
-                    title="NCT DREAM 엔시티 드림 'BTTF' MV" 
-                    frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                    allowfullscreen>
-                </iframe>
-            </div>
-            <div class="video-stats">
-                <div class="stat-item">
-                    <span class="stat-icon">👁️</span>
-                    <span class="stat-label">조회수</span>
-                    <span class="stat-value" id="youtube-views">10,796,369</span>
+            <div class="youtube-content">
+                <div class="video-container">
+                    <iframe 
+                        src="https://www.youtube.com/embed/3rsBWr3JOUI" 
+                        title="NCT DREAM 엔시티 드림 'BTTF' MV" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allowfullscreen>
+                    </iframe>
                 </div>
-                <div class="stat-item">
-                    <span class="stat-icon">👍</span>
-                    <span class="stat-label">좋아요</span>
-                    <span class="stat-value" id="youtube-likes">347,707</span>
+                <div class="youtube-stats-grid">
+                    <div class="youtube-stat-item">
+                        <div class="youtube-stat-icon">👁️</div>
+                        <div class="youtube-stat-info">
+                            <span class="youtube-stat-label">조회수</span>
+                            <span class="youtube-stat-value" id="youtube-views">10,796,369</span>
+                        </div>
+                    </div>
+                    <div class="youtube-stat-item">
+                        <div class="youtube-stat-icon">👍</div>
+                        <div class="youtube-stat-info">
+                            <span class="youtube-stat-label">좋아요</span>
+                            <span class="youtube-stat-value" id="youtube-likes">347,707</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

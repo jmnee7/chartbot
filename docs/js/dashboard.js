@@ -99,15 +99,15 @@ async function updateRealTimeChartStatus() {
         // 업데이트 시간 표시
         const updateElement = document.getElementById('lastUpdate');
         if (updateElement) {
-            const updateTime = new Date(latestTimestamp + '+09:00').toLocaleString('ko-KR', { 
-                timeZone: 'Asia/Seoul',
-                year: 'numeric',
-                month: '2-digit',
-                day: '2-digit',
-                hour: '2-digit',
-                hour12: false
-            }).replace(/\. /g, '.').replace(/\.$/, '');
-            updateElement.textContent = updateTime;
+            const updateDate = new Date(latestTimestamp + '+09:00');
+            const year = updateDate.getFullYear();
+            const month = String(updateDate.getMonth() + 1).padStart(2, '0');
+            const date = String(updateDate.getDate()).padStart(2, '0');
+            const hour = String(updateDate.getHours()).padStart(2, '0');
+            const minute = String(updateDate.getMinutes()).padStart(2, '0');
+            
+            const timeString = `${year}.${month}.${date}.${hour}:${minute}`;
+            updateElement.textContent = timeString;
         }
 
     } catch (error) {
@@ -206,16 +206,36 @@ function openFooterAction(action) {
 }
 
 // YouTube 업데이트 시간 표시 함수
-function updateYouTubeTime() {
-    const now = new Date();
-    const year = now.getFullYear();
-    const month = String(now.getMonth() + 1).padStart(2, '0');
-    const date = String(now.getDate()).padStart(2, '0');
-    const hour = String(now.getHours()).padStart(2, '0');
-    
-    const timeString = `${year}.${month}.${date}.${hour}`;
-    const youtubeTimeElement = document.getElementById('youtube-update-time');
-    if (youtubeTimeElement) {
-        youtubeTimeElement.textContent = timeString;
+async function updateYouTubeTime() {
+    try {
+        const response = await fetch('youtube_stats.json');
+        if (response.ok) {
+            const data = await response.json();
+            const lastUpdated = new Date(data.last_updated);
+            const year = lastUpdated.getFullYear();
+            const month = String(lastUpdated.getMonth() + 1).padStart(2, '0');
+            const date = String(lastUpdated.getDate()).padStart(2, '0');
+            const hour = String(lastUpdated.getHours()).padStart(2, '0');
+            
+            const timeString = `${year}.${month}.${date}.${hour}:00`;
+            const youtubeTimeElement = document.getElementById('youtube-update-time');
+            if (youtubeTimeElement) {
+                youtubeTimeElement.textContent = timeString;
+            }
+        }
+    } catch (error) {
+        console.error('YouTube 업데이트 시간 로드 실패:', error);
+        // 실패한 경우 현재 시간 표시 (분은 00으로)
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = String(now.getMonth() + 1).padStart(2, '0');
+        const date = String(now.getDate()).padStart(2, '0');
+        const hour = String(now.getHours()).padStart(2, '0');
+        
+        const timeString = `${year}.${month}.${date}.${hour}:00`;
+        const youtubeTimeElement = document.getElementById('youtube-update-time');
+        if (youtubeTimeElement) {
+            youtubeTimeElement.textContent = timeString;
+        }
     }
 }

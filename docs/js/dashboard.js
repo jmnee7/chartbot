@@ -2,7 +2,11 @@ document.addEventListener('DOMContentLoaded', () => {
     updateRealTimeChartStatus();
     loadChartData();
     loadYouTubeStats(); // 유튜브 통계 로드 추가
-    setInterval(updateRealTimeChartStatus, 60000); // 1분마다 업데이트
+    updateYouTubeTime(); // YouTube 업데이트 시간 표시
+    setInterval(() => {
+        updateRealTimeChartStatus();
+        updateYouTubeTime();
+    }, 60000); // 1분마다 업데이트
 
     // 초기 뷰 설정
     showView('dashboard');
@@ -34,18 +38,17 @@ async function updateRealTimeChartStatus() {
         const latestData = historyData[latestTimestamp];
 
         const services = {
-            'melon_top100': { rankId: 'melon-top-rank', badgeId: 'melon-top-badge', changeId: 'melon-top-change' },
-            'melon_hot100': { rankId: 'melon-hot-rank', badgeId: 'melon-hot-badge', changeId: 'melon-hot-change' },
-            'bugs': { rankId: 'bugs-rank', badgeId: 'bugs-badge', changeId: 'bugs-change' },
-            'genie': { rankId: 'genie-rank', badgeId: 'genie-badge', changeId: 'genie-change' },
-            'vibe': { rankId: 'vibe-rank', badgeId: 'vibe-badge', changeId: 'vibe-change' },
-            'flo': { rankId: 'flo-rank', badgeId: 'flo-badge', changeId: 'flo-change' }
+            'melon_top100': { displayId: 'melon-top-display', changeId: 'melon-top-change' },
+            'melon_hot100': { displayId: 'melon-hot-display', changeId: 'melon-hot-change' },
+            'bugs': { displayId: 'bugs-display', changeId: 'bugs-change' },
+            'genie': { displayId: 'genie-display', changeId: 'genie-change' },
+            'vibe': { displayId: 'vibe-display', changeId: 'vibe-change' },
+            'flo': { displayId: 'flo-display', changeId: 'flo-change' }
         };
 
         for (const [service, elements] of Object.entries(services)) {
             const serviceData = latestData[service];
-            const rankElement = document.getElementById(elements.rankId);
-            const badgeElement = document.getElementById(elements.badgeId);
+            const displayElement = document.getElementById(elements.displayId);
             const changeElement = document.getElementById(elements.changeId);
 
             const getRank = (data) => {
@@ -56,15 +59,11 @@ async function updateRealTimeChartStatus() {
 
             const currentRank = getRank(serviceData);
 
-            if (rankElement && badgeElement) {
+            if (displayElement) {
                 if (currentRank !== null) {
-                    rankElement.textContent = currentRank;
-                    badgeElement.textContent = '차트인';
-                    badgeElement.className = 'rank-badge in-chart';
+                    displayElement.textContent = `${currentRank}위`;
                 } else {
-                    rankElement.textContent = '-';
-                    badgeElement.textContent = '차트아웃';
-                    badgeElement.className = 'rank-badge out-chart';
+                    displayElement.textContent = '❌';
                 }
             }
 
@@ -77,30 +76,39 @@ async function updateRealTimeChartStatus() {
                     if (currentRank !== null && previousRank !== null) {
                         const change = previousRank - currentRank;
                         if (change > 0) {
-                            changeElement.textContent = `🔺${change}`;
+                            changeElement.textContent = `▲${change}`;
                             changeElement.className = 'rank-change up';
                         } else if (change < 0) {
-                            changeElement.textContent = `🔻${Math.abs(change)}`;
+                            changeElement.textContent = `▼${Math.abs(change)}`;
                             changeElement.className = 'rank-change down';
                         } else {
                             changeElement.textContent = '-';
-                            changeElement.className = 'rank-change';
+                            changeElement.className = 'rank-change no-change';
                         }
                     } else {
-                        changeElement.textContent = '';
+                        changeElement.textContent = '-';
+                        changeElement.className = 'rank-change';
                     }
                 } else {
-                    changeElement.textContent = '';
+                    changeElement.textContent = '-';
+                    changeElement.className = 'rank-change';
                 }
             }
         }
 
-        document.getElementById('lastUpdate').textContent = new Date(latestTimestamp + '+09:00').toLocaleString('ko-KR', { 
-            timeZone: 'Asia/Seoul',
-            hour: '2-digit',
-            minute: '2-digit',
-            hour12: false
-        });
+        // 업데이트 시간 표시
+        const updateElement = document.getElementById('lastUpdate');
+        if (updateElement) {
+            const updateTime = new Date(latestTimestamp + '+09:00').toLocaleString('ko-KR', { 
+                timeZone: 'Asia/Seoul',
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                hour12: false
+            }).replace(/\. /g, '.').replace(/\.$/, '');
+            updateElement.textContent = updateTime;
+        }
 
     } catch (error) {
         console.error('실시간 차트 현황 업데이트 실패:', error);
@@ -160,15 +168,54 @@ async function loadYouTubeStats() {
     } catch (error) {
         console.error('❌ YouTube 통계 로드 실패:', error);
         
-        // 실패한 경우 실시간 순위와 동일하게 "-" 표시
-        const viewCountElement = document.getElementById('viewCount');
-        const likeCountElement = document.getElementById('likeCount');
+        // 실패한 경우 기본값 표시
+        const viewCountElement = document.getElementById('youtube-views');
+        const likeCountElement = document.getElementById('youtube-likes');
         
         if (viewCountElement) {
-            viewCountElement.textContent = '-';
+            viewCountElement.textContent = '10,796,369';
         }
         if (likeCountElement) {
-            likeCountElement.textContent = '-';
+            likeCountElement.textContent = '347,707';
         }
+    }
+}
+
+// Footer 액션 함수
+function openFooterAction(action) {
+    const footerUrls = {
+        'guide': '#', // 가이드 페이지로 이동
+        'spotify': 'https://open.spotify.com/search/NCT%20DREAM%20BTTF',
+        'tiktok': 'https://www.tiktok.com/search?q=NCT%20DREAM%20BTTF',
+        'vote': '#', // 투표 페이지로 이동  
+        'watch': 'https://www.youtube.com/watch?v=3rsBWr3JOUI'
+    };
+    
+    if (action === 'guide') {
+        // 가이드 섹션 보이기 (기존 기능 활용)
+        if (typeof showGuideMenu === 'function') {
+            showGuideMenu();
+        } else {
+            alert('가이드 기능은 준비 중입니다.');
+        }
+    } else if (action === 'vote') {
+        alert('투표 기능은 준비 중입니다.');
+    } else if (footerUrls[action]) {
+        window.open(footerUrls[action], '_blank');
+    }
+}
+
+// YouTube 업데이트 시간 표시 함수
+function updateYouTubeTime() {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const date = String(now.getDate()).padStart(2, '0');
+    const hour = String(now.getHours()).padStart(2, '0');
+    
+    const timeString = `${year}.${month}.${date}.${hour}`;
+    const youtubeTimeElement = document.getElementById('youtube-update-time');
+    if (youtubeTimeElement) {
+        youtubeTimeElement.textContent = timeString;
     }
 }

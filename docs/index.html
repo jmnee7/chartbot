@@ -20,104 +20,176 @@
         </div>
     </div>
 
-    <div class="container">
-        <div class="header">
-            <h1>🎯 NCT DREAM 차트 추적 대시보드</h1>
-            <p>BTF - 실시간 차트 현황 및 스트리밍 지원</p>
-        </div>
+    <!-- 상단 메뉴바 -->
+    <div class="top-menu-bar">
+        <button class="hamburger-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <h1 class="app-title">NCT WISH<br>STRM</h1>
+        <div class="menu-placeholder"></div>
+    </div>
 
-        <div class="dashboard-grid">
-            <!-- 차트 현황 및 그래프 좌우 배치 -->
-            <div class="chart-layout">
-                <!-- 실시간 차트 현황 -->
-                <div class="card chart-left">
-                    <h2><span class="card-icon">🏆</span>실시간 차트 현황</h2>
-                    <div class="rank-grid">
-                        <div class="rank-card melon-top">
-                            <div class="rank-header">
-                                <span class="rank-service-name">
-                                    <div class="service-logo melon"></div>
-                                    멜론 TOP100
-                                </span>
-                                <span class="rank-badge out-chart" id="melon-top-badge">차트아웃</span>
-                            </div>
-                            <div class="rank-number" id="melon-top-rank">
-                                -
-                            </div>
+    <!-- 아티스트 이미지 -->
+    <div class="artist-hero">
+        <img src="https://via.placeholder.com/400x200/4A90E2/FFFFFF?text=NCT+WISH" alt="NCT WISH" class="artist-image">
+    </div>
+
+    <div class="container">
+
+        <!-- 실시간 차트 현황 -->
+        <div class="chart-status-section">
+            <div class="chart-header">
+                <h2>NCT DREAM - BTTF 실시간 차트</h2>
+                <span class="update-time" id="lastUpdate">업데이트 중...</span>
+            </div>
+            <div class="chart-grid">
+                <div class="chart-item melon-top">
+                    <div class="chart-service">
+                        <img src="images/melon.png" alt="멜론" class="service-icon">
+                        <div class="service-info">
+                            <span class="service-name">멜론</span>
+                            <span class="service-detail">TOP 100</span>
                         </div>
-                        <div class="rank-card melon-hot">
-                            <div class="rank-header">
-                                <span class="rank-service-name">
-                                    <div class="service-logo melon"></div>
-                                    멜론 HOT100
-                                </span>
-                                <span class="rank-badge in-chart" id="melon-hot-badge">차트인</span>
-                            </div>
-                            <div class="rank-number" id="melon-hot-rank">
-                                -
-                            </div>
+                    </div>
+                    <div class="chart-rank">
+                        <span class="rank-display" id="melon-top-display">로딩중...</span>
+                        <span class="rank-change" id="melon-top-change">-</span>
+                    </div>
+                </div>
+                
+                <div class="chart-item melon-hot">
+                    <div class="chart-service">
+                        <img src="images/melon.png" alt="멜론" class="service-icon">
+                        <div class="service-info">
+                            <span class="service-name">멜론</span>
+                            <span class="service-detail">HOT 100</span>
                         </div>
-                        <div class="rank-card bugs">
-                            <div class="rank-header">
-                                <span class="rank-service-name">
-                                    <div class="service-logo bugs"></div>
-                                    벅스
-                                </span>
-                                <span class="rank-badge in-chart" id="bugs-badge">차트인</span>
-                            </div>
-                            <div class="rank-number" id="bugs-rank">
-                                -
-                            </div>
-                        </div>
-                        <div class="rank-card genie">
-                            <div class="rank-header">
-                                <span class="rank-service-name">
-                                    <div class="service-logo genie"></div>
-                                    지니
-                                </span>
-                                <span class="rank-badge out-chart" id="genie-badge">차트아웃</span>
-                            </div>
-                            <div class="rank-number" id="genie-rank">
-                                -
-                            </div>
-                        </div>
-                        <div class="rank-card vibe">
-                            <div class="rank-header">
-                                <span class="rank-service-name">
-                                    <div class="service-logo vibe"></div>
-                                    바이브
-                                </span>
-                                <span class="rank-badge out-chart" id="vibe-badge">차트아웃</span>
-                            </div>
-                            <div class="rank-number" id="vibe-rank">
-                                -
-                            </div>
-                        </div>
-                        <div class="rank-card flo">
-                            <div class="rank-header">
-                                <span class="rank-service-name">
-                                    <div class="service-logo flo"></div>
-                                    플로
-                                </span>
-                                <span class="rank-badge out-chart" id="flo-badge">차트아웃</span>
-                            </div>
-                            <div class="rank-number" id="flo-rank">
-                                -
-                            </div>
-                        </div>
+                    </div>
+                    <div class="chart-rank">
+                        <span class="rank-display" id="melon-hot-display">로딩중...</span>
+                        <span class="rank-change" id="melon-hot-change">-</span>
                     </div>
                 </div>
 
-                <!-- 차트 그래프 -->
-                <div class="card chart-right">
-                    <h2><span class="card-icon">📊</span>차트 그래프</h2>
-                    <div class="chart-container" style="height: 400px; width: 100%; background: white; border: 2px solid #ddd; position: relative;">
-                        <canvas id="rankChart" style="width: 100% !important; height: 350px !important; display: block !important; background: white;"></canvas>
-                        <div id="chartDebug" style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); color: #666; font-size: 12px;">차트 로딩 중...</div>
+                <div class="chart-item genie">
+                    <div class="chart-service">
+                        <img src="images/genie.png" alt="지니" class="service-icon">
+                        <div class="service-info">
+                            <span class="service-name">지니</span>
+                        </div>
+                    </div>
+                    <div class="chart-rank">
+                        <span class="rank-display" id="genie-display">로딩중...</span>
+                        <span class="rank-change" id="genie-change">-</span>
+                    </div>
+                </div>
+
+                <div class="chart-item bugs">
+                    <div class="chart-service">
+                        <img src="images/bugs.ico" alt="벅스" class="service-icon">
+                        <div class="service-info">
+                            <span class="service-name">벅스</span>
+                        </div>
+                    </div>
+                    <div class="chart-rank">
+                        <span class="rank-display" id="bugs-display">로딩중...</span>
+                        <span class="rank-change" id="bugs-change">-</span>
+                    </div>
+                </div>
+
+                <div class="chart-item vibe">
+                    <div class="chart-service">
+                        <img src="images/vibe.ico" alt="바이브" class="service-icon">
+                        <div class="service-info">
+                            <span class="service-name">바이브</span>
+                        </div>
+                    </div>
+                    <div class="chart-rank">
+                        <span class="rank-display" id="vibe-display">로딩중...</span>
+                        <span class="rank-change" id="vibe-change">-</span>
+                    </div>
+                </div>
+
+                <div class="chart-item flo">
+                    <div class="chart-service">
+                        <img src="images/flo.ico" alt="플로" class="service-icon">
+                        <div class="service-info">
+                            <span class="service-name">플로</span>
+                        </div>
+                    </div>
+                    <div class="chart-rank">
+                        <span class="rank-display" id="flo-display">로딩중...</span>
+                        <span class="rank-change" id="flo-change">-</span>
                     </div>
                 </div>
             </div>
+        </div>
 
+        <!-- 유튜브 뮤직비디오 -->
+        <div class="youtube-section">
+            <div class="chart-header">
+                <h2>유튜브 뮤직비디오</h2>
+                <span class="update-time" id="youtube-update-time">업데이트 중...</span>
+            </div>
+            <div class="video-container">
+                <iframe 
+                    src="https://www.youtube.com/embed/3rsBWr3JOUI" 
+                    title="NCT DREAM 엔시티 드림 'BTTF' MV" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+            <div class="video-stats">
+                <div class="stat-item">
+                    <span class="stat-icon">👁️</span>
+                    <span class="stat-label">조회수</span>
+                    <span class="stat-value" id="youtube-views">10,796,369</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-icon">👍</span>
+                    <span class="stat-label">좋아요</span>
+                    <span class="stat-value" id="youtube-likes">347,707</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 원클릭 스트리밍 리스트 -->
+        <div class="streaming-section">
+            <h2>원클릭 스트리밍 리스트</h2>
+            <div class="streaming-grid">
+                <button class="streaming-item" onclick="openStreaming('melon')">
+                    <img src="images/melon.png" alt="멜론" class="streaming-icon">
+                    멜론
+                </button>
+                <button class="streaming-item" onclick="openStreaming('vibe')">
+                    <img src="images/vibe.ico" alt="바이브" class="streaming-icon">
+                    바이브
+                </button>
+                <button class="streaming-item" onclick="openStreaming('genie')">
+                    <img src="images/genie.png" alt="지니" class="streaming-icon">
+                    지니
+                </button>
+                <button class="streaming-item" onclick="openStreaming('bugs')">
+                    <img src="images/bugs.ico" alt="벅스" class="streaming-icon">
+                    벅스
+                </button>
+            </div>
+            
+            <!-- 하단 추가 버튼들 -->
+            <div class="bottom-actions">
+                <button class="action-btn" onclick="openAction('genie')">지니뮤직</button>
+                <button class="action-btn" onclick="openAction('spotify')">스포티파이</button>
+                <button class="action-btn" onclick="openAction('itunes')">아이튠즈</button>
+                <button class="action-btn" onclick="openAction('youtube')">유튜브</button>
+                <button class="action-btn" onclick="openAction('soundcloud')">사운드클라우드</button>
+            </div>
+        </div>
+
+        <!-- 임시로 숨긴 섹션들 -->
+        <div style="display: none;">
             <!-- 원클릭 스트리밍 -->
             <div class="card">
                 <h2><span class="card-icon">🎵</span>원클릭 스트리밍</h2>
@@ -217,9 +289,31 @@
             </div>
         </div>
 
+
+
         <div class="footer">
-            <p>마지막 업데이트: <span id="lastUpdate">2025-07-06 00:04:20</span></p>
-                    <p>NCT DREAM 차트 추적 시스템 | 팬덤 스트리밍 지원 플랫폼</p>
+            <div class="footer-nav">
+                <button class="footer-item" onclick="openFooterAction('guide')">
+                    <span class="footer-icon">📚</span>
+                    <span class="footer-label">가이드</span>
+                </button>
+                <button class="footer-item" onclick="openFooterAction('spotify')">
+                    <span class="footer-icon">🎵</span>
+                    <span class="footer-label">스포티파이</span>
+                </button>
+                <button class="footer-item" onclick="openFooterAction('tiktok')">
+                    <span class="footer-icon">🎬</span>
+                    <span class="footer-label">틱톡</span>
+                </button>
+                <button class="footer-item" onclick="openFooterAction('vote')">
+                    <span class="footer-icon">🗳️</span>
+                    <span class="footer-label">투표</span>
+                </button>
+                <button class="footer-item" onclick="openFooterAction('watch')">
+                    <span class="footer-icon">👀</span>
+                    <span class="footer-label">시청로</span>
+                </button>
+            </div>
         </div>
     </div>
 

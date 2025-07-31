@@ -1,52 +1,4 @@
 {
-  "2025-07-31 01:00:00": {
-    "_processed_at": "2025-07-31T01:56:09.075895",
-    "melon_top100": [
-      {
-        "rank": null,
-        "timestamp": "2025-07-31 01:00:00",
-        "chart_type": "TOP100"
-      }
-    ],
-    "melon_hot100": [
-      {
-        "rank": 20,
-        "timestamp": "2025-07-31 01:00",
-        "chart_type": "HOT100"
-      }
-    ],
-    "melon": [
-      {
-        "rank": 20,
-        "timestamp": "2025-07-31 01:00",
-        "chart_type": "HOT100"
-      }
-    ],
-    "genie": [
-      {
-        "rank": null,
-        "timestamp": "2025-07-31 01:00:00"
-      }
-    ],
-    "bugs": [
-      {
-        "rank": null,
-        "timestamp": "2025-07-31 01:00:00"
-      }
-    ],
-    "vibe": [
-      {
-        "rank": null,
-        "timestamp": "2025-07-31 01:00:00"
-      }
-    ],
-    "flo": [
-      {
-        "rank": 95,
-        "timestamp": "2025-07-31 01:00"
-      }
-    ]
-  },
   "2025-07-31 02:00:00": {
     "_processed_at": "2025-07-31T02:48:28.697400",
     "melon_top100": [
@@ -1148,6 +1100,54 @@
       {
         "rank": 95,
         "timestamp": "2025-08-01 06:00"
+      }
+    ]
+  },
+  "2025-08-01 07:00:00": {
+    "_processed_at": "2025-08-01T07:47:36.682161",
+    "melon_top100": [
+      {
+        "rank": null,
+        "timestamp": "2025-08-01 07:00:00",
+        "chart_type": "TOP100"
+      }
+    ],
+    "melon_hot100": [
+      {
+        "rank": 19,
+        "timestamp": "2025-08-01 07:00",
+        "chart_type": "HOT100"
+      }
+    ],
+    "melon": [
+      {
+        "rank": 19,
+        "timestamp": "2025-08-01 07:00",
+        "chart_type": "HOT100"
+      }
+    ],
+    "genie": [
+      {
+        "rank": null,
+        "timestamp": "2025-08-01 07:00:00"
+      }
+    ],
+    "bugs": [
+      {
+        "rank": null,
+        "timestamp": "2025-08-01 07:00:00"
+      }
+    ],
+    "vibe": [
+      {
+        "rank": null,
+        "timestamp": "2025-08-01 07:00:00"
+      }
+    ],
+    "flo": [
+      {
+        "rank": 93,
+        "timestamp": "2025-08-01 07:00"
       }
     ]
   }

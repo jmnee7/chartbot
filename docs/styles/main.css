@@ -5,6 +5,8 @@ body {
     color: #343a40;
     margin: 0;
     padding: 0;
+    /* 하단 고정 네비게이션이 가리지 않도록 여백 확보 */
+    padding-bottom: 80px;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -16,12 +18,12 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 15px 20px;
-    background-color: #ffffff;
+    background-color: #EFF9BB; /* requested top bar color */
     position: sticky;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
-    border-bottom: 1px solid #e9ecef;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.06);
+    border-bottom: 1px solid #e5efad;
 }
 
 .hamburger-menu {
@@ -49,14 +51,9 @@ body {
     background-color: #007bff;
 }
 
-.app-title {
-    color: #495057;
-    font-size: 1.1rem;
-    font-weight: 700;
-    text-align: center;
-    margin: 0;
-    line-height: 1.2;
-}
+.app-logo { height: 28px; display: block; }
+
+.logo-btn { background:none; border:none; padding:0; cursor:pointer; display:flex; align-items:center; }
 
 .menu-placeholder {
     width: 24px; /* Same width as hamburger menu for center alignment */
@@ -81,7 +78,7 @@ body {
 
 .side-menu-header {
     padding: 20px;
-    border-bottom: 1px solid #e9ecef;
+    border-bottom: none; /* 닫기(X) 아래 구분선 제거 */
     display: flex;
     justify-content: flex-start;
 }
@@ -110,29 +107,40 @@ body {
     padding: 20px 0;
 }
 
-.side-menu .menu-item {
+/* Accordion menu */
+.menu-section { border-bottom: none; }
+.menu-section-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 16px 20px;
+    padding: 18px 20px;
     cursor: pointer;
-    transition: background-color 0.2s ease;
-    border-bottom: 1px solid #f8f9fa;
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid transparent; /* 기본은 투명 (보이지 않음) */
 }
+.menu-section-title {
+    font-size: 20px;
+    font-weight: 800;
+    color: #212529;
+}
+.menu-sublist { display: none; padding: 8px 0 14px 0; }
+.menu-section.open .menu-sublist { display: block; }
+.menu-section.open .menu-arrow { transform: rotate(180deg) translateY(3px); }
+.menu-section.open .menu-section-header { border-bottom: 1px solid #eceff3; }
 
-.side-menu .menu-item:hover {
-    background-color: #f8f9fa;
+.menu-subitem {
+    padding: 10px 24px 10px 32px; /* 한 탭 정도 들여쓰기 */
+    font-size: 14px; /* 하위 메뉴는 더 작게 */
+    color: #343a40;
+    text-align: left;
+    width: 100%;
+    background: transparent;
+    border: none;
 }
-
-.side-menu .menu-item:last-child {
-    border-bottom: none;
-}
-
-.menu-text {
-    font-size: 16px;
-    color: #495057;
-    font-weight: 700;
-}
+.menu-subitem + .menu-subitem { margin-top: 4px; }
+.menu-subitem:hover { background: #f8f9fa; }
 
 .menu-arrow {
     font-size: 22px;
@@ -141,7 +149,7 @@ body {
     line-height: 1;
     display: flex;
     align-items: center;
-    transform: translateY(-3px);
+    transition: transform 0.2s ease;
 }
 
 /* 메뉴 오버레이 */
@@ -186,6 +194,38 @@ body {
     margin: 0 auto;
     padding: 20px;
 }
+
+/* Quick Links Section */
+.quick-links-section{ background:#fff; border-radius:16px; padding:22px; margin-bottom:20px; border:1px solid #e9ecef; box-shadow:0 4px 20px rgba(0,0,0,0.06); }
+.quick-links-section h2{ font-size:1.3rem; font-weight:600; color:#495057; margin:0 0 14px 0; }
+.quick-links-list{ display:flex; flex-direction:column; gap:12px; }
+.quick-link-item{ display:flex; align-items:center; gap:14px; padding:14px; border-radius:12px; border:1px solid #eef1f4; background:#f8fafc; cursor:pointer; transition:transform .15s ease, box-shadow .15s ease, background .15s ease; text-align:left; }
+.quick-link-item:hover{ background:#f1f3f5; transform:translateY(-2px); box-shadow:0 4px 12px rgba(0,0,0,0.08); }
+.quick-link-icon{ width:40px; height:40px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:22px; font-weight:700; background:#EFF9BB; }
+.quick-link-icon.yellow{ background:#EFF9BB; }
+.quick-link-icon.green{ background:#EFF9BB; }
+.quick-link-icon.blue{ background:#EFF9BB; }
+.quick-link-icon.gray{ background:#EFF9BB; }
+.quick-link-label{ font-size:1.05rem; font-weight:800; color:#111; }
+
+@media (min-width: 640px){
+  .quick-links-list{ flex-direction:column; }
+}
+
+/* Bottom Sheet for Quick Streaming */
+.bottom-sheet-overlay{ position:fixed; inset:0; background:rgba(0,0,0,.4); opacity:0; visibility:hidden; transition:all .2s ease; z-index:1400; }
+.bottom-sheet-overlay.active{ opacity:1; visibility:visible; }
+.bottom-sheet{ position:fixed; left:0; right:0; bottom:-100%; background:#fff; border-top-left-radius:18px; border-top-right-radius:18px; box-shadow:0 -10px 30px rgba(0,0,0,.15); transition:bottom .25s ease; z-index:1500; }
+.bottom-sheet.active{ bottom:0; }
+.sheet-inner{ padding:18px 16px calc(20px + env(safe-area-inset-bottom)) 16px; }
+.sheet-header{ display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; }
+.sheet-header h3{ margin:0; font-size:1.2rem; font-weight:800; }
+.sheet-close{ background:#f1f3f5; border:none; border-radius:8px; width:36px; height:36px; cursor:pointer; font-size:18px; }
+.sheet-content{ max-height:65vh; overflow:auto; padding-top:6px; }
+.sheet-grid{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.sheet-btn{ display:flex; align-items:center; gap:10px; border:1px solid #e9ecef; padding:14px 12px; border-radius:12px; text-decoration:none; color:#111; font-weight:700; background:#f8fafc; }
+.sheet-btn:hover{ background:#f1f3f5; }
+.sheet-icon{ width:20px; height:20px; display:flex; align-items:center; justify-content:center; }
 
 /* YouTube Section */
 .youtube-section {
@@ -267,6 +307,23 @@ body {
     margin-bottom: 25px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
     border: 1px solid #e9ecef;
+}
+
+/* Guide Hub (for bottom nav) */
+.guide-hub { background:#fff; border:1px solid #e9ecef; border-radius:16px; padding:24px; box-shadow:0 4px 20px rgba(0,0,0,0.06); margin-bottom:24px; }
+.guide-hub h2 { font-size:1.6rem; margin:0 0 16px 0; color:#212529; }
+.hub-grid { display:grid; grid-template-columns:1fr; gap:14px; }
+.hub-card { display:flex; flex-direction:column; align-items:center; justify-content:center; text-decoration:none; color:#111; background:#f5f7f9; border:1px solid #eef1f4; border-radius:12px; padding:22px 16px; }
+.hub-emoji { font-size:40px; line-height:1; margin-bottom:8px; }
+.hub-title { font-weight:800; font-size:1.25rem; }
+
+/* 가이드 메인 카드 2열 배치 */
+@media (min-width:560px){
+  .hub-grid { grid-template-columns:1fr 1fr; }
+}
+
+@media (min-width:560px){
+  .hub-grid { grid-template-columns:1fr 1fr; }
 }
 
 .streaming-section h2 {
@@ -802,21 +859,22 @@ body {
 
 /* Footer */
 .footer {
-    padding: 15px 20px 25px 20px;
-    margin-top: 40px;
+    padding: 10px 12px calc(18px + env(safe-area-inset-bottom)) 12px;
     background-color: #ffffff;
     border-top: 1px solid #e9ecef;
-    border-radius: 16px 16px 0 0;
-    box-shadow: 0 -2px 20px rgba(0, 0, 0, 0.08);
-    position: sticky;
+    position: fixed;
+    left: 0;
+    right: 0;
     bottom: 0;
+    z-index: 1200;
+    box-shadow: 0 -4px 12px rgba(0,0,0,0.05);
 }
 
 .footer-nav {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    max-width: 400px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+    max-width: 560px;
     margin: 0 auto;
 }
 
@@ -826,25 +884,15 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 5px;
+    gap: 6px;
     cursor: pointer;
-    transition: all 0.2s ease;
-    padding: 8px;
-    border-radius: 8px;
+    padding: 6px 4px;
 }
 
-.footer-item:hover {
-    background-color: #f8f9fa;
-    transform: translateY(-2px);
-}
-
-.footer-icon {
-    font-size: 1.2rem;
-    opacity: 0.8;
-}
+.footer-icon-img { width: 28px; height: 28px; display: block; }
 
 .footer-label {
-    font-size: 0.75rem;
+    font-size: 0.78rem;
     color: #6c757d;
     font-weight: 500;
 }
@@ -1029,11 +1077,11 @@ body {
     }
     
     .footer {
-        padding: 12px 15px 20px 15px;
+        padding: 12px 15px calc(20px + env(safe-area-inset-bottom)) 15px;
     }
     
     .footer-nav {
-        max-width: 350px;
+        max-width: 420px;
     }
     
     .footer-item {
@@ -1200,11 +1248,11 @@ body {
     }
     
     .footer {
-        padding: 10px 12px 18px 12px;
+        padding: 10px 12px calc(18px + env(safe-area-inset-bottom)) 12px;
     }
     
     .footer-nav {
-        max-width: 320px;
+        max-width: 380px;
     }
     
     .footer-item {

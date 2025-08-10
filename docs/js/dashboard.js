@@ -8,24 +8,28 @@ document.addEventListener('DOMContentLoaded', () => {
         updateYouTubeTime();
     }, 60000); // 1분마다 업데이트
 
-    // 초기 뷰 설정
-    showView('dashboard');
+    // 초기 상태: 메인 화면만 노출, 가이드는 숨김
+    const guideSection = document.getElementById('guideSection');
+    if (guideSection) guideSection.style.display = 'none';
 });
 
 function showView(viewId) {
-    document.getElementById('dashboard-view').style.display = 'none';
-    document.getElementById('guide-view').style.display = 'none';
-
-    document.getElementById(`${viewId}-view`).style.display = 'block';
-
-    // 네비게이션 아이템 활성화/비활성화
-    document.querySelectorAll('.nav-item').forEach(item => {
-        if (item.onclick.toString().includes(`'${viewId}'`)) {
-            item.classList.add('active');
-        } else {
-            item.classList.remove('active');
-        }
-    });
+    const dashboardEl = document.getElementById('dashboard-view');
+    const guideEl = document.getElementById('guide-view');
+    const targetEl = document.getElementById(`${viewId}-view`);
+    if (dashboardEl) dashboardEl.style.display = 'none';
+    if (guideEl) guideEl.style.display = 'none';
+    if (targetEl) targetEl.style.display = 'block';
+    const navItems = document.querySelectorAll('.nav-item');
+    if (navItems && navItems.length) {
+        navItems.forEach(item => {
+            if (item.onclick && item.onclick.toString().includes(`'${viewId}'`)) {
+                item.classList.add('active');
+            } else {
+                item.classList.remove('active');
+            }
+        });
+    }
 }
 
 async function updateRealTimeChartStatus() {
@@ -230,39 +234,187 @@ function navigateTo(page) {
     toggleSideMenu();
 }
 
+// 아코디언 토글
+function toggleMenuSection(headerEl) {
+    const section = headerEl.closest('.menu-section');
+    if (!section) return;
+    section.classList.toggle('open');
+}
+
+// 서브메뉴 네비게이션 (필요 시 섹션 스크롤/전환으로 연결)
+function navigateToMenu(key) {
+    // 기본 동작: 메뉴 닫고 해당 섹션으로 스크롤 혹은 알림
+    toggleSideMenu();
+    switch (key) {
+        // 가이드 관련 항목
+        case 'guide-streaming':
+        case 'guide-download':
+        case 'guide-id':
+        case 'guide-cheer':
+        case 'guide-radio':
+            showGuideSection();
+            const guide = document.getElementById('guideSection');
+            if (guide) guide.scrollIntoView({ behavior: 'smooth' });
+            break;
+        case 'streaming-list':
+            const list = document.querySelector('.streaming-section');
+            if (list) list.scrollIntoView({ behavior: 'smooth' });
+            break;
+        case 'streaming-mv':
+            const youtube = document.querySelector('.youtube-section');
+            if (youtube) youtube.scrollIntoView({ behavior: 'smooth' });
+            break;
+        case 'vote-weight':
+        case 'vote-schedule':
+        case 'vote-collect':
+            showGuideHub('vote');
+            break;
+        case 'support-helper':
+        case 'support-id-donate':
+        case 'support-funding':
+            showGuideHub('support');
+            break;
+        default:
+            // 다른 키들은 현재 페이지에 대응 섹션 없으므로 안내만
+            console.log('navigateToMenu:', key);
+    }
+}
+
 // Footer 액션 함수
 function openFooterAction(action) {
     switch(action) {
         case 'guide':
-            // 가이드 섹션 보이기
-            if (typeof showGuideMenu === 'function') {
-                showGuideMenu();
-            } else {
-                alert('가이드 기능은 준비 중입니다.');
-            }
+            // 가이드 메인 허브를 보여줌
+            showGuideMainHub();
             break;
         case 'streaming':
-            // 스트리밍 섹션으로 스크롤
-            const streamingSection = document.querySelector('.streaming-section');
-            if (streamingSection) {
-                streamingSection.scrollIntoView({ behavior: 'smooth' });
-            } else {
-                alert('스트리밍 섹션을 찾을 수 없습니다.');
-            }
+            showGuideHub('streaming');
             break;
         case 'home':
-            // 홈으로 이동 (페이지 상단으로 스크롤)
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            showHome();
             break;
         case 'vote':
-            alert('투표 기능은 준비 중입니다.');
+            showGuideHub('vote');
             break;
         case 'support':
-            alert('서포트 기능은 준비 중입니다.');
+            showGuideHub('support');
             break;
         default:
             console.log('알 수 없는 액션:', action);
     }
+}
+
+function showGuideHub(type){
+    const hubs = ['guideHubMain','guideHubStreaming','guideHubVote','guideHubSupport'];
+    hubs.forEach(id=>{
+        const el = document.getElementById(id);
+        if (el) el.style.display = 'none';
+    });
+    let targetId = 'guideHubStreaming';
+    if (type === 'vote') targetId = 'guideHubVote';
+    if (type === 'support') targetId = 'guideHubSupport';
+    const target = document.getElementById(targetId);
+    if (target){
+        toggleMainSections(false);
+        const guideSection = document.getElementById('guideSection');
+        if (guideSection) guideSection.style.display = 'none';
+        target.style.display = 'block';
+        target.scrollIntoView({behavior:'smooth', block:'start'});
+    }
+}
+
+function toggleMainSections(show){
+    const display = show ? 'block' : 'none';
+    const mainSelectors = ['.quick-links-section', '.chart-status-section', '.youtube-section'];
+    mainSelectors.forEach(sel=>{
+        document.querySelectorAll(sel).forEach(el=>{ el.style.display = display; });
+    });
+}
+
+function showHome(){
+    ['guideHubMain','guideHubStreaming','guideHubVote','guideHubSupport'].forEach(id=>{
+        const el = document.getElementById(id);
+        if (el) el.style.display = 'none';
+    });
+    toggleMainSections(true);
+    const guideSection = document.getElementById('guideSection');
+    if (guideSection) guideSection.style.display = 'none';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function showGuideSection(){
+    // 모든 허브 숨기고 메인도 숨김
+    ['guideHubMain','guideHubStreaming','guideHubVote','guideHubSupport'].forEach(id=>{
+        const el = document.getElementById(id);
+        if (el) el.style.display = 'none';
+    });
+    toggleMainSections(false);
+    const guideSection = document.getElementById('guideSection');
+    if (guideSection){
+        guideSection.style.display = 'block';
+        guideSection.scrollIntoView({behavior:'smooth', block:'start'});
+    }
+}
+
+function showGuideMainHub(){
+    // 메인/가이드 섹션 숨기고 가이드 허브 메인 노출
+    toggleMainSections(false);
+    const guideSection = document.getElementById('guideSection');
+    if (guideSection) guideSection.style.display = 'none';
+    ['guideHubStreaming','guideHubVote','guideHubSupport'].forEach(id=>{
+        const el = document.getElementById(id);
+        if (el) el.style.display = 'none';
+    });
+    const mainHub = document.getElementById('guideHubMain');
+    if (mainHub){
+        mainHub.style.display = 'block';
+        mainHub.scrollIntoView({behavior:'smooth', block:'start'});
+    }
+}
+
+function openGuide(kind){
+    // 메인 허브에서 세부 섹션 선택 시 가이드 탭으로 이동
+    showGuideSection();
+    // 원하는 초기 탭/서비스로 포커싱할 수도 있음
+}
+
+// 원클릭 바로가기 액션
+function openQuickLink(key){
+    switch(key){
+        case 'streaming-list':
+            openStreamingSheet();
+            break;
+        case 'melon-musicwave':
+            window.open('https://m2.melon.com/ymlocation/artist/index.htm', '_blank');
+            break;
+        case 'musiccore-sms':
+            window.location.href = 'sms:8000?&body=NCT DREAM 투표합니다';
+            break;
+        case 'radio-request':
+            window.location.href = 'sms:8910?&body=NCT DREAM 사연 신청합니다';
+            break;
+        default:
+            console.log('openQuickLink:', key);
+    }
+}
+
+function goHome(){
+    // 허브/가이드를 모두 숨기고 메인 섹션만 보이도록
+    showHome();
+}
+
+// 바텀시트 열기/닫기
+function openStreamingSheet(){
+    const sheet = document.getElementById('quickStreamingSheet');
+    const overlay = document.getElementById('quickStreamingOverlay');
+    if (overlay) overlay.classList.add('active');
+    if (sheet) sheet.classList.add('active');
+}
+function closeStreamingSheet(){
+    const sheet = document.getElementById('quickStreamingSheet');
+    const overlay = document.getElementById('quickStreamingOverlay');
+    if (overlay) overlay.classList.remove('active');
+    if (sheet) sheet.classList.remove('active');
 }
 
 // YouTube 업데이트 시간 표시 함수

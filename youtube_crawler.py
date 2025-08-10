@@ -114,13 +114,13 @@ class YouTubeCrawler:
 
 def get_youtube_stats_for_dashboard():
     """
-    대시보드용 YouTube 통계 가져오기 (NCT DREAM - BTTF)
+    대시보드용 YouTube 통계 가져오기 (현재 임베드된 MV 기준)
     
     Returns:
         Dict: YouTube 통계 정보
     """
-    # NCT DREAM - BTTF 뮤직비디오 ID
-    VIDEO_ID = "3rsBWr3JOUI"
+    # 현재 임베드된 MV ID (https://youtu.be/LNETckymbzk)
+    VIDEO_ID = "LNETckymbzk"
     
     crawler = YouTubeCrawler()
     stats = crawler.get_video_stats(VIDEO_ID)
@@ -134,7 +134,7 @@ def get_youtube_stats_for_dashboard():
         print("🔄 YouTube API 실패로 기본값 사용")
         default_stats = {
             'video_id': VIDEO_ID,
-            'title': 'NCT DREAM - BTTF',
+            'title': 'YouTube MV',
             'view_count': 0,
             'like_count': 0,
             'view_count_formatted': '-',

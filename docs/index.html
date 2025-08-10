@@ -85,7 +85,7 @@
 
     <!-- 아티스트 이미지 -->
     <div class="artist-hero">
-        <img src="home/home.jpeg" alt="NCT WISH" class="artist-image">
+        <img src="styles/assets/home/home.jpeg" alt="NCT WISH" class="artist-image">
     </div>
 
     <div class="container">
@@ -116,13 +116,13 @@
         <!-- 실시간 차트 현황 -->
         <div class="chart-status-section">
             <div class="chart-header">
-                <h2>NCT DREAM - BTTF 실시간 차트</h2>
+                <h2>실시간 차트</h2>
                 <span class="update-time" id="lastUpdate">업데이트 중...</span>
             </div>
             <div class="chart-grid">
                 <div class="chart-item melon-top">
                     <div class="chart-service">
-                        <img src="images/melon.png" alt="멜론" class="service-icon">
+                        <img src="styles/assets/icon/melon.png" alt="멜론" class="service-icon">
                         <div class="service-info">
                             <span class="service-name">멜론</span>
                             <span class="service-detail">TOP 100</span>
@@ -136,7 +136,7 @@
                 
                 <div class="chart-item melon-hot">
                     <div class="chart-service">
-                        <img src="images/melon.png" alt="멜론" class="service-icon">
+                        <img src="styles/assets/icon/melon.png" alt="멜론" class="service-icon">
                         <div class="service-info">
                             <span class="service-name">멜론</span>
                             <span class="service-detail">HOT 100</span>
@@ -150,7 +150,7 @@
 
                 <div class="chart-item genie">
                     <div class="chart-service">
-                        <img src="images/genie.png" alt="지니" class="service-icon">
+                        <img src="styles/assets/icon/genie.png" alt="지니" class="service-icon">
                         <div class="service-info">
                             <span class="service-name">지니</span>
                         </div>
@@ -163,7 +163,7 @@
 
                 <div class="chart-item bugs">
                     <div class="chart-service">
-                        <img src="images/bugs.ico" alt="벅스" class="service-icon">
+                        <img src="styles/assets/icon/bugs.ico" alt="벅스" class="service-icon">
                         <div class="service-info">
                             <span class="service-name">벅스</span>
                         </div>
@@ -176,7 +176,7 @@
 
                 <div class="chart-item vibe">
                     <div class="chart-service">
-                        <img src="images/vibe.ico" alt="바이브" class="service-icon">
+                        <img src="styles/assets/icon/vibe.ico" alt="바이브" class="service-icon">
                         <div class="service-info">
                             <span class="service-name">바이브</span>
                         </div>
@@ -189,7 +189,7 @@
 
                 <div class="chart-item flo">
                     <div class="chart-service">
-                        <img src="images/flo.ico" alt="플로" class="service-icon">
+                        <img src="styles/assets/icon/flo.ico" alt="플로" class="service-icon">
                         <div class="service-info">
                             <span class="service-name">플로</span>
                         </div>
@@ -202,16 +202,16 @@
             </div>
         </div>
 
-        <!-- 유튜브 뮤직비디오 -->
+        <!-- 뮤직비디오 조회수 -->
         <div class="youtube-section">
             <div class="chart-header">
-                <h2>유튜브 뮤직비디오</h2>
+                <h2>뮤직비디오 조회수</h2>
                 <span class="update-time" id="youtube-update-time">업데이트 중...</span>
             </div>
             <div class="youtube-content">
                 <div class="video-container">
                     <iframe 
-                        src="https://www.youtube.com/embed/3rsBWr3JOUI" 
+                        src="https://www.youtube.com/embed/LNETckymbzk" 
                         title="NCT DREAM 엔시티 드림 'BTTF' MV" 
                         frameborder="0" 
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
@@ -271,6 +271,27 @@
                 </div>
             </div>
         </aside>
+
+        <!-- Guide: 아이디 생성 상세 화면 -->
+        <section id="guideIdSection" class="guide-id-section" style="display:none;">
+            <div class="id-subtabs" role="tablist">
+                <button class="id-subtab active" data-sub="dual" onclick="switchIdSubTab('dual', this)">듀얼 넘버 생성</button>
+                <button class="id-subtab" data-sub="bugs" onclick="switchIdSubTab('bugs', this)">벅스</button>
+                <button class="id-subtab" data-sub="genie" onclick="switchIdSubTab('genie', this)">지니</button>
+            </div>
+
+            <h2 id="guideIdTitle" class="guide-id-title">가이드 타이틀</h2>
+            <div id="guideIdDate" class="guide-id-date">YYYY.MM.DD</div>
+
+            <div class="guide-id-image-container">
+                <img id="guideIdImage" class="guide-id-image" alt="아이디 생성 가이드 이미지"/>
+            </div>
+
+            <div class="guide-actions">
+                <button class="guide-action-btn primary" onclick="openIdShortcut()">바로가기 ></button>
+                <button class="guide-action-btn" onclick="shareCurrentGuide()">🔗 공유하기</button>
+            </div>
+        </section>
 
         <!-- Guide Hub: Main -->
         <section id="guideHubMain" class="guide-hub" style="display:none;">
@@ -481,61 +502,11 @@
         </div>
     </div>
 
-    <!-- 가이드 섹션 -->
-    <div id="guideSection" style="display:none;">
-        <div class="guide-header">
-            <h1>📚 스트리밍 가이드</h1>
-            <p>각 플랫폼별 스트리밍, 다운로드, 아이디 찾기 가이드</p>
-        </div>
-
-        <!-- 상위 메뉴 탭 -->
-        <div class="main-tabs">
-            <button class="main-tab active" onclick="switchMainTab('music', this)">음원 가이드</button>
-            <button class="main-tab" onclick="switchMainTab('other', this)">기타 가이드</button>
-        </div>
-
-        <!-- 음원 사이트 서비스 탭 -->
-        <div id="musicServiceTabs" class="service-tabs">
-            <button class="service-tab active" onclick="switchServiceTab('melon', this)">멜론</button>
-            <button class="service-tab" onclick="switchServiceTab('genie', this)">지니</button>
-            <button class="service-tab" onclick="switchServiceTab('bugs', this)">벅스</button>
-            <button class="service-tab" onclick="switchServiceTab('vibe', this)">바이브</button>
-            <button class="service-tab" onclick="switchServiceTab('flo', this)">플로</button>
-            <button class="service-tab" onclick="switchServiceTab('kakao', this)">카카오 뮤직</button>
-        </div>
-
-        <!-- 기타 서비스 탭 -->
-        <div id="otherServiceTabs" class="service-tabs" style="display: none;">
-            <button class="service-tab active" onclick="switchServiceTab('youtube', this)">유튜브</button>
-        </div>
-
-        <!-- 가이드 탭 -->
-        <div id="guideTabs" class="guide-tabs" style="display: none;">
-            <button class="guide-tab active" data-type="streaming" onclick="switchGuideTab('streaming', this)">스트리밍</button>
-            <button class="guide-tab" data-type="music" onclick="switchGuideTab('music', this)">음원 다운로드</button>
-            <button class="guide-tab" data-type="mv" onclick="switchGuideTab('mv', this)">뮤비 다운로드</button>
-            <button class="guide-tab" data-type="id" onclick="switchGuideTab('id', this)">아이디 찾기</button>
-        </div>
-
-        <!-- 디바이스 탭 -->
-        <div id="deviceTabs" class="device-tabs" style="display: none;">
-            <button class="device-tab active" data-device="mobile" onclick="switchDeviceTab('mobile', this)">모바일</button>
-            <button class="device-tab" data-device="pc" onclick="switchDeviceTab('pc', this)">PC</button>
-            </div>
-
-        <!-- 가이드 이미지 -->
-        <div class="guide-content" style="display: none;">
-            <div class="guide-image-container">
-                <img id="guideImage" class="guide-image" alt="가이드 이미지" />
-            </div>
-        </div>
-    </div>
-
     
 
     <!-- JavaScript 파일들을 body 끝에 로드 -->
     <script src="js/dashboard.js"></script>
     <script src="js/chart.js"></script>
-    <script src="js/guide.js"></script>
+    
 </body>
 </html> 

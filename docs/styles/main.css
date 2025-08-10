@@ -174,18 +174,29 @@ body {
 /* Artist Hero Section */
 .artist-hero {
     width: 100%;
-    max-height: 400px;
+    aspect-ratio: 16/9; /* 비율 고정 */
     overflow: hidden;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     border-radius: 0;
     margin-bottom: 20px;
 }
 
 .artist-image {
     width: 100%;
-    height: 400px;
-    object-fit: cover;
+    height: 100%;
+    object-fit: cover;           /* 영역을 꽉 채우되 비율 유지 */
+    object-position: center bottom; /* 하단 기준으로 보이도록 */
     display: block;
+}
+
+@media (max-width: 768px){
+  .artist-hero{ aspect-ratio: 16/9; }
+  .artist-image{ object-position: center bottom; }
+}
+
+/* 데스크톱에서는 높이를 제한해 배너가 과도하게 커지지 않도록 */
+@media (min-width: 992px){
+  .artist-hero{ aspect-ratio: auto; height: 360px; }
+  .artist-image{ height: 100%; }
 }
 
 /* Container */
@@ -227,6 +238,24 @@ body {
 .sheet-btn:hover{ background:#f1f3f5; }
 .sheet-icon{ width:20px; height:20px; display:flex; align-items:center; justify-content:center; }
 
+/* Guide: ID section */
+.guide-id-section{ background:#fff; border:1px solid #e9ecef; border-radius:16px; padding:22px; box-shadow:0 4px 20px rgba(0,0,0,0.06); margin:20px 0; }
+.id-subtabs{ display:flex; gap:28px; flex-wrap:wrap; margin:6px 0 24px 0; align-items:center; padding-bottom:8px; border-bottom:1px solid #eceff3; }
+.id-subtab{ background:transparent; border:none; padding:6px 0; font-weight:600; font-size:20px; color:#111; cursor:pointer; border-bottom:3px solid transparent; }
+.id-subtab:hover{ color:#000; }
+.id-subtab.active{ border-bottom:4px solid #111; font-weight:800; }
+.guide-id-title{ display:none; }
+.guide-id-date{ display:none; }
+.guide-id-image-container{ background:transparent; border:none; border-radius:12px; height:auto; display:block; margin-bottom:14px; padding:0; }
+.guide-id-image-container.grid-mode{ background:transparent; border:none; height:auto; display:block; padding:0; }
+.guide-id-image{ width:auto; max-width:100%; height:auto; display:block; margin:0 auto; }
+.guide-dual-grid{ display:block; }
+.guide-dual-card{ margin-bottom:16px; }
+.guide-dual-title{ font-weight:800; margin:0 0 8px 0; }
+.guide-dual-img{ width:auto; max-width:100%; height:auto; display:block; }
+.guide-actions{ display:flex; gap:12px; }
+.guide-action-btn{ flex:1; border:1px solid #e9ecef; border-radius:10px; background:#F4F4F4; padding:12px; font-weight:700; cursor:pointer; color:#111; }
+.guide-action-btn.primary{ background:#F4F4F4; color:#111; border-color:#e9ecef; }
 /* YouTube Section */
 .youtube-section {
     background-color: #ffffff;
@@ -739,12 +768,7 @@ body {
 }
 
 /* YouTube Section */
-.youtube-content {
-    display: grid;
-    grid-template-columns: 1fr 300px;
-    gap: 20px;
-    align-items: start;
-}
+.youtube-content { display: block; }
 
 .youtube-section .video-container {
     position: relative;
@@ -761,14 +785,10 @@ body {
     border-radius: 8px;
 }
 
-.youtube-stats-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
+.youtube-stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
 
 .youtube-stat-item {
-    background-color: #f1f3f4;
+    background-color: #FFFFFF;
     border-radius: 8px;
     padding: 16px;
     display: flex;
@@ -904,58 +924,7 @@ body {
 .vibe { background-color: #ffffff; }
 .flo { background-color: #ffffff; }
 
-/* Guide Section Styles */
-.main-tabs, .service-tabs, .guide-tabs, .device-tabs {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 20px;
-}
-
-.main-tab, .service-tab, .guide-tab, .device-tab {
-    padding: 8px 15px;
-    border: 1px solid #ced4da;
-    border-radius: 5px;
-    background-color: #fff;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    font-weight: 500;
-}
-
-.main-tab.active, .service-tab.active, .guide-tab.active, .device-tab.active {
-    background-color: #0d6efd;
-    color: #fff;
-    border-color: #0d6efd;
-}
-
-.main-tab:hover, .service-tab:hover, .guide-tab:hover, .device-tab:hover {
-    background-color: #e9ecef;
-}
-
-.main-tab.active:hover, .service-tab.active:hover, .guide-tab.active:hover, .device-tab.active:hover {
-    background-color: #0b5ed7;
-}
-
-.guide-content {
-    margin-top: 20px;
-    text-align: center;
-}
-
-.guide-image-container {
-    max-width: 800px;
-    margin: 0 auto;
-    border: 1px solid #dee2e6;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-}
-
-.guide-image {
-    width: 100%;
-    height: auto;
-    display: block;
-}
+/* legacy guide tabs/styles removed */
 
 /* Responsive Design */
 @media (max-width: 992px) {

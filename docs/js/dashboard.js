@@ -11,6 +11,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // 초기 상태: 메인 화면만 노출, 가이드는 숨김
     const guideSection = document.getElementById('guideSection');
     if (guideSection) guideSection.style.display = 'none';
+    const guideIdSection = document.getElementById('guideIdSection');
+    if (guideIdSection) guideIdSection.style.display = 'none';
 });
 
 function showView(viewId) {
@@ -24,11 +26,11 @@ function showView(viewId) {
     if (navItems && navItems.length) {
         navItems.forEach(item => {
             if (item.onclick && item.onclick.toString().includes(`'${viewId}'`)) {
-                item.classList.add('active');
-            } else {
-                item.classList.remove('active');
-            }
-        });
+            item.classList.add('active');
+        } else {
+            item.classList.remove('active');
+        }
+    });
     }
 }
 
@@ -246,15 +248,13 @@ function navigateToMenu(key) {
     // 기본 동작: 메뉴 닫고 해당 섹션으로 스크롤 혹은 알림
     toggleSideMenu();
     switch (key) {
-        // 가이드 관련 항목
+        // 가이드 관련 항목: 먼저 가이드 허브(메뉴들)로 이동 → 거기서 상세 진입
         case 'guide-streaming':
         case 'guide-download':
         case 'guide-id':
         case 'guide-cheer':
         case 'guide-radio':
-            showGuideSection();
-            const guide = document.getElementById('guideSection');
-            if (guide) guide.scrollIntoView({ behavior: 'smooth' });
+            showGuideMainHub();
             break;
         case 'streaming-list':
             const list = document.querySelector('.streaming-section');
@@ -318,6 +318,8 @@ function showGuideHub(type){
         toggleMainSections(false);
         const guideSection = document.getElementById('guideSection');
         if (guideSection) guideSection.style.display = 'none';
+        // 아이디 생성 상세는 허브 진입 시 숨김
+        hideGuideIdSection();
         target.style.display = 'block';
         target.scrollIntoView({behavior:'smooth', block:'start'});
     }
@@ -325,7 +327,7 @@ function showGuideHub(type){
 
 function toggleMainSections(show){
     const display = show ? 'block' : 'none';
-    const mainSelectors = ['.quick-links-section', '.chart-status-section', '.youtube-section'];
+    const mainSelectors = ['.artist-hero', '.quick-links-section', '.chart-status-section', '.youtube-section'];
     mainSelectors.forEach(sel=>{
         document.querySelectorAll(sel).forEach(el=>{ el.style.display = display; });
     });
@@ -339,6 +341,7 @@ function showHome(){
     toggleMainSections(true);
     const guideSection = document.getElementById('guideSection');
     if (guideSection) guideSection.style.display = 'none';
+    hideGuideIdSection();
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
@@ -351,6 +354,7 @@ function showGuideSection(){
     toggleMainSections(false);
     const guideSection = document.getElementById('guideSection');
     if (guideSection){
+        hideGuideIdSection();
         guideSection.style.display = 'block';
         guideSection.scrollIntoView({behavior:'smooth', block:'start'});
     }
@@ -365,6 +369,7 @@ function showGuideMainHub(){
         const el = document.getElementById(id);
         if (el) el.style.display = 'none';
     });
+    hideGuideIdSection();
     const mainHub = document.getElementById('guideHubMain');
     if (mainHub){
         mainHub.style.display = 'block';
@@ -373,9 +378,35 @@ function showGuideMainHub(){
 }
 
 function openGuide(kind){
-    // 메인 허브에서 세부 섹션 선택 시 가이드 탭으로 이동
-    showGuideSection();
-    // 원하는 초기 탭/서비스로 포커싱할 수도 있음
+    // 메인/허브 숨기기
+    toggleMainSections(false);
+    ['guideHubMain','guideHubStreaming','guideHubVote','guideHubSupport'].forEach(id=>{
+        const el = document.getElementById(id);
+        if (el) el.style.display = 'none';
+    });
+    // 기존 가이드 섹션 숨김
+    const legacyGuide = document.getElementById('guideSection');
+    if (legacyGuide) legacyGuide.style.display = 'none';
+
+    // 아이디 생성 전용 화면
+    if (kind === 'id') {
+        const idSection = document.getElementById('guideIdSection');
+        if (idSection) {
+            idSection.style.display = 'block';
+            // 초기 로드: 듀얼 넘버가 기본 활성 상태로 보이도록
+            if (typeof switchIdSubTab === 'function') switchIdSubTab('dual', document.querySelector('.id-subtab[data-sub="dual"]'));
+            idSection.scrollIntoView({behavior:'smooth', block:'start'});
+        }
+        return;
+    }
+
+    // 다른 가이드는 추후 연결. 일단 허브로 복귀
+    showGuideMainHub();
+}
+
+function hideGuideIdSection(){
+    const idSection = document.getElementById('guideIdSection');
+    if (idSection) idSection.style.display = 'none';
 }
 
 // 원클릭 바로가기 액션
@@ -401,6 +432,82 @@ function openQuickLink(key){
 function goHome(){
     // 허브/가이드를 모두 숨기고 메인 섹션만 보이도록
     showHome();
+}
+
+// ===== Guide: ID 생성 전용 로직(기존 guide.js에서 이관) =====
+let currentIdSub = 'dual';
+
+function switchIdSubTab(sub, btn){
+    currentIdSub = sub;
+    document.querySelectorAll('.id-subtab').forEach(t=>t.classList.remove('active'));
+    if (btn) btn.classList.add('active');
+    const title = document.getElementById('guideIdTitle');
+    const date = document.getElementById('guideIdDate');
+    const img = document.getElementById('guideIdImage');
+    if (title) title.textContent = (sub === 'dual') ? '듀얼 넘버 생성' : (sub === 'bugs' ? '벅스 아이디 생성' : '지니 아이디 생성');
+    if (date) {
+        const d = new Date();
+        const fmt = `${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,'0')}.${String(d.getDate()).padStart(2,'0')}`;
+        date.textContent = fmt;
+    }
+    const dualContainerId = 'guideDualContainer';
+    let dualContainer = document.getElementById(dualContainerId);
+
+    if (sub === 'dual') {
+        // 듀얼 넘버 3개 카드 렌더링
+        if (!dualContainer) {
+            const parent = document.querySelector('.guide-id-image-container');
+            if (parent) {
+                parent.classList.add('grid-mode');
+                parent.innerHTML = `<div id="${dualContainerId}" class="guide-dual-grid"></div>`;
+                dualContainer = document.getElementById(dualContainerId);
+            }
+        } else {
+            dualContainer.innerHTML = '';
+        }
+        if (dualContainer) {
+            dualContainer.innerHTML = `
+                <div class="guide-dual-card">
+                    <h3 class="guide-dual-title">KT</h3>
+                    <img class="guide-dual-img" src="styles/assets/guide/generateid/dual/kt.PNG" alt="KT 듀얼 넘버 가이드" />
+                </div>
+                <div class="guide-dual-card">
+                    <h3 class="guide-dual-title">SKT</h3>
+                    <img class="guide-dual-img" src="styles/assets/guide/generateid/dual/skt.PNG" alt="SKT 듀얼 넘버 가이드" />
+                </div>
+                <div class="guide-dual-card">
+                    <h3 class="guide-dual-title">U+</h3>
+                    <img class="guide-dual-img" src="styles/assets/guide/generateid/dual/lgu.PNG" alt="U+ 듀얼 넘버 가이드" />
+                </div>
+            `;
+        }
+    } else {
+        // 벅스/지니 단일 이미지 표시
+        // 이미지 컨테이너가 카드 그리드 상태일 수 있으니 초기화
+        const parent = document.querySelector('.guide-id-image-container');
+        if (parent) {
+            parent.classList.remove('grid-mode');
+            parent.innerHTML = '<img id="guideIdImage" class="guide-id-image" alt="아이디 생성 가이드 이미지"/>';
+        }
+        const targetImg = document.getElementById('guideIdImage');
+        if (targetImg){
+            targetImg.src = (sub === 'bugs') ? 'styles/assets/guide/generateid/bugs.png' : 'styles/assets/guide/generateid/genie.png';
+        }
+    }
+}
+
+function openIdShortcut(){
+    alert('바로가기 링크는 준비 중입니다.');
+}
+
+function shareCurrentGuide(){
+    const shareData = { title: document.title, text: '아이디 생성 가이드', url: location.href };
+    if (navigator.share) {
+        navigator.share(shareData).catch(()=>{});
+    } else {
+        if (navigator.clipboard) navigator.clipboard.writeText(shareData.url);
+        alert('링크가 복사되었습니다.');
+    }
 }
 
 // 바텀시트 열기/닫기

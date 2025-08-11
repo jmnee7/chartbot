@@ -461,7 +461,7 @@ def main():
     rank_tracker = RankTracker()
     
     # 트위터 봇 초기화
-    twitter_bot = TwitterBot()
+    # twitter_bot = TwitterBot()
     
     # 크롤러 초기화
     crawlers = init_crawlers()
@@ -477,14 +477,16 @@ def main():
     
     # 트위터로 현재 순위 알림 (변화 유무 상관없이, KST 기준)
     # current_time을 None으로 전달해서 트위터 봇이 자동으로 정각 시간을 계산하도록 함
-    try:
-        if twitter_bot.is_available():
-            print("\n🐦 트위터 봇 알림 전송 중...")
-            twitter_bot.tweet_rank_changes(rank_changes, None)
-        else:
-            print("\n⚠️ 트위터 API가 설정되지 않아 트윗을 보내지 않습니다.")
-    except Exception as e:
-        print(f"\n❌ 트위터 봇 오류: {e}")
+    # 트위터 업로드 비활성화 
+    # try:
+    #     if twitter_bot.is_available():
+    #         print("\n🐦 트위터 봇 알림 전송 중...")
+    #         twitter_bot.tweet_rank_changes(rank_changes, None)
+    #     else:
+    #         print("\n⚠️ 트위터 API가 설정되지 않아 트윗을 보내지 않습니다.")
+    # except Exception as e:
+    #     print(f"\n❌ 트위터 봇 오류: {e}")
+    print("\n🐦 트위터 업로드는 현재 비활성화되어 있습니다.")
     
     # 현재 데이터를 히스토리에 저장 (타겟 곡만)
     current_timestamp = get_current_timestamp() # 정각 타임스탬프 가져오기

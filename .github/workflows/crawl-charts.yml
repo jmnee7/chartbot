@@ -45,11 +45,12 @@ jobs:
         fi
         python main.py
       env:
-        TWITTER_API_KEY: ${{ secrets.TWITTER_API_KEY }}
-        TWITTER_API_SECRET: ${{ secrets.TWITTER_API_SECRET }}
-        TWITTER_ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
-        TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
-        TWITTER_BEARER_TOKEN: ${{ secrets.TWITTER_BEARER_TOKEN }}
+        # 트위터 환경 변수 비활성화 (요청에 따라 주석 처리)
+        # TWITTER_API_KEY: ${{ secrets.TWITTER_API_KEY }}
+        # TWITTER_API_SECRET: ${{ secrets.TWITTER_API_SECRET }}
+        # TWITTER_ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+        # TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
+        # TWITTER_BEARER_TOKEN: ${{ secrets.TWITTER_BEARER_TOKEN }}
         YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
     
     - name: Commit and push changes

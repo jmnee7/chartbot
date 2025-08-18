@@ -16,8 +16,8 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-      pages: write
-      id-token: write
+      # pages: write  # Vercel로 전환하며 불필요
+      # id-token: write  # Pages 배포 제거로 불필요
     
     steps:
     - uses: actions/checkout@v4
@@ -68,16 +68,5 @@ jobs:
           echo "No changes to commit."
         fi
 
-    - name: Setup Pages
-      uses: actions/configure-pages@v4
-      with:
-        enablement: true
-    
-    - name: Upload artifact
-      uses: actions/upload-pages-artifact@v3
-      with:
-        path: './docs'
-    
-    - name: Deploy to GitHub Pages
-      id: deployment
-      uses: actions/deploy-pages@v4 
+    # GitHub Pages 배포 비활성화 (Vercel 사용)
+    # 아래 Pages 관련 스텝들을 제거/비활성화했습니다.

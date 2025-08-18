@@ -293,6 +293,30 @@
             </div>
         </section>
 
+        <!-- Guide: 다운로드 상세 화면 -->
+        <section id="guideDownloadSection" class="guide-download-section" style="display:none;">
+            <div class="download-subtabs" role="tablist">
+                <button class="download-subtab active" data-sub="melon" onclick="switchDownloadTab('melon', this)">멜론</button>
+                <button class="download-subtab" data-sub="bugs" onclick="switchDownloadTab('bugs', this)">벅스</button>
+                <button class="download-subtab" data-sub="genie" onclick="switchDownloadTab('genie', this)">지니</button>
+                <button class="download-subtab" data-sub="flo" onclick="switchDownloadTab('flo', this)">플로</button>
+                <button class="download-subtab" data-sub="vibe" onclick="switchDownloadTab('vibe', this)">바이브</button>
+                <button class="download-subtab" data-sub="mv" onclick="switchDownloadTab('mv', this)">뮤직비디오</button>
+            </div>
+
+            <h2 id="guideDownloadTitle" class="guide-download-title">가이드 타이틀</h2>
+            <div id="guideDownloadDate" class="guide-download-date">YYYY.MM.DD</div>
+
+            <div class="guide-download-image-container">
+                <img id="guideDownloadImage" class="guide-download-image" alt="다운로드 가이드 이미지"/>
+            </div>
+
+            <div class="guide-actions">
+                <button class="guide-action-btn primary" onclick="openDownloadShortcut()">바로가기 ></button>
+                <button class="guide-action-btn" onclick="shareCurrentGuide()">🔗 공유하기</button>
+            </div>
+        </section>
+
         <!-- Guide Hub: Main -->
         <section id="guideHubMain" class="guide-hub" style="display:none;">
             <h2>가이드</h2>
@@ -358,18 +382,64 @@
         <section id="guideHubSupport" class="guide-hub" style="display:none;">
             <h2>서포트</h2>
             <div class="hub-grid">
-                <a class="hub-card" href="#" onclick="alert('헬퍼 · 팀원 지원은 준비 중입니다.'); return false;">
+                <a class="hub-card" href="#" onclick="openSupport('helper'); return false;">
                     <div class="hub-emoji">🐣</div>
                     <div class="hub-title">헬퍼 · 팀원 지원</div>
                 </a>
-                <a class="hub-card" href="#" onclick="alert('아이디 기부는 준비 중입니다.'); return false;">
+                <a class="hub-card" href="#" onclick="openSupport('id'); return false;">
                     <div class="hub-emoji">🌱</div>
                     <div class="hub-title">아이디 기부</div>
                 </a>
-                <a class="hub-card" href="#" onclick="alert('모금은 준비 중입니다.'); return false;">
+                <a class="hub-card" href="#" onclick="openSupport('fundraising'); return false;">
                     <div class="hub-emoji">💰</div>
                     <div class="hub-title">모금</div>
                 </a>
+            </div>
+        </section>
+
+        <!-- Support: 헬퍼 팀원 지원 상세 화면 -->
+        <section id="supportHelperSection" class="support-helper-section" style="display:none;">
+            <h2 class="support-helper-title">헬퍼 · 팀원 지원하기</h2>
+            <div class="support-helper-date">YYYY.MM.DD</div>
+
+            <div class="support-helper-image-container">
+                <img class="support-helper-image" src="styles/assets/support/helper/download.png" alt="헬퍼 팀원 지원 가이드 이미지"/>
+            </div>
+
+            <div class="guide-actions">
+                <button class="guide-action-btn primary" onclick="openHelperApplication()">지원하기 ></button>
+                <button class="guide-action-btn" onclick="shareCurrentGuide()">🔗 공유하기</button>
+            </div>
+        </section>
+
+        <!-- Support: 아이디 기부 상세 화면 -->
+        <section id="supportIdSection" class="support-id-section" style="display:none;">
+            <h2 class="support-id-title">아이디 기부하기</h2>
+            <div class="support-id-date">YYYY.MM.DD</div>
+
+            <div class="support-id-image-container">
+                <img class="support-id-image" src="styles/assets/support/id/geinie-bugs.png" alt="지니 벅스 아이디 기부"/>
+            </div>
+
+            <div class="guide-actions">
+                <button class="guide-action-btn primary" onclick="openIdDonation('genie')">지니 아이디 기부하기 ></button>
+                <button class="guide-action-btn primary" onclick="openIdDonation('bugs')">벅스 아이디 기부하기 ></button>
+                <button class="guide-action-btn" onclick="shareCurrentGuide()">🔗 공유하기</button>
+            </div>
+        </section>
+
+        <!-- Support: 모금 상세 화면 -->
+        <section id="supportFundraisingSection" class="support-fundraising-section" style="display:none;">
+            <h2 class="support-fundraising-title">모금</h2>
+            <div class="support-fundraising-date">YYYY.MM.DD</div>
+
+            <div class="support-fundraising-image-container">
+                <img class="support-fundraising-image" src="styles/assets/support/fundraising/2025 3분기 활동 모금 공지.png" alt="2025 3분기 활동 모금 공지"/>
+            </div>
+
+            <div class="guide-actions">
+                <button class="guide-action-btn primary" onclick="openFundraisingApplication()">참여하기 ></button>
+                <button class="guide-action-btn" onclick="shareCurrentGuide()">🔗 공유하기</button>
             </div>
         </section>
 

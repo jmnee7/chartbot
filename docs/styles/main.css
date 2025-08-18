@@ -12,6 +12,172 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+/* ===== Support 섹션 스타일 ===== */
+
+/* 헬퍼 팀원 지원 스타일 */
+.support-helper-section {
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.support-helper-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+.support-helper-date {
+    color: #6c757d;
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.support-helper-image-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.support-helper-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 아이디 기부 스타일 */
+.support-id-section {
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.support-id-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+.support-id-date {
+    color: #6c757d;
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.support-id-image-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.support-id-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 모금 스타일 */
+.support-fundraising-section {
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.support-fundraising-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+.support-fundraising-date {
+    color: #6c757d;
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.support-fundraising-image-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.support-fundraising-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 다운로드 가이드 스타일 (아이디 생성과 동일하게) */
+.guide-download-section {
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.download-subtabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+
+.download-subtab {
+    padding: 8px 16px;
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.download-subtab.active {
+    background: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+.download-subtab:hover {
+    background: #e9ecef;
+}
+
+.download-subtab.active:hover {
+    background: #0056b3;
+}
+
+.guide-download-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+.guide-download-date {
+    color: #6c757d;
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.guide-download-image-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.guide-download-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
 /* Top Menu Bar */
 .top-menu-bar {
     display: flex;

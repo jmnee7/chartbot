@@ -245,41 +245,54 @@ function toggleMenuSection(headerEl) {
     section.classList.toggle('open');
 }
 
-// 서브메뉴 네비게이션 (하단 탭바와 동일한 기능으로 연결)
+// 서브메뉴 네비게이션 (탭바 하위 메뉴와 동일 화면으로 연결)
 function navigateToMenu(key) {
     // 기본 동작: 메뉴 닫기
     toggleSideMenu();
-    
+
     switch (key) {
-        // 가이드 관련 항목들 → 가이드 메인 허브로 이동 (하단 탭바와 동일)
-        case 'guide-streaming':
+        // 가이드 하위: 상세 화면으로 직접 이동
         case 'guide-download':
+            openGuide('download');
+            break;
         case 'guide-id':
+            openGuide('id');
+            break;
+        // 아직 개별 화면 미구현 → 허브로 이동
+        case 'guide-streaming':
         case 'guide-cheer':
         case 'guide-radio':
-            openFooterAction('guide');
+            showGuideMainHub();
             break;
-        
-        // 스트리밍 관련 항목들 → 스트리밍 허브로 이동 (하단 탭바와 동일)
+
+        // 스트리밍 하위: 동일 동작 수행
         case 'streaming-list':
-        case 'streaming-mv':
-            openFooterAction('streaming');
+            toggleMainSections(true);
+            openStreamingSheet();
             break;
-        
-        // 투표 관련 항목들 → 투표 허브로 이동 (하단 탭바와 동일)
+        case 'streaming-mv':
+            toggleMainSections(true);
+            scrollToSection('.youtube-section');
+            break;
+
+        // 투표는 허브로 이동 (세부페이지 미구현)
         case 'vote-weight':
         case 'vote-schedule':
         case 'vote-collect':
-            openFooterAction('vote');
+            showGuideHub('vote');
             break;
-        
-        // 서포트 관련 항목들 → 서포트 허브로 이동 (하단 탭바와 동일)
+
+        // 서포트 하위: 각 상세로 이동
         case 'support-helper':
-        case 'support-id-donate':
-        case 'support-funding':
-            openFooterAction('support');
+            openSupport('helper');
             break;
-        
+        case 'support-id-donate':
+            openSupport('id');
+            break;
+        case 'support-funding':
+            openSupport('fundraising');
+            break;
+
         default:
             console.log('navigateToMenu:', key);
     }

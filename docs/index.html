@@ -6,6 +6,9 @@
     <title>NCT WISH 스트리밍</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
     <link rel="stylesheet" href="styles/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="icon" href="styles/assets/icon/fabi.png" type="image/png">
 </head>
 <body>
@@ -50,7 +53,7 @@
                     <span class="menu-arrow" aria-hidden="true">⌄</span>
                 </button>
                 <div class="menu-sublist">
-                    <button class="menu-subitem" type="button" onclick="navigateToMenu('streaming-list')">원클릭 스밍 리스트</button>
+                    <button class="menu-subitem" type="button" onclick="navigateToMenu('streaming-list')">원클릭 스트리밍 리스트</button>
                     <button class="menu-subitem" type="button" onclick="navigateToMenu('streaming-mv')">뮤직비디오</button>
                 </div>
             </section>
@@ -73,7 +76,8 @@
                     <span class="menu-arrow" aria-hidden="true">⌄</span>
                 </button>
                 <div class="menu-sublist">
-                    <button class="menu-subitem" type="button" onclick="navigateToMenu('support-helper')">헬퍼 · 팀원 지원</button>
+                    <button class="menu-subitem" type="button" onclick="navigateToMenu('support-helper')">헬퍼 지원</button>
+                    <button class="menu-subitem" type="button" onclick="navigateToMenu('support-team')">팀원 지원</button>
                     <button class="menu-subitem" type="button" onclick="navigateToMenu('support-id-donate')">아이디 기부</button>
                     <button class="menu-subitem" type="button" onclick="navigateToMenu('support-funding')">모금</button>
                 </div>
@@ -86,7 +90,7 @@
 
     <!-- 아티스트 이미지 -->
     <div class="artist-hero">
-        <img src="styles/assets/home/home.jpeg" alt="NCT WISH" class="artist-image">
+        <img src="styles/assets/home/home.png" alt="NCT WISH" class="artist-image">
     </div>
 
     <div class="container">
@@ -97,7 +101,7 @@
             <div class="quick-links-list">
                 <button class="quick-link-item" onclick="openQuickLink('streaming-list')">
                     <div class="quick-link-icon yellow">👆</div>
-                    <div class="quick-link-label">원클릭 스밍 리스트</div>
+                    <div class="quick-link-label">원클릭 스트리밍 리스트</div>
                 </button>
                 <button class="quick-link-item" onclick="openQuickLink('melon-musicwave')">
                     <div class="quick-link-icon green">💚</div>
@@ -245,7 +249,7 @@
         <aside id="quickStreamingSheet" class="bottom-sheet" aria-hidden="true" role="dialog" aria-labelledby="quickStreamingTitle">
             <div class="sheet-inner" onclick="event.stopPropagation()">
                 <div class="sheet-header">
-                    <h3 id="quickStreamingTitle">원클릭 스트리밍</h3>
+                    <h3 id="quickStreamingTitle">원클릭 스트리밍 리스트</h3>
                     <button class="sheet-close" type="button" aria-label="닫기" onclick="closeStreamingSheet()">✕</button>
                 </div>
                 <div class="sheet-content">
@@ -258,11 +262,11 @@
                         <a class="sheet-btn" href="#"><span class="sheet-icon">💚</span>멜론 맥(MAC)</a>
                         <a class="sheet-btn" href="#"><span class="sheet-icon">💚</span>멜론 안드로이드 4</a>
                         <a class="sheet-btn" href="#"><span class="sheet-icon">💚</span>멜론 PC</a>
-                        <a class="sheet-btn" href="#"><span class="sheet-icon">💙</span>지니 안드로이드</a>
+                        <a class="sheet-btn" href="#"><span class="sheet-icon">🩵</span>지니 안드로이드</a>
                         <a class="sheet-btn" href="#"><span class="sheet-icon">🧡</span>벅스 모바일</a>
-                        <a class="sheet-btn" href="#"><span class="sheet-icon">💙</span>지니 iOS</a>
+                        <a class="sheet-btn" href="#"><span class="sheet-icon">🩵</span>지니 iOS</a>
                         <a class="sheet-btn" href="#"><span class="sheet-icon">🧡</span>벅스 PC</a>
-                        <a class="sheet-btn" href="#"><span class="sheet-icon">💙</span>지니 PC</a>
+                        <a class="sheet-btn" href="#"><span class="sheet-icon">🩵</span>지니 PC</a>
                         <a class="sheet-btn" href="#"><span class="sheet-icon">💙</span>플로(FLO)</a>
                         <a class="sheet-btn" href="#"><span class="sheet-icon">💜</span>바이브 1</a>
                         <a class="sheet-btn" href="#"><span class="sheet-icon">💜</span>바이브 2</a>
@@ -290,19 +294,17 @@
 
             <div class="guide-actions">
                 <button class="guide-action-btn primary" onclick="openIdShortcut()">바로가기 ></button>
-                <button class="guide-action-btn" onclick="shareCurrentGuide()">🔗 공유하기</button>
             </div>
         </section>
 
         <!-- Guide: 다운로드 상세 화면 -->
         <section id="guideDownloadSection" class="guide-download-section" style="display:none;">
-            <div class="download-subtabs" role="tablist">
-                <button class="download-subtab active" data-sub="melon" onclick="switchDownloadTab('melon', this)">멜론</button>
-                <button class="download-subtab" data-sub="bugs" onclick="switchDownloadTab('bugs', this)">벅스</button>
-                <button class="download-subtab" data-sub="genie" onclick="switchDownloadTab('genie', this)">지니</button>
-                <button class="download-subtab" data-sub="flo" onclick="switchDownloadTab('flo', this)">플로</button>
-                <button class="download-subtab" data-sub="vibe" onclick="switchDownloadTab('vibe', this)">바이브</button>
-                <button class="download-subtab" data-sub="mv" onclick="switchDownloadTab('mv', this)">뮤직비디오</button>
+            <div class="id-subtabs" role="tablist">
+                <button class="id-subtab active" data-sub="melon" onclick="switchDownloadTab('melon', this)">멜론</button>
+                <button class="id-subtab" data-sub="bugs" onclick="switchDownloadTab('bugs', this)">벅스</button>
+                <button class="id-subtab" data-sub="genie" onclick="switchDownloadTab('genie', this)">지니</button>
+                <button class="id-subtab" data-sub="vibe" onclick="switchDownloadTab('vibe', this)">바이브</button>
+                <button class="id-subtab" data-sub="mv" onclick="switchDownloadTab('mv', this)">뮤직비디오</button>
             </div>
 
             <h2 id="guideDownloadTitle" class="guide-download-title">가이드 타이틀</h2>
@@ -318,28 +320,52 @@
             </div>
         </section>
 
+        <!-- Guide: 스트리밍 상세 화면 -->
+        <section id="guideStreamingSection" class="guide-id-section" style="display:none;">
+            <div class="id-subtabs" role="tablist">
+                <button class="id-subtab active" data-sub="melon" onclick="switchStreamTab('melon', this)">멜론</button>
+                <button class="id-subtab" data-sub="bugs" onclick="switchStreamTab('bugs', this)">벅스</button>
+                <button class="id-subtab" data-sub="genie" onclick="switchStreamTab('genie', this)">지니</button>
+                <button class="id-subtab" data-sub="flo" onclick="switchStreamTab('flo', this)">플로</button>
+                <button class="id-subtab" data-sub="vibe" onclick="switchStreamTab('vibe', this)">바이브</button>
+                <button class="id-subtab" data-sub="mv" onclick="switchStreamTab('mv', this)">뮤직비디오</button>
+            </div>
+
+            <h2 id="guideStreamTitle" class="guide-id-title">가이드 타이틀</h2>
+            <div id="guideStreamDate" class="guide-id-date">YYYY.MM.DD</div>
+
+            <div class="guide-id-image-container">
+                <img id="guideStreamImage" class="guide-id-image" alt="스트리밍 가이드 이미지"/>
+            </div>
+
+            <div class="guide-actions">
+                <button class="guide-action-btn primary" onclick="openStreamShortcut()">바로가기 ></button>
+                <button class="guide-action-btn" onclick="shareCurrentGuide()">🔗 공유하기</button>
+            </div>
+        </section>
+
         <!-- Guide Hub: Main -->
-        <section id="guideHubMain" class="guide-hub" style="display:none;">
+        <section id="guideHubMain" class="guide-hub hub-list" style="display:none;">
             <h2>가이드</h2>
             <div class="hub-grid">
                 <a class="hub-card" href="#" onclick="openGuide('streaming'); return false;">
-                    <div class="hub-emoji">🎵</div>
+                    <img class="hub-icon" src="styles/assets/guide/icon/stream.png" alt="스트리밍" />
                     <div class="hub-title">스트리밍</div>
                 </a>
                 <a class="hub-card" href="#" onclick="openGuide('download'); return false;">
-                    <div class="hub-emoji">📲</div>
+                    <img class="hub-icon" src="styles/assets/guide/icon/download.png" alt="다운로드" />
                     <div class="hub-title">다운로드</div>
                 </a>
                 <a class="hub-card" href="#" onclick="openGuide('id'); return false;">
-                    <div class="hub-emoji">🪪</div>
+                    <img class="hub-icon" src="styles/assets/guide/icon/generateid.png" alt="아이디 생성" />
                     <div class="hub-title">아이디 생성</div>
                 </a>
                 <a class="hub-card" href="#" onclick="openGuide('cheer'); return false;">
-                    <div class="hub-emoji">⭐</div>
+                    <img class="hub-icon" src="styles/assets/guide/icon/chant.png" alt="응원법" />
                     <div class="hub-title">응원법</div>
                 </a>
                 <a class="hub-card" href="#" onclick="openGuide('radio'); return false;">
-                    <div class="hub-emoji">📻</div>
+                    <img class="hub-icon" src="styles/assets/guide/icon/radio.png" alt="라디오 신청" />
                     <div class="hub-title">라디오 신청</div>
                 </a>
             </div>
@@ -350,13 +376,38 @@
             <h2>스트리밍</h2>
             <div class="hub-grid">
                 <a class="hub-card" href="#" onclick="openStreamingSheet(); return false;">
-                    <div class="hub-emoji">👆</div>
+                    <img class="hub-icon" src="styles/assets/stream/icon/oneclick.png" alt="원클릭 스트리밍" />
                     <div class="hub-title">원클릭 스트리밍</div>
                 </a>
                 <a class="hub-card" href="#" onclick="scrollToSection('.youtube-section'); return false;">
-                    <div class="hub-emoji">📺</div>
+                    <img class="hub-icon" src="styles/assets/stream/icon/mv.png" alt="뮤직비디오" />
                     <div class="hub-title">뮤직비디오</div>
                 </a>
+            </div>
+        </section>
+
+        <!-- Guide: 응원법 상세 화면 -->
+        <section id="guideChantSection" class="guide-id-section" style="display:none;">
+            <div class="id-subtabs" role="tablist">
+                <button class="id-subtab active" data-sub="handsup" onclick="switchChantTab('handsup', this)">Hands Up</button>
+                <button class="id-subtab" data-sub="wish" onclick="switchChantTab('wish', this)">WISH</button>
+                <button class="id-subtab" data-sub="songbird" onclick="switchChantTab('songbird', this)">Songbird</button>
+                <button class="id-subtab" data-sub="steady" onclick="switchChantTab('steady', this)">Steady</button>
+                <button class="id-subtab" data-sub="miracle" onclick="switchChantTab('miracle', this)">Miracle</button>
+                <button class="id-subtab" data-sub="poppop" onclick="switchChantTab('poppop', this)">poppop</button>
+                <button class="id-subtab" data-sub="color" onclick="switchChantTab('color', this)">COLOR</button>
+            </div>
+
+            <h2 id="guideChantTitle" class="guide-id-title">응원법</h2>
+            <div id="guideChantDate" class="guide-id-date">YYYY.MM.DD</div>
+
+            <!-- 곡 하위 탭: 선택된 앨범에 따라 동적으로 채워짐 -->
+            <div id="chantTrackSubtabs" class="id-subtabs" role="tablist" style="margin-top:4px;"></div>
+
+            <div id="chantImagesContainer" class="guide-id-image-container"></div>
+
+            <div class="guide-actions">
+                <button class="guide-action-btn" onclick="shareCurrentGuide()">🔗 공유하기</button>
             </div>
         </section>
 
@@ -365,15 +416,15 @@
             <h2>투표</h2>
             <div class="hub-grid">
                 <a class="hub-card" href="#" onclick="alert('음악 방송 비중표는 준비 중입니다.'); return false;">
-                    <div class="hub-emoji">📊</div>
+                    <img class="hub-icon" src="styles/assets/vote/icon/musicshow table.png" alt="음악방송 비중표" />
                     <div class="hub-title">음악방송 비중표</div>
                 </a>
                 <a class="hub-card" href="#" onclick="alert('투표 일정은 준비 중입니다.'); return false;">
-                    <div class="hub-emoji">📅</div>
+                    <img class="hub-icon" src="styles/assets/vote/icon/vote calander.png" alt="투표일정" />
                     <div class="hub-title">투표일정</div>
                 </a>
-                <a class="hub-card" href="#" onclick="alert('투표권 모으기는 준비 중입니다.'); return false;">
-                    <div class="hub-emoji">🏷️</div>
+                <a class="hub-card" href="#" onclick="openVoteCollect(); return false;">
+                    <img class="hub-icon" src="styles/assets/vote/icon/collect.png" alt="투표권 모으기" />
                     <div class="hub-title">투표권 모으기</div>
                 </a>
             </div>
@@ -384,23 +435,63 @@
             <h2>서포트</h2>
             <div class="hub-grid">
                 <a class="hub-card" href="#" onclick="openSupport('helper'); return false;">
-                    <div class="hub-emoji">🐣</div>
-                    <div class="hub-title">헬퍼 · 팀원 지원</div>
+                    <img class="hub-icon" src="styles/assets/support/icon/helper.png" alt="헬퍼 지원" />
+                    <div class="hub-title">헬퍼 지원</div>
+                </a>
+                <a class="hub-card" href="#" onclick="openSupport('team'); return false;">
+                    <img class="hub-icon" src="styles/assets/support/icon/team.png" alt="스트리밍 팀원 지원" />
+                    <div class="hub-title">스트리밍 팀원 지원</div>
                 </a>
                 <a class="hub-card" href="#" onclick="openSupport('id'); return false;">
-                    <div class="hub-emoji">🌱</div>
+                    <img class="hub-icon" src="styles/assets/support/icon/id.png" alt="아이디 기부" />
                     <div class="hub-title">아이디 기부</div>
                 </a>
                 <a class="hub-card" href="#" onclick="openSupport('fundraising'); return false;">
-                    <div class="hub-emoji">💰</div>
+                    <img class="hub-icon" src="styles/assets/support/icon/fundrasing.png" alt="모금" />
                     <div class="hub-title">모금</div>
                 </a>
             </div>
         </section>
 
-        <!-- Support: 헬퍼 팀원 지원 상세 화면 -->
+        <!-- Guide: 라디오 신청 상세 화면 -->
+        <section id="guideRadioSection" class="guide-id-section" style="display:none;">
+            <h2 class="guide-id-title">라디오 신청 가이드</h2>
+            <div class="guide-id-date" id="guideRadioDate">YYYY.MM.DD</div>
+            <div class="guide-id-image-container">
+                <img class="guide-id-image" src="styles/assets/guide/radio/라디오 신청 가이드 이미지.jpg" alt="라디오 신청 가이드 이미지"/>
+            </div>
+            <div class="guide-actions">
+                <button class="guide-action-btn primary" onclick="openRadioHomepage()">바로가기 ></button>
+                <button class="guide-action-btn" onclick="shareCurrentGuide()">🔗 공유하기</button>
+            </div>
+        </section>
+
+        <!-- Vote: 투표권 모으기 상세 화면 -->
+        <section id="voteCollectSection" class="guide-id-section" style="display:none;">
+            <div class="id-subtabs" role="tablist">
+                <button class="id-subtab active" data-sub="theshow" onclick="switchVoteCollectTab('theshow', this)">더쇼</button>
+                <button class="id-subtab" data-sub="showchampion" onclick="switchVoteCollectTab('showchampion', this)">쇼챔</button>
+                <button class="id-subtab" data-sub="musicbank" onclick="switchVoteCollectTab('musicbank', this)">뮤직뱅크</button>
+                <button class="id-subtab" data-sub="musiccore" onclick="switchVoteCollectTab('musiccore', this)">쇼음악중심</button>
+                <button class="id-subtab" data-sub="inkigayo" onclick="switchVoteCollectTab('inkigayo', this)">인기가요</button>
+                <button class="id-subtab" data-sub="mcountdown" onclick="switchVoteCollectTab('mcountdown', this)">엠카</button>
+            </div>
+
+            <h2 id="voteCollectTitle" class="guide-id-title">투표권 모으기</h2>
+            <div id="voteCollectDate" class="guide-id-date">YYYY.MM.DD</div>
+
+            <div class="guide-id-image-container">
+                <img id="voteCollectImage" class="guide-id-image" alt="투표권 모으기 가이드 이미지"/>
+            </div>
+
+            <div class="guide-actions">
+                <button class="guide-action-btn" onclick="shareCurrentGuide()">🔗 공유하기</button>
+            </div>
+        </section>
+
+        <!-- Support: 헬퍼 지원 상세 화면 -->
         <section id="supportHelperSection" class="support-helper-section" style="display:none;">
-            <h2 class="support-helper-title">헬퍼 · 팀원 지원하기</h2>
+            <h2 class="support-helper-title">헬퍼 지원하기</h2>
             <div class="support-helper-date">YYYY.MM.DD</div>
 
             <div class="support-helper-image-container">
@@ -409,6 +500,27 @@
 
             <div class="guide-actions">
                 <button class="guide-action-btn primary" onclick="openHelperApplication()">지원하기 ></button>
+                <button class="guide-action-btn" onclick="shareCurrentGuide()">🔗 공유하기</button>
+            </div>
+        </section>
+
+        <!-- Support: 팀원 지원 상세 화면 -->
+        <section id="supportTeamSection" class="support-helper-section" style="display:none;">
+            <h2 class="support-helper-title">스트리밍 팀원 지원하기</h2>
+            <div class="support-helper-date">YYYY.MM.DD</div>
+
+            <div class="support-helper-image-container">
+                <img class="support-helper-image" src="styles/assets/support/team/팀원모집1.jpg" alt="팀원 모집 안내 1"/>
+            </div>
+            <div class="support-helper-image-container">
+                <img class="support-helper-image" src="styles/assets/support/team/팀원모집2.jpg" alt="팀원 모집 안내 2"/>
+            </div>
+            <div class="support-helper-image-container">
+                <img class="support-helper-image" src="styles/assets/support/team/팀원모집3.jpg" alt="팀원 모집 안내 3"/>
+            </div>
+
+            <div class="guide-actions">
+                <button class="guide-action-btn primary" onclick="openTeamApplication()">지원하기 ></button>
                 <button class="guide-action-btn" onclick="shareCurrentGuide()">🔗 공유하기</button>
             </div>
         </section>

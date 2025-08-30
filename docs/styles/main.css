@@ -1,4 +1,7 @@
 /* General Body Styles */
+html {
+    font-size: 14px;
+}
 body {
     font-family: 'Noto Sans KR', sans-serif;
     background-color: #f8f9fa;
@@ -8,6 +11,7 @@ body {
     /* 하단 고정 네비게이션이 가리지 않도록 여백 확보 */
     padding-bottom: 80px;
     line-height: 1.6;
+    font-weight: 400;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -22,8 +26,8 @@ body {
 }
 
 .support-helper-title {
-    font-size: 24px;
-    font-weight: bold;
+    font-size: 20px;
+    font-weight: 600;
     margin-bottom: 8px;
     text-align: center;
 }
@@ -55,8 +59,8 @@ body {
 }
 
 .support-id-title {
-    font-size: 24px;
-    font-weight: bold;
+    font-size: 20px;
+    font-weight: 600;
     margin-bottom: 8px;
     text-align: center;
 }
@@ -88,8 +92,8 @@ body {
 }
 
 .support-fundraising-title {
-    font-size: 24px;
-    font-weight: bold;
+    font-size: 20px;
+    font-weight: 600;
     margin-bottom: 8px;
     text-align: center;
 }
@@ -153,8 +157,8 @@ body {
 }
 
 .guide-download-title {
-    font-size: 24px;
-    font-weight: bold;
+    font-size: 20px;
+    font-weight: 600;
     margin-bottom: 8px;
     text-align: center;
 }
@@ -183,7 +187,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 20px;
+    padding: 18px 22px;
     background-color: #EFF9BB; /* requested top bar color */
     position: sticky;
     top: 0;
@@ -217,7 +221,7 @@ body {
     background-color: #007bff;
 }
 
-.app-logo { height: 28px; display: block; }
+.app-logo { height: 30px; display: block; }
 
 .logo-btn { background:none; border:none; padding:0; cursor:pointer; display:flex; align-items:center; }
 
@@ -287,8 +291,8 @@ body {
     border-bottom: 1px solid transparent; /* 기본은 투명 (보이지 않음) */
 }
 .menu-section-title {
-    font-size: 20px;
-    font-weight: 800;
+    font-size: 18px;
+    font-weight: 600;
     color: #212529;
 }
 .menu-sublist { display: none; padding: 8px 0 14px 0; }
@@ -311,7 +315,7 @@ body {
 .menu-arrow {
     font-size: 22px;
     color: #495057;
-    font-weight: 700;
+    font-weight: 500;
     line-height: 1;
     display: flex;
     align-items: center;
@@ -337,10 +341,10 @@ body {
     visibility: visible;
 }
 
-/* Artist Hero Section */
+/* Artist Hero Section (반응형 높이 비율을 자연스럽게) */
 .artist-hero {
     width: 100%;
-    aspect-ratio: 16/9; /* 비율 고정 */
+    height: clamp(180px, 32vw, 360px); /* 화면 너비에 비례하되 최소/최대 높이 제한 */
     overflow: hidden;
     border-radius: 0;
     margin-bottom: 20px;
@@ -349,20 +353,9 @@ body {
 .artist-image {
     width: 100%;
     height: 100%;
-    object-fit: cover;           /* 영역을 꽉 채우되 비율 유지 */
-    object-position: center bottom; /* 하단 기준으로 보이도록 */
+    object-fit: cover;             /* 영역을 꽉 채우되 비율 유지 */
+    object-position: center bottom;/* 하단이 보이도록 */
     display: block;
-}
-
-@media (max-width: 768px){
-  .artist-hero{ aspect-ratio: 16/9; }
-  .artist-image{ object-position: center bottom; }
-}
-
-/* 데스크톱에서는 높이를 제한해 배너가 과도하게 커지지 않도록 */
-@media (min-width: 992px){
-  .artist-hero{ aspect-ratio: auto; height: 360px; }
-  .artist-image{ height: 100%; }
 }
 
 /* Container */
@@ -374,7 +367,7 @@ body {
 
 /* Quick Links Section */
 .quick-links-section{ background:#fff; border-radius:16px; padding:22px; margin-bottom:20px; border:1px solid #e9ecef; box-shadow:0 4px 20px rgba(0,0,0,0.06); }
-.quick-links-section h2{ font-size:1.3rem; font-weight:600; color:#495057; margin:0 0 14px 0; }
+.quick-links-section h2{ font-size:1.15rem; font-weight:500; color:#495057; margin:0 0 14px 0; }
 .quick-links-list{ display:flex; flex-direction:column; gap:12px; }
 .quick-link-item{ display:flex; align-items:center; gap:14px; padding:14px; border-radius:12px; border:1px solid #eef1f4; background:#f8fafc; cursor:pointer; transition:transform .15s ease, box-shadow .15s ease, background .15s ease; text-align:left; }
 .quick-link-item:hover{ background:#f1f3f5; transform:translateY(-2px); box-shadow:0 4px 12px rgba(0,0,0,0.08); }
@@ -383,7 +376,7 @@ body {
 .quick-link-icon.green{ background:#EFF9BB; }
 .quick-link-icon.blue{ background:#EFF9BB; }
 .quick-link-icon.gray{ background:#EFF9BB; }
-.quick-link-label{ font-size:1.05rem; font-weight:800; color:#111; }
+.quick-link-label{ font-size:0.98rem; font-weight:500; color:#111; }
 
 @media (min-width: 640px){
   .quick-links-list{ flex-direction:column; }
@@ -396,20 +389,80 @@ body {
 .bottom-sheet.active{ bottom:0; }
 .sheet-inner{ padding:18px 16px calc(20px + env(safe-area-inset-bottom)) 16px; }
 .sheet-header{ display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; }
-.sheet-header h3{ margin:0; font-size:1.2rem; font-weight:800; }
+.sheet-header h3{ margin:0; font-size:1.1rem; font-weight:600; }
 .sheet-close{ background:#f1f3f5; border:none; border-radius:8px; width:36px; height:36px; cursor:pointer; font-size:18px; }
 .sheet-content{ max-height:65vh; overflow:auto; padding-top:6px; }
 .sheet-grid{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
-.sheet-btn{ display:flex; align-items:center; gap:10px; border:1px solid #e9ecef; padding:14px 12px; border-radius:12px; text-decoration:none; color:#111; font-weight:700; background:#f8fafc; }
+.sheet-btn{ display:flex; align-items:center; gap:10px; border:1px solid #e9ecef; padding:14px 12px; border-radius:12px; text-decoration:none; color:#111; font-weight:600; background:#f8fafc; }
 .sheet-btn:hover{ background:#f1f3f5; }
 .sheet-icon{ width:20px; height:20px; display:flex; align-items:center; justify-content:center; }
 
 /* Guide: ID section */
 .guide-id-section{ background:#fff; border:1px solid #e9ecef; border-radius:16px; padding:22px; box-shadow:0 4px 20px rgba(0,0,0,0.06); margin:20px 0; }
 .id-subtabs{ display:flex; gap:28px; flex-wrap:wrap; margin:6px 0 24px 0; align-items:center; padding-bottom:8px; border-bottom:1px solid #eceff3; }
-.id-subtab{ background:transparent; border:none; padding:6px 0; font-weight:600; font-size:20px; color:#111; cursor:pointer; border-bottom:3px solid transparent; }
+.id-subtab{ background:transparent; border:none; padding:6px 0; font-weight:500; font-size:20px; color:#111; cursor:pointer; border-bottom:3px solid transparent; }
 .id-subtab:hover{ color:#000; }
-.id-subtab.active{ border-bottom:4px solid #111; font-weight:800; }
+.id-subtab.active{ border-bottom:4px solid #111; font-weight:600; }
+.guide-id-section .id-subtab{ border-bottom:3px solid transparent; }
+
+/* Guide > Streaming 전용: 하위 탭 글자 크기 소폭 축소 */
+#guideStreamingSection .id-subtab{ font-size:18px; }
+@media (max-width: 480px){
+  #guideStreamingSection .id-subtab{ font-size:16px; }
+}
+
+/* Vote > 투표권 모으기: 하위 탭 글자 크기 소폭 축소 */
+#voteCollectSection .id-subtab{ font-size:18px; }
+@media (max-width: 480px){
+  #voteCollectSection .id-subtab{ font-size:16px; }
+}
+
+/* Guide > 아이디 생성: 하위 탭 글자 크기 소폭 축소 */
+#guideIdSection .id-subtab{ font-size:18px; }
+@media (max-width: 480px){
+  #guideIdSection .id-subtab{ font-size:16px; }
+}
+
+/* Guide > 응원법: 트랙 하위 탭 크기/스크롤 */
+#chantTrackSubtabs .id-subtab{ font-size:16px; }
+@media (max-width: 480px){
+  #chantTrackSubtabs .id-subtab{ font-size:14px; }
+}
+
+/* Guide > 응원법: 앨범 탭 가독성 향상 (네비 바 색상 하이라이트) */
+#guideChantSection > .id-subtabs .id-subtab{
+  padding: 6px 10px;
+  border-radius: 8px;
+}
+#guideChantSection > .id-subtabs .id-subtab.active{
+  background: #EFF9BB;
+  border-bottom: 0; /* 기본 밑줄 제거 */
+  font-weight: 600;
+}
+#guideChantSection > .id-subtabs .id-subtab:hover{
+  background: #f4f9cf;
+}
+
+/* Responsive horizontal scroll for subtab rows */
+@media (max-width: 768px){
+  .id-subtabs, .download-subtabs{ 
+    overflow-x:auto; 
+    flex-wrap:nowrap; 
+    gap:18px; 
+    -webkit-overflow-scrolling: touch; 
+    scroll-behavior: smooth;
+  }
+  .id-subtab, .download-subtab{ flex:0 0 auto; }
+  /* Hide scrollbar (mobile) */
+  .id-subtabs{ -ms-overflow-style:none; scrollbar-width:none; }
+  .id-subtabs::-webkit-scrollbar{ display:none; }
+  .download-subtabs{ -ms-overflow-style:none; scrollbar-width:none; }
+  .download-subtabs::-webkit-scrollbar{ display:none; }
+}
+
+/* Drag cursor for desktop dragging */
+.drag-scroll{ cursor: grab; }
+.drag-scroll.dragging{ cursor: grabbing; }
 .guide-id-title{ display:none; }
 .guide-id-date{ display:none; }
 .guide-id-image-container{ background:transparent; border:none; border-radius:12px; height:auto; display:block; margin-bottom:14px; padding:0; }
@@ -417,10 +470,10 @@ body {
 .guide-id-image{ width:auto; max-width:100%; height:auto; display:block; margin:0 auto; }
 .guide-dual-grid{ display:block; }
 .guide-dual-card{ margin-bottom:16px; }
-.guide-dual-title{ font-weight:800; margin:0 0 8px 0; }
+.guide-dual-title{ font-weight:600; margin:0 0 8px 0; }
 .guide-dual-img{ width:auto; max-width:100%; height:auto; display:block; }
 .guide-actions{ display:flex; gap:12px; }
-.guide-action-btn{ flex:1; border:1px solid #e9ecef; border-radius:10px; background:#F4F4F4; padding:12px; font-weight:700; cursor:pointer; color:#111; }
+.guide-action-btn{ flex:1; border:1px solid #e9ecef; border-radius:10px; background:#F4F4F4; padding:12px; font-weight:600; cursor:pointer; color:#111; }
 .guide-action-btn.primary{ background:#F4F4F4; color:#111; border-color:#e9ecef; }
 /* YouTube Section */
 .youtube-section {
@@ -433,8 +486,8 @@ body {
 }
 
 .youtube-section h2 {
-    font-size: 1.3rem;
-    font-weight: 600;
+    font-size: 1.15rem;
+    font-weight: 500;
     color: #495057;
     margin: 0;
 }
@@ -489,8 +542,8 @@ body {
 }
 
 .stat-value {
-    font-size: 1.1rem;
-    font-weight: 700;
+    font-size: 1rem;
+    font-weight: 600;
     color: #495057;
 }
 
@@ -506,11 +559,12 @@ body {
 
 /* Guide Hub (for bottom nav) */
 .guide-hub { background:#fff; border:1px solid #e9ecef; border-radius:16px; padding:24px; box-shadow:0 4px 20px rgba(0,0,0,0.06); margin-bottom:24px; }
-.guide-hub h2 { font-size:1.6rem; margin:0 0 16px 0; color:#212529; }
+.guide-hub h2 { font-size:1.3rem; margin:0 0 16px 0; color:#212529; }
 .hub-grid { display:grid; grid-template-columns:1fr; gap:14px; }
-.hub-card { display:flex; flex-direction:column; align-items:center; justify-content:center; text-decoration:none; color:#111; background:#f5f7f9; border:1px solid #eef1f4; border-radius:12px; padding:22px 16px; }
-.hub-emoji { font-size:40px; line-height:1; margin-bottom:8px; }
-.hub-title { font-weight:800; font-size:1.25rem; }
+.hub-card { display:flex; flex-direction:row; align-items:center; justify-content:flex-start; gap:12px; text-decoration:none; color:#111; background:#f5f7f9; border:1px solid #eef1f4; border-radius:12px; padding:16px; }
+.hub-emoji { display:none; }
+.hub-icon { width:28px; height:28px; display:block; }
+.hub-title { font-weight:600; font-size:1.1rem; }
 
 /* 가이드 메인 카드 2열 배치 */
 @media (min-width:560px){
@@ -522,8 +576,8 @@ body {
 }
 
 .streaming-section h2 {
-    font-size: 1.3rem;
-    font-weight: 600;
+    font-size: 1.15rem;
+    font-weight: 500;
     margin-bottom: 20px;
     color: #495057;
     text-align: left;
@@ -546,7 +600,7 @@ body {
     gap: 12px;
     color: #495057;
     font-size: 0.9rem;
-    font-weight: 600;
+    font-weight: 500;
     cursor: pointer;
     transition: all 0.2s ease;
 }
@@ -592,8 +646,8 @@ body {
 }
 
 .header h1 {
-    font-size: 1.5rem;
-    font-weight: 700;
+    font-size: 1.3rem;
+    font-weight: 600;
     color: #343a40;
     margin-bottom: 0.5rem;
 }
@@ -617,7 +671,7 @@ body {
     text-decoration: none;
     padding: 0.5rem 1rem;
     border-radius: 8px;
-    font-weight: 600;
+    font-weight: 500;
     transition: background-color 0.2s, color 0.2s;
 }
 
@@ -655,8 +709,8 @@ body {
 }
 
 .chart-header h2 {
-    font-size: 1.3rem;
-    font-weight: 600;
+    font-size: 1.15rem;
+    font-weight: 500;
     color: #495057;
     margin: 0;
 }
@@ -722,7 +776,7 @@ body {
 
 .service-name {
     font-size: 0.9rem;
-    font-weight: 600;
+    font-weight: 500;
     color: #202124;
     line-height: 1.2;
 }
@@ -744,7 +798,7 @@ body {
 
 .rank-display {
     font-size: 1.1rem;
-    font-weight: 700;
+    font-weight: 600;
     color: #202124;
 }
 
@@ -784,8 +838,8 @@ body {
 }
 
 .card h2 {
-    font-size: 1.5rem;
-    font-weight: 600;
+    font-size: 1.3rem;
+    font-weight: 500;
     margin-bottom: 20px;
     color: #495057;
     display: flex;
@@ -836,7 +890,7 @@ body {
     font-size: 0.75rem;
     padding: 4px 8px;
     border-radius: 12px;
-    font-weight: 700;
+    font-weight: 600;
     text-transform: uppercase;
 }
 
@@ -857,14 +911,14 @@ body {
 }
 
 .rank-number {
-    font-size: 2rem;
-    font-weight: 700;
+    font-size: 1.8rem;
+    font-weight: 600;
     color: #212529;
 }
 
 .rank-change {
-    font-size: 1rem;
-    font-weight: 700;
+    font-size: 0.95rem;
+    font-weight: 600;
 }
 
 .rank-change.up {
@@ -994,8 +1048,8 @@ body {
 }
 
 .youtube-stat-value {
-    font-size: 1.1rem;
-    font-weight: 700;
+    font-size: 1rem;
+    font-weight: 600;
     color: #202124;
 }
 
@@ -1124,9 +1178,9 @@ body {
     .youtube-section,
     .streaming-section {
         padding: 20px;
-        margin-bottom: 20px;
-    }
-    
+    margin-bottom: 20px;
+}
+
     .chart-header h2 {
         font-size: 1.2rem;
     }

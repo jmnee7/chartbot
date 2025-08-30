@@ -15,6 +15,19 @@ document.addEventListener('DOMContentLoaded', () => {
     if (guideIdSection) guideIdSection.style.display = 'none';
     const guideDownloadSection = document.getElementById('guideDownloadSection');
     if (guideDownloadSection) guideDownloadSection.style.display = 'none';
+    // 해시 라우팅 초기 진입 처리
+    routeFromHash();
+});
+
+// 히스토리 초기화 및 뒤로가기 처리
+document.addEventListener('DOMContentLoaded', () => {
+    if (!history.state) {
+        history.replaceState({ view: 'home' }, '');
+    }
+    window.addEventListener('popstate', (e) => {
+        const state = e.state || { view: 'home' };
+        renderState(state);
+    });
 });
 
 function showView(viewId) {
@@ -253,16 +266,21 @@ function navigateToMenu(key) {
     switch (key) {
         // 가이드 하위: 상세 화면으로 직접 이동
         case 'guide-download':
-            openGuide('download');
+            go({ view: 'guideDownload' });
             break;
         case 'guide-id':
-            openGuide('id');
+            go({ view: 'guideId' });
             break;
-        // 아직 개별 화면 미구현 → 허브로 이동
+        // 스트리밍 상세 화면으로 이동
         case 'guide-streaming':
+            // 이미 상세로 이동하지만, 네비게이션/사이드에서도 동일 정책 유지
+            go({ view: 'guideStreaming' });
+            break;
         case 'guide-cheer':
+            openGuide('cheer');
+            break;
         case 'guide-radio':
-            showGuideMainHub();
+            openGuide('radio');
             break;
 
         // 스트리밍 하위: 동일 동작 수행
@@ -271,8 +289,7 @@ function navigateToMenu(key) {
             openStreamingSheet();
             break;
         case 'streaming-mv':
-            toggleMainSections(true);
-            scrollToSection('.youtube-section');
+            go({ view: 'home', anchor: '.youtube-section' });
             break;
 
         // 투표는 허브로 이동 (세부페이지 미구현)
@@ -284,13 +301,16 @@ function navigateToMenu(key) {
 
         // 서포트 하위: 각 상세로 이동
         case 'support-helper':
-            openSupport('helper');
+            go({ view: 'support', type: 'helper' });
+            break;
+        case 'support-team':
+            go({ view: 'support', type: 'team' });
             break;
         case 'support-id-donate':
-            openSupport('id');
+            go({ view: 'support', type: 'id' });
             break;
         case 'support-funding':
-            openSupport('fundraising');
+            go({ view: 'support', type: 'fundraising' });
             break;
 
         default:
@@ -302,20 +322,20 @@ function navigateToMenu(key) {
 function openFooterAction(action) {
     switch(action) {
         case 'guide':
-            // 가이드 메인 허브를 보여줌
-            showGuideMainHub();
+            go({ view: 'guideHubMain' });
             break;
         case 'streaming':
-            showGuideHub('streaming');
+            // 스트리밍 허브(메뉴)로 이동
+            go({ view: 'guideHubStreaming' });
             break;
         case 'home':
-            showHome();
+            go({ view: 'home' });
             break;
         case 'vote':
-            showGuideHub('vote');
+            go({ view: 'guideHubVote' });
             break;
         case 'support':
-            showGuideHub('support');
+            go({ view: 'guideHubSupport' });
             break;
         default:
             console.log('알 수 없는 액션:', action);
@@ -339,6 +359,10 @@ function showGuideHub(type){
         // 아이디/다운로드 상세는 허브 진입 시 숨김
         hideGuideIdSection();
         hideGuideDownloadSection();
+        hideGuideStreamingSection();
+        hideGuideChantSection();
+        hideGuideRadioSection();
+        hideVoteCollectSection();
         hideAllSupportSections();
         target.style.display = 'block';
         target.scrollIntoView({behavior:'smooth', block:'start'});
@@ -363,6 +387,10 @@ function showHome(){
     if (guideSection) guideSection.style.display = 'none';
     hideGuideIdSection();
     hideGuideDownloadSection();
+    hideGuideStreamingSection();
+    hideGuideChantSection();
+    hideGuideRadioSection();
+    hideVoteCollectSection();
     hideAllSupportSections();
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
@@ -395,6 +423,7 @@ function showGuideMainHub(){
     });
     hideGuideIdSection();
     hideGuideDownloadSection();
+    hideGuideStreamingSection();
     hideAllSupportSections();
     const mainHub = document.getElementById('guideHubMain');
     if (mainHub){
@@ -416,6 +445,12 @@ function openGuide(kind){
     
     // 서포트 섹션들도 숨김
     hideAllSupportSections();
+    hideGuideIdSection();
+    hideGuideDownloadSection();
+    hideGuideStreamingSection();
+    hideGuideChantSection();
+    hideGuideRadioSection();
+    hideVoteCollectSection();
 
     // 아이디 생성 전용 화면
     if (kind === 'id') {
@@ -426,6 +461,7 @@ function openGuide(kind){
             if (typeof switchIdSubTab === 'function') switchIdSubTab('dual', document.querySelector('.id-subtab[data-sub="dual"]'));
             // 페이지 상단으로 이동 (새 페이지처럼 보이도록)
             window.scrollTo({ top: 0, behavior: 'smooth' });
+            enableDragScroll(idSection.querySelector('.id-subtabs'));
         }
         return;
     }
@@ -436,9 +472,48 @@ function openGuide(kind){
         if (dlSection) {
             dlSection.style.display = 'block';
             // 기본 탭: 멜론
-            const defaultBtn = document.querySelector('.download-subtab[data-sub="melon"]');
+            const defaultBtn = document.querySelector('#guideDownloadSection .id-subtab[data-sub="melon"], .download-subtab[data-sub="melon"]');
             if (typeof switchDownloadTab === 'function') switchDownloadTab('melon', defaultBtn);
             // 페이지 상단으로 이동 (새 페이지처럼 보이도록)
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            enableDragScroll(dlSection.querySelector('.id-subtabs, .download-subtabs'));
+        }
+        return;
+    }
+
+    // 스트리밍 전용 화면
+    if (kind === 'streaming') {
+        const stSection = document.getElementById('guideStreamingSection');
+        if (stSection) {
+            stSection.style.display = 'block';
+            const defaultBtn = document.querySelector('#guideStreamingSection .download-subtab[data-sub="melon"]');
+            const firstBtn = document.querySelector('#guideStreamingSection .id-subtab[data-sub="melon"]') || defaultBtn;
+            if (typeof switchStreamTab === 'function') switchStreamTab('melon', firstBtn);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            enableDragScroll(stSection.querySelector('.id-subtabs'));
+        }
+        return;
+    }
+
+    // 응원법 전용 화면
+    if (kind === 'cheer') {
+        const section = document.getElementById('guideChantSection');
+        if (section) {
+            section.style.display = 'block';
+            if (typeof switchChantTab === 'function') switchChantTab('handsup', section.querySelector('.id-subtab[data-sub="handsup"]'));
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            enableDragScroll(section.querySelector('.id-subtabs'));
+        }
+        return;
+    }
+
+    // 라디오 신청 전용 화면
+    if (kind === 'radio') {
+        const section = document.getElementById('guideRadioSection');
+        if (section){
+            section.style.display = 'block';
+            const dateEl = document.getElementById('guideRadioDate');
+            if (dateEl){ const d = new Date(); const fmt = `${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,'0')}.${String(d.getDate()).padStart(2,'0')}`; dateEl.textContent = fmt; }
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
         return;
@@ -446,6 +521,235 @@ function openGuide(kind){
 
     // 다른 가이드는 추후 연결. 일단 허브로 복귀
     showGuideMainHub();
+}
+
+// Enable drag-to-scroll for overflow rows
+function enableDragScroll(container){
+    if (!container) return;
+    container.classList.add('drag-scroll');
+    let isDown = false; let startX = 0; let scrollLeft = 0;
+    container.addEventListener('mousedown', (e)=>{ isDown = true; container.classList.add('dragging'); startX = e.pageX - container.offsetLeft; scrollLeft = container.scrollLeft; });
+    container.addEventListener('mouseleave', ()=>{ isDown = false; container.classList.remove('dragging'); });
+    container.addEventListener('mouseup', ()=>{ isDown = false; container.classList.remove('dragging'); });
+    container.addEventListener('mousemove', (e)=>{ if(!isDown) return; e.preventDefault(); const x = e.pageX - container.offsetLeft; const walk = (x - startX) * 1; container.scrollLeft = scrollLeft - walk; });
+}
+
+// Vote: 투표권 모으기 열기
+function openVoteCollect(){
+    // 메인/허브 숨기고 상세 표시
+    toggleMainSections(false);
+    ['guideHubMain','guideHubStreaming','guideHubVote','guideHubSupport'].forEach(id=>{
+        const el = document.getElementById(id);
+        if (el) el.style.display = 'none';
+    });
+    hideGuideIdSection();
+    hideGuideDownloadSection();
+    hideGuideStreamingSection();
+    hideAllSupportSections();
+    const section = document.getElementById('voteCollectSection');
+    if (section){
+        section.style.display = 'block';
+        const firstBtn = document.querySelector('#voteCollectSection .id-subtab[data-sub="theshow"]');
+        if (typeof switchVoteCollectTab === 'function') switchVoteCollectTab('theshow', firstBtn);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+}
+
+function switchVoteCollectTab(sub, btn){
+    currentVoteCollectSub = sub;
+    document.querySelectorAll('#voteCollectSection .id-subtab').forEach(t=>t.classList.remove('active'));
+    if (btn) btn.classList.add('active');
+    const titleEl = document.getElementById('voteCollectTitle');
+    const dateEl = document.getElementById('voteCollectDate');
+    const imgEl = document.getElementById('voteCollectImage');
+    const titleMap = {
+        theshow: '더쇼 투표권 모으기',
+        showchampion: '쇼챔 투표권 모으기',
+        musicbank: '뮤직뱅크 투표권 모으기',
+        musiccore: '쇼음악중심 투표권 모으기',
+        inkigayo: '인기가요 투표권 모으기',
+        mcountdown: '엠카 투표 가이드'
+    };
+    if (titleEl) titleEl.textContent = titleMap[sub] || '투표권 모으기';
+    if (dateEl){
+        const d = new Date();
+        const fmt = `${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,'0')}.${String(d.getDate()).padStart(2,'0')}`;
+        dateEl.textContent = fmt;
+    }
+    const map = {
+        theshow: 'styles/assets/vote/collect/1. 더쇼 투표권 모으기.png',
+        showchampion: 'styles/assets/vote/collect/2. 쇼챔 투표권 모으기.png',
+        musicbank: 'styles/assets/vote/collect/3. 뮤직뱅크 투표권 모으기.png',
+        musiccore: 'styles/assets/vote/collect/4. 쇼음악중심 투표권 모으기.png',
+        inkigayo: 'styles/assets/vote/collect/5. 인기가요 투표권 모으기.png',
+        mcountdown: 'styles/assets/vote/collect/6. 엠카 투표 가이드.png'
+    };
+    if (imgEl && map[sub]) {
+        imgEl.src = map[sub];
+    }
+}
+
+function switchChantTab(sub, btn){
+    currentChantSub = sub;
+    document.querySelectorAll('#guideChantSection .id-subtab').forEach(t=>t.classList.remove('active'));
+    if (btn) btn.classList.add('active');
+    const titleEl = document.getElementById('guideChantTitle');
+    const dateEl = document.getElementById('guideChantDate');
+    const container = document.getElementById('chantImagesContainer');
+    const trackTabs = document.getElementById('chantTrackSubtabs');
+    const titleMap = { handsup:'Hands Up', wish:'WISH', songbird:'Songbird', steady:'Steady', miracle:'Miracle', poppop:'poppop', color:'COLOR' };
+    if (titleEl) titleEl.textContent = `응원법 · ${titleMap[sub] || ''}`;
+    if (dateEl){ const d = new Date(); const fmt = `${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,'0')}.${String(d.getDate()).padStart(2,'0')}`; dateEl.textContent = fmt; }
+    const trackMap = {
+        handsup: [ { key:'handsup_jp', label:'Hands Up(日)', imgs:['styles/assets/guide/chant/1. Hands Up 응원법(日).jpg'] }, { key:'wego_jp', label:'We Go!(日)', imgs:['styles/assets/guide/chant/2. We Go! 응원법(日).jpg'] }, { key:'wego_kr', label:'We Go!(韓)', imgs:['styles/assets/guide/chant/7. We Go! 응원법(韓).jpeg'] } ],
+        wish: [ { key:'wish', label:'WISH', imgs:['styles/assets/guide/chant/3. WISH 응원법.jpg'] }, { key:'sailaway', label:'Sail Away', imgs:['styles/assets/guide/chant/4. Sail Away 응원법.jpg'] } ],
+        songbird: [ { key:'songbird', label:'Songbird', imgs:['styles/assets/guide/chant/5. Songbird 응원법.jpg'] } ],
+        steady: [ { key:'steady', label:'Steady', imgs:['styles/assets/guide/chant/9. Steady 응원법.jpg'] }, { key:'dunkshot', label:'Dunk Shot', imgs:['styles/assets/guide/chant/8. Dunk Shot 응원법.jpg'] }, { key:'handsup_kr', label:'Hands Up(韓)', imgs:['styles/assets/guide/chant/6. Hands Up 응원법(韓).jpeg'] } ],
+        miracle: [ { key:'miracle', label:'Miracle', imgs:['styles/assets/guide/chant/10. Miracle 응원법.jpg'] } ],
+        poppop: [ { key:'poppop', label:'poppop', imgs:['styles/assets/guide/chant/11. poppop 응원법.jpg'] } ],
+        color: [ { key:'surf', label:'Surf', imgs:['styles/assets/guide/chant/12. Surf 응원법.jpg'] }, { key:'color', label:'COLOR', imgs:[] } ]
+    };
+    const tracks = trackMap[sub] || [];
+    if (trackTabs){
+        trackTabs.innerHTML = tracks.map((t,i)=>`<button class=\"id-subtab ${i===0?'active':''}\" data-track=\"${t.key}\" onclick=\"switchChantTrack('${t.key}', this)\">${t.label}</button>`).join('');
+        enableDragScroll(trackTabs);
+    }
+    if (tracks.length){ switchChantTrack(tracks[0].key, trackTabs.querySelector('.id-subtab')); } else { container.innerHTML=''; }
+}
+
+function switchChantTrack(trackKey, btn){
+    currentChantTrack = trackKey;
+    const trackTabs = document.getElementById('chantTrackSubtabs');
+    if (trackTabs){ trackTabs.querySelectorAll('.id-subtab').forEach(t=>t.classList.remove('active')); if (btn) btn.classList.add('active'); }
+    const container = document.getElementById('chantImagesContainer');
+    const all = {
+        handsup_jp:['styles/assets/guide/chant/1. Hands Up 응원법(日).jpg'],
+        wego_jp:['styles/assets/guide/chant/2. We Go! 응원법(日).jpg'],
+        wego_kr:['styles/assets/guide/chant/7. We Go! 응원법(韓).jpeg'],
+        wish:['styles/assets/guide/chant/3. WISH 응원법.jpg'],
+        sailaway:['styles/assets/guide/chant/4. Sail Away 응원법.jpg'],
+        songbird:['styles/assets/guide/chant/5. Songbird 응원법.jpg'],
+        steady:['styles/assets/guide/chant/9. Steady 응원법.jpg'],
+        dunkshot:['styles/assets/guide/chant/8. Dunk Shot 응원법.jpg'],
+        handsup_kr:['styles/assets/guide/chant/6. Hands Up 응원법(韓).jpeg'],
+        miracle:['styles/assets/guide/chant/10. Miracle 응원법.jpg'],
+        poppop:['styles/assets/guide/chant/11. poppop 응원법.jpg'],
+        surf:['styles/assets/guide/chant/12. Surf 응원법.jpg'],
+        color:[]
+    };
+    const imgs = all[trackKey] || [];
+    if (container){ container.innerHTML = imgs.map(src=>`<div class=\"guide-id-image-container\"><img class=\"guide-id-image\" src=\"${src}\" alt=\"응원법\"/></div>`).join(''); }
+}
+
+function hideGuideStreamingSection(){
+    const stSection = document.getElementById('guideStreamingSection');
+    if (stSection) stSection.style.display = 'none';
+}
+
+function hideGuideChantSection(){
+    const ch = document.getElementById('guideChantSection');
+    if (ch) ch.style.display = 'none';
+}
+
+function hideGuideRadioSection(){
+    const el = document.getElementById('guideRadioSection');
+    if (el) el.style.display = 'none';
+}
+
+function hideVoteCollectSection(){
+    const el = document.getElementById('voteCollectSection');
+    if (el) el.style.display = 'none';
+}
+
+// ===== 간단 라우팅: 상태 관리 =====
+function go(state){
+    history.pushState(state, '');
+    renderState(state);
+}
+
+function renderState(state){
+    if (!state || !state.view) state = { view: 'home' };
+    hideAllContentSections();
+    switch(state.view){
+        case 'home':
+            showHome();
+            if (state.anchor) {
+                scrollToSection(state.anchor);
+            }
+            break;
+        case 'guideHubMain':
+            showGuideMainHub();
+            break;
+        case 'guideHubStreaming':
+            showGuideHub('streaming');
+            break;
+        case 'guideHubVote':
+            showGuideHub('vote');
+            break;
+        case 'guideHubSupport':
+            showGuideHub('support');
+            break;
+        case 'guideId':
+            openGuide('id');
+            break;
+        case 'guideDownload':
+            openGuide('download');
+            break;
+        case 'guideStreaming':
+            openGuide('streaming');
+            break;
+        case 'guideChant':
+            openGuide('cheer');
+            break;
+        case 'guideRadio':
+            openGuide('radio');
+            break;
+        case 'support':
+            openSupport(state.type);
+            break;
+        default:
+            showHome();
+    }
+}
+
+// Hide everything helper
+function hideAllContentSections(){
+    // Hide hubs
+    ['guideHubMain','guideHubStreaming','guideHubVote','guideHubSupport','guideSection'].forEach(id=>{ const el=document.getElementById(id); if(el) el.style.display='none'; });
+    // Hide details
+    hideGuideIdSection();
+    hideGuideDownloadSection();
+    hideGuideStreamingSection();
+    hideGuideChantSection();
+    hideGuideRadioSection();
+    hideVoteCollectSection();
+    hideAllSupportSections();
+}
+
+// 해시 → 화면 라우팅 (공유 URL 지원)
+window.addEventListener('hashchange', routeFromHash);
+function routeFromHash(){
+    const hash = (location.hash || '').replace(/^#/,'');
+    if (!hash) return;
+    const [path, query] = hash.split('?');
+    const params = new URLSearchParams(query || '');
+    const parts = path.split('/').filter(Boolean);
+    if (!parts.length) return;
+    if (parts[0] === 'home') { showHome(); return; }
+    if (parts[0] === 'guide'){
+        if (parts[1] === 'id') { openGuide('id'); const tab = params.get('tab') || 'dual'; switchIdSubTab(tab, document.querySelector(`.id-subtab[data-sub="${tab}"]`)); return; }
+        if (parts[1] === 'download') { openGuide('download'); const tab = params.get('tab') || 'melon'; switchDownloadTab(tab, document.querySelector(`#guideDownloadSection .id-subtab[data-sub="${tab}"]`)); return; }
+        if (parts[1] === 'streaming') { openGuide('streaming'); const tab = params.get('tab') || 'melon'; switchStreamTab(tab, document.querySelector(`#guideStreamingSection .id-subtab[data-sub="${tab}"]`)); return; }
+        if (parts[1] === 'cheer') { openGuide('cheer'); const tab = params.get('tab') || 'handsup'; switchChantTab(tab, document.querySelector(`#guideChantSection .id-subtab[data-sub="${tab}"]`)); return; }
+        if (parts[1] === 'radio') { openGuide('radio'); return; }
+        showGuideMainHub(); return;
+    }
+    if (parts[0] === 'vote' && parts[1] === 'collect'){
+        openVoteCollect(); const tab = params.get('tab') || 'theshow'; switchVoteCollectTab(tab, document.querySelector(`#voteCollectSection .id-subtab[data-sub="${tab}"]`)); return;
+    }
+    if (parts[0] === 'support'){
+        openSupport(parts[1] || 'helper'); return;
+    }
 }
 
 function hideGuideIdSection(){
@@ -460,6 +764,7 @@ function hideGuideDownloadSection(){
 
 function hideAllSupportSections(){
     hideSupportHelperSection();
+    hideSupportTeamSection();
     hideSupportIdSection();
     hideSupportFundraisingSection();
 }
@@ -474,7 +779,7 @@ function openQuickLink(key){
             window.open('https://m2.melon.com/ymlocation/artist/index.htm', '_blank');
             break;
         case 'musiccore-sms':
-            window.location.href = 'sms:8000?&body=NCT DREAM 투표합니다';
+            window.location.href = 'sms:0505?&body=NCT WISH';
             break;
         case 'radio-request':
             window.open('https://sites.google.com/view/nctwishradio/', '_blank');
@@ -485,12 +790,16 @@ function openQuickLink(key){
 }
 
 function goHome(){
-    // 허브/가이드를 모두 숨기고 메인 섹션만 보이도록
-    showHome();
+    go({ view: 'home' });
 }
 
 // ===== Guide: ID 생성 전용 로직(기존 guide.js에서 이관) =====
 let currentIdSub = 'dual';
+let currentStreamSub = 'melon';
+let currentDownloadSub = 'melon';
+let currentVoteCollectSub = 'theshow';
+let currentChantSub = 'handsup';
+let currentChantTrack = '';
 
 function switchIdSubTab(sub, btn){
     currentIdSub = sub;
@@ -556,18 +865,37 @@ function openIdShortcut(){
 }
 
 function shareCurrentGuide(){
-    const shareData = { title: document.title, text: '아이디 생성 가이드', url: location.href };
+    const url = getCurrentShareUrl();
+    const shareData = { title: document.title, text: '가이드', url };
     if (navigator.share) {
         navigator.share(shareData).catch(()=>{});
     } else {
-        if (navigator.clipboard) navigator.clipboard.writeText(shareData.url);
+        if (navigator.clipboard) navigator.clipboard.writeText(url);
         alert('링크가 복사되었습니다.');
     }
 }
 
+function getCurrentShareUrl(){
+    const base = location.origin + location.pathname;
+    const isVisible = (id)=>{
+        const el = document.getElementById(id);
+        return !!el && el.style.display === 'block';
+    };
+    if (isVisible('guideStreamingSection')) return `${base}#/guide/streaming?tab=${encodeURIComponent(currentStreamSub)}`;
+    if (isVisible('guideIdSection')) return `${base}#/guide/id?tab=${encodeURIComponent(currentIdSub)}`;
+    if (isVisible('guideDownloadSection')) return `${base}#/guide/download?tab=${encodeURIComponent(currentDownloadSub)}`;
+    if (isVisible('voteCollectSection')) return `${base}#/vote/collect?tab=${encodeURIComponent(currentVoteCollectSub)}`;
+    if (isVisible('supportHelperSection')) return `${base}#/support/helper`;
+    if (isVisible('supportTeamSection')) return `${base}#/support/team`;
+    if (isVisible('supportIdSection')) return `${base}#/support/id`;
+    if (isVisible('supportFundraisingSection')) return `${base}#/support/fundraising`;
+    return `${base}#/home`;
+}
+
 // ===== Guide: 다운로드 전용 로직 =====
 async function switchDownloadTab(sub, btn){
-    document.querySelectorAll('.download-subtab').forEach(t=>t.classList.remove('active'));
+    currentDownloadSub = sub;
+    document.querySelectorAll('#guideDownloadSection .id-subtab, #guideDownloadSection .download-subtab').forEach(t=>t.classList.remove('active'));
     if (btn) btn.classList.add('active');
     const titleEl = document.getElementById('guideDownloadTitle');
     const dateEl = document.getElementById('guideDownloadDate');
@@ -607,6 +935,44 @@ async function switchDownloadTab(sub, btn){
 }
 
 function openDownloadShortcut(){
+    alert('바로가기 링크는 준비 중입니다.');
+}
+
+function openRadioHomepage(){
+    window.open('https://sites.google.com/view/nctwishradio/', '_blank');
+}
+
+// ===== Guide: 스트리밍 전용 로직 =====
+async function switchStreamTab(sub, btn){
+    currentStreamSub = sub;
+    // 스트리밍 탭은 id-subtab 스타일을 사용. 과거 클래스가 남았을 가능성도 함께 제거
+    document.querySelectorAll('#guideStreamingSection .id-subtab, #guideStreamingSection .download-subtab').forEach(t=>t.classList.remove('active'));
+    if (btn) btn.classList.add('active');
+    const titleEl = document.getElementById('guideStreamTitle');
+    const dateEl = document.getElementById('guideStreamDate');
+    const imgEl = document.getElementById('guideStreamImage');
+    const titleMap = { melon:'멜론 스트리밍 가이드', bugs:'벅스 스트리밍 가이드', genie:'지니 스트리밍 가이드', flo:'플로 스트리밍 가이드', vibe:'바이브 스트리밍 가이드', mv:'뮤직비디오 스트리밍 가이드' };
+    if (titleEl) titleEl.textContent = titleMap[sub] || '스트리밍 가이드';
+    if (dateEl){
+        const d = new Date();
+        const fmt = `${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,'0')}.${String(d.getDate()).padStart(2,'0')}`;
+        dateEl.textContent = fmt;
+    }
+
+    const map = {
+        melon: 'styles/assets/guide/stream/1. 멜론 스트리밍 가이드.png',
+        genie: 'styles/assets/guide/stream/2. 지니 스트리밍 가이드.png',
+        bugs: 'styles/assets/guide/stream/3. 벅스 스트리밍 가이드.png',
+        flo: 'styles/assets/guide/stream/4. 플로 스트리밍 가이드.png',
+        vibe: 'styles/assets/guide/stream/5. 바이브 스트리밍 가이드.png',
+        mv: 'styles/assets/guide/stream/6. 뮤직비디오 스트리밍 가이드(세로ver.).png'
+    };
+    if (imgEl && map[sub]) {
+        imgEl.src = map[sub];
+    }
+}
+
+function openStreamShortcut(){
     alert('바로가기 링크는 준비 중입니다.');
 }
 
@@ -686,12 +1052,24 @@ function openSupport(type) {
             // 페이지 상단으로 이동 (새 페이지처럼 보이도록)
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
+    } else if (type === 'team') {
+        const teamSection = document.getElementById('supportTeamSection');
+        if (teamSection) {
+            teamSection.style.display = 'block';
+            updateSupportDate('supportTeamSection');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
     }
 }
 
 function hideSupportHelperSection() {
     const helperSection = document.getElementById('supportHelperSection');
     if (helperSection) helperSection.style.display = 'none';
+}
+
+function hideSupportTeamSection() {
+    const teamSection = document.getElementById('supportTeamSection');
+    if (teamSection) teamSection.style.display = 'none';
 }
 
 function hideSupportIdSection() {
@@ -714,6 +1092,8 @@ function updateSupportDate(sectionId) {
         dateEl = document.querySelector('#supportIdSection .support-id-date');
     } else if (sectionId === 'supportFundraisingSection') {
         dateEl = document.querySelector('#supportFundraisingSection .support-fundraising-date');
+    } else if (sectionId === 'supportTeamSection') {
+        dateEl = document.querySelector('#supportTeamSection .support-helper-date');
     }
     
     if (dateEl) {
@@ -725,6 +1105,10 @@ function updateSupportDate(sectionId) {
 
 function openHelperApplication() {
     alert('헬퍼 팀원 지원 폼은 준비 중입니다.');
+}
+
+function openTeamApplication() {
+    alert('팀원 지원 폼은 준비 중입니다.');
 }
 
 function openIdDonation(service) {
@@ -741,5 +1125,5 @@ function openIdDonation(service) {
 }
 
 function openFundraisingApplication() {
-    alert('모금 참여 폼은 준비 중입니다.');
+    window.open('https://forms.gle/gjPzkpwbdP4vyXYJA', '_blank');
 }

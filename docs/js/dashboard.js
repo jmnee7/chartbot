@@ -472,9 +472,7 @@ function openGuide(kind){
         const dlSection = document.getElementById('guideDownloadSection');
         if (dlSection) {
             dlSection.style.display = 'block';
-            // 기본 탭: 멜론
-            const defaultBtn = document.querySelector('#guideDownloadSection .id-subtab[data-sub="melon"], .download-subtab[data-sub="melon"]');
-            if (typeof switchDownloadTab === 'function') switchDownloadTab('melon', defaultBtn);
+            switchDownloadCategory('audio', document.querySelector('#downloadCategoryTabs .id-subtab[data-cat="audio"]'));
             // 페이지 상단으로 이동 (새 페이지처럼 보이도록)
             window.scrollTo({ top: 0, behavior: 'smooth' });
             enableDragScroll(dlSection.querySelector('.id-subtabs, .download-subtabs'));
@@ -739,9 +737,23 @@ function routeFromHash(){
     if (parts[0] === 'home') { showHome(); return; }
     if (parts[0] === 'guide'){
         if (parts[1] === 'id') { openGuide('id'); const tab = params.get('tab') || 'dual'; switchIdSubTab(tab, document.querySelector(`.id-subtab[data-sub="${tab}"]`)); return; }
-        if (parts[1] === 'download') { openGuide('download'); const tab = params.get('tab') || 'melon'; switchDownloadTab(tab, document.querySelector(`#guideDownloadSection .id-subtab[data-sub="${tab}"]`)); return; }
+        if (parts[1] === 'download') { 
+            openGuide('download');
+            const cat = params.get('cat') || 'audio';
+            const svc = params.get('svc') || 'melon';
+            switchDownloadCategory(cat, document.querySelector(`#downloadCategoryTabs .id-subtab[data-cat="${cat}"]`));
+            switchDownloadService(svc, document.querySelector(`#downloadServiceTabs .id-subtab[data-svc="${svc}"]`));
+            return; 
+        }
         if (parts[1] === 'streaming') { openGuide('streaming'); const tab = params.get('tab') || 'melon'; switchStreamTab(tab, document.querySelector(`#guideStreamingSection .id-subtab[data-sub="${tab}"]`)); return; }
-        if (parts[1] === 'cheer') { openGuide('cheer'); const tab = params.get('tab') || 'handsup'; switchChantTab(tab, document.querySelector(`#guideChantSection .id-subtab[data-sub="${tab}"]`)); return; }
+        if (parts[1] === 'cheer') { 
+            openGuide('cheer'); 
+            const album = params.get('album') || params.get('tab') || 'handsup';
+            switchChantTab(album, document.querySelector(`#guideChantSection .id-subtab[data-sub="${album}"]`));
+            const track = params.get('track');
+            if (track){ switchChantTrack(track, document.querySelector(`#chantTrackSubtabs .id-subtab[data-track="${track}"]`)); }
+            return; 
+        }
         if (parts[1] === 'radio') { openGuide('radio'); return; }
         showGuideMainHub(); return;
     }
@@ -798,6 +810,7 @@ function goHome(){
 let currentIdSub = 'dual';
 let currentStreamSub = 'melon';
 let currentDownloadSub = 'melon';
+let currentDownloadCategory = 'audio';
 let currentVoteCollectSub = 'theshow';
 let currentChantSub = 'handsup';
 let currentChantTrack = '';
@@ -884,7 +897,8 @@ function getCurrentShareUrl(){
     };
     if (isVisible('guideStreamingSection')) return `${base}#/guide/streaming?tab=${encodeURIComponent(currentStreamSub)}`;
     if (isVisible('guideIdSection')) return `${base}#/guide/id?tab=${encodeURIComponent(currentIdSub)}`;
-    if (isVisible('guideDownloadSection')) return `${base}#/guide/download?tab=${encodeURIComponent(currentDownloadSub)}`;
+    if (isVisible('guideDownloadSection')) return `${base}#/guide/download?cat=${encodeURIComponent(currentDownloadCategory)}&svc=${encodeURIComponent(currentDownloadSub)}`;
+    if (isVisible('guideChantSection')) return `${base}#/guide/cheer?album=${encodeURIComponent(currentChantSub)}${currentChantTrack?`&track=${encodeURIComponent(currentChantTrack)}`:''}`;
     if (isVisible('voteCollectSection')) return `${base}#/vote/collect?tab=${encodeURIComponent(currentVoteCollectSub)}`;
     if (isVisible('supportHelperSection')) return `${base}#/support/helper`;
     if (isVisible('supportTeamSection')) return `${base}#/support/team`;
@@ -902,7 +916,7 @@ async function switchDownloadTab(sub, btn){
     const dateEl = document.getElementById('guideDownloadDate');
     const imgEl = document.getElementById('guideDownloadImage');
     const container = document.querySelector('.guide-download-image-container');
-    const titleMap = { melon:'멜론 다운로드', bugs:'벅스 다운로드', genie:'지니 다운로드', flo:'플로 다운로드', vibe:'바이브 다운로드', mv:'뮤직비디오 다운로드' };
+    const titleMap = { melon:'멜론 다운로드', bugs:'벅스 다운로드', genie:'지니 다운로드', vibe:'바이브 다운로드' };
     if (titleEl) titleEl.textContent = titleMap[sub] || '다운로드 가이드';
     if (dateEl){
         const d = new Date();
@@ -910,26 +924,26 @@ async function switchDownloadTab(sub, btn){
         dateEl.textContent = fmt;
     }
 
-    // 이미지 경로 탐색 (없으면 빈 화면)
-    const base = 'styles/assets/guide/download/';
-    const candidates = [`${sub}.png`, `${sub}.jpg`, `${sub}.jpeg`, `${sub}.JPG`, `${sub}.JPEG`, `${sub}.PNG`];
-    let foundUrl = null;
-    for (const file of candidates){
-        const url = base + file;
-        try{
-            const res = await fetch(url, { method:'HEAD' });
-            if (res.ok){ foundUrl = url; break; }
-        }catch(e){ /* ignore */ }
-    }
+    const map = {
+        audio: {
+            melon: ['styles/assets/guide/download/1. 멜론 음원 다운로드 가이드.jpeg'],
+            genie: ['styles/assets/guide/download/2. 지니 음원 다운로드 가이드.jpeg'],
+            bugs: ['styles/assets/guide/download/3. 벅스 음원 다운로드 가이드.JPG'],
+            vibe: ['styles/assets/guide/download/4. 바이브 음원 다운로드 가이드.jpg']
+        },
+        mv: {
+            melon: [
+                'styles/assets/guide/download/5. 멜론 뮤직비디오 다운로드 가이드(1).jpeg',
+                'styles/assets/guide/download/6. 멜론 뮤직비디오 다운로드 가이드(2).jpeg'
+            ],
+            bugs: ['styles/assets/guide/download/7. 벅스 뮤직비디오 다운로드 가이드.jpeg']
+        }
+    };
+    const imgs = (map[currentDownloadCategory] && map[currentDownloadCategory][sub]) || [];
     if (container){
-        if (foundUrl){
-            if (!imgEl){
-                container.innerHTML = '<img id="guideDownloadImage" class="guide-download-image" alt="다운로드 가이드 이미지"/>';
-            }
-            const imgTag = document.getElementById('guideDownloadImage');
-            if (imgTag) imgTag.src = foundUrl;
+        if (imgs.length){
+            container.innerHTML = imgs.map(src=>`<img class=\"guide-download-image\" src=\"${src}\" alt=\"다운로드 가이드 이미지\"/>`).join('');
         } else {
-            // 이미지가 없으면 빈 화면 유지
             container.innerHTML = '';
         }
     }
@@ -937,6 +951,34 @@ async function switchDownloadTab(sub, btn){
 
 function openDownloadShortcut(){
     alert('바로가기 링크는 준비 중입니다.');
+}
+
+function switchDownloadCategory(cat, btn){
+    currentDownloadCategory = cat;
+    document.querySelectorAll('#downloadCategoryTabs .id-subtab').forEach(t=>t.classList.remove('active'));
+    if (btn) btn.classList.add('active');
+    const svcTabs = document.getElementById('downloadServiceTabs');
+    if (!svcTabs) return;
+    if (cat === 'audio'){
+        svcTabs.innerHTML = `
+            <button class=\"id-subtab active\" data-svc=\"melon\" onclick=\"switchDownloadService('melon', this)\">멜론</button>
+            <button class=\"id-subtab\" data-svc=\"genie\" onclick=\"switchDownloadService('genie', this)\">지니</button>
+            <button class=\"id-subtab\" data-svc=\"bugs\" onclick=\"switchDownloadService('bugs', this)\">벅스</button>
+            <button class=\"id-subtab\" data-svc=\"vibe\" onclick=\"switchDownloadService('vibe', this)\">바이브</button>`;
+        switchDownloadService('melon', svcTabs.querySelector('[data-svc=\"melon\"]'));
+    } else {
+        svcTabs.innerHTML = `
+            <button class=\"id-subtab active\" data-svc=\"melon\" onclick=\"switchDownloadService('melon', this)\">멜론</button>
+            <button class=\"id-subtab\" data-svc=\"bugs\" onclick=\"switchDownloadService('bugs', this)\">벅스</button>`;
+        switchDownloadService('melon', svcTabs.querySelector('[data-svc=\"melon\"]'));
+    }
+}
+
+function switchDownloadService(svc, btn){
+    currentDownloadSub = svc;
+    document.querySelectorAll('#downloadServiceTabs .id-subtab').forEach(t=>t.classList.remove('active'));
+    if (btn) btn.classList.add('active');
+    switchDownloadTab(svc, btn);
 }
 
 function openRadioHomepage(){

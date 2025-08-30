@@ -345,12 +345,21 @@ body {
 /* Artist Hero Section (반응형 높이 비율을 자연스럽게) */
 .artist-hero {
     width: 100%;
-    aspect-ratio: 5 / 3; /* 조금 더 세로가 넉넉한 비율 */
-    max-height: 480px;
-    min-height: 220px;
+    aspect-ratio: 4 / 3; /* 더 세로가 넉넉한 비율 */
+    max-height: 560px;
+    min-height: 260px;
     overflow: hidden;
     border-radius: 0;
     margin-bottom: 20px;
+}
+
+/* 모바일에서는 배너를 더 키움 */
+@media (max-width: 480px){
+  .artist-hero{
+    aspect-ratio: 1 / 1; /* 정사각에 가깝게 높이 확대 */
+    max-height: 640px;
+    min-height: 320px;
+  }
 }
 
 .artist-image { width: 100%; height: 100%; object-fit: cover; object-position: center center; display: block; }
@@ -432,6 +441,32 @@ body {
 #guideIdSection .id-subtab{ font-size:18px; }
 @media (max-width: 480px){
   #guideIdSection .id-subtab{ font-size:16px; }
+}
+
+/* Guide > 다운로드: 2단계 탭(서비스) 크기 조정 */
+#downloadServiceTabs .id-subtab{ font-size:16px; }
+@media (max-width:480px){
+  #downloadServiceTabs .id-subtab{ font-size:14px; }
+}
+
+/* Guide > 다운로드: 카테고리 탭 하이라이트 (네비 색상) */
+#downloadCategoryTabs .id-subtab{ padding:6px 10px; border-radius:8px; font-size:16px; }
+#downloadCategoryTabs .id-subtab{ font-size:16px; }
+#downloadCategoryTabs .id-subtab:hover{ background:#f4f9cf; }
+#downloadCategoryTabs .id-subtab.active{ background:#EFF9BB; border-bottom:0; font-weight:600; }
+@media (max-width:480px){
+  #downloadCategoryTabs .id-subtab{ font-size:14px; }
+}
+
+/* Guide > 응원법: 앨범/곡 탭을 다운로드 스타일과 통일 */
+#guideChantSection > .id-subtabs .id-subtab{ padding:6px 10px; border-radius:8px; font-size:16px; }
+#guideChantSection > .id-subtabs .id-subtab.active{ background:#EFF9BB; border-bottom:0; font-weight:600; }
+#guideChantSection > .id-subtabs .id-subtab:hover{ background:#f4f9cf; }
+#chantTrackSubtabs .id-subtab{ padding:6px 10px; border-radius:8px; }
+#chantTrackSubtabs .id-subtab.active{ background:#EFF9BB; border-bottom:0; font-weight:600; }
+#chantTrackSubtabs .id-subtab:hover{ background:#f4f9cf; }
+@media (max-width:480px){
+  #guideChantSection > .id-subtabs .id-subtab{ font-size:14px; }
 }
 
 /* Guide > 응원법: 트랙 하위 탭 크기/스크롤 */

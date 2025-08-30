@@ -23,6 +23,7 @@
         </button>
         <button class="logo-btn" onclick="goHome()" aria-label="홈으로">
             <img class="app-logo" src="styles/assets/logo.png" alt="NCT WISH STREAM 로고" />
+            <span class="app-title">NCT WISH STREAMING TEAM</span>
         </button>
         <div class="menu-placeholder"></div>
     </div>
@@ -88,9 +89,21 @@
     <!-- 메뉴 오버레이 -->
     <div class="menu-overlay" id="menuOverlay" onclick="toggleSideMenu()"></div>
 
-    <!-- 아티스트 이미지 -->
+    <!-- 아티스트 이미지 (슬라이더) -->
     <div class="artist-hero">
-        <img src="styles/assets/home/home.png" alt="NCT WISH" class="artist-image">
+        <div id="heroSlider" class="hero-slider" aria-roledescription="carousel">
+            <div id="heroTrack" class="hero-track">
+                <div class="hero-slide">
+                    <img src="styles/assets/home/home1.jpeg" alt="NCT WISH 배너 1" class="artist-image">
+                </div>
+                <div class="hero-slide">
+                    <img src="styles/assets/home/home2.jpeg" alt="NCT WISH 배너 2" class="artist-image">
+                </div>
+            </div>
+            <button class="hero-nav prev" type="button" aria-label="이전 배너" onclick="heroPrev()">‹</button>
+            <button class="hero-nav next" type="button" aria-label="다음 배너" onclick="heroNext()">›</button>
+            <div id="heroDots" class="hero-dots" aria-hidden="true"></div>
+        </div>
     </div>
 
     <div class="container">

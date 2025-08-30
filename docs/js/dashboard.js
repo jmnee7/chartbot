@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (guideDownloadSection) guideDownloadSection.style.display = 'none';
     // 해시 라우팅 초기 진입 처리
     routeFromHash();
+    initHeroSlider();
 });
 
 // 히스토리 초기화 및 뒤로가기 처리
@@ -776,7 +777,7 @@ function openQuickLink(key){
             openStreamingSheet();
             break;
         case 'melon-musicwave':
-            window.open('https://m2.melon.com/ymlocation/artist/index.htm', '_blank');
+            window.open('https://kko.kakao.com/eNl78XPbMn', '_blank');
             break;
         case 'musiccore-sms':
             window.location.href = 'sms:0505?&body=NCT WISH';
@@ -941,6 +942,47 @@ function openDownloadShortcut(){
 function openRadioHomepage(){
     window.open('https://sites.google.com/view/nctwishradio/', '_blank');
 }
+
+// ===== Hero slider =====
+let heroIndex = 0; let heroTimer = null; let heroStartX=0; let heroIsDragging=false; let heroDeltaX=0;
+function initHeroSlider(){
+    const slider = document.getElementById('heroSlider');
+    if (!slider) return;
+    const slides = slider.querySelectorAll('.hero-slide');
+    const dotsWrap = document.getElementById('heroDots');
+    if (dotsWrap){
+        dotsWrap.innerHTML = Array.from(slides).map((_,i)=>`<button aria-label="${i+1}번 배너" onclick="setHero(${i})"></button>`).join('');
+    }
+    setHero(0, true);
+    startHeroAuto();
+    slider.addEventListener('mouseenter', stopHeroAuto);
+    slider.addEventListener('mouseleave', startHeroAuto);
+    // Drag / swipe
+    const track = document.getElementById('heroTrack');
+    if (track){
+        const onStart = (x)=>{ heroIsDragging=true; heroStartX=x; heroDeltaX=0; track.style.transition='none'; track.classList.add('dragging'); };
+        const onMove = (x)=>{ if(!heroIsDragging) return; heroDeltaX = x-heroStartX; track.style.transform = `translateX(${(-heroIndex*100) + (heroDeltaX/window.innerWidth*100)}%)`; };
+        const onEnd = ()=>{ if(!heroIsDragging) return; heroIsDragging=false; track.style.transition='transform .35s ease'; track.classList.remove('dragging'); if(Math.abs(heroDeltaX) > window.innerWidth*0.15){ setHero(heroIndex + (heroDeltaX<0?1:-1)); } else { setHero(heroIndex); } };
+        track.addEventListener('mousedown', e=>onStart(e.pageX));
+        window.addEventListener('mousemove', e=>onMove(e.pageX));
+        window.addEventListener('mouseup', onEnd);
+        track.addEventListener('touchstart', e=>onStart(e.touches[0].clientX), {passive:true});
+        track.addEventListener('touchmove', e=>onMove(e.touches[0].clientX), {passive:true});
+        track.addEventListener('touchend', onEnd);
+    }
+}
+function setHero(i, immediate){
+    const slider = document.getElementById('heroSlider'); if(!slider) return;
+    const track = document.getElementById('heroTrack');
+    const slides = slider.querySelectorAll('.hero-slide'); const dots = document.querySelectorAll('#heroDots button');
+    heroIndex = (i+slides.length)%slides.length;
+    if (track){ track.style.transition = immediate ? 'none' : 'transform .35s ease'; track.style.transform = `translateX(${-heroIndex*100}%)`; }
+    dots.forEach((d,idx)=>{ d.classList.toggle('active', idx===heroIndex); });
+}
+function heroNext(){ setHero(heroIndex+1); }
+function heroPrev(){ setHero(heroIndex-1); }
+function startHeroAuto(){ stopHeroAuto(); heroTimer = setInterval(()=>setHero(heroIndex+1), 5000); }
+function stopHeroAuto(){ if(heroTimer){ clearInterval(heroTimer); heroTimer=null; } }
 
 // ===== Guide: 스트리밍 전용 로직 =====
 async function switchStreamTab(sub, btn){

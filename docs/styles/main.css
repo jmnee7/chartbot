@@ -223,7 +223,8 @@ body {
 
 .app-logo { height: 30px; display: block; }
 
-.logo-btn { background:none; border:none; padding:0; cursor:pointer; display:flex; align-items:center; }
+.logo-btn { background:none; border:none; padding:0; cursor:pointer; display:flex; align-items:center; gap:10px; }
+.app-title{ font-size:16px; font-weight:700; color:#2b2f32; white-space:nowrap; }
 
 .menu-placeholder {
     width: 24px; /* Same width as hamburger menu for center alignment */
@@ -344,19 +345,29 @@ body {
 /* Artist Hero Section (반응형 높이 비율을 자연스럽게) */
 .artist-hero {
     width: 100%;
-    height: clamp(180px, 32vw, 360px); /* 화면 너비에 비례하되 최소/최대 높이 제한 */
+    aspect-ratio: 5 / 3; /* 조금 더 세로가 넉넉한 비율 */
+    max-height: 480px;
+    min-height: 220px;
     overflow: hidden;
     border-radius: 0;
     margin-bottom: 20px;
 }
 
-.artist-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;             /* 영역을 꽉 채우되 비율 유지 */
-    object-position: center bottom;/* 하단이 보이도록 */
-    display: block;
-}
+.artist-image { width: 100%; height: 100%; object-fit: cover; object-position: center center; display: block; }
+
+/* Hero slider */
+.hero-slider{ position:relative; width:100%; height:100%; overflow:hidden; }
+.hero-track{ display:flex; width:100%; height:100%; transition:transform .35s ease; touch-action:pan-y; }
+.hero-slide{ min-width:100%; height:100%; }
+.hero-track{ cursor: grab; }
+.hero-track.dragging{ cursor: grabbing; }
+.hero-slider img{ -webkit-user-drag: none; user-select: none; }
+.hero-nav{ position:absolute; top:50%; transform:translateY(-50%); background:rgba(0,0,0,.25); color:#fff; border:none; width:32px; height:32px; border-radius:50%; cursor:pointer; display:flex; align-items:center; justify-content:center; }
+.hero-nav.prev{ left:10px; }
+.hero-nav.next{ right:10px; }
+.hero-dots{ position:absolute; left:0; right:0; bottom:10px; display:flex; gap:6px; justify-content:center; }
+.hero-dots button{ width:8px; height:8px; border-radius:50%; border:none; background:rgba(255,255,255,.6); cursor:pointer; }
+.hero-dots button.active{ background:#fff; }
 
 /* Container */
 .container {
@@ -1162,9 +1173,7 @@ body {
         padding: 12px 15px;
     }
     
-    .app-title {
-        font-size: 1rem;
-    }
+    .app-title { font-size: 14px; }
     
     .artist-hero {
         max-height: 250px;
@@ -1314,9 +1323,7 @@ body {
         padding: 10px 12px;
     }
     
-    .app-title {
-        font-size: 0.9rem;
-    }
+    .app-title { font-size: 12px; }
     
     .artist-hero {
         max-height: 200px;

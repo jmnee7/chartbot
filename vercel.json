@@ -4,33 +4,15 @@
   "outputDirectory": "docs",
   "routes": [
     { "src": "/(.*)", "dest": "/$1" },
-    
-    /* Short links for sharing */
     { "src": "/r/streaming/mv", "status": 308, "headers": { "Location": "/index.html#/streaming/mv" } },
-
-    /* Guide: streaming */
     { "src": "/r/g/streaming/(.*)", "status": 308, "headers": { "Location": "/index.html#/guide/streaming?tab=$1" } },
-
-    /* Guide: id */
     { "src": "/r/g/id/(.*)", "status": 308, "headers": { "Location": "/index.html#/guide/id?tab=$1" } },
-
-    /* Guide: download (audio|mv)/svc */
     { "src": "/r/g/download/(audio|mv)/(.*)", "status": 308, "headers": { "Location": "/index.html#/guide/download?cat=$1&svc=$2" } },
-
-    /* Guide: cheer (album[/track]) */
     { "src": "/r/g/cheer/([^/]+)$", "status": 308, "headers": { "Location": "/index.html#/guide/cheer?album=$1" } },
     { "src": "/r/g/cheer/([^/]+)/([^/]+)$", "status": 308, "headers": { "Location": "/index.html#/guide/cheer?album=$1&track=$2" } },
-
-    /* Guide: radio */
     { "src": "/r/g/radio", "status": 308, "headers": { "Location": "/index.html#/guide/radio" } },
-
-    /* Support detail */
     { "src": "/r/support/(helper|team|id|fundraising)", "status": 308, "headers": { "Location": "/index.html#/support/$1" } },
-
-    /* Vote collect */
-    { "src": "/r/vote/collect/(theshow|showchampion|musicbank|musiccore|inkigayo|mcountdown)", "status": 308, "headers": { "Location": "/index.html#/vote/collect?tab=$1" } }
-    ,
-    /* Vote rate */
+    { "src": "/r/vote/collect/(theshow|showchampion|musicbank|musiccore|inkigayo|mcountdown)", "status": 308, "headers": { "Location": "/index.html#/vote/collect?tab=$1" } },
     { "src": "/r/vote/rate", "status": 308, "headers": { "Location": "/index.html#/vote/rate" } }
   ]
 }

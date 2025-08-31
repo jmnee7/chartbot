@@ -29,5 +29,8 @@
 
     /* Vote collect */
     { "src": "/r/vote/collect/(theshow|showchampion|musicbank|musiccore|inkigayo|mcountdown)", "status": 308, "headers": { "Location": "/index.html#/vote/collect?tab=$1" } }
+    ,
+    /* Vote rate */
+    { "src": "/r/vote/rate", "status": 308, "headers": { "Location": "/index.html#/vote/rate" } }
   ]
 }

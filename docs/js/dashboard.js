@@ -290,14 +290,18 @@ function navigateToMenu(key) {
             openStreamingSheet();
             break;
         case 'streaming-mv':
-            go({ view: 'home', anchor: '.youtube-section' });
+            go({ view: 'streamingMV' });
             break;
 
-        // 투표는 허브로 이동 (세부페이지 미구현)
+        // 투표 하위: 상세로 이동
         case 'vote-weight':
-        case 'vote-schedule':
+            openVoteRate();
+            break;
         case 'vote-collect':
-            showGuideHub('vote');
+            openVoteCollect();
+            break;
+        case 'vote-schedule':
+            showGuideHub('vote'); // 일정은 준비 중이므로 허브로 이동
             break;
 
         // 서포트 하위: 각 상세로 이동
@@ -364,6 +368,7 @@ function showGuideHub(type){
         hideGuideChantSection();
         hideGuideRadioSection();
         hideVoteCollectSection();
+        hideVoteRateSection();
         hideAllSupportSections();
         target.style.display = 'block';
         target.scrollIntoView({behavior:'smooth', block:'start'});
@@ -392,6 +397,7 @@ function showHome(){
     hideGuideChantSection();
     hideGuideRadioSection();
     hideVoteCollectSection();
+    hideVoteRateSection();
     hideAllSupportSections();
     hideStreamingMVSection();
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -546,6 +552,10 @@ function openVoteCollect(){
     hideGuideIdSection();
     hideGuideDownloadSection();
     hideGuideStreamingSection();
+    hideGuideChantSection();
+    hideGuideRadioSection();
+    hideStreamingMVSection();
+    hideVoteRateSection();
     hideAllSupportSections();
     const section = document.getElementById('voteCollectSection');
     if (section){
@@ -677,6 +687,7 @@ function openStreamingMV(){
     hideGuideChantSection();
     hideGuideRadioSection();
     hideVoteCollectSection();
+    hideVoteRateSection();
     const section = document.getElementById('streamingMVSection');
     if (section){
         section.style.display = 'block';
@@ -692,6 +703,21 @@ function openStreamingMV(){
         if (stime && ttime) ttime.textContent = stime.textContent || '';
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
+}
+
+function openVoteRate(){
+    toggleMainSections(false);
+    ['guideHubMain','guideHubStreaming','guideHubVote','guideHubSupport'].forEach(id=>{ const el=document.getElementById(id); if(el) el.style.display='none'; });
+    hideAllSupportSections();
+    hideGuideIdSection();
+    hideGuideDownloadSection();
+    hideGuideStreamingSection();
+    hideGuideChantSection();
+    hideGuideRadioSection();
+    hideVoteCollectSection();
+    hideStreamingMVSection();
+    const section = document.getElementById('voteRateSection');
+    if (section){ section.style.display='block'; window.scrollTo({ top: 0, behavior: 'smooth' }); }
 }
 
 // ===== 간단 라우팅: 상태 관리 =====
@@ -724,6 +750,9 @@ function renderState(state){
             break;
         case 'guideHubSupport':
             showGuideHub('support');
+            break;
+        case 'voteRate':
+            openVoteRate();
             break;
         case 'guideId':
             openGuide('id');
@@ -760,6 +789,7 @@ function hideAllContentSections(){
     hideGuideRadioSection();
     hideVoteCollectSection();
     hideStreamingMVSection();
+    hideVoteRateSection();
     hideAllSupportSections();
 }
 
@@ -801,6 +831,9 @@ function routeFromHash(){
     if (parts[0] === 'vote' && parts[1] === 'collect'){
         openVoteCollect(); const tab = params.get('tab') || 'theshow'; switchVoteCollectTab(tab, document.querySelector(`#voteCollectSection .id-subtab[data-sub="${tab}"]`)); return;
     }
+    if (parts[0] === 'vote' && parts[1] === 'rate'){
+        openVoteRate(); return;
+    }
     if (parts[0] === 'support'){
         openSupport(parts[1] || 'helper'); return;
     }
@@ -814,6 +847,11 @@ function hideGuideIdSection(){
 function hideGuideDownloadSection(){
     const dlSection = document.getElementById('guideDownloadSection');
     if (dlSection) dlSection.style.display = 'none';
+}
+
+function hideVoteRateSection(){
+    const el = document.getElementById('voteRateSection');
+    if (el) el.style.display = 'none';
 }
 
 function hideAllSupportSections(){
@@ -1158,7 +1196,13 @@ function openSupport(type) {
     if (legacyGuide) legacyGuide.style.display = 'none';
     hideGuideIdSection();
     hideGuideDownloadSection();
-    
+    hideGuideStreamingSection();
+    hideGuideChantSection();
+    hideGuideRadioSection();
+    hideVoteCollectSection();
+    hideStreamingMVSection();
+    hideVoteRateSection();
+
     // 서포트 섹션들 숨김
     hideAllSupportSections();
 

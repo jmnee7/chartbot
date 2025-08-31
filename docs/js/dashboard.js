@@ -871,7 +871,7 @@ function openQuickLink(key){
             window.open('https://kko.kakao.com/eNl78XPbMn', '_blank');
             break;
         case 'musiccore-sms':
-            window.location.href = 'sms:0505?&body=NCT WISH';
+            window.location.href = 'sms:%230505?&body=NCT%20WISH';
             break;
         case 'radio-request':
             window.open('https://sites.google.com/view/nctwishradio/', '_blank');

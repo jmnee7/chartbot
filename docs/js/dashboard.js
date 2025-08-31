@@ -934,21 +934,30 @@ function shareCurrentGuide(){
 }
 
 function getCurrentShareUrl(){
-    const base = location.origin + location.pathname;
+    const origin = location.origin;
     const isVisible = (id)=>{
         const el = document.getElementById(id);
         return !!el && el.style.display === 'block';
     };
-    if (isVisible('guideStreamingSection')) return `${base}#/guide/streaming?tab=${encodeURIComponent(currentStreamSub)}`;
-    if (isVisible('guideIdSection')) return `${base}#/guide/id?tab=${encodeURIComponent(currentIdSub)}`;
-    if (isVisible('guideDownloadSection')) return `${base}#/guide/download?cat=${encodeURIComponent(currentDownloadCategory)}&svc=${encodeURIComponent(currentDownloadSub)}`;
-    if (isVisible('guideChantSection')) return `${base}#/guide/cheer?album=${encodeURIComponent(currentChantSub)}${currentChantTrack?`&track=${encodeURIComponent(currentChantTrack)}`:''}`;
-    if (isVisible('voteCollectSection')) return `${base}#/vote/collect?tab=${encodeURIComponent(currentVoteCollectSub)}`;
-    if (isVisible('supportHelperSection')) return `${base}#/support/helper`;
-    if (isVisible('supportTeamSection')) return `${base}#/support/team`;
-    if (isVisible('supportIdSection')) return `${base}#/support/id`;
-    if (isVisible('supportFundraisingSection')) return `${base}#/support/fundraising`;
-    return `${base}#/home`;
+    // Guide: streaming
+    if (isVisible('guideStreamingSection')) return `${origin}/r/g/streaming/${encodeURIComponent(currentStreamSub)}`;
+    // Guide: id (현재는 공유 버튼 제거되어도 대응)
+    if (isVisible('guideIdSection')) return `${origin}/r/g/id/${encodeURIComponent(currentIdSub)}`;
+    // Guide: download
+    if (isVisible('guideDownloadSection')) return `${origin}/r/g/download/${encodeURIComponent(currentDownloadCategory)}/${encodeURIComponent(currentDownloadSub)}`;
+    // Guide: cheer
+    if (isVisible('guideChantSection')) return `${origin}/r/g/cheer/${encodeURIComponent(currentChantSub)}${currentChantTrack?`/${encodeURIComponent(currentChantTrack)}`:''}`;
+    // Guide: radio
+    if (isVisible('guideRadioSection')) return `${origin}/r/g/radio`;
+    // Vote: collect
+    if (isVisible('voteCollectSection')) return `${origin}/r/vote/collect/${encodeURIComponent(currentVoteCollectSub)}`;
+    // Support
+    if (isVisible('supportHelperSection')) return `${origin}/r/support/helper`;
+    if (isVisible('supportTeamSection')) return `${origin}/r/support/team`;
+    if (isVisible('supportIdSection')) return `${origin}/r/support/id`;
+    if (isVisible('supportFundraisingSection')) return `${origin}/r/support/fundraising`;
+    // Fallback: home
+    return `${origin}/`;
 }
 
 // ===== Guide: 다운로드 전용 로직 =====

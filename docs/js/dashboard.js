@@ -393,6 +393,7 @@ function showHome(){
     hideGuideRadioSection();
     hideVoteCollectSection();
     hideAllSupportSections();
+    hideStreamingMVSection();
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
@@ -452,6 +453,7 @@ function openGuide(kind){
     hideGuideChantSection();
     hideGuideRadioSection();
     hideVoteCollectSection();
+    hideStreamingMVSection();
 
     // 아이디 생성 전용 화면
     if (kind === 'id') {
@@ -660,6 +662,38 @@ function hideVoteCollectSection(){
     if (el) el.style.display = 'none';
 }
 
+function hideStreamingMVSection(){
+    const el = document.getElementById('streamingMVSection');
+    if (el) el.style.display = 'none';
+}
+
+function openStreamingMV(){
+    toggleMainSections(false);
+    ['guideHubMain','guideHubStreaming','guideHubVote','guideHubSupport'].forEach(id=>{ const el=document.getElementById(id); if(el) el.style.display='none'; });
+    hideAllSupportSections();
+    hideGuideIdSection();
+    hideGuideDownloadSection();
+    hideGuideStreamingSection();
+    hideGuideChantSection();
+    hideGuideRadioSection();
+    hideVoteCollectSection();
+    const section = document.getElementById('streamingMVSection');
+    if (section){
+        section.style.display = 'block';
+        // 데이터 바인딩: 홈과 동일 데이터 사용
+        const v = document.getElementById('youtube-views');
+        const l = document.getElementById('youtube-likes');
+        const tv = document.getElementById('mv-youtube-views');
+        const tl = document.getElementById('mv-youtube-likes');
+        const ttime = document.getElementById('mv-update-time');
+        const stime = document.getElementById('youtube-update-time');
+        if (v && tv) tv.textContent = v.textContent || '-';
+        if (l && tl) tl.textContent = l.textContent || '-';
+        if (stime && ttime) ttime.textContent = stime.textContent || '';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+}
+
 // ===== 간단 라우팅: 상태 관리 =====
 function go(state){
     history.pushState(state, '');
@@ -681,6 +715,9 @@ function renderState(state){
             break;
         case 'guideHubStreaming':
             showGuideHub('streaming');
+            break;
+        case 'streamingMV':
+            openStreamingMV();
             break;
         case 'guideHubVote':
             showGuideHub('vote');
@@ -722,6 +759,7 @@ function hideAllContentSections(){
     hideGuideChantSection();
     hideGuideRadioSection();
     hideVoteCollectSection();
+    hideStreamingMVSection();
     hideAllSupportSections();
 }
 
@@ -756,6 +794,9 @@ function routeFromHash(){
         }
         if (parts[1] === 'radio') { openGuide('radio'); return; }
         showGuideMainHub(); return;
+    }
+    if (parts[0] === 'streaming' && parts[1] === 'mv'){
+        openStreamingMV(); return;
     }
     if (parts[0] === 'vote' && parts[1] === 'collect'){
         openVoteCollect(); const tab = params.get('tab') || 'theshow'; switchVoteCollectTab(tab, document.querySelector(`#voteCollectSection .id-subtab[data-sub="${tab}"]`)); return;
@@ -796,6 +837,9 @@ function openQuickLink(key){
             break;
         case 'radio-request':
             window.open('https://sites.google.com/view/nctwishradio/', '_blank');
+            break;
+        case 'streaming-mv-detail':
+            go({ view: 'streamingMV' });
             break;
         default:
             console.log('openQuickLink:', key);

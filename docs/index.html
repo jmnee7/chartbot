@@ -404,7 +404,7 @@
                     <img class="hub-icon" src="styles/assets/stream/icon/oneclick.png" alt="원클릭 스트리밍" />
                     <div class="hub-title">원클릭 스트리밍</div>
                 </a>
-                <a class="hub-card" href="#" onclick="scrollToSection('.youtube-section'); return false;">
+                <a class="hub-card" href="#" onclick="go({ view: 'streamingMV' }); return false;">
                     <img class="hub-icon" src="styles/assets/stream/icon/mv.png" alt="뮤직비디오" />
                     <div class="hub-title">뮤직비디오</div>
                 </a>
@@ -488,6 +488,41 @@
             <div class="guide-actions">
                 <button class="guide-action-btn primary" onclick="openRadioHomepage()">바로가기 ></button>
                 <button class="guide-action-btn" onclick="shareCurrentGuide()">🔗 공유하기</button>
+            </div>
+        </section>
+
+        <!-- Streaming: MV 상세 화면 (홈과 동일한 구성) -->
+        <section id="streamingMVSection" class="youtube-section" style="display:none;">
+            <div class="chart-header">
+                <h2>뮤직비디오 조회수</h2>
+                <span class="update-time" id="mv-update-time">업데이트 중...</span>
+            </div>
+            <div class="youtube-content">
+                <div class="video-container">
+                    <iframe 
+                        src="https://www.youtube.com/embed/LNETckymbzk" 
+                        title="NCT DREAM 엔시티 드림 'BTTF' MV" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="youtube-stats-grid">
+                    <div class="youtube-stat-item">
+                        <div class="youtube-stat-icon">👁️</div>
+                        <div class="youtube-stat-info">
+                            <span class="youtube-stat-label">조회수</span>
+                            <span class="youtube-stat-value" id="mv-youtube-views">-</span>
+                        </div>
+                    </div>
+                    <div class="youtube-stat-item">
+                        <div class="youtube-stat-icon">👍</div>
+                        <div class="youtube-stat-info">
+                            <span class="youtube-stat-label">좋아요</span>
+                            <span class="youtube-stat-value" id="mv-youtube-likes">-</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 

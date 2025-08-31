@@ -346,19 +346,19 @@ body {
 .artist-hero {
     width: 100%;
     aspect-ratio: 4 / 3; /* 더 세로가 넉넉한 비율 */
-    max-height: 560px;
-    min-height: 260px;
+    max-height: none;
+    min-height: 0;
     overflow: hidden;
     border-radius: 0;
-    margin-bottom: 20px;
+    margin-bottom: 12px;
 }
 
 /* 모바일에서는 배너를 더 키움 */
 @media (max-width: 480px){
   .artist-hero{
-    aspect-ratio: 1 / 1; /* 정사각에 가깝게 높이 확대 */
-    max-height: 640px;
-    min-height: 320px;
+    aspect-ratio: 4 / 3; /* 모바일에서도 4:3 유지 */
+    max-height: none;
+    min-height: 0;
   }
 }
 
@@ -374,7 +374,7 @@ body {
 .hero-nav{ position:absolute; top:50%; transform:translateY(-50%); background:rgba(0,0,0,.25); color:#fff; border:none; width:32px; height:32px; border-radius:50%; cursor:pointer; display:flex; align-items:center; justify-content:center; }
 .hero-nav.prev{ left:10px; }
 .hero-nav.next{ right:10px; }
-.hero-dots{ position:absolute; left:0; right:0; bottom:10px; display:flex; gap:6px; justify-content:center; }
+.hero-dots{ position:absolute; left:0; right:0; bottom:10px; display:flex; gap:6px; justify-content:center; pointer-events:none; }
 .hero-dots button{ width:8px; height:8px; border-radius:50%; border:none; background:rgba(255,255,255,.6); cursor:pointer; }
 .hero-dots button.active{ background:#fff; }
 

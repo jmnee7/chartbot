@@ -16,3 +16,10 @@
     { "src": "/r/vote/rate", "status": 308, "headers": { "Location": "/index.html#/vote/rate" } }
   ]
 }
+    ,
+    /* Vote rate */
+    { "src": "/r/vote/rate", "status": 308, "headers": { "Location": "/index.html#/vote/rate" } }
+    ,
+    /* Vo    ,
+    /* Vote rate */
+    { "src": "/r/vote/rate", "status": 308, "headers": { "Location": "/index.html#/vote/rate" } }

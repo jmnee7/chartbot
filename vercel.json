@@ -3,7 +3,6 @@
   "buildCommand": "echo 'No build needed - static files only'",
   "outputDirectory": "docs",
   "routes": [
-    { "src": "/(.*)", "dest": "/$1" },
     { "src": "/r/streaming/mv", "status": 308, "headers": { "Location": "/index.html#/streaming/mv" } },
     { "src": "/r/g/streaming/(.*)", "status": 308, "headers": { "Location": "/index.html#/guide/streaming?tab=$1" } },
     { "src": "/r/g/id/(.*)", "status": 308, "headers": { "Location": "/index.html#/guide/id?tab=$1" } },
@@ -13,13 +12,7 @@
     { "src": "/r/g/radio", "status": 308, "headers": { "Location": "/index.html#/guide/radio" } },
     { "src": "/r/support/(helper|team|id|fundraising)", "status": 308, "headers": { "Location": "/index.html#/support/$1" } },
     { "src": "/r/vote/collect/(theshow|showchampion|musicbank|musiccore|inkigayo|mcountdown)", "status": 308, "headers": { "Location": "/index.html#/vote/collect?tab=$1" } },
-    { "src": "/r/vote/rate", "status": 308, "headers": { "Location": "/index.html#/vote/rate" } }
+    { "src": "/r/vote/rate", "status": 308, "headers": { "Location": "/index.html#/vote/rate" } },
+    { "src": "/(.*)", "dest": "/$1" }
   ]
 }
-    ,
-    /* Vote rate */
-    { "src": "/r/vote/rate", "status": 308, "headers": { "Location": "/index.html#/vote/rate" } }
-    ,
-    /* Vo    ,
-    /* Vote rate */
-    { "src": "/r/vote/rate", "status": 308, "headers": { "Location": "/index.html#/vote/rate" } }

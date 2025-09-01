@@ -1,11 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
-    updateRealTimeChartStatus();
-    loadChartData();
-    loadYouTubeStats(); // 유튜브 통계 로드 추가
+    // 초기 데이터 로드 (에러와 캐시 이슈 방지)
+    try { updateRealTimeChartStatus(); } catch(e){ console.error(e); }
+    try { loadYouTubeStats(); } catch(e){ console.error(e); }
     setInterval(() => {
-        updateRealTimeChartStatus();
+        try { updateRealTimeChartStatus(); } catch(e){ console.error(e); }
         // 1분마다 최신 youtube_stats.json 반영
-        loadYouTubeStats();
+        try { loadYouTubeStats(); } catch(e){ console.error(e); }
     }, 60000); // 1분마다 업데이트
 
     // 초기 상태: 메인 화면만 노출, 가이드는 숨김
@@ -52,7 +52,7 @@ function showView(viewId) {
 
 async function updateRealTimeChartStatus() {
     try {
-        const response = await fetch('rank_history.json');
+        const response = await fetch('rank_history.json?ts=' + Date.now());
         const historyData = await response.json();
         const timestamps = Object.keys(historyData).sort();
 
@@ -122,19 +122,26 @@ async function updateRealTimeChartStatus() {
             }
         }
 
-        // 업데이트 시간 표시
+        // 업데이트 시간 표시: rank_history.json의 최신 타임스탬프 사용 (YYYY-MM-DD HH:00:00)
         const updateElement = document.getElementById('lastUpdate');
         if (updateElement) {
-            // 병합 충돌 해결 시 선택한 더 최신 시간 사용
-            const updateDate = new Date('2025-07-29 00:00:00+09:00');
-            const year = updateDate.getFullYear();
-            const month = String(updateDate.getMonth() + 1).padStart(2, '0');
-            const date = String(updateDate.getDate()).padStart(2, '0');
-            const hour = String(updateDate.getHours()).padStart(2, '0');
-            const minute = String(updateDate.getMinutes()).padStart(2, '0');
-            
-            const timeString = `${year}.${month}.${date}.${hour}:${minute}`;
-            updateElement.textContent = timeString;
+            try {
+                const latestRaw = latestTimestamp; // 예: '2025-09-01 20:00:00'
+                // 'YYYY-MM-DD HH:MM:SS' → Date로 파싱 (KST로 표기 목적 포맷팅)
+                const [datePart, timePart] = latestRaw.split(' ');
+                const [y, m, d] = datePart.split('-').map(Number);
+                const [hh, mm] = timePart.split(':').map(Number);
+                const updateDate = new Date(y, (m - 1), d, hh, mm || 0, 0);
+                const year = updateDate.getFullYear();
+                const month = String(updateDate.getMonth() + 1).padStart(2, '0');
+                const date = String(updateDate.getDate()).padStart(2, '0');
+                const hour = String(updateDate.getHours()).padStart(2, '0');
+                const minute = String(updateDate.getMinutes()).padStart(2, '0');
+                updateElement.textContent = `${year}.${month}.${date}.${hour}:${minute}`;
+            } catch (_) {
+                // 파싱 실패 시 하드코딩 제거하고 빈 값 처리
+                updateElement.textContent = '';
+            }
         }
 
     } catch (error) {
@@ -173,7 +180,7 @@ function openGroupBuy(type) {
 // 유튜브 조회수/좋아요 가져오기 (실제 데이터)
 async function loadYouTubeStats() {
     try {
-        const response = await fetch('youtube_stats.json');
+        const response = await fetch('youtube_stats.json?ts=' + Date.now());
         
         if (response.ok) {
             const data = await response.json();

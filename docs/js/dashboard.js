@@ -313,7 +313,7 @@ function navigateToMenu(key) {
             openVoteCollect();
             break;
         case 'vote-schedule':
-            showGuideHub('vote'); // 일정은 준비 중이므로 허브로 이동
+            openVoteSchedule();
             break;
 
         // 서포트 하위: 각 상세로 이동
@@ -382,6 +382,7 @@ function showGuideHub(type){
         hideVoteCollectSection();
         hideVoteRateSection();
         hideAllSupportSections();
+        hideVoteScheduleSection();
         target.style.display = 'block';
         target.scrollIntoView({behavior:'smooth', block:'start'});
     }
@@ -411,6 +412,7 @@ function showHome(){
     hideVoteCollectSection();
     hideVoteRateSection();
     hideAllSupportSections();
+    hideVoteScheduleSection();
     hideStreamingMVSection();
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
@@ -427,6 +429,7 @@ function showGuideSection(){
         hideGuideIdSection();
         hideGuideDownloadSection();
         hideAllSupportSections();
+        hideVoteScheduleSection();
         guideSection.style.display = 'block';
         guideSection.scrollIntoView({behavior:'smooth', block:'start'});
     }
@@ -445,6 +448,7 @@ function showGuideMainHub(){
     hideGuideDownloadSection();
     hideGuideStreamingSection();
     hideAllSupportSections();
+    hideVoteScheduleSection();
     const mainHub = document.getElementById('guideHubMain');
     if (mainHub){
         mainHub.style.display = 'block';
@@ -465,6 +469,7 @@ function openGuide(kind){
     
     // 서포트 섹션들도 숨김
     hideAllSupportSections();
+    hideVoteScheduleSection();
     hideGuideIdSection();
     hideGuideDownloadSection();
     hideGuideStreamingSection();
@@ -630,7 +635,7 @@ function switchChantTab(sub, btn){
         steady: [ { key:'steady', label:'Steady', imgs:['styles/assets/guide/chant/9. Steady 응원법.jpg'] }, { key:'dunkshot', label:'Dunk Shot', imgs:['styles/assets/guide/chant/8. Dunk Shot 응원법.jpg'] }, { key:'handsup_kr', label:'Hands Up(韓)', imgs:['styles/assets/guide/chant/6. Hands Up 응원법(韓).jpeg'] } ],
         miracle: [ { key:'miracle', label:'Miracle', imgs:['styles/assets/guide/chant/10. Miracle 응원법.jpg'] } ],
         poppop: [ { key:'poppop', label:'poppop', imgs:['styles/assets/guide/chant/11. poppop 응원법.jpg'] } ],
-        color: [ { key:'surf', label:'Surf', imgs:['styles/assets/guide/chant/12. Surf 응원법.jpg'] }, { key:'color', label:'COLOR', imgs:[] } ]
+        color: [ { key:'surf', label:'Surf', imgs:['styles/assets/guide/chant/12. Surf 응원법.jpg'] }, { key:'color', label:'COLOR', imgs:['styles/assets/guide/chant/13. COLOR 응원법.jpeg'] } ]
     };
     const tracks = trackMap[sub] || [];
     if (trackTabs){
@@ -658,7 +663,7 @@ function switchChantTrack(trackKey, btn){
         miracle:['styles/assets/guide/chant/10. Miracle 응원법.jpg'],
         poppop:['styles/assets/guide/chant/11. poppop 응원법.jpg'],
         surf:['styles/assets/guide/chant/12. Surf 응원법.jpg'],
-        color:[]
+        color:['styles/assets/guide/chant/13. COLOR 응원법.jpeg']
     };
     const imgs = all[trackKey] || [];
     if (container){ container.innerHTML = imgs.map(src=>`<div class=\"guide-id-image-container\"><img class=\"guide-id-image\" src=\"${src}\" alt=\"응원법\"/></div>`).join(''); }
@@ -705,6 +710,7 @@ function openStreamingMV(){
     hideGuideRadioSection();
     hideVoteCollectSection();
     hideVoteRateSection();
+    hideVoteScheduleSection();
     const section = document.getElementById('streamingMVSection');
     if (section){
         section.style.display = 'block';
@@ -734,6 +740,7 @@ function openStreamingRecommend(){
     hideVoteCollectSection();
     hideStreamingMVSection();
     hideVoteRateSection();
+    hideVoteScheduleSection();
     const section = document.getElementById('streamingRecommendSection');
     if (section){ section.style.display='block'; window.scrollTo({ top: 0, behavior: 'smooth' }); }
 }
@@ -749,7 +756,24 @@ function openVoteRate(){
     hideGuideRadioSection();
     hideVoteCollectSection();
     hideStreamingMVSection();
+    hideVoteScheduleSection();
     const section = document.getElementById('voteRateSection');
+    if (section){ section.style.display='block'; window.scrollTo({ top: 0, behavior: 'smooth' }); }
+}
+
+function openVoteSchedule(){
+    toggleMainSections(false);
+    ['guideHubMain','guideHubStreaming','guideHubVote','guideHubSupport'].forEach(id=>{ const el=document.getElementById(id); if(el) el.style.display='none'; });
+    hideAllSupportSections();
+    hideGuideIdSection();
+    hideGuideDownloadSection();
+    hideGuideStreamingSection();
+    hideGuideChantSection();
+    hideGuideRadioSection();
+    hideVoteCollectSection();
+    hideStreamingMVSection();
+    hideVoteRateSection();
+    const section = document.getElementById('voteScheduleSection');
     if (section){ section.style.display='block'; window.scrollTo({ top: 0, behavior: 'smooth' }); }
 }
 
@@ -891,6 +915,11 @@ function hideGuideDownloadSection(){
 
 function hideVoteRateSection(){
     const el = document.getElementById('voteRateSection');
+    if (el) el.style.display = 'none';
+}
+
+function hideVoteScheduleSection(){
+    const el = document.getElementById('voteScheduleSection');
     if (el) el.style.display = 'none';
 }
 

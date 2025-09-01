@@ -195,18 +195,11 @@ async function loadYouTubeStats() {
             if (likeCountElement) {
                 likeCountElement.textContent = data.like_count_formatted || '-';
             }
-            // 업데이트 시간도 JSON 기준으로 반영
+            // 업데이트 시간: 실시간 차트와 동일하게 표기 (chart lastUpdate와 동일 문자열 사용)
             const timeEl = document.getElementById('youtube-update-time');
-            if (timeEl && data.last_updated) {
-                try {
-                    const d = new Date(data.last_updated);
-                    const year = d.getFullYear();
-                    const month = String(d.getMonth() + 1).padStart(2, '0');
-                    const date = String(d.getDate()).padStart(2, '0');
-                    const hour = String(d.getHours()).padStart(2, '0');
-                    const minute = String(d.getMinutes()).padStart(2, '0');
-                    timeEl.textContent = `${year}.${month}.${date}.${hour}:${minute}`;
-                } catch (_) { /* noop */ }
+            const chartTimeEl = document.getElementById('lastUpdate');
+            if (timeEl && chartTimeEl && chartTimeEl.textContent) {
+                timeEl.textContent = chartTimeEl.textContent;
             }
             
             console.log('✅ YouTube 통계 로드 성공:', data);

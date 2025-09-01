@@ -2,10 +2,10 @@ document.addEventListener('DOMContentLoaded', () => {
     updateRealTimeChartStatus();
     loadChartData();
     loadYouTubeStats(); // 유튜브 통계 로드 추가
-    updateYouTubeTime(); // YouTube 업데이트 시간 표시
     setInterval(() => {
         updateRealTimeChartStatus();
-        updateYouTubeTime();
+        // 1분마다 최신 youtube_stats.json 반영
+        loadYouTubeStats();
     }, 60000); // 1분마다 업데이트
 
     // 초기 상태: 메인 화면만 노출, 가이드는 숨김
@@ -178,14 +178,28 @@ async function loadYouTubeStats() {
         if (response.ok) {
             const data = await response.json();
             
-            const viewCountElement = document.getElementById('viewCount');
-            const likeCountElement = document.getElementById('likeCount');
+            // 홈 섹션의 표시 요소(ID는 youtube-views / youtube-likes)
+            const viewCountElement = document.getElementById('youtube-views');
+            const likeCountElement = document.getElementById('youtube-likes');
             
             if (viewCountElement) {
                 viewCountElement.textContent = data.view_count_formatted || '-';
             }
             if (likeCountElement) {
                 likeCountElement.textContent = data.like_count_formatted || '-';
+            }
+            // 업데이트 시간도 JSON 기준으로 반영
+            const timeEl = document.getElementById('youtube-update-time');
+            if (timeEl && data.last_updated) {
+                try {
+                    const d = new Date(data.last_updated);
+                    const year = d.getFullYear();
+                    const month = String(d.getMonth() + 1).padStart(2, '0');
+                    const date = String(d.getDate()).padStart(2, '0');
+                    const hour = String(d.getHours()).padStart(2, '0');
+                    const minute = String(d.getMinutes()).padStart(2, '0');
+                    timeEl.textContent = `${year}.${month}.${date}.${hour}:${minute}`;
+                } catch (_) { /* noop */ }
             }
             
             console.log('✅ YouTube 통계 로드 성공:', data);
@@ -195,16 +209,11 @@ async function loadYouTubeStats() {
     } catch (error) {
         console.error('❌ YouTube 통계 로드 실패:', error);
         
-        // 실패한 경우 기본값 표시
+        // 실패한 경우 기본값 표시(하드코딩 숫자 금지)
         const viewCountElement = document.getElementById('youtube-views');
         const likeCountElement = document.getElementById('youtube-likes');
-        
-        if (viewCountElement) {
-            viewCountElement.textContent = '10,796,369';
-        }
-        if (likeCountElement) {
-            likeCountElement.textContent = '347,707';
-        }
+        if (viewCountElement) viewCountElement.textContent = '-';
+        if (likeCountElement) likeCountElement.textContent = '-';
     }
 }
 
@@ -288,6 +297,9 @@ function navigateToMenu(key) {
         case 'streaming-list':
             toggleMainSections(true);
             openStreamingSheet();
+            break;
+        case 'streaming-recommend':
+            go({ view: 'streamingRecommend' });
             break;
         case 'streaming-mv':
             go({ view: 'streamingMV' });
@@ -677,6 +689,11 @@ function hideStreamingMVSection(){
     if (el) el.style.display = 'none';
 }
 
+function hideStreamingRecommendSection(){
+    const el = document.getElementById('streamingRecommendSection');
+    if (el) el.style.display = 'none';
+}
+
 function openStreamingMV(){
     toggleMainSections(false);
     ['guideHubMain','guideHubStreaming','guideHubVote','guideHubSupport'].forEach(id=>{ const el=document.getElementById(id); if(el) el.style.display='none'; });
@@ -703,6 +720,22 @@ function openStreamingMV(){
         if (stime && ttime) ttime.textContent = stime.textContent || '';
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
+}
+
+function openStreamingRecommend(){
+    toggleMainSections(false);
+    ['guideHubMain','guideHubStreaming','guideHubVote','guideHubSupport'].forEach(id=>{ const el=document.getElementById(id); if(el) el.style.display='none'; });
+    hideAllSupportSections();
+    hideGuideIdSection();
+    hideGuideDownloadSection();
+    hideGuideStreamingSection();
+    hideGuideChantSection();
+    hideGuideRadioSection();
+    hideVoteCollectSection();
+    hideStreamingMVSection();
+    hideVoteRateSection();
+    const section = document.getElementById('streamingRecommendSection');
+    if (section){ section.style.display='block'; window.scrollTo({ top: 0, behavior: 'smooth' }); }
 }
 
 function openVoteRate(){
@@ -751,6 +784,9 @@ function renderState(state){
         case 'guideHubSupport':
             showGuideHub('support');
             break;
+        case 'streamingRecommend':
+            openStreamingRecommend();
+            break;
         case 'voteRate':
             openVoteRate();
             break;
@@ -789,6 +825,7 @@ function hideAllContentSections(){
     hideGuideRadioSection();
     hideVoteCollectSection();
     hideStreamingMVSection();
+    hideStreamingRecommendSection();
     hideVoteRateSection();
     hideAllSupportSections();
 }
@@ -827,6 +864,9 @@ function routeFromHash(){
     }
     if (parts[0] === 'streaming' && parts[1] === 'mv'){
         openStreamingMV(); return;
+    }
+    if (parts[0] === 'streaming' && parts[1] === 'recommend'){
+        openStreamingRecommend(); return;
     }
     if (parts[0] === 'vote' && parts[1] === 'collect'){
         openVoteCollect(); const tab = params.get('tab') || 'theshow'; switchVoteCollectTab(tab, document.querySelector(`#voteCollectSection .id-subtab[data-sub="${tab}"]`)); return;
@@ -989,6 +1029,8 @@ function getCurrentShareUrl(){
     if (isVisible('guideRadioSection')) return `${origin}/r/g/radio`;
     // Vote: collect
     if (isVisible('voteCollectSection')) return `${origin}/r/vote/collect/${encodeURIComponent(currentVoteCollectSub)}`;
+    // Streaming: recommend
+    if (isVisible('streamingRecommendSection')) return `${origin}/r/streaming/recommend`;
     // Support
     if (isVisible('supportHelperSection')) return `${origin}/r/support/helper`;
     if (isVisible('supportTeamSection')) return `${origin}/r/support/team`;
@@ -1167,18 +1209,7 @@ function closeStreamingSheet(){
 
 // YouTube 업데이트 시간 표시 함수
 async function updateYouTubeTime() {
-    // 병합 충돌 해결 시 선택한 더 최신 시간 사용
-    const updateDate = new Date('2025-07-29 00:00:00+09:00');
-    const year = updateDate.getFullYear();
-    const month = String(updateDate.getMonth() + 1).padStart(2, '0');
-    const date = String(updateDate.getDate()).padStart(2, '0');
-    const hour = String(updateDate.getHours()).padStart(2, '0');
-    
-    const timeString = `${year}.${month}.${date}.${hour}:00`;
-    const youtubeTimeElement = document.getElementById('youtube-update-time');
-    if (youtubeTimeElement) {
-        youtubeTimeElement.textContent = timeString;
-    }
+    // 주기적 업데이트는 loadYouTubeStats()에서 youtube_stats.json의 last_updated로 처리합니다.
 }
 
 // ===== Support 섹션 관련 함수들 =====

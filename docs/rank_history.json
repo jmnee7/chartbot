@@ -46,5 +46,53 @@
         "timestamp": "2025-09-01 21:00:00"
       }
     ]
+  },
+  "2025-09-01 22:00:00": {
+    "_processed_at": "2025-09-01T22:06:08.954859",
+    "melon_top100": [
+      {
+        "rank": 27,
+        "timestamp": "2025-09-01 22:00",
+        "chart_type": "TOP100"
+      }
+    ],
+    "melon_hot100": [
+      {
+        "rank": 7,
+        "timestamp": "2025-09-01 22:00",
+        "chart_type": "HOT100"
+      }
+    ],
+    "melon": [
+      {
+        "rank": 27,
+        "timestamp": "2025-09-01 22:00",
+        "chart_type": "TOP100"
+      }
+    ],
+    "genie": [
+      {
+        "rank": 81,
+        "timestamp": "2025-09-01 22:00"
+      }
+    ],
+    "bugs": [
+      {
+        "rank": 10,
+        "timestamp": "2025-09-01 22:00"
+      }
+    ],
+    "vibe": [
+      {
+        "rank": null,
+        "timestamp": "2025-09-01 22:00:00"
+      }
+    ],
+    "flo": [
+      {
+        "rank": null,
+        "timestamp": "2025-09-01 22:00:00"
+      }
+    ]
   }
 }

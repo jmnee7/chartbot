@@ -11,7 +11,7 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content="styles/assets/thumbnail.png" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
-    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/main.css?v=20250901c">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -125,7 +125,7 @@
                 </button>
                 <button class="quick-link-item" onclick="openQuickLink('melon-musicwave')">
                     <div class="quick-link-icon green">💚</div>
-                    <div class="quick-link-label">멜론 뮤직웨이브</div>
+                    <div class="quick-link-label">스트리밍팀 멜론 뮤직웨이브</div>
                 </button>
                 <button class="quick-link-item" onclick="openQuickLink('musiccore-sms')">
                     <div class="quick-link-icon blue">🗳️</div>
@@ -230,7 +230,7 @@
         <!-- 뮤직비디오 조회수 -->
         <div class="youtube-section">
             <div class="chart-header">
-                <h2>뮤직비디오 조회수</h2>
+                <h2>뮤직비디오</h2>
                 <span class="update-time" id="youtube-update-time">업데이트 중...</span>
             </div>
             <div class="youtube-content">
@@ -470,7 +470,7 @@
                     <img class="hub-icon" src="styles/assets/vote/icon/musicshow table.png" alt="음악방송 비중표" />
                     <div class="hub-title">음악방송 비중표</div>
                 </a>
-                <a class="hub-card" href="#" onclick="openVoteSchedule(); return false;">
+                <a class="hub-card" href="#" onclick="go({ view: 'voteSchedule' }); return false;">
                     <img class="hub-icon" src="styles/assets/vote/icon/vote calander.png" alt="투표일정" />
                     <div class="hub-title">투표일정</div>
                 </a>
@@ -536,7 +536,7 @@
         <!-- Streaming: MV 상세 화면 (홈과 동일한 구성) -->
         <section id="streamingMVSection" class="youtube-section" style="display:none;">
             <div class="chart-header">
-                <h2>뮤직비디오 조회수</h2>
+                <h2>뮤직비디오</h2>
                 <span class="update-time" id="mv-update-time">업데이트 중...</span>
             </div>
             <div class="youtube-content">
@@ -801,7 +801,7 @@
     
 
     <!-- JavaScript 파일들을 body 끝에 로드 -->
-    <script src="js/dashboard.js?v=20250831a"></script>
+    <script src="js/dashboard.js?v=20250901c"></script>
     <script src="js/chart.js"></script>
     
 </body>

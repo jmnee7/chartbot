@@ -25,9 +25,10 @@ class BugsCrawler(BaseCrawler):
         Returns:
             str: 차트 URL
         """
+        # 벅스 실시간 전체 차트 경로
         chart_urls = {
-            "top_100": "https://music.bugs.co.kr/chart",
-            "realtime": "https://music.bugs.co.kr/chart"
+            "top_100": "https://music.bugs.co.kr/chart/track/realtime/total",
+            "realtime": "https://music.bugs.co.kr/chart/track/realtime/total"
         }
         
         return chart_urls.get(chart_type, chart_urls["top_100"])
@@ -42,7 +43,11 @@ class BugsCrawler(BaseCrawler):
         Returns:
             list: 노래 요소들의 리스트
         """
-        return soup.select(".list.trackList.chart .track-list li")
+        # 벅스는 테이블 기반 리스트 구조 (변경에 대비해 보강)
+        els = soup.select("table.list.trackList tbody tr")
+        if not els:
+            els = soup.select("tbody tr")
+        return els
     
     def parse_song_data(self, song_element):
         """
@@ -55,25 +60,48 @@ class BugsCrawler(BaseCrawler):
             dict: 파싱된 노래 데이터
         """
         try:
-            # 순위
-            rank_element = song_element.select_one(".ranking .num")
-            rank = safe_int(rank_element.text) if rank_element else 0
+            # 순위 (여러 구조 대비)
+            rank = 0
+            rank_element = (
+                song_element.select_one("td.ranking strong") or
+                song_element.select_one(".ranking strong") or
+                song_element.select_one("strong")
+            )
+            if rank_element:
+                rank = safe_int(rank_element.get_text(strip=True))
             
             # 제목
-            title_element = song_element.select_one(".title a")
+            title_element = (
+                song_element.select_one("p.title a") or
+                song_element.select_one("td.title a") or
+                song_element.select_one(".title a")
+            )
             title = clean_text(title_element.text) if title_element else ""
             
             # 아티스트
-            artist_element = song_element.select_one(".artist a")
+            artist_element = (
+                song_element.select_one("p.artist a") or
+                song_element.select_one("td.artist a") or
+                song_element.select_one(".artist a")
+            )
             artist = clean_text(artist_element.text) if artist_element else ""
             
             # 앨범
-            album_element = song_element.select_one(".album")
+            album_element = (
+                song_element.select_one("td.album a") or
+                song_element.select_one(".album")
+            )
             album = clean_text(album_element.text) if album_element else ""
             
             # 앨범 아트
-            albumart_element = song_element.select_one(".thumbnail img")
+            albumart_element = (
+                song_element.select_one("a.thumbnail img") or
+                song_element.select_one("a.cover img") or
+                song_element.select_one("img")
+            )
             albumart = albumart_element.get("src") if albumart_element else ""
+            if albumart.startswith("//"):
+                albumart = "https:" + albumart
             
             return {
                 "rank": rank,

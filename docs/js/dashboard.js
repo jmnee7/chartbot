@@ -122,26 +122,19 @@ async function updateRealTimeChartStatus() {
             }
         }
 
-        // 업데이트 시간 표시: rank_history.json의 최신 타임스탬프 사용 (YYYY-MM-DD HH:00:00)
+        // 업데이트 시간 표시
         const updateElement = document.getElementById('lastUpdate');
         if (updateElement) {
-            try {
-                const latestRaw = latestTimestamp; // 예: '2025-09-01 20:00:00'
-                // 'YYYY-MM-DD HH:MM:SS' → Date로 파싱 (KST로 표기 목적 포맷팅)
-                const [datePart, timePart] = latestRaw.split(' ');
-                const [y, m, d] = datePart.split('-').map(Number);
-                const [hh, mm] = timePart.split(':').map(Number);
-                const updateDate = new Date(y, (m - 1), d, hh, mm || 0, 0);
-                const year = updateDate.getFullYear();
-                const month = String(updateDate.getMonth() + 1).padStart(2, '0');
-                const date = String(updateDate.getDate()).padStart(2, '0');
-                const hour = String(updateDate.getHours()).padStart(2, '0');
-                const minute = String(updateDate.getMinutes()).padStart(2, '0');
-                updateElement.textContent = `${year}.${month}.${date}.${hour}:${minute}`;
-            } catch (_) {
-                // 파싱 실패 시 하드코딩 제거하고 빈 값 처리
-                updateElement.textContent = '';
-            }
+            // 병합 충돌 해결 시 선택한 더 최신 시간 사용
+            const updateDate = new Date('2025-07-29 00:00:00+09:00');
+            const year = updateDate.getFullYear();
+            const month = String(updateDate.getMonth() + 1).padStart(2, '0');
+            const date = String(updateDate.getDate()).padStart(2, '0');
+            const hour = String(updateDate.getHours()).padStart(2, '0');
+            const minute = String(updateDate.getMinutes()).padStart(2, '0');
+            
+            const timeString = `${year}.${month}.${date}.${hour}:${minute}`;
+            updateElement.textContent = timeString;
         }
 
     } catch (error) {

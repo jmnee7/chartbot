@@ -1,4 +1,5 @@
 {
+<<<<<<< Updated upstream
   "video_id": "LNETckymbzk",
   "title": "NCT WISH 엔시티 위시 'poppop' MV",
   "view_count": 10162013,
@@ -8,4 +9,15 @@
   "last_updated": "2025-09-01T21:33:16.246379",
   "channel_title": "SMTOWN",
   "published_at": "2025-04-14T09:00:20Z"
+=======
+  "video_id": "28dAfmIAlCo",
+  "title": "NCT WISH 엔시티 위시 'COLOR' MV",
+  "view_count": 421879,
+  "like_count": 58242,
+  "view_count_formatted": "421,879",
+  "like_count_formatted": "58,242",
+  "last_updated": "2025-09-01T21:41:40.638286",
+  "channel_title": "SMTOWN",
+  "published_at": "2025-09-01T09:00:07Z"
+>>>>>>> Stashed changes
 }

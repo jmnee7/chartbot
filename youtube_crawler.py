@@ -7,6 +7,8 @@ import requests
 import json
 from typing import Dict, Optional
 from utils import get_current_kst_iso
+from pathlib import Path
+import re
 
 
 class YouTubeCrawler:
@@ -112,6 +114,38 @@ class YouTubeCrawler:
             print(f"❌ YouTube 통계 저장 실패: {e}")
 
 
+def _resolve_video_id() -> str:
+    """
+    현재 임베드된 MV ID를 추론한다.
+    우선순위: 환경변수(YOUTUBE_VIDEO_ID) > docs/index.html iframe > 기존 youtube_stats.json > 기본값
+    """
+    env_id = os.getenv('YOUTUBE_VIDEO_ID')
+    if env_id and env_id.strip():
+        return env_id.strip()
+
+    index_html = Path('docs/index.html')
+    if index_html.exists():
+        try:
+            html = index_html.read_text(encoding='utf-8', errors='ignore')
+            m = re.search(r"youtube\.com/embed/([A-Za-z0-9_-]{6,})", html)
+            if m:
+                return m.group(1)
+        except Exception:
+            pass
+
+    stats_json = Path('docs/youtube_stats.json')
+    if stats_json.exists():
+        try:
+            data = json.loads(stats_json.read_text(encoding='utf-8'))
+            vid = data.get('video_id')
+            if vid:
+                return vid
+        except Exception:
+            pass
+
+    return 'LNETckymbzk'
+
+
 def get_youtube_stats_for_dashboard():
     """
     대시보드용 YouTube 통계 가져오기 (현재 임베드된 MV 기준)
@@ -119,8 +153,8 @@ def get_youtube_stats_for_dashboard():
     Returns:
         Dict: YouTube 통계 정보
     """
-    # 현재 임베드된 MV ID (https://youtu.be/LNETckymbzk)
-    VIDEO_ID = "LNETckymbzk"
+    # 현재 임베드된 MV ID
+    VIDEO_ID = _resolve_video_id()
     
     crawler = YouTubeCrawler()
     stats = crawler.get_video_stats(VIDEO_ID)
@@ -130,7 +164,20 @@ def get_youtube_stats_for_dashboard():
         crawler.save_stats_to_file(stats)
         return stats
     else:
-        # API가 실패한 경우 기본값 반환 및 저장 (실시간 순위와 동일하게 "-" 표시)
+        # API 키 미설정/실패 시: 기존 파일이 있으면 기존 값을 유지(덮어쓰지 않음)
+        try:
+            stats_path = Path('docs/youtube_stats.json')
+            if stats_path.exists():
+                existing = json.loads(stats_path.read_text(encoding='utf-8'))
+                # 영상이 바뀌었으면 video_id만 맞추고 수치는 보존
+                if existing.get('video_id') != VIDEO_ID:
+                    existing['video_id'] = VIDEO_ID
+                    crawler.save_stats_to_file(existing)
+                return existing
+        except Exception:
+            pass
+
+        # 기존 파일도 없으면 기본값 생성
         print("🔄 YouTube API 실패로 기본값 사용")
         default_stats = {
             'video_id': VIDEO_ID,
@@ -141,8 +188,6 @@ def get_youtube_stats_for_dashboard():
             'like_count_formatted': '-',
             'last_updated': get_current_kst_iso()
         }
-        
-        # 기본값도 파일로 저장
         crawler.save_stats_to_file(default_stats)
         return default_stats
 

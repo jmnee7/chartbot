@@ -16,8 +16,8 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-      # pages: write  # Vercel로 전환하며 불필요
-      # id-token: write  # Pages 배포 제거로 불필요
+      pages: write
+      id-token: write
     
     steps:
     - uses: actions/checkout@v4

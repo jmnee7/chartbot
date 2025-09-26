@@ -1,52 +1,4 @@
 {
-  "2025-09-26 01:00:00": {
-    "_processed_at": "2025-09-26T01:19:28.220600",
-    "melon_top100": [
-      {
-        "rank": null,
-        "timestamp": "2025-09-26 01:00:00",
-        "chart_type": "TOP100"
-      }
-    ],
-    "melon_hot100": [
-      {
-        "rank": 65,
-        "timestamp": "2025-09-26 01:00",
-        "chart_type": "HOT100"
-      }
-    ],
-    "melon": [
-      {
-        "rank": 65,
-        "timestamp": "2025-09-26 01:00",
-        "chart_type": "HOT100"
-      }
-    ],
-    "genie": [
-      {
-        "rank": null,
-        "timestamp": "2025-09-26 01:00:00"
-      }
-    ],
-    "bugs": [
-      {
-        "rank": null,
-        "timestamp": "2025-09-26 01:00:00"
-      }
-    ],
-    "vibe": [
-      {
-        "rank": null,
-        "timestamp": "2025-09-26 01:00:00"
-      }
-    ],
-    "flo": [
-      {
-        "rank": null,
-        "timestamp": "2025-09-26 01:00:00"
-      }
-    ]
-  },
   "2025-09-26 02:00:00": {
     "_processed_at": "2025-09-26T02:13:44.491376",
     "melon_top100": [
@@ -1148,6 +1100,54 @@
       {
         "rank": null,
         "timestamp": "2025-09-27 01:00:00"
+      }
+    ]
+  },
+  "2025-09-27 02:00:00": {
+    "_processed_at": "2025-09-27T02:13:46.054460",
+    "melon_top100": [
+      {
+        "rank": null,
+        "timestamp": "2025-09-27 02:00:00",
+        "chart_type": "TOP100"
+      }
+    ],
+    "melon_hot100": [
+      {
+        "rank": 59,
+        "timestamp": "2025-09-27 02:00",
+        "chart_type": "HOT100"
+      }
+    ],
+    "melon": [
+      {
+        "rank": 59,
+        "timestamp": "2025-09-27 02:00",
+        "chart_type": "HOT100"
+      }
+    ],
+    "genie": [
+      {
+        "rank": null,
+        "timestamp": "2025-09-27 02:00:00"
+      }
+    ],
+    "bugs": [
+      {
+        "rank": null,
+        "timestamp": "2025-09-27 02:00:00"
+      }
+    ],
+    "vibe": [
+      {
+        "rank": null,
+        "timestamp": "2025-09-27 02:00:00"
+      }
+    ],
+    "flo": [
+      {
+        "rank": null,
+        "timestamp": "2025-09-27 02:00:00"
       }
     ]
   }

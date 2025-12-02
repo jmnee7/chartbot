@@ -1,52 +1,4 @@
 {
-  "2025-12-01 12:00:00": {
-    "_processed_at": "2025-12-01T12:47:54.577843",
-    "melon_top100": [
-      {
-        "rank": null,
-        "timestamp": "2025-12-01 12:00:00",
-        "chart_type": "TOP100"
-      }
-    ],
-    "melon_hot100": [
-      {
-        "rank": 94,
-        "timestamp": "2025-12-01 12:00",
-        "chart_type": "HOT100"
-      }
-    ],
-    "melon": [
-      {
-        "rank": 94,
-        "timestamp": "2025-12-01 12:00",
-        "chart_type": "HOT100"
-      }
-    ],
-    "genie": [
-      {
-        "rank": null,
-        "timestamp": "2025-12-01 12:00:00"
-      }
-    ],
-    "bugs": [
-      {
-        "rank": null,
-        "timestamp": "2025-12-01 12:00:00"
-      }
-    ],
-    "vibe": [
-      {
-        "rank": null,
-        "timestamp": "2025-12-01 12:00:00"
-      }
-    ],
-    "flo": [
-      {
-        "rank": null,
-        "timestamp": "2025-12-01 12:00:00"
-      }
-    ]
-  },
   "2025-12-01 13:00:00": {
     "_processed_at": "2025-12-01T13:46:22.869176",
     "melon_top100": [
@@ -1148,6 +1100,54 @@
       {
         "rank": null,
         "timestamp": "2025-12-02 13:00:00"
+      }
+    ]
+  },
+  "2025-12-02 14:00:00": {
+    "_processed_at": "2025-12-02T14:17:07.491147",
+    "melon_top100": [
+      {
+        "rank": null,
+        "timestamp": "2025-12-02 14:00:00",
+        "chart_type": "TOP100"
+      }
+    ],
+    "melon_hot100": [
+      {
+        "rank": null,
+        "timestamp": "2025-12-02 14:00:00",
+        "chart_type": "HOT100"
+      }
+    ],
+    "melon": [
+      {
+        "rank": null,
+        "timestamp": "2025-12-02 14:00:00",
+        "chart_type": "HOT100"
+      }
+    ],
+    "genie": [
+      {
+        "rank": null,
+        "timestamp": "2025-12-02 14:00:00"
+      }
+    ],
+    "bugs": [
+      {
+        "rank": null,
+        "timestamp": "2025-12-02 14:00:00"
+      }
+    ],
+    "vibe": [
+      {
+        "rank": null,
+        "timestamp": "2025-12-02 14:00:00"
+      }
+    ],
+    "flo": [
+      {
+        "rank": null,
+        "timestamp": "2025-12-02 14:00:00"
       }
     ]
   }

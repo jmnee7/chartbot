@@ -577,8 +577,8 @@ function openVoteCollect(){
     const section = document.getElementById('voteCollectSection');
     if (section){
         section.style.display = 'block';
-        const firstBtn = document.querySelector('#voteCollectSection .id-subtab[data-sub="theshow"]');
-        if (typeof switchVoteCollectTab === 'function') switchVoteCollectTab('theshow', firstBtn);
+        const firstBtn = document.querySelector('#voteCollectSection .id-subtab[data-sub="showchampion"]');
+        if (typeof switchVoteCollectTab === 'function') switchVoteCollectTab('showchampion', firstBtn);
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 }
@@ -589,9 +589,8 @@ function switchVoteCollectTab(sub, btn){
     if (btn) btn.classList.add('active');
     const titleEl = document.getElementById('voteCollectTitle');
     const dateEl = document.getElementById('voteCollectDate');
-    const imgEl = document.getElementById('voteCollectImage');
+    const container = document.querySelector('#voteCollectSection .guide-id-image-container');
     const titleMap = {
-        theshow: '더쇼 투표권 모으기',
         showchampion: '쇼챔 투표권 모으기',
         musicbank: '뮤직뱅크 투표권 모으기',
         musiccore: '쇼음악중심 투표권 모으기',
@@ -605,15 +604,18 @@ function switchVoteCollectTab(sub, btn){
         dateEl.textContent = fmt;
     }
     const map = {
-        theshow: 'styles/assets/vote/collect/1. 더쇼 투표권 모으기.png',
-        showchampion: 'styles/assets/vote/collect/2. 쇼챔 투표권 모으기.png',
-        musicbank: 'styles/assets/vote/collect/3. 뮤직뱅크 투표권 모으기.png',
-        musiccore: 'styles/assets/vote/collect/4. 쇼음악중심 투표권 모으기.png',
-        inkigayo: 'styles/assets/vote/collect/5. 인기가요 투표권 모으기.png',
-        mcountdown: 'styles/assets/vote/collect/6. 엠카 투표 가이드.png'
+        showchampion: ['styles/assets/vote/collect/2. 쇼챔 투표권 모으기.png'],
+        musicbank: ['styles/assets/vote/collect/3. 뮤직뱅크 투표권 모으기.png'],
+        musiccore: ['styles/assets/vote/collect/4. 쇼음악중심 투표권 모으기.png'],
+        inkigayo: [
+            'styles/assets/vote/collect/5-1. 인기가요 투표권 모으기(사전투표).png',
+            'styles/assets/vote/collect/5-2. 인기가요 투표권 모으기(실시간투표).png'
+        ],
+        mcountdown: ['styles/assets/vote/collect/6. 엠카 투표 가이드.png']
     };
-    if (imgEl && map[sub]) {
-        imgEl.src = map[sub];
+    const imgs = map[sub] || [];
+    if (container && imgs.length) {
+        container.innerHTML = imgs.map(src => `<img class="guide-id-image" src="${src}" alt="투표권 모으기 가이드 이미지"/>`).join('');
     }
 }
 
@@ -896,7 +898,7 @@ function routeFromHash(){
         openStreamingRecommend(); return;
     }
     if (parts[0] === 'vote' && parts[1] === 'collect'){
-        openVoteCollect(); const tab = params.get('tab') || 'theshow'; switchVoteCollectTab(tab, document.querySelector(`#voteCollectSection .id-subtab[data-sub="${tab}"]`)); return;
+        openVoteCollect(); const tab = params.get('tab') || 'showchampion'; switchVoteCollectTab(tab, document.querySelector(`#voteCollectSection .id-subtab[data-sub="${tab}"]`)); return;
     }
     if (parts[0] === 'vote' && parts[1] === 'rate'){
         openVoteRate(); return;
@@ -965,7 +967,7 @@ let currentIdSub = 'dual';
 let currentStreamSub = 'melon';
 let currentDownloadSub = 'melon';
 let currentDownloadCategory = 'audio';
-let currentVoteCollectSub = 'theshow';
+let currentVoteCollectSub = 'showchampion';
 let currentChantSub = 'handsup';
 let currentChantTrack = '';
 
@@ -1098,10 +1100,10 @@ async function switchDownloadTab(sub, btn){
         },
         mv: {
             melon: [
-                'styles/assets/guide/download/5. 멜론 뮤직비디오 다운로드 가이드(1).jpeg',
-                'styles/assets/guide/download/6. 멜론 뮤직비디오 다운로드 가이드(2).jpeg'
+                'styles/assets/guide/download/5. 멜론 뮤직비디오 다운로드 가이드(1).png',
+                'styles/assets/guide/download/6. 멜론 뮤직비디오 다운로드 가이드(2).png'
             ],
-            bugs: ['styles/assets/guide/download/7. 벅스 뮤직비디오 다운로드 가이드.jpeg']
+            bugs: ['styles/assets/guide/download/7. 벅스 뮤직비디오 다운로드 가이드.png']
         }
     };
     const imgs = (map[currentDownloadCategory] && map[currentDownloadCategory][sub]) || [];
@@ -1199,7 +1201,7 @@ async function switchStreamTab(sub, btn){
     if (btn) btn.classList.add('active');
     const titleEl = document.getElementById('guideStreamTitle');
     const dateEl = document.getElementById('guideStreamDate');
-    const imgEl = document.getElementById('guideStreamImage');
+    const container = document.querySelector('#guideStreamingSection .guide-id-image-container');
     const titleMap = { melon:'멜론 스트리밍 가이드', bugs:'벅스 스트리밍 가이드', genie:'지니 스트리밍 가이드', flo:'플로 스트리밍 가이드', vibe:'바이브 스트리밍 가이드', mv:'뮤직비디오 스트리밍 가이드' };
     if (titleEl) titleEl.textContent = titleMap[sub] || '스트리밍 가이드';
     if (dateEl){
@@ -1209,15 +1211,31 @@ async function switchStreamTab(sub, btn){
     }
 
     const map = {
-        melon: 'styles/assets/guide/stream/1. 멜론 스트리밍 가이드.png',
-        genie: 'styles/assets/guide/stream/2. 지니 스트리밍 가이드.png',
-        bugs: 'styles/assets/guide/stream/3. 벅스 스트리밍 가이드.png',
-        flo: 'styles/assets/guide/stream/4. 플로 스트리밍 가이드.png',
-        vibe: 'styles/assets/guide/stream/5. 바이브 스트리밍 가이드.png',
-        mv: 'styles/assets/guide/stream/6. 뮤직비디오 스트리밍 가이드(세로ver.).png'
+        melon: [
+            'styles/assets/guide/stream/멜론 스트리밍 가이드(모바일).png',
+            'styles/assets/guide/stream/멜론 스트리밍 가이드(PC).png'
+        ],
+        genie: [
+            'styles/assets/guide/stream/지니 스트리밍 가이드(모바일).png',
+            'styles/assets/guide/stream/지니 스트리밍 가이드(PC).png'
+        ],
+        bugs: [
+            'styles/assets/guide/stream/벅스 스트리밍 가이드(모바일).png',
+            'styles/assets/guide/stream/벅스 스트리밍 가이드(PC).png'
+        ],
+        flo: [
+            'styles/assets/guide/stream/플로 스트리밍 가이드(모바일).png',
+            'styles/assets/guide/stream/플로 스트리밍 가이드(PC).png'
+        ],
+        vibe: [
+            'styles/assets/guide/stream/바이브 스트리밍 가이드(모바일).png',
+            'styles/assets/guide/stream/바이브 스트리밍 가이드(PC).png'
+        ],
+        mv: ['styles/assets/guide/stream/뮤직비디오 스트리밍 가이드.png']
     };
-    if (imgEl && map[sub]) {
-        imgEl.src = map[sub];
+    const imgs = map[sub] || [];
+    if (container && imgs.length) {
+        container.innerHTML = imgs.map(src => `<img class="guide-id-image" src="${src}" alt="스트리밍 가이드 이미지"/>`).join('');
     }
 }
 
@@ -1357,8 +1375,8 @@ function openTeamApplication() {
 
 function openIdDonation(service) {
     const urls = {
-        'genie': 'https://forms.gle/LHXaiSYz28tMPEYQA',
-        'bugs': 'https://forms.gle/A9LLUA8c6C5V2zZEA'
+        'genie': 'https://forms.gle/hUX7SGLXwLpfkbPdA',
+        'bugs': 'https://forms.gle/goTwoq1crirrLBmW9'
     };
     
     if (urls[service]) {

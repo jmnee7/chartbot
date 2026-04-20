@@ -627,7 +627,7 @@ function switchChantTab(sub, btn){
     const dateEl = document.getElementById('guideChantDate');
     const container = document.getElementById('chantImagesContainer');
     const trackTabs = document.getElementById('chantTrackSubtabs');
-    const titleMap = { handsup:'Hands Up', wish:'WISH', songbird:'Songbird', steady:'Steady', miracle:'Miracle', poppop:'poppop', color:'COLOR' };
+    const titleMap = { handsup:'Hands Up', wish:'WISH', songbird:'Songbird', steady:'Steady', miracle:'Miracle', poppop:'poppop', color:'COLOR', odetolove:'Ode to Love' };
     if (titleEl) titleEl.textContent = `응원법 · ${titleMap[sub] || ''}`;
     if (dateEl){ const d = new Date(); const fmt = `${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,'0')}.${String(d.getDate()).padStart(2,'0')}`; dateEl.textContent = fmt; }
     const trackMap = {
@@ -637,7 +637,8 @@ function switchChantTab(sub, btn){
         steady: [ { key:'steady', label:'Steady', imgs:['styles/assets/guide/chant/9. Steady 응원법.jpg'] }, { key:'dunkshot', label:'Dunk Shot', imgs:['styles/assets/guide/chant/8. Dunk Shot 응원법.jpg'] }, { key:'handsup_kr', label:'Hands Up(韓)', imgs:['styles/assets/guide/chant/6. Hands Up 응원법(韓).jpeg'] } ],
         miracle: [ { key:'miracle', label:'Miracle', imgs:['styles/assets/guide/chant/10. Miracle 응원법.jpg'] } ],
         poppop: [ { key:'poppop', label:'poppop', imgs:['styles/assets/guide/chant/11. poppop 응원법.jpg'] } ],
-        color: [ { key:'surf', label:'Surf', imgs:['styles/assets/guide/chant/12. Surf 응원법.jpg'] }, { key:'color', label:'COLOR', imgs:['styles/assets/guide/chant/13. COLOR 응원법.jpeg'] } ]
+        color: [ { key:'surf', label:'Surf', imgs:['styles/assets/guide/chant/12. Surf 응원법.jpg'] }, { key:'color', label:'COLOR', imgs:['styles/assets/guide/chant/13. COLOR 응원법.jpeg'] } ],
+        odetolove: [ { key:'odetolove', label:'Ode to Love', imgs:['styles/assets/guide/chant/14. Ode to Love 응원법.jpg?v=20260420'] } ]
     };
     const tracks = trackMap[sub] || [];
     if (trackTabs){
@@ -665,7 +666,8 @@ function switchChantTrack(trackKey, btn){
         miracle:['styles/assets/guide/chant/10. Miracle 응원법.jpg'],
         poppop:['styles/assets/guide/chant/11. poppop 응원법.jpg'],
         surf:['styles/assets/guide/chant/12. Surf 응원법.jpg'],
-        color:['styles/assets/guide/chant/13. COLOR 응원법.jpeg']
+        color:['styles/assets/guide/chant/13. COLOR 응원법.jpeg'],
+        odetolove:['styles/assets/guide/chant/14. Ode to Love 응원법.jpg?v=20260420']
     };
     const imgs = all[trackKey] || [];
     if (container){ container.innerHTML = imgs.map(src=>`<div class=\"guide-id-image-container\"><img class=\"guide-id-image\" src=\"${src}\" alt=\"응원법\"/></div>`).join(''); }

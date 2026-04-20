@@ -2,7 +2,7 @@ let rankChart = null;
 
 async function loadChartData() {
     try {
-        const response = await fetch('rank_history.json');
+        const response = await fetch('rank_history.json?ts=' + Date.now());
         const historyData = await response.json();
         const timestamps = Object.keys(historyData).sort().slice(-24);
 

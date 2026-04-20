@@ -1059,34 +1059,34 @@
     "_processed_at": "2026-04-20T18:54:38.094885",
     "melon_top100": [
       {
-        "rank": 12,
+        "rank": null,
         "timestamp": "2026-04-20 18:00:00",
         "chart_type": "TOP100"
       }
     ],
     "melon_hot100": [
       {
-        "rank": 3,
+        "rank": null,
         "timestamp": "2026-04-20 18:00:00",
         "chart_type": "HOT100"
       }
     ],
     "melon": [
       {
-        "rank": 12,
+        "rank": null,
         "timestamp": "2026-04-20 18:00:00",
         "chart_type": "HOT100"
       }
     ],
     "genie": [
       {
-        "rank": 67,
+        "rank": null,
         "timestamp": "2026-04-20 18:00:00"
       }
     ],
     "bugs": [
       {
-        "rank": 7,
+        "rank": null,
         "timestamp": "2026-04-20 18:00:00"
       }
     ],

@@ -1003,15 +1003,15 @@ function switchIdSubTab(sub, btn){
             dualContainer.innerHTML = `
                 <div class="guide-dual-card">
                     <h3 class="guide-dual-title">KT</h3>
-                    <img class="guide-dual-img" src="styles/assets/guide/generateid/dual/kt.PNG" alt="KT 듀얼 넘버 가이드" />
+                    <img class="guide-dual-img" src="styles/assets/guide/generateid/dual/kt.PNG?v=20260420" alt="KT 듀얼 넘버 가이드" />
                 </div>
                 <div class="guide-dual-card">
                     <h3 class="guide-dual-title">SKT</h3>
-                    <img class="guide-dual-img" src="styles/assets/guide/generateid/dual/skt.PNG" alt="SKT 듀얼 넘버 가이드" />
+                    <img class="guide-dual-img" src="styles/assets/guide/generateid/dual/skt.PNG?v=20260420" alt="SKT 듀얼 넘버 가이드" />
                 </div>
                 <div class="guide-dual-card">
                     <h3 class="guide-dual-title">U+</h3>
-                    <img class="guide-dual-img" src="styles/assets/guide/generateid/dual/lgu.PNG" alt="U+ 듀얼 넘버 가이드" />
+                    <img class="guide-dual-img" src="styles/assets/guide/generateid/dual/lgu.PNG?v=20260420" alt="U+ 듀얼 넘버 가이드" />
                 </div>
             `;
         }
@@ -1025,7 +1025,7 @@ function switchIdSubTab(sub, btn){
         }
         const targetImg = document.getElementById('guideIdImage');
         if (targetImg){
-            targetImg.src = (sub === 'bugs') ? 'styles/assets/guide/generateid/bugs.png' : 'styles/assets/guide/generateid/genie.png';
+            targetImg.src = (sub === 'bugs') ? 'styles/assets/guide/generateid/bugs.png?v=20260420' : 'styles/assets/guide/generateid/genie.png?v=20260420';
         }
     }
 }
@@ -1083,7 +1083,7 @@ async function switchDownloadTab(sub, btn){
     const dateEl = document.getElementById('guideDownloadDate');
     const imgEl = document.getElementById('guideDownloadImage');
     const container = document.querySelector('.guide-download-image-container');
-    const titleMap = { melon:'멜론 다운로드', bugs:'벅스 다운로드', genie:'지니 다운로드', vibe:'바이브 다운로드' };
+    const titleMap = { melon:'멜론 다운로드', bugs:'벅스 다운로드', genie:'지니 다운로드' };
     if (titleEl) titleEl.textContent = titleMap[sub] || '다운로드 가이드';
     if (dateEl){
         const d = new Date();
@@ -1095,8 +1095,7 @@ async function switchDownloadTab(sub, btn){
         audio: {
             melon: ['styles/assets/guide/download/1. 멜론 음원 다운로드 가이드.jpeg'],
             genie: ['styles/assets/guide/download/2. 지니 음원 다운로드 가이드.jpeg'],
-            bugs: ['styles/assets/guide/download/3. 벅스 음원 다운로드 가이드.JPG'],
-            vibe: ['styles/assets/guide/download/4. 바이브 음원 다운로드 가이드.jpg']
+            bugs: ['styles/assets/guide/download/3. 벅스 음원 다운로드 가이드.JPG']
         },
         mv: {
             melon: [
@@ -1130,8 +1129,7 @@ function switchDownloadCategory(cat, btn){
         svcTabs.innerHTML = `
             <button class=\"id-subtab active\" data-svc=\"melon\" onclick=\"switchDownloadService('melon', this)\">멜론</button>
             <button class=\"id-subtab\" data-svc=\"genie\" onclick=\"switchDownloadService('genie', this)\">지니</button>
-            <button class=\"id-subtab\" data-svc=\"bugs\" onclick=\"switchDownloadService('bugs', this)\">벅스</button>
-            <button class=\"id-subtab\" data-svc=\"vibe\" onclick=\"switchDownloadService('vibe', this)\">바이브</button>`;
+            <button class=\"id-subtab\" data-svc=\"bugs\" onclick=\"switchDownloadService('bugs', this)\">벅스</button>`;
         switchDownloadService('melon', svcTabs.querySelector('[data-svc=\"melon\"]'));
     } else {
         svcTabs.innerHTML = `

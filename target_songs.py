@@ -29,8 +29,9 @@ def is_target_song(artist_name, song_title):
     Returns:
         bool: 타겟 곡 여부
     """
-    artist_clean = artist_name.strip()
-    song_clean = song_title.strip()
+    import unicodedata
+    artist_clean = unicodedata.normalize('NFKC', artist_name).replace('\xa0', ' ').strip()
+    song_clean = unicodedata.normalize('NFKC', song_title).replace('\xa0', ' ').strip()
     
     if SEARCH_MODE == "artists":
         # 지정된 가수의 모든 곡 (단순 문자열 비교)

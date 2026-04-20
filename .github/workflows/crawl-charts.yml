@@ -1,10 +1,10 @@
 name: Crawl Music Charts
 
 on:
-  schedule:
-    # 한국 시간(KST) 기준 매 시간 정각에 실행
-    # KST = UTC + 9시간이므로, UTC로 9시간 전에 실행하면 KST 정각이 됨
-    - cron: '0 15-23,0-14 * * *'
+  # CF Worker (chartbot-trigger) 가 workflow_dispatch 로 정시 트리거함.
+  # GHA schedule 은 피크 시간 지연(5~40분) 때문에 비활성화.
+  # schedule:
+  #   - cron: '0 15-23,0-14 * * *'
   push:
     branches: [ main ]
   pull_request:

@@ -1,52 +1,4 @@
 {
-  "2026-04-20 19:00:00": {
-    "_processed_at": "2026-04-20T19:44:49.707525",
-    "melon_top100": [
-      {
-        "rank": 12,
-        "timestamp": "2026-04-20 19:00",
-        "chart_type": "TOP100"
-      }
-    ],
-    "melon_hot100": [
-      {
-        "rank": 3,
-        "timestamp": "2026-04-20 19:00",
-        "chart_type": "HOT100"
-      }
-    ],
-    "melon": [
-      {
-        "rank": 12,
-        "timestamp": "2026-04-20 19:00",
-        "chart_type": "TOP100"
-      }
-    ],
-    "genie": [
-      {
-        "rank": 67,
-        "timestamp": "2026-04-20 19:00"
-      }
-    ],
-    "bugs": [
-      {
-        "rank": 7,
-        "timestamp": "2026-04-20 19:00"
-      }
-    ],
-    "vibe": [
-      {
-        "rank": null,
-        "timestamp": "2026-04-20 19:00:00"
-      }
-    ],
-    "flo": [
-      {
-        "rank": null,
-        "timestamp": "2026-04-20 19:00:00"
-      }
-    ]
-  },
   "2026-04-20 21:00:00": {
     "_processed_at": "2026-04-20T21:14:46.421715",
     "melon_top100": [
@@ -1148,6 +1100,54 @@
       {
         "rank": 60,
         "timestamp": "2026-04-21 19:00"
+      }
+    ]
+  },
+  "2026-04-21 20:00:00": {
+    "_processed_at": "2026-04-21T20:01:37.485125",
+    "melon_top100": [
+      {
+        "rank": 7,
+        "timestamp": "2026-04-21 20:00",
+        "chart_type": "TOP100"
+      }
+    ],
+    "melon_hot100": [
+      {
+        "rank": 3,
+        "timestamp": "2026-04-21 20:00",
+        "chart_type": "HOT100"
+      }
+    ],
+    "melon": [
+      {
+        "rank": 7,
+        "timestamp": "2026-04-21 20:00",
+        "chart_type": "TOP100"
+      }
+    ],
+    "genie": [
+      {
+        "rank": null,
+        "timestamp": "2026-04-21 20:00:00"
+      }
+    ],
+    "bugs": [
+      {
+        "rank": 22,
+        "timestamp": "2026-04-21 20:00"
+      }
+    ],
+    "vibe": [
+      {
+        "rank": null,
+        "timestamp": "2026-04-21 20:00:00"
+      }
+    ],
+    "flo": [
+      {
+        "rank": 63,
+        "timestamp": "2026-04-21 20:00"
       }
     ]
   }

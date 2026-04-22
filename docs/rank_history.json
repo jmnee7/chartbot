@@ -1,52 +1,4 @@
 {
-  "2026-04-21 19:00:00": {
-    "_processed_at": "2026-04-21T19:01:43.215081",
-    "melon_top100": [
-      {
-        "rank": 9,
-        "timestamp": "2026-04-21 19:00",
-        "chart_type": "TOP100"
-      }
-    ],
-    "melon_hot100": [
-      {
-        "rank": 3,
-        "timestamp": "2026-04-21 19:00",
-        "chart_type": "HOT100"
-      }
-    ],
-    "melon": [
-      {
-        "rank": 9,
-        "timestamp": "2026-04-21 19:00",
-        "chart_type": "TOP100"
-      }
-    ],
-    "genie": [
-      {
-        "rank": null,
-        "timestamp": "2026-04-21 19:00:00"
-      }
-    ],
-    "bugs": [
-      {
-        "rank": 29,
-        "timestamp": "2026-04-21 19:00"
-      }
-    ],
-    "vibe": [
-      {
-        "rank": null,
-        "timestamp": "2026-04-21 19:00:00"
-      }
-    ],
-    "flo": [
-      {
-        "rank": 60,
-        "timestamp": "2026-04-21 19:00"
-      }
-    ]
-  },
   "2026-04-21 20:00:00": {
     "_processed_at": "2026-04-21T20:01:37.485125",
     "melon_top100": [
@@ -1148,6 +1100,54 @@
       {
         "rank": 55,
         "timestamp": "2026-04-22 18:00"
+      }
+    ]
+  },
+  "2026-04-22 19:00:00": {
+    "_processed_at": "2026-04-22T19:01:12.805244",
+    "melon_top100": [
+      {
+        "rank": 11,
+        "timestamp": "2026-04-22 19:00",
+        "chart_type": "TOP100"
+      }
+    ],
+    "melon_hot100": [
+      {
+        "rank": 5,
+        "timestamp": "2026-04-22 19:00",
+        "chart_type": "HOT100"
+      }
+    ],
+    "melon": [
+      {
+        "rank": 11,
+        "timestamp": "2026-04-22 19:00",
+        "chart_type": "TOP100"
+      }
+    ],
+    "genie": [
+      {
+        "rank": null,
+        "timestamp": "2026-04-22 19:00:00"
+      }
+    ],
+    "bugs": [
+      {
+        "rank": 68,
+        "timestamp": "2026-04-22 19:00"
+      }
+    ],
+    "vibe": [
+      {
+        "rank": null,
+        "timestamp": "2026-04-22 19:00:00"
+      }
+    ],
+    "flo": [
+      {
+        "rank": 59,
+        "timestamp": "2026-04-22 19:00"
       }
     ]
   }

@@ -1,52 +1,4 @@
 {
-  "2026-04-21 21:00:00": {
-    "_processed_at": "2026-04-21T21:01:18.002255",
-    "melon_top100": [
-      {
-        "rank": 5,
-        "timestamp": "2026-04-21 21:00",
-        "chart_type": "TOP100"
-      }
-    ],
-    "melon_hot100": [
-      {
-        "rank": 3,
-        "timestamp": "2026-04-21 21:00",
-        "chart_type": "HOT100"
-      }
-    ],
-    "melon": [
-      {
-        "rank": 5,
-        "timestamp": "2026-04-21 21:00",
-        "chart_type": "TOP100"
-      }
-    ],
-    "genie": [
-      {
-        "rank": 98,
-        "timestamp": "2026-04-21 21:00"
-      }
-    ],
-    "bugs": [
-      {
-        "rank": 23,
-        "timestamp": "2026-04-21 21:00"
-      }
-    ],
-    "vibe": [
-      {
-        "rank": null,
-        "timestamp": "2026-04-21 21:00:00"
-      }
-    ],
-    "flo": [
-      {
-        "rank": 63,
-        "timestamp": "2026-04-21 21:00"
-      }
-    ]
-  },
   "2026-04-21 22:00:00": {
     "_processed_at": "2026-04-21T22:01:19.322506",
     "melon_top100": [
@@ -1148,6 +1100,54 @@
       {
         "rank": 61,
         "timestamp": "2026-04-22 20:00"
+      }
+    ]
+  },
+  "2026-04-22 21:00:00": {
+    "_processed_at": "2026-04-22T21:01:26.153887",
+    "melon_top100": [
+      {
+        "rank": 5,
+        "timestamp": "2026-04-22 21:00",
+        "chart_type": "TOP100"
+      }
+    ],
+    "melon_hot100": [
+      {
+        "rank": 3,
+        "timestamp": "2026-04-22 21:00",
+        "chart_type": "HOT100"
+      }
+    ],
+    "melon": [
+      {
+        "rank": 5,
+        "timestamp": "2026-04-22 21:00",
+        "chart_type": "TOP100"
+      }
+    ],
+    "genie": [
+      {
+        "rank": null,
+        "timestamp": "2026-04-22 21:00:00"
+      }
+    ],
+    "bugs": [
+      {
+        "rank": 64,
+        "timestamp": "2026-04-22 21:00"
+      }
+    ],
+    "vibe": [
+      {
+        "rank": null,
+        "timestamp": "2026-04-22 21:00:00"
+      }
+    ],
+    "flo": [
+      {
+        "rank": 60,
+        "timestamp": "2026-04-22 21:00"
       }
     ]
   }

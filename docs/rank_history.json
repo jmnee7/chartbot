@@ -1,52 +1,4 @@
 {
-  "2026-04-21 14:00:00": {
-    "_processed_at": "2026-04-21T14:01:35.122525",
-    "melon_top100": [
-      {
-        "rank": 8,
-        "timestamp": "2026-04-21 14:00",
-        "chart_type": "TOP100"
-      }
-    ],
-    "melon_hot100": [
-      {
-        "rank": 3,
-        "timestamp": "2026-04-21 14:00",
-        "chart_type": "HOT100"
-      }
-    ],
-    "melon": [
-      {
-        "rank": 8,
-        "timestamp": "2026-04-21 14:00",
-        "chart_type": "TOP100"
-      }
-    ],
-    "genie": [
-      {
-        "rank": null,
-        "timestamp": "2026-04-21 14:00:00"
-      }
-    ],
-    "bugs": [
-      {
-        "rank": 56,
-        "timestamp": "2026-04-21 14:00"
-      }
-    ],
-    "vibe": [
-      {
-        "rank": null,
-        "timestamp": "2026-04-21 14:00:00"
-      }
-    ],
-    "flo": [
-      {
-        "rank": 67,
-        "timestamp": "2026-04-21 14:00"
-      }
-    ]
-  },
   "2026-04-21 15:00:00": {
     "_processed_at": "2026-04-21T15:01:37.018054",
     "melon_top100": [
@@ -1148,6 +1100,54 @@
       {
         "rank": 54,
         "timestamp": "2026-04-22 13:00"
+      }
+    ]
+  },
+  "2026-04-22 14:00:00": {
+    "_processed_at": "2026-04-22T14:01:10.471287",
+    "melon_top100": [
+      {
+        "rank": 8,
+        "timestamp": "2026-04-22 14:00",
+        "chart_type": "TOP100"
+      }
+    ],
+    "melon_hot100": [
+      {
+        "rank": 3,
+        "timestamp": "2026-04-22 14:00",
+        "chart_type": "HOT100"
+      }
+    ],
+    "melon": [
+      {
+        "rank": 8,
+        "timestamp": "2026-04-22 14:00",
+        "chart_type": "TOP100"
+      }
+    ],
+    "genie": [
+      {
+        "rank": null,
+        "timestamp": "2026-04-22 14:00:00"
+      }
+    ],
+    "bugs": [
+      {
+        "rank": 87,
+        "timestamp": "2026-04-22 14:00"
+      }
+    ],
+    "vibe": [
+      {
+        "rank": null,
+        "timestamp": "2026-04-22 14:00:00"
+      }
+    ],
+    "flo": [
+      {
+        "rank": 60,
+        "timestamp": "2026-04-22 14:00"
       }
     ]
   }

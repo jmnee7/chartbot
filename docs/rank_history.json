@@ -1,52 +1,4 @@
 {
-  "2026-04-22 09:00:00": {
-    "_processed_at": "2026-04-22T09:01:10.811558",
-    "melon_top100": [
-      {
-        "rank": 8,
-        "timestamp": "2026-04-22 09:00",
-        "chart_type": "TOP100"
-      }
-    ],
-    "melon_hot100": [
-      {
-        "rank": 5,
-        "timestamp": "2026-04-22 09:00",
-        "chart_type": "HOT100"
-      }
-    ],
-    "melon": [
-      {
-        "rank": 8,
-        "timestamp": "2026-04-22 09:00",
-        "chart_type": "TOP100"
-      }
-    ],
-    "genie": [
-      {
-        "rank": 91,
-        "timestamp": "2026-04-22 09:00"
-      }
-    ],
-    "bugs": [
-      {
-        "rank": 28,
-        "timestamp": "2026-04-22 09:00"
-      }
-    ],
-    "vibe": [
-      {
-        "rank": null,
-        "timestamp": "2026-04-22 09:00:00"
-      }
-    ],
-    "flo": [
-      {
-        "rank": 53,
-        "timestamp": "2026-04-22 09:00"
-      }
-    ]
-  },
   "2026-04-22 10:00:00": {
     "_processed_at": "2026-04-22T10:01:05.856164",
     "melon_top100": [
@@ -1148,6 +1100,54 @@
       {
         "rank": 54,
         "timestamp": "2026-04-23 08:00"
+      }
+    ]
+  },
+  "2026-04-23 09:00:00": {
+    "_processed_at": "2026-04-23T09:00:41.259329",
+    "melon_top100": [
+      {
+        "rank": 9,
+        "timestamp": "2026-04-23 09:00",
+        "chart_type": "TOP100"
+      }
+    ],
+    "melon_hot100": [
+      {
+        "rank": 5,
+        "timestamp": "2026-04-23 09:00",
+        "chart_type": "HOT100"
+      }
+    ],
+    "melon": [
+      {
+        "rank": 9,
+        "timestamp": "2026-04-23 09:00",
+        "chart_type": "TOP100"
+      }
+    ],
+    "genie": [
+      {
+        "rank": 95,
+        "timestamp": "2026-04-23 09:00"
+      }
+    ],
+    "bugs": [
+      {
+        "rank": 89,
+        "timestamp": "2026-04-23 09:00"
+      }
+    ],
+    "vibe": [
+      {
+        "rank": null,
+        "timestamp": "2026-04-23 09:00:00"
+      }
+    ],
+    "flo": [
+      {
+        "rank": 53,
+        "timestamp": "2026-04-23 09:00"
       }
     ]
   }

@@ -1,52 +1,4 @@
 {
-  "2026-04-24 00:00:00": {
-    "_processed_at": "2026-04-24T00:00:51.872682",
-    "melon_top100": [
-      {
-        "rank": 3,
-        "timestamp": "2026-04-24 00:00",
-        "chart_type": "TOP100"
-      }
-    ],
-    "melon_hot100": [
-      {
-        "rank": 1,
-        "timestamp": "2026-04-24 00:00",
-        "chart_type": "HOT100"
-      }
-    ],
-    "melon": [
-      {
-        "rank": 3,
-        "timestamp": "2026-04-24 00:00",
-        "chart_type": "TOP100"
-      }
-    ],
-    "genie": [
-      {
-        "rank": 84,
-        "timestamp": "2026-04-24 00:00"
-      }
-    ],
-    "bugs": [
-      {
-        "rank": 39,
-        "timestamp": "2026-04-24 00:00"
-      }
-    ],
-    "vibe": [
-      {
-        "rank": null,
-        "timestamp": "2026-04-24 00:00:00"
-      }
-    ],
-    "flo": [
-      {
-        "rank": 60,
-        "timestamp": "2026-04-24 00:00"
-      }
-    ]
-  },
   "2026-04-24 02:00:00": {
     "_processed_at": "2026-04-24T02:00:43.943103",
     "melon_top100": [
@@ -1148,6 +1100,54 @@
       {
         "rank": 66,
         "timestamp": "2026-04-25 00:00"
+      }
+    ]
+  },
+  "2026-04-25 01:00:00": {
+    "_processed_at": "2026-04-25T01:01:11.633568",
+    "melon_top100": [
+      {
+        "rank": 33,
+        "timestamp": "2026-04-25 01:00",
+        "chart_type": "TOP100"
+      }
+    ],
+    "melon_hot100": [
+      {
+        "rank": 1,
+        "timestamp": "2026-04-25 01:00",
+        "chart_type": "HOT100"
+      }
+    ],
+    "melon": [
+      {
+        "rank": 33,
+        "timestamp": "2026-04-25 01:00",
+        "chart_type": "TOP100"
+      }
+    ],
+    "genie": [
+      {
+        "rank": null,
+        "timestamp": "2026-04-25 01:00:00"
+      }
+    ],
+    "bugs": [
+      {
+        "rank": 14,
+        "timestamp": "2026-04-25 01:00"
+      }
+    ],
+    "vibe": [
+      {
+        "rank": null,
+        "timestamp": "2026-04-25 01:00:00"
+      }
+    ],
+    "flo": [
+      {
+        "rank": 65,
+        "timestamp": "2026-04-25 01:00"
       }
     ]
   }

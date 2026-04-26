@@ -1,52 +1,4 @@
 {
-  "2026-04-26 02:00:00": {
-    "_processed_at": "2026-04-26T02:01:01.247287",
-    "melon_top100": [
-      {
-        "rank": 31,
-        "timestamp": "2026-04-26 02:00",
-        "chart_type": "TOP100"
-      }
-    ],
-    "melon_hot100": [
-      {
-        "rank": 1,
-        "timestamp": "2026-04-26 02:00",
-        "chart_type": "HOT100"
-      }
-    ],
-    "melon": [
-      {
-        "rank": 31,
-        "timestamp": "2026-04-26 02:00",
-        "chart_type": "TOP100"
-      }
-    ],
-    "genie": [
-      {
-        "rank": null,
-        "timestamp": "2026-04-26 02:00:00"
-      }
-    ],
-    "bugs": [
-      {
-        "rank": 19,
-        "timestamp": "2026-04-26 02:00"
-      }
-    ],
-    "vibe": [
-      {
-        "rank": null,
-        "timestamp": "2026-04-26 02:00:00"
-      }
-    ],
-    "flo": [
-      {
-        "rank": 81,
-        "timestamp": "2026-04-26 02:00"
-      }
-    ]
-  },
   "2026-04-26 03:00:00": {
     "_processed_at": "2026-04-26T03:01:01.650385",
     "melon_top100": [
@@ -1148,6 +1100,54 @@
       {
         "rank": 72,
         "timestamp": "2026-04-27 01:00"
+      }
+    ]
+  },
+  "2026-04-27 02:00:00": {
+    "_processed_at": "2026-04-27T02:01:06.752669",
+    "melon_top100": [
+      {
+        "rank": 26,
+        "timestamp": "2026-04-27 02:00",
+        "chart_type": "TOP100"
+      }
+    ],
+    "melon_hot100": [
+      {
+        "rank": 1,
+        "timestamp": "2026-04-27 02:00",
+        "chart_type": "HOT100"
+      }
+    ],
+    "melon": [
+      {
+        "rank": 26,
+        "timestamp": "2026-04-27 02:00",
+        "chart_type": "TOP100"
+      }
+    ],
+    "genie": [
+      {
+        "rank": 93,
+        "timestamp": "2026-04-27 02:00"
+      }
+    ],
+    "bugs": [
+      {
+        "rank": 25,
+        "timestamp": "2026-04-27 02:00"
+      }
+    ],
+    "vibe": [
+      {
+        "rank": null,
+        "timestamp": "2026-04-27 02:00:00"
+      }
+    ],
+    "flo": [
+      {
+        "rank": 71,
+        "timestamp": "2026-04-27 02:00"
       }
     ]
   }

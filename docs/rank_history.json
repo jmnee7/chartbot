@@ -1,52 +1,4 @@
 {
-  "2026-04-27 12:00:00": {
-    "_processed_at": "2026-04-27T12:01:03.570856",
-    "melon_top100": [
-      {
-        "rank": 16,
-        "timestamp": "2026-04-27 12:00",
-        "chart_type": "TOP100"
-      }
-    ],
-    "melon_hot100": [
-      {
-        "rank": 7,
-        "timestamp": "2026-04-27 12:00",
-        "chart_type": "HOT100"
-      }
-    ],
-    "melon": [
-      {
-        "rank": 16,
-        "timestamp": "2026-04-27 12:00",
-        "chart_type": "TOP100"
-      }
-    ],
-    "genie": [
-      {
-        "rank": null,
-        "timestamp": "2026-04-27 12:00:00"
-      }
-    ],
-    "bugs": [
-      {
-        "rank": 54,
-        "timestamp": "2026-04-27 12:00"
-      }
-    ],
-    "vibe": [
-      {
-        "rank": null,
-        "timestamp": "2026-04-27 12:00:00"
-      }
-    ],
-    "flo": [
-      {
-        "rank": 71,
-        "timestamp": "2026-04-27 12:00"
-      }
-    ]
-  },
   "2026-04-27 13:00:00": {
     "_processed_at": "2026-04-27T13:01:04.975223",
     "melon_top100": [
@@ -1148,6 +1100,54 @@
       {
         "rank": 72,
         "timestamp": "2026-04-28 11:00"
+      }
+    ]
+  },
+  "2026-04-28 12:00:00": {
+    "_processed_at": "2026-04-28T12:00:51.323864",
+    "melon_top100": [
+      {
+        "rank": 9,
+        "timestamp": "2026-04-28 12:00",
+        "chart_type": "TOP100"
+      }
+    ],
+    "melon_hot100": [
+      {
+        "rank": 4,
+        "timestamp": "2026-04-28 12:00",
+        "chart_type": "HOT100"
+      }
+    ],
+    "melon": [
+      {
+        "rank": 9,
+        "timestamp": "2026-04-28 12:00",
+        "chart_type": "TOP100"
+      }
+    ],
+    "genie": [
+      {
+        "rank": null,
+        "timestamp": "2026-04-28 12:00:00"
+      }
+    ],
+    "bugs": [
+      {
+        "rank": 100,
+        "timestamp": "2026-04-28 12:00"
+      }
+    ],
+    "vibe": [
+      {
+        "rank": null,
+        "timestamp": "2026-04-28 12:00:00"
+      }
+    ],
+    "flo": [
+      {
+        "rank": 77,
+        "timestamp": "2026-04-28 12:00"
       }
     ]
   }

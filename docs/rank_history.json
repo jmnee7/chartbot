@@ -1,52 +1,4 @@
 {
-  "2026-06-07 16:00:00": {
-    "_processed_at": "2026-06-07T16:00:36.555557",
-    "melon_top100": [
-      {
-        "rank": null,
-        "timestamp": "2026-06-07 16:00:00",
-        "chart_type": "TOP100"
-      }
-    ],
-    "melon_hot100": [
-      {
-        "rank": 29,
-        "timestamp": "2026-06-07 16:00",
-        "chart_type": "HOT100"
-      }
-    ],
-    "melon": [
-      {
-        "rank": 29,
-        "timestamp": "2026-06-07 16:00",
-        "chart_type": "HOT100"
-      }
-    ],
-    "genie": [
-      {
-        "rank": null,
-        "timestamp": "2026-06-07 16:00:00"
-      }
-    ],
-    "bugs": [
-      {
-        "rank": null,
-        "timestamp": "2026-06-07 16:00:00"
-      }
-    ],
-    "vibe": [
-      {
-        "rank": null,
-        "timestamp": "2026-06-07 16:00:00"
-      }
-    ],
-    "flo": [
-      {
-        "rank": null,
-        "timestamp": "2026-06-07 16:00:00"
-      }
-    ]
-  },
   "2026-06-07 17:00:00": {
     "_processed_at": "2026-06-07T17:00:33.065811",
     "melon_top100": [
@@ -1148,6 +1100,54 @@
       {
         "rank": null,
         "timestamp": "2026-06-08 15:00:00"
+      }
+    ]
+  },
+  "2026-06-08 16:00:00": {
+    "_processed_at": "2026-06-08T16:00:48.088359",
+    "melon_top100": [
+      {
+        "rank": null,
+        "timestamp": "2026-06-08 16:00:00",
+        "chart_type": "TOP100"
+      }
+    ],
+    "melon_hot100": [
+      {
+        "rank": 29,
+        "timestamp": "2026-06-08 16:00",
+        "chart_type": "HOT100"
+      }
+    ],
+    "melon": [
+      {
+        "rank": 29,
+        "timestamp": "2026-06-08 16:00",
+        "chart_type": "HOT100"
+      }
+    ],
+    "genie": [
+      {
+        "rank": null,
+        "timestamp": "2026-06-08 16:00:00"
+      }
+    ],
+    "bugs": [
+      {
+        "rank": null,
+        "timestamp": "2026-06-08 16:00:00"
+      }
+    ],
+    "vibe": [
+      {
+        "rank": null,
+        "timestamp": "2026-06-08 16:00:00"
+      }
+    ],
+    "flo": [
+      {
+        "rank": null,
+        "timestamp": "2026-06-08 16:00:00"
       }
     ]
   }

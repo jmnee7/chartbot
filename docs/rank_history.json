@@ -1,52 +1,4 @@
 {
-  "2026-09-02 12:00:00": {
-    "_processed_at": "2026-09-02T12:01:08.942316",
-    "melon_top100": [
-      {
-        "rank": null,
-        "timestamp": "2026-09-02 12:00:00",
-        "chart_type": "TOP100"
-      }
-    ],
-    "melon_hot100": [
-      {
-        "rank": null,
-        "timestamp": "2026-09-02 12:00:00",
-        "chart_type": "HOT100"
-      }
-    ],
-    "melon": [
-      {
-        "rank": null,
-        "timestamp": "2026-09-02 12:00:00",
-        "chart_type": "HOT100"
-      }
-    ],
-    "genie": [
-      {
-        "rank": null,
-        "timestamp": "2026-09-02 12:00:00"
-      }
-    ],
-    "bugs": [
-      {
-        "rank": null,
-        "timestamp": "2026-09-02 12:00:00"
-      }
-    ],
-    "vibe": [
-      {
-        "rank": null,
-        "timestamp": "2026-09-02 12:00:00"
-      }
-    ],
-    "flo": [
-      {
-        "rank": null,
-        "timestamp": "2026-09-02 12:00:00"
-      }
-    ]
-  },
   "2026-09-02 13:00:00": {
     "_processed_at": "2026-09-02T13:01:11.484005",
     "melon_top100": [
@@ -1148,6 +1100,54 @@
       {
         "rank": null,
         "timestamp": "2026-09-03 11:00:00"
+      }
+    ]
+  },
+  "2026-09-03 12:00:00": {
+    "_processed_at": "2026-09-03T12:01:07.489394",
+    "melon_top100": [
+      {
+        "rank": null,
+        "timestamp": "2026-09-03 12:00:00",
+        "chart_type": "TOP100"
+      }
+    ],
+    "melon_hot100": [
+      {
+        "rank": null,
+        "timestamp": "2026-09-03 12:00:00",
+        "chart_type": "HOT100"
+      }
+    ],
+    "melon": [
+      {
+        "rank": null,
+        "timestamp": "2026-09-03 12:00:00",
+        "chart_type": "HOT100"
+      }
+    ],
+    "genie": [
+      {
+        "rank": null,
+        "timestamp": "2026-09-03 12:00:00"
+      }
+    ],
+    "bugs": [
+      {
+        "rank": null,
+        "timestamp": "2026-09-03 12:00:00"
+      }
+    ],
+    "vibe": [
+      {
+        "rank": null,
+        "timestamp": "2026-09-03 12:00:00"
+      }
+    ],
+    "flo": [
+      {
+        "rank": null,
+        "timestamp": "2026-09-03 12:00:00"
       }
     ]
   }

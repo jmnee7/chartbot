@@ -329,6 +329,9 @@ function navigateToMenu(key) {
         case 'support-funding':
             go({ view: 'support', type: 'fundraising' });
             break;
+        case 'support-gifticon':
+            go({ view: 'support', type: 'gifticon' });
+            break;
 
         default:
             console.log('navigateToMenu:', key);
@@ -627,7 +630,7 @@ function switchChantTab(sub, btn){
     const dateEl = document.getElementById('guideChantDate');
     const container = document.getElementById('chantImagesContainer');
     const trackTabs = document.getElementById('chantTrackSubtabs');
-    const titleMap = { handsup:'Hands Up', wish:'WISH', songbird:'Songbird', steady:'Steady', miracle:'Miracle', poppop:'poppop', color:'COLOR', odetolove:'Ode to Love' };
+    const titleMap = { handsup:'Hands Up', wish:'WISH', songbird:'Songbird', steady:'Steady', miracle:'Miracle', poppop:'poppop', color:'COLOR', hellomellow:'Hello Mellow', odetolove:'Ode to Love' };
     if (titleEl) titleEl.textContent = `응원법 · ${titleMap[sub] || ''}`;
     if (dateEl){ const d = new Date(); const fmt = `${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,'0')}.${String(d.getDate()).padStart(2,'0')}`; dateEl.textContent = fmt; }
     const trackMap = {
@@ -638,7 +641,8 @@ function switchChantTab(sub, btn){
         miracle: [ { key:'miracle', label:'Miracle', imgs:['styles/assets/guide/chant/10. Miracle 응원법.jpg'] } ],
         poppop: [ { key:'poppop', label:'poppop', imgs:['styles/assets/guide/chant/11. poppop 응원법.jpg'] } ],
         color: [ { key:'surf', label:'Surf', imgs:['styles/assets/guide/chant/12. Surf 응원법.jpg'] }, { key:'color', label:'COLOR', imgs:['styles/assets/guide/chant/13. COLOR 응원법.jpeg'] } ],
-        odetolove: [ { key:'odetolove', label:'Ode to Love', imgs:['styles/assets/guide/chant/14. Ode to Love 응원법.jpg?v=20260420'] } ]
+        hellomellow: [ { key:'hellomellow', label:'Hello Mellow', imgs:['styles/assets/guide/chant/16. Hello Mellow 응원법.jpg'] } ],
+        odetolove: [ { key:'odetolove', label:'Ode to Love', imgs:['styles/assets/guide/chant/14. Ode to Love 응원법.jpg?v=20260420'] }, { key:'sticky', label:'Sticky', imgs:['styles/assets/guide/chant/15. Sticky 응원법.jpg'] } ]
     };
     const tracks = trackMap[sub] || [];
     if (trackTabs){
@@ -667,7 +671,9 @@ function switchChantTrack(trackKey, btn){
         poppop:['styles/assets/guide/chant/11. poppop 응원법.jpg'],
         surf:['styles/assets/guide/chant/12. Surf 응원법.jpg'],
         color:['styles/assets/guide/chant/13. COLOR 응원법.jpeg'],
-        odetolove:['styles/assets/guide/chant/14. Ode to Love 응원법.jpg?v=20260420']
+        hellomellow:['styles/assets/guide/chant/16. Hello Mellow 응원법.jpg'],
+        odetolove:['styles/assets/guide/chant/14. Ode to Love 응원법.jpg?v=20260420'],
+        sticky:['styles/assets/guide/chant/15. Sticky 응원법.jpg']
     };
     const imgs = all[trackKey] || [];
     if (container){ container.innerHTML = imgs.map(src=>`<div class=\"guide-id-image-container\"><img class=\"guide-id-image\" src=\"${src}\" alt=\"응원법\"/></div>`).join(''); }
@@ -935,6 +941,7 @@ function hideAllSupportSections(){
     hideSupportTeamSection();
     hideSupportIdSection();
     hideSupportFundraisingSection();
+    hideSupportGifticonSection();
 }
 
 // 원클릭 바로가기 액션
@@ -1005,15 +1012,15 @@ function switchIdSubTab(sub, btn){
             dualContainer.innerHTML = `
                 <div class="guide-dual-card">
                     <h3 class="guide-dual-title">KT</h3>
-                    <img class="guide-dual-img" src="styles/assets/guide/generateid/dual/kt.PNG?v=20260420" alt="KT 듀얼 넘버 가이드" />
+                    <img class="guide-dual-img" src="styles/assets/guide/generateid/dual/kt.PNG?v=20260927" alt="KT 듀얼 넘버 가이드" />
                 </div>
                 <div class="guide-dual-card">
                     <h3 class="guide-dual-title">SKT</h3>
-                    <img class="guide-dual-img" src="styles/assets/guide/generateid/dual/skt.PNG?v=20260420" alt="SKT 듀얼 넘버 가이드" />
+                    <img class="guide-dual-img" src="styles/assets/guide/generateid/dual/skt.PNG?v=20260927" alt="SKT 듀얼 넘버 가이드" />
                 </div>
                 <div class="guide-dual-card">
                     <h3 class="guide-dual-title">U+</h3>
-                    <img class="guide-dual-img" src="styles/assets/guide/generateid/dual/lgu.PNG?v=20260420" alt="U+ 듀얼 넘버 가이드" />
+                    <img class="guide-dual-img" src="styles/assets/guide/generateid/dual/lgu.PNG?v=20260927" alt="U+ 듀얼 넘버 가이드" />
                 </div>
             `;
         }
@@ -1027,7 +1034,7 @@ function switchIdSubTab(sub, btn){
         }
         const targetImg = document.getElementById('guideIdImage');
         if (targetImg){
-            targetImg.src = (sub === 'bugs') ? 'styles/assets/guide/generateid/bugs.png?v=20260420' : 'styles/assets/guide/generateid/genie.png?v=20260420';
+            targetImg.src = (sub === 'bugs') ? 'styles/assets/guide/generateid/벅스 아이디 생성 가이드(260917 ver.).jpg' : 'styles/assets/guide/generateid/지니 아이디 생성 가이드(260917 ver.).jpg';
         }
     }
 }
@@ -1072,6 +1079,7 @@ function getCurrentShareUrl(){
     if (isVisible('supportTeamSection')) return `${origin}/r/support/team`;
     if (isVisible('supportIdSection')) return `${origin}/r/support/id`;
     if (isVisible('supportFundraisingSection')) return `${origin}/r/support/fundraising`;
+    if (isVisible('supportGifticonSection')) return `${origin}/r/support/gifticon`;
     // Fallback: home
     return `${origin}/`;
 }
@@ -1321,6 +1329,13 @@ function openSupport(type) {
             updateSupportDate('supportTeamSection');
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
+    } else if (type === 'gifticon') {
+        const gifticonSection = document.getElementById('supportGifticonSection');
+        if (gifticonSection) {
+            gifticonSection.style.display = 'block';
+            updateSupportDate('supportGifticonSection');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
     }
 }
 
@@ -1344,6 +1359,11 @@ function hideSupportFundraisingSection() {
     if (fundraisingSection) fundraisingSection.style.display = 'none';
 }
 
+function hideSupportGifticonSection() {
+    const gifticonSection = document.getElementById('supportGifticonSection');
+    if (gifticonSection) gifticonSection.style.display = 'none';
+}
+
 function updateSupportDate(sectionId) {
     let dateEl = null;
     
@@ -1356,6 +1376,8 @@ function updateSupportDate(sectionId) {
         dateEl = document.querySelector('#supportFundraisingSection .support-fundraising-date');
     } else if (sectionId === 'supportTeamSection') {
         dateEl = document.querySelector('#supportTeamSection .support-helper-date');
+    } else if (sectionId === 'supportGifticonSection') {
+        dateEl = document.querySelector('#supportGifticonSection .support-helper-date');
     }
     
     if (dateEl) {
@@ -1375,8 +1397,8 @@ function openTeamApplication() {
 
 function openIdDonation(service) {
     const urls = {
-        'genie': 'https://forms.gle/hUX7SGLXwLpfkbPdA',
-        'bugs': 'https://forms.gle/goTwoq1crirrLBmW9'
+        'genie': 'https://forms.gle/4sFjva6PDM1wpqTJ7',
+        'bugs': 'https://forms.gle/EaEYJCSbzzQn4twM8'
     };
     
     if (urls[service]) {

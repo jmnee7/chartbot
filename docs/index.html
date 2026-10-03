@@ -88,6 +88,7 @@
                     <button class="menu-subitem" type="button" onclick="navigateToMenu('support-team')">팀원 지원</button>
                     <button class="menu-subitem" type="button" onclick="navigateToMenu('support-id-donate')">아이디 기부</button>
                     <button class="menu-subitem" type="button" onclick="navigateToMenu('support-funding')">모금</button>
+                    <button class="menu-subitem" type="button" onclick="navigateToMenu('support-gifticon')">기프티콘 기부</button>
                 </div>
             </section>
         </div>
@@ -449,6 +450,7 @@
                 <button class="id-subtab" data-sub="miracle" onclick="switchChantTab('miracle', this)">Miracle</button>
                 <button class="id-subtab" data-sub="poppop" onclick="switchChantTab('poppop', this)">poppop</button>
                 <button class="id-subtab" data-sub="color" onclick="switchChantTab('color', this)">COLOR</button>
+                <button class="id-subtab" data-sub="hellomellow" onclick="switchChantTab('hellomellow', this)">Hello Mellow</button>
                 <button class="id-subtab" data-sub="odetolove" onclick="switchChantTab('odetolove', this)">Ode to Love</button>
             </div>
 
@@ -519,6 +521,10 @@
                 <a class="hub-card" href="#" onclick="openSupport('fundraising'); return false;">
                     <img class="hub-icon" src="styles/assets/support/icon/fundrasing.png?v=20260420" alt="모금" />
                     <div class="hub-title">모금</div>
+                </a>
+                <a class="hub-card" href="#" onclick="openSupport('gifticon'); return false;">
+                    <img class="hub-icon" src="styles/assets/support/icon/id.png?v=20260420" alt="기프티콘 기부" />
+                    <div class="hub-title">기프티콘 기부</div>
                 </a>
             </div>
         </section>
@@ -640,7 +646,7 @@
             <div class="support-id-date">YYYY.MM.DD</div>
 
             <div class="support-id-image-container">
-                <img class="support-id-image" src="styles/assets/support/id/geinie-bugs.png?v=20260420" alt="지니 벅스 아이디 기부"/>
+                <img class="support-id-image" src="styles/assets/support/id/260917 아이디 기부 공지.jpg" alt="지니 벅스 아이디 기부"/>
             </div>
 
             <div class="guide-actions">
@@ -656,11 +662,25 @@
             <div class="support-fundraising-date">YYYY.MM.DD</div>
 
             <div class="support-fundraising-image-container">
-                <img class="support-fundraising-image" src="styles/assets/support/fundraising/notice.jpg?v=20260420" alt="NCT WISH 1st ALBUM Ode to Love 모금 안내"/>
+                <img class="support-fundraising-image" src="styles/assets/support/fundraising/I SPY 모금 안내.png" alt="NCT WISH I SPY 모금 안내"/>
             </div>
 
             <div class="guide-actions">
                 <button class="guide-action-btn primary" onclick="openFundraisingApplication()">참여하기 ></button>
+                <button class="guide-action-btn" onclick="shareCurrentGuide()">🔗 공유하기</button>
+            </div>
+        </section>
+
+        <!-- Support: 기프티콘 기부 상세 화면 -->
+        <section id="supportGifticonSection" class="support-helper-section" style="display:none;">
+            <h2 class="support-helper-title">기프티콘 기부</h2>
+            <div class="support-helper-date">YYYY.MM.DD</div>
+
+            <div class="support-helper-image-container">
+                <img class="support-helper-image" src="styles/assets/support/gifticon/I SPY 기프티콘 기부 공지.png" alt="기프티콘 기부 안내"/>
+            </div>
+
+            <div class="guide-actions">
                 <button class="guide-action-btn" onclick="shareCurrentGuide()">🔗 공유하기</button>
             </div>
         </section>

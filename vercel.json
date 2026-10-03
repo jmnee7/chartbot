@@ -11,7 +11,7 @@
     { "src": "/r/g/cheer/([^/]+)$", "status": 308, "headers": { "Location": "/index.html#/guide/cheer?album=$1" } },
     { "src": "/r/g/cheer/([^/]+)/([^/]+)$", "status": 308, "headers": { "Location": "/index.html#/guide/cheer?album=$1&track=$2" } },
     { "src": "/r/g/radio", "status": 308, "headers": { "Location": "/index.html#/guide/radio" } },
-    { "src": "/r/support/(helper|team|id|fundraising)", "status": 308, "headers": { "Location": "/index.html#/support/$1" } },
+    { "src": "/r/support/(helper|team|id|fundraising|gifticon)", "status": 308, "headers": { "Location": "/index.html#/support/$1" } },
     { "src": "/r/vote/collect/(theshow|showchampion|musicbank|musiccore|inkigayo|mcountdown)", "status": 308, "headers": { "Location": "/index.html#/vote/collect?tab=$1" } },
     { "src": "/r/vote/rate", "status": 308, "headers": { "Location": "/index.html#/vote/rate" } },
     { "src": "/(.*)", "dest": "/$1" }

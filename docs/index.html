@@ -12,7 +12,7 @@
     <meta name="twitter:image" content="styles/assets/thumbnail.png?v=20260420" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
     <link rel="stylesheet" href="styles/main.css?v=20260420">
-    <link rel="stylesheet" href="styles/redesign.css?v=20261011w">
+    <link rel="stylesheet" href="styles/redesign.css?v=20261011x">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -44,7 +44,7 @@
         <nav class="desktop-mega-menu" aria-label="상세 메뉴">
             <div class="mega-menu-column"><strong>가이드</strong><button type="button" onclick="navigateMegaMenu('guideStreaming')">스트리밍</button><button type="button" onclick="navigateMegaMenu('guideDownload')">다운로드</button><button type="button" onclick="navigateMegaMenu('guideId')">아이디 생성</button><button type="button" onclick="navigateMegaMenu('guideChant')">응원법</button><button type="button" onclick="navigateMegaMenu('guideRadio')">라디오 신청</button><button type="button" onclick="navigateMegaMenu('guideTiktok')">틱톡 업로드</button></div>
             <div class="mega-menu-column"><strong>스트리밍</strong><button type="button" onclick="navigateMegaMenu('guideHubStreaming','stream-list')">권장 스트리밍 리스트</button><button type="button" onclick="navigateMegaMenu('guideHubStreaming','stream-oneclick')">원클릭 스트리밍 리스트</button><button type="button" onclick="navigateMegaMenu('streamingMV')">뮤직비디오</button></div>
-            <div class="mega-menu-column"><strong>투표</strong><button type="button" onclick="navigateMegaMenu('guideHubVote','vote-schedule')">투표 일정</button><button type="button" onclick="navigateMegaMenu('guideHubVote','vote-ratio')">음악방송 반영 비율</button><button type="button" onclick="navigateMegaMenu('guideHubVote','vote-sms')">문자 투표</button><button type="button" onclick="navigateMegaMenu('guideHubVote','vote-live')">실시간 투표</button><button type="button" onclick="navigateMegaMenu('guideHubVote','vote-tickets')">투표권 모으기</button></div>
+            <div class="mega-menu-column"><strong>투표</strong><button type="button" onclick="navigateMegaMenu('guideHubVote','vote-schedule')">투표 일정</button><button type="button" onclick="navigateMegaMenu('guideHubVote','vote-tickets')">투표권 모으기</button><button type="button" onclick="navigateMegaMenu('guideHubVote','vote-sms')">문자 투표</button><button type="button" onclick="navigateMegaMenu('guideHubVote','vote-live')">실시간 투표</button><button type="button" onclick="navigateMegaMenu('guideHubVote','vote-ratio')">음악방송 반영 비율</button></div>
             <div class="mega-menu-column"><strong>서포트</strong><button type="button" onclick="navigateMegaMenu('guideHubSupport','support-helper-card')">헬퍼 지원</button><button type="button" onclick="navigateMegaMenu('guideHubSupport','support-team-card')">팀원 지원</button><button type="button" onclick="navigateMegaMenu('guideHubSupport','support-id-card')">아이디 기부</button><button type="button" onclick="navigateMegaMenu('guideHubSupport','support-fundraising-card')">모금</button><button type="button" onclick="navigateMegaMenu('guideHubSupport','support-gifticon-card')">기프티콘 기부</button></div>
         </nav>
         <div class="menu-placeholder"></div>
@@ -92,10 +92,10 @@
                 </button>
                 <div class="menu-sublist">
                     <button class="menu-subitem" type="button" onclick="navigateToMenu('vote-schedule')">투표 일정</button>
-                    <button class="menu-subitem" type="button" onclick="navigateToMenu('vote-weight')">음악방송 반영 비율</button>
+                    <button class="menu-subitem" type="button" onclick="navigateToMenu('vote-collect')">투표권 모으기</button>
                     <button class="menu-subitem" type="button" onclick="navigateToMenu('vote-sms')">문자 투표</button>
                     <button class="menu-subitem" type="button" onclick="navigateToMenu('vote-live')">실시간 투표</button>
-                    <button class="menu-subitem" type="button" onclick="navigateToMenu('vote-collect')">투표권 모으기</button>
+                    <button class="menu-subitem" type="button" onclick="navigateToMenu('vote-weight')">음악방송 반영 비율</button>
                 </div>
             </section>
 
@@ -507,10 +507,10 @@
             <div class="page-layout">
                 <nav class="page-section-nav" aria-label="투표 목차">
                     <a href="#vote-schedule" onclick="document.getElementById('vote-schedule').scrollIntoView(); return false;">투표 일정</a>
-                    <a href="#vote-ratio" onclick="document.getElementById('vote-ratio').scrollIntoView(); return false;">음악방송 반영 비율</a>
+                    <a href="#vote-tickets" onclick="document.getElementById('vote-tickets').scrollIntoView(); return false;">투표권 모으기</a>
                     <a href="#vote-sms" onclick="document.getElementById('vote-sms').scrollIntoView(); return false;">문자 투표</a>
                     <a href="#vote-live" onclick="document.getElementById('vote-live').scrollIntoView(); return false;">실시간 투표</a>
-                    <a href="#vote-tickets" onclick="document.getElementById('vote-tickets').scrollIntoView(); return false;">투표권 모으기</a>
+                    <a href="#vote-ratio" onclick="document.getElementById('vote-ratio').scrollIntoView(); return false;">음악방송 반영 비율</a>
                 </nav>
                 <div class="page-sections">
                     <section id="vote-schedule" class="page-section">
@@ -526,18 +526,11 @@
                             <button type="button" onclick="go({ view: 'voteSchedule' })"><strong>쇼! 음악중심 시청자위원회 투표</strong><span>10월 21일(수) 9:00 ~ 10월 22일(목) 11:00</span></button>
                         </div>
                     </section>
-                    <section id="vote-ratio" class="page-section">
-                        <h3>음악방송 반영 비율</h3>
-                        <p class="section-subtitle">2026.04 버전 · 방송별 세부 항목은 원본 이미지에서 확인해요</p>
-                        <div class="vote-ratio-wrap"><table class="vote-ratio-table"><thead><tr><th>방송</th><th>음원</th><th>음반</th><th>방송</th><th>기타·투표</th></tr></thead><tbody>
-                            <tr><th>쇼챔피언</th><td>35%</td><td>15%</td><td>20%</td><td>SNS 10% · 사전투표 20%</td></tr>
-                            <tr><th>뮤직뱅크</th><td>60%</td><td>5%</td><td>20%</td><td>소셜미디어 5% · 사전투표 10%</td></tr>
-                            <tr><th>쇼! 음악중심</th><td>50%</td><td>10%</td><td>10%</td><td>동영상 10% · 사전투표 10% · 실시간투표 10%</td></tr>
-                            <tr><th>인기가요</th><td>50%</td><td>10%</td><td>10%</td><td>SNS 20% · 사전투표 5% · 실시간투표 5%</td></tr>
-                            <tr><th>엠카운트다운</th><td>50%</td><td>15%</td><td>10%</td><td>글로벌 소셜 미디어 15% · 사전투표 10%</td></tr>
-                        </tbody></table></div>
-                        <img class="vote-ratio-mobile-image" src="styles/assets/vote/rate/음악방송 반영 비율표.webp" alt="음악방송 접수 반영 비율표" loading="lazy" />
-                        <button class="secondary-action vote-ratio-original" type="button" onclick="go({view:'voteRate'})">원본 이미지 보기</button>
+                    <section id="vote-tickets" class="page-section">
+                        <h3>투표권 모으기</h3>
+                        <p class="section-subtitle">방법은 팀 공지 기준으로 입력해요</p>
+                        <div class="step-grid"><button type="button" onclick="openVoteCollect()"><span>1</span><span class="step-copy"><strong>앱 설치·로그인</strong><small>이미지 가이드에서 확인</small></span></button><button type="button" onclick="openVoteCollect()"><span>2</span><span class="step-copy"><strong>미션 참여</strong><small>이미지 가이드에서 확인</small></span></button><button type="button" onclick="openVoteCollect()"><span>3</span><span class="step-copy"><strong>투표권 확인</strong><small>이미지 가이드에서 확인</small></span></button></div>
+                        <button class="text-action" type="button" onclick="openVoteCollect()">투표권 모으기 가이드 보기 ›</button>
                     </section>
                     <section id="vote-sms" class="page-section">
                         <h3>문자 투표</h3>
@@ -551,16 +544,23 @@
                         <h3>실시간 투표</h3>
                         <p class="section-subtitle">투표 방법과 진행 시간은 각 방송의 공식 공지를 확인해 주세요</p>
                         <div class="vote-live-grid">
-                            <article class="radio-card"><h4>더쇼</h4><p>BIGC</p></article>
-                            <article class="radio-card"><h4>쇼! 음악중심</h4><p>Mubeat · Muniverse</p></article>
-                            <article class="radio-card"><h4>인기가요</h4><p>Higher</p></article>
+                            <article class="radio-card"><h4>더쇼</h4><p>BIGC</p><div class="vote-app-links"><a href="https://play.google.com/store/apps/details?id=im.bigc.lively" target="_blank" rel="noopener noreferrer" aria-label="BIGC Google Play에서 설치">Android · Google Play</a><a href="https://apps.apple.com/kr/app/id1575835045" target="_blank" rel="noopener noreferrer" aria-label="BIGC App Store에서 설치">iOS · App Store</a></div></article>
+                            <article class="radio-card"><h4>쇼! 음악중심</h4><p>Mubeat · Muniverse</p><div class="vote-app-links"><span>Mubeat</span><a href="https://play.google.com/store/apps/details?id=com.vlending.apps.mubeat" target="_blank" rel="noopener noreferrer" aria-label="Mubeat Google Play에서 설치">Android · Google Play</a><a href="https://apps.apple.com/kr/app/id1320789688" target="_blank" rel="noopener noreferrer" aria-label="Mubeat App Store에서 설치">iOS · App Store</a><span>Muniverse</span><a href="https://play.google.com/store/apps/details?id=com.tnk.muniverse" target="_blank" rel="noopener noreferrer" aria-label="Muniverse Google Play에서 설치">Android · Google Play</a><a href="https://apps.apple.com/kr/app/id6749677921" target="_blank" rel="noopener noreferrer" aria-label="Muniverse App Store에서 설치">iOS · App Store</a></div></article>
+                            <article class="radio-card"><h4>인기가요</h4><p>Higher</p><div class="vote-app-links"><a href="https://play.google.com/store/apps/details?id=com.dalcomsoft.mysu.a" target="_blank" rel="noopener noreferrer" aria-label="Higher Google Play에서 설치">Android · Google Play</a><a href="https://apps.apple.com/kr/app/id1672001935" target="_blank" rel="noopener noreferrer" aria-label="Higher App Store에서 설치">iOS · App Store</a></div></article>
                         </div>
                     </section>
-                    <section id="vote-tickets" class="page-section">
-                        <h3>투표권 모으기</h3>
-                        <p class="section-subtitle">방법은 팀 공지 기준으로 입력해요</p>
-                        <div class="step-grid"><button type="button" onclick="openVoteCollect()"><span>1</span><span class="step-copy"><strong>앱 설치·로그인</strong><small>이미지 가이드에서 확인</small></span></button><button type="button" onclick="openVoteCollect()"><span>2</span><span class="step-copy"><strong>미션 참여</strong><small>이미지 가이드에서 확인</small></span></button><button type="button" onclick="openVoteCollect()"><span>3</span><span class="step-copy"><strong>투표권 확인</strong><small>이미지 가이드에서 확인</small></span></button></div>
-                        <button class="text-action" type="button" onclick="openVoteCollect()">투표권 모으기 가이드 보기 ›</button>
+                    <section id="vote-ratio" class="page-section">
+                        <h3>음악방송 반영 비율</h3>
+                        <p class="section-subtitle">2026.04 버전 · 방송별 세부 항목은 원본 이미지에서 확인해요</p>
+                        <div class="vote-ratio-wrap"><table class="vote-ratio-table"><thead><tr><th>방송</th><th>음원</th><th>음반</th><th>방송</th><th>기타·투표</th></tr></thead><tbody>
+                            <tr><th>쇼챔피언</th><td>35%</td><td>15%</td><td>20%</td><td>SNS 10% · 사전투표 20%</td></tr>
+                            <tr><th>뮤직뱅크</th><td>60%</td><td>5%</td><td>20%</td><td>소셜미디어 5% · 사전투표 10%</td></tr>
+                            <tr><th>쇼! 음악중심</th><td>50%</td><td>10%</td><td>10%</td><td>동영상 10% · 사전투표 10% · 실시간투표 10%</td></tr>
+                            <tr><th>인기가요</th><td>50%</td><td>10%</td><td>10%</td><td>SNS 20% · 사전투표 5% · 실시간투표 5%</td></tr>
+                            <tr><th>엠카운트다운</th><td>50%</td><td>15%</td><td>10%</td><td>글로벌 소셜 미디어 15% · 사전투표 10%</td></tr>
+                        </tbody></table></div>
+                        <img class="vote-ratio-mobile-image" src="styles/assets/vote/rate/음악방송 반영 비율표.webp" alt="음악방송 접수 반영 비율표" loading="lazy" />
+                        <button class="secondary-action vote-ratio-original" type="button" onclick="go({view:'voteRate'})">원본 이미지 보기</button>
                     </section>
                 </div>
             </div>
@@ -679,11 +679,11 @@
         <section id="voteCollectSection" class="guide-id-section" style="display:none;">
             <div class="id-subtabs" role="tablist">
                 <button class="id-subtab" data-sub="theshow" onclick="switchVoteCollectTab('theshow', this)">더쇼</button>
-                <button class="id-subtab active" data-sub="showchampion" onclick="switchVoteCollectTab('showchampion', this)">쇼챔</button>
+                <button class="id-subtab active" data-sub="showchampion" onclick="switchVoteCollectTab('showchampion', this)">쇼챔피언</button>
                 <button class="id-subtab" data-sub="musicbank" onclick="switchVoteCollectTab('musicbank', this)">뮤직뱅크</button>
                 <button class="id-subtab" data-sub="musiccore" onclick="switchVoteCollectTab('musiccore', this)">쇼음악중심</button>
                 <button class="id-subtab" data-sub="inkigayo" onclick="switchVoteCollectTab('inkigayo', this)">인기가요</button>
-                <button class="id-subtab" data-sub="mcountdown" onclick="switchVoteCollectTab('mcountdown', this)">엠카</button>
+                <button class="id-subtab" data-sub="mcountdown" onclick="switchVoteCollectTab('mcountdown', this)">엠카운트다운</button>
             </div>
 
             <h2 id="voteCollectTitle" class="guide-id-title">투표권 모으기</h2>

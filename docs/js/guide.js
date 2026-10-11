@@ -26,7 +26,7 @@ function switchIdSubTab(sub, btn){
     if (sub === 'dual') {
         // 듀얼 넘버 3개 카드 렌더링
         if (!dualContainer) {
-            const parent = document.querySelector('.guide-id-image-container');
+            const parent = document.querySelector('#guideIdSection .guide-id-image-container');
             if (parent) {
                 parent.classList.add('grid-mode');
                 parent.innerHTML = `<div id="${dualContainerId}" class="guide-dual-grid"></div>`;
@@ -54,7 +54,7 @@ function switchIdSubTab(sub, btn){
     } else {
         // 벅스/지니 단일 이미지 표시
         // 이미지 컨테이너가 카드 그리드 상태일 수 있으니 초기화
-        const parent = document.querySelector('.guide-id-image-container');
+        const parent = document.querySelector('#guideIdSection .guide-id-image-container');
         if (parent) {
             parent.classList.remove('grid-mode');
             parent.innerHTML = '<img id="guideIdImage" class="guide-id-image" alt="아이디 생성 가이드 이미지"/>';

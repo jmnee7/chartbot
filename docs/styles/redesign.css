@@ -725,6 +725,7 @@ body[data-page="inner"] .container { width: min(100%, 1440px); padding: 72px 80p
 .vote-sms-grid .radio-card button:disabled { cursor: not-allowed; opacity: .6; }
 .page-sections { gap: 72px; }
 .guide-hub { margin-bottom: 0; }
+.guide-detail-layout #guideDetailSlot { display: block; }
 .guide-detail-layout .page-sections > section { min-width: 0; }
 @media (max-width: 1023px) {
     body[data-page="inner"] .top-menu-bar { height: 56px; }

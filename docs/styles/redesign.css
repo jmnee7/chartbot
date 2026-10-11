@@ -795,6 +795,7 @@ body[data-page="home"] .app-title { font-family: 'Noto Sans KR', sans-serif; fon
 #guideHubMain .feature-actions { display: flex; gap: 8px; width: 100%; }
 #guideHubMain .feature-actions button { flex: 1; min-width: 130px; height: 44px; margin: 0; white-space: nowrap; }
 @media (max-width: 360px) { #guideHubMain .feature-actions { flex-wrap: wrap; } }
+#guideHubMain .guide-action-panel { min-height: 94px; }
 .support-section-nav a[aria-current="location"] { border-left: 3px solid var(--brand-strong); color: var(--text-primary); font-size: 15px; font-weight: 700; }
 @media (max-width: 639px) {
     .support-section-nav a[aria-current="location"] { border-left: 0; border-bottom: 3px solid var(--brand-strong); }

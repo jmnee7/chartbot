@@ -57,8 +57,8 @@ window.siteContent = {
             'styles/assets/guide/stream/벅스 스트리밍 가이드(모바일).webp?v=20261010',
             'styles/assets/guide/stream/벅스 스트리밍 가이드(PC).webp?v=20261010'
         ],
-        spotify: [],
-        apple: [],
+        spotify: ['styles/assets/guide/stream/spotify-streaming-guide-mobile.webp'],
+        apple: ['styles/assets/guide/stream/apple-music-streaming-guide.webp'],
         genie: [
             'styles/assets/guide/stream/지니 스트리밍 가이드(모바일).webp?v=20261010',
             'styles/assets/guide/stream/지니 스트리밍 가이드(PC).webp?v=20261010'

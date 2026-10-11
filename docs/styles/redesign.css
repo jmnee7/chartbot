@@ -406,6 +406,8 @@ body[data-page="inner"] .container { padding-top: 28px; }
 .footer-description p { margin: 0 0 4px; color: #e3e9ec; font-size: 12px; }
 .footer-bottom { margin-top: 40px; color: #e3e9ec; font-size: 12px; }
 .footer-bottom a { padding: 8px 13px; border: 1px solid #c1cbd0; border-radius: 3px; }
+.footer-social { display: flex; gap: 8px; }
+.footer-bottom .footer-social a { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; padding: 0; border: 1px solid #fff; border-radius: 4px; font: 500 14px/20px 'Noto Sans KR', sans-serif; }
 .footer { display: none; }
 .footer-nav { display: none; max-width: var(--content-width); }
 .footer-label { color: #f1f5f7; }
@@ -767,6 +769,9 @@ body[data-page="home"] .app-title { font-family: 'Noto Sans KR', sans-serif; fon
 .guide-id-section .id-subtabs { gap: 0; margin: 0 0 24px; padding: 0; border-bottom: 1px solid var(--border-default); }
 .guide-id-section .id-subtab { display: flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 16px; border: 0; border-bottom: 3px solid transparent; border-radius: 0; background: transparent; color: var(--text-secondary); font: 500 14px/20px 'Noto Sans KR', sans-serif; white-space: nowrap; }
 .guide-id-section .id-subtab.active, .guide-id-section .id-subtab.active:hover { border: 0; border-bottom: 3px solid var(--brand-strong); border-radius: 0; background: transparent; color: var(--text-primary); font-size: 15px; font-weight: 700; }
+#guideDownloadSection .id-subtabs { gap: 0; margin: 0 0 24px; padding: 0; border-bottom: 1px solid var(--border-default); }
+#guideDownloadSection .id-subtab { display: flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 16px; border: 0; border-bottom: 3px solid transparent; border-radius: 0; background: transparent; color: var(--text-secondary); font: 500 14px/20px 'Noto Sans KR', sans-serif; white-space: nowrap; }
+#guideDownloadSection .id-subtab.active, #guideDownloadSection .id-subtab.active:hover { border: 0; border-bottom: 3px solid var(--brand-strong); border-radius: 0; background: transparent; color: var(--text-primary); font-size: 15px; font-weight: 700; }
 #guideHubMain .feature-panel { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
 #guideHubMain .feature-panel strong, #guideHubMain .feature-panel p { margin: 0; }
 #guideHubMain .feature-meta { display: flex; align-items: center; gap: 8px; }

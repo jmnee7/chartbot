@@ -123,7 +123,7 @@ function getCurrentShareUrl(){
 // ===== Guide: 다운로드 전용 로직 =====
 async function switchDownloadTab(sub, btn){
     currentDownloadSub = sub;
-    document.querySelectorAll('#guideDownloadSection .id-subtab, #guideDownloadSection .download-subtab').forEach(t=>t.classList.remove('active'));
+    document.querySelectorAll('#downloadServiceTabs .id-subtab').forEach(t=>t.classList.remove('active'));
     if (btn) btn.classList.add('active');
     const titleEl = document.getElementById('guideDownloadTitle');
     const dateEl = document.getElementById('guideDownloadDate');

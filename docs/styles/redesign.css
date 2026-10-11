@@ -779,7 +779,6 @@ body[data-page="home"] .app-title { font-family: 'Noto Sans KR', sans-serif; fon
 .hero-pause { border-color: #10171c; border-radius: 4px; }
 .primary-action { min-height: 44px; padding: 11px 24px; border: 1px solid var(--border-default); border-radius: var(--radius-md); background: var(--brand-primary); color: var(--text-on-notice); font-family: 'Noto Sans KR', sans-serif; font-size: 15px; font-weight: 700; line-height: 20px; }
 .support-section-nav a:first-of-type { border-left: 0; color: var(--text-secondary); font-size: 14px; font-weight: 500; }
-.vote-ratio-original { margin: 16px 0 0; }
 .stream-mv-stats { margin-top: 12px; color: var(--text-secondary); font-size: 14px; line-height: 22px; }
 #stream-mv .video-container { width: 100%; aspect-ratio: 16 / 9; background: #000; }
 #stream-mv .video-container iframe { display: block; width: 100%; height: 100%; border: 0; }

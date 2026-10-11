@@ -29,8 +29,14 @@ function switchStreamingPlatform(device, button) {
     const container = document.getElementById('streamingPlatformLinks');
     if (!container) return;
     container.replaceChildren();
+    const useAndroidLinks = {
+        iOS: ['bugs', 'vibe', 'flo'],
+        PC: ['vibe', 'flo'],
+        Mac: ['genie', 'bugs', 'vibe', 'flo']
+    };
     Object.entries(streamServices).forEach(([key, service]) => {
-        const links = window.siteContent.oneClickStreams.filter(item => item.service === key && item.device === device);
+        const sharedAndroid = useAndroidLinks[device]?.includes(key);
+        const links = window.siteContent.oneClickStreams.filter(item => item.service === key && item.device === (sharedAndroid ? 'Android' : device));
         if (!links.length) return;
         const group = document.createElement('section');
         group.className = 'stream-service';
@@ -43,7 +49,7 @@ function switchStreamingPlatform(device, button) {
         chip.append(icon, service.name);
         const count = document.createElement('span');
         count.className = 'stream-platform-count';
-        count.textContent = `${links.length}개 링크`;
+        count.textContent = sharedAndroid ? `${links.length}개 링크 · Android와 동일` : `${links.length}개 링크`;
         title.append(chip, count);
         const list = document.createElement('div');
         list.className = 'stream-links';

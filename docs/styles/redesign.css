@@ -643,6 +643,17 @@ body[data-page="inner"] .container { width: min(100%, 1440px); padding: 32px 80p
 .vote-ratio-list strong { width: 140px; flex: none; font-size: 14px; font-weight: 500; }
 .vote-ratio-list button span:nth-child(2) { flex: 1; color: #4f5b64; font-size: 14px; line-height: 22px; }
 .vote-schedule-list button:hover, .vote-ratio-list button:hover { background: #f4f8fa; }
+.vote-schedule-list button, .vote-schedule-entry { display: grid; grid-template-columns: minmax(220px, 1fr) minmax(0, 2fr); align-items: center; gap: 16px; min-height: 64px; padding: 16px; border: 1px solid var(--border-default); border-radius: var(--radius-md); background: #fff; color: var(--ink); text-align: left; }
+.vote-schedule-list button { width: 100%; cursor: pointer; }
+.vote-schedule-list strong, .vote-schedule-list button span:nth-child(2) { width: auto; min-width: 0; font-size: 14px; line-height: 22px; }
+.vote-schedule-list strong { font-weight: 700; }
+.vote-schedule-list span { color: var(--text-secondary); }
+.vote-live-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.vote-live-grid .radio-card { min-height: 120px; }
+@media (max-width: 639px) {
+    .vote-schedule-list button, .vote-schedule-entry { grid-template-columns: 1fr; gap: 4px; }
+    .vote-live-grid { grid-template-columns: 1fr; gap: 12px; }
+}
 .vote-ratio-wrap { overflow-x: auto; border: 1px solid #d8e0e5; border-radius: 4px; box-shadow: 4px 4px 0 #c0cad1; }
 .vote-ratio-table { width: 100%; border-collapse: collapse; table-layout: fixed; font-size: 14px; line-height: 22px; }
 .vote-ratio-table th, .vote-ratio-table td { height: 54px; padding: 12px 16px; border-bottom: 1px solid #d8e0e5; text-align: left; font-weight: 400; }

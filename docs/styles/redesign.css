@@ -400,7 +400,9 @@ body[data-page="inner"] .container { padding-top: 28px; }
 .footer-related summary { padding: 9px 12px; border: 1px solid #c1cbd0; border-radius: 3px; cursor: pointer; list-style: none; }
 .footer-related summary::-webkit-details-marker { display: none; }
 .footer-related summary::after { content: '⌄'; float: right; font-size: 18px; line-height: 1; }
-.footer-related a { position: absolute; z-index: 3; display: block; width: 100%; padding: 9px 12px; background: #5c6973; border: 1px solid #c1cbd0; }
+.footer-related-links { position: absolute; z-index: 3; bottom: 100%; right: 0; width: max-content; min-width: 100%; background: #5c6973; border: 1px solid #c1cbd0; }
+.footer-related-links a { display: block; padding: 9px 12px; }
+.footer-related-links a + a { border-top: 1px solid #c1cbd0; }
 .footer-description { margin-top: 18px; }
 .footer-description p { margin: 0 0 4px; color: #e3e9ec; font-size: 12px; }
 .footer-bottom { margin-top: 40px; color: #e3e9ec; font-size: 12px; }

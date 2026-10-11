@@ -276,24 +276,23 @@ function navigateToMenu(key) {
     switch (key) {
         // 가이드 하위: 상세 화면으로 직접 이동
         case 'guide-download':
-            go({ view: 'guideDownload' });
+            navigateMegaMenu('guideHubMain', 'guide-download');
             break;
         case 'guide-id':
-            go({ view: 'guideId' });
+            navigateMegaMenu('guideHubMain', 'guide-id');
             break;
         // 스트리밍 상세 화면으로 이동
         case 'guide-streaming':
-            // 이미 상세로 이동하지만, 네비게이션/사이드에서도 동일 정책 유지
-            go({ view: 'guideStreaming' });
+            navigateMegaMenu('guideHubMain', 'guide-streaming');
             break;
         case 'guide-cheer':
-            openGuide('cheer');
+            navigateMegaMenu('guideHubMain', 'guide-cheer');
             break;
         case 'guide-radio':
-            openGuide('radio');
+            navigateMegaMenu('guideHubMain', 'guide-radio');
             break;
         case 'guide-tiktok':
-            go({ view: 'guideTiktok' });
+            navigateMegaMenu('guideHubMain', 'guide-tiktok');
             break;
 
         // 스트리밍 하위: 동일 동작 수행
@@ -301,10 +300,10 @@ function navigateToMenu(key) {
             navigateMegaMenu('guideHubStreaming', 'stream-oneclick');
             break;
         case 'streaming-recommend':
-            go({ view: 'streamingRecommend' });
+            navigateMegaMenu('guideHubStreaming', 'stream-list');
             break;
         case 'streaming-mv':
-            go({ view: 'streamingMV' });
+            navigateMegaMenu('guideHubStreaming', 'stream-mv');
             break;
 
         // 투표 하위: 상세로 이동
@@ -405,6 +404,7 @@ function showGuideHub(type){
         hideAllSupportSections();
         hideVoteScheduleSection();
         target.style.display = 'block';
+        if (type === 'streaming') syncStreamingMVStats();
         window.scrollTo({ top: 0, behavior: 'instant' });
     }
 }
@@ -428,8 +428,7 @@ function updateBottomNav(active) {
 }
 
 async function copyGuideSectionLink(sectionId) {
-    const route = sectionId === 'guide-cheer' ? 'guide/cheer' : 'guide';
-    const url = `${location.origin}${location.pathname}#${route}`;
+    const url = `${location.origin}${location.pathname}#guide?section=${encodeURIComponent(sectionId)}`;
     await navigator.clipboard.writeText(url);
 }
 
@@ -437,9 +436,9 @@ function setPageMasthead(title) {
     document.getElementById('pageMastheadTitle').textContent = title;
     const leads = {
         '스트리밍': '내 기기를 고르면 맞는 링크만 보여드려요.',
-        '가이드': '처음 시작하는 방법부터 응원법, 라디오 신청, 틱톡 업로드까지 안내해요.',
+        '가이드': '음원 스트리밍, 다운로드, 아이디 생성방법부터 응원법, 라디오 신청, 틱톡 업로드까지 안내해요.',
         '투표': '음악방송별 반영 비율과 투표 일정, 문자 투표 방법을 한곳에서 확인해요.',
-        '서포트': '스트리밍 팀을 함께 도와주시는 방법을 모았어요.'
+        '서포트': '스트리밍팀과 함께해주시는 방법을 모았어요.'
     };
     document.getElementById('pageMastheadLead').textContent = leads[title] || '';
     updateBottomNav({ '가이드': 'guide', '스트리밍': 'streaming', '투표': 'vote', '서포트': 'support' }[title]);
@@ -536,8 +535,7 @@ function openGuide(kind, initialService){
         const idSection = document.getElementById('guideIdSection');
         if (idSection) {
             idSection.style.display = 'block';
-            // 초기 로드: 듀얼 넘버가 기본 활성 상태로 보이도록
-            if (typeof switchIdSubTab === 'function') switchIdSubTab('dual', document.querySelector('.id-subtab[data-sub="dual"]'));
+            if (typeof switchIdSubTab === 'function') switchIdSubTab('genie', document.querySelector('#guideIdSection .id-subtab[data-sub="genie"]'));
             // 페이지 상단으로 이동 (새 페이지처럼 보이도록)
             window.scrollTo({ top: 0, behavior: 'smooth' });
             enableDragScroll(idSection.querySelector('.id-subtabs'));
@@ -763,8 +761,7 @@ function hideVoteCollectSection(){
 }
 
 function hideStreamingMVSection(){
-    const el = document.getElementById('streamingMVSection');
-    if (el) el.style.display = 'none';
+    // The music video now lives inside the streaming hub.
 }
 
 function hideStreamingRecommendSection(){
@@ -772,35 +769,18 @@ function hideStreamingRecommendSection(){
     if (el) el.style.display = 'none';
 }
 
+function syncStreamingMVStats(){
+    const views = document.getElementById('youtube-views');
+    const likes = document.getElementById('youtube-likes');
+    const targetViews = document.getElementById('mv-youtube-views');
+    const targetLikes = document.getElementById('mv-youtube-likes');
+    if (views && targetViews) targetViews.textContent = views.textContent || '-';
+    if (likes && targetLikes) targetLikes.textContent = likes.textContent || '-';
+}
+
 function openStreamingMV(){
-    setPageMasthead('스트리밍');
-    toggleMainSections(false);
-    ['guideHubMain','guideHubStreaming','guideHubVote','guideHubSupport'].forEach(id=>{ const el=document.getElementById(id); if(el) el.style.display='none'; });
-    hideAllSupportSections();
-    hideGuideIdSection();
-    hideGuideDownloadSection();
-    hideGuideStreamingSection();
-    hideGuideChantSection();
-    hideGuideRadioSection();
-    hideGuideTiktokSection();
-    hideVoteCollectSection();
-    hideVoteRateSection();
-    hideVoteScheduleSection();
-    const section = document.getElementById('streamingMVSection');
-    if (section){
-        section.style.display = 'block';
-        // 데이터 바인딩: 홈과 동일 데이터 사용
-        const v = document.getElementById('youtube-views');
-        const l = document.getElementById('youtube-likes');
-        const tv = document.getElementById('mv-youtube-views');
-        const tl = document.getElementById('mv-youtube-likes');
-        const ttime = document.getElementById('mv-update-time');
-        const stime = document.getElementById('youtube-update-time');
-        if (v && tv) tv.textContent = v.textContent || '-';
-        if (l && tl) tl.textContent = l.textContent || '-';
-        if (stime && ttime) ttime.textContent = stime.textContent || '';
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+    showGuideHub('streaming');
+    requestAnimationFrame(() => document.getElementById('stream-mv')?.scrollIntoView({ behavior: 'smooth' }));
 }
 
 function openStreamingRecommend(){
@@ -957,7 +937,7 @@ function routeFromHash(){
     if (!parts.length) return;
     if (parts[0] === 'home') { showHome(); return; }
     if (parts[0] === 'guide'){
-        if (parts[1] === 'id') { openGuide('id'); const tab = params.get('tab') || 'dual'; switchIdSubTab(tab, document.querySelector(`.id-subtab[data-sub="${tab}"]`)); return; }
+        if (parts[1] === 'id') { openGuide('id'); const tab = params.get('tab') || 'genie'; switchIdSubTab(tab, document.querySelector(`#guideIdSection .id-subtab[data-sub="${tab}"]`)); return; }
         if (parts[1] === 'download') { 
             openGuide('download');
             const cat = params.get('cat') || 'audio';
@@ -977,7 +957,9 @@ function routeFromHash(){
         }
         if (parts[1] === 'radio') { openGuide('radio'); return; }
         if (parts[1] === 'tiktok') { openGuide('tiktok'); return; }
-        showGuideMainHub(); return;
+        showGuideMainHub();
+        if (params.has('section')) requestAnimationFrame(() => document.getElementById(params.get('section'))?.scrollIntoView());
+        return;
     }
     if (parts[0] === 'streaming' && parts[1] === 'mv'){
         openStreamingMV(); return;

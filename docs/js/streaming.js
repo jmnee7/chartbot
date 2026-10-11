@@ -77,10 +77,12 @@ function updatePageSectionNav() {
         const sections = links.map(link => ({ link, section: document.getElementById(link.hash.slice(1)) }))
             .filter(item => item.section && hub.contains(item.section));
         if (!sections.length) return;
-        const threshold = hub.id === 'guideHubSupport' ? 400 : Math.min(window.innerHeight * 0.65, 600);
+        const threshold = hub.id === 'guideHubSupport' ? 400 : Math.min(window.innerHeight * 0.35, 180);
         let current = { link: links[0] };
         let currentTop = -Infinity;
-        sections.forEach(item => {
+        const atBottom = window.scrollY > 0 && window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 4;
+        if (atBottom) current = sections[sections.length - 1];
+        else sections.forEach(item => {
             const top = item.section.getBoundingClientRect().top;
             if (top > threshold || top < currentTop - 1) return;
             if (top > currentTop + 1 || !current.link.hasAttribute('aria-current')) {

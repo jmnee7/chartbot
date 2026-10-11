@@ -667,8 +667,10 @@ body[data-page="inner"] .container { width: min(100%, 1440px); padding: 72px 80p
 .vote-app-links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-top: auto; }
 .vote-app-links span { grid-column: 1 / -1; color: var(--text-secondary); font-size: 13px; font-weight: 700; }
 .vote-app-links span:not(:first-child) { margin-top: 8px; }
-.vote-app-links a { display: flex; align-items: center; justify-content: center; min-height: 40px; padding: 8px; border: 1px solid var(--border-default); border-radius: var(--radius-md); color: var(--text-primary); background: var(--bg-surface); font: 500 13px/20px 'Noto Sans KR', sans-serif; text-align: center; text-decoration: none; }
+.vote-app-links a { display: flex; align-items: center; justify-content: center; min-height: 40px; padding: 8px; border: 1px solid var(--border-default); border-radius: var(--radius-md); color: var(--text-primary); background: var(--bg-surface); font: 700 13px/20px 'Noto Sans KR', sans-serif; text-align: center; text-decoration: none; }
+.vote-app-links a[href^="https://play.google.com"] { border-color: var(--brand-primary); background: var(--brand-primary); color: var(--text-on-notice); }
 .vote-app-links a:hover, .vote-app-links a:focus-visible { border-color: var(--brand-strong); color: var(--brand-strong); }
+.vote-app-links a[href^="https://play.google.com"]:hover, .vote-app-links a[href^="https://play.google.com"]:focus-visible { color: var(--text-on-notice); filter: brightness(.95); }
 @media (min-width: 640px) and (max-width: 1023px) { .vote-live-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 639px) {
     .vote-schedule-list button, .vote-schedule-entry { grid-template-columns: 1fr; gap: 4px; }
@@ -776,6 +778,9 @@ body[data-page="home"] .app-title { font-family: 'Noto Sans KR', sans-serif; fon
 .primary-action { min-height: 44px; padding: 11px 24px; border: 1px solid var(--border-default); border-radius: var(--radius-md); background: var(--brand-primary); color: var(--text-on-notice); font-family: 'Noto Sans KR', sans-serif; font-size: 15px; font-weight: 700; line-height: 20px; }
 .support-section-nav a:first-of-type { border-left: 0; color: var(--text-secondary); font-size: 14px; font-weight: 500; }
 .vote-ratio-original { margin: 16px 0 0; }
+.stream-mv-stats { margin-top: 12px; color: var(--text-secondary); font-size: 14px; line-height: 22px; }
+#stream-mv .video-container { width: 100%; aspect-ratio: 16 / 9; background: #000; }
+#stream-mv .video-container iframe { display: block; width: 100%; height: 100%; border: 0; }
 .guide-id-section .id-subtabs { gap: 0; margin: 0 0 24px; padding: 0; border-bottom: 1px solid var(--border-default); }
 .guide-id-section .id-subtab { display: flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 16px; border: 0; border-bottom: 3px solid transparent; border-radius: 0; background: transparent; color: var(--text-secondary); font: 500 14px/20px 'Noto Sans KR', sans-serif; white-space: nowrap; }
 .guide-id-section .id-subtab.active, .guide-id-section .id-subtab.active:hover { border: 0; border-bottom: 3px solid var(--brand-strong); border-radius: 0; background: transparent; color: var(--text-primary); font-size: 15px; font-weight: 700; }

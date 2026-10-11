@@ -1,5 +1,5 @@
 // ===== Guide: ID 생성 전용 로직(기존 guide.js에서 이관) =====
-let currentIdSub = 'dual';
+let currentIdSub = 'genie';
 let currentStreamSub = 'melon';
 let currentDownloadSub = 'melon';
 let currentDownloadCategory = 'audio';
@@ -75,7 +75,7 @@ function openRadioSms(number){
 }
 
 async function copyRadioRequestText(){
-    await navigator.clipboard.writeText('NCT WISH [곡명] 신청합니다.');
+    await navigator.clipboard.writeText('안녕하세요! NCT WISH - I SPY 신청합니다!');
 }
 
 function shareCurrentGuide(){

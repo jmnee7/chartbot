@@ -9,7 +9,7 @@
 - 색상과 공통 반응형 레이아웃: `styles/redesign.css`
 - 기존 화면별 스타일: `styles/main.css`
 - 화면 이동과 홈 동작: `js/dashboard.js`
-- 홈 배너와 캠페인 원본 사진: `styles/assets/home/figma-hero-*.png`, `styles/assets/home/ispy-promo.png`
+- 홈 배너와 캠페인 원본 사진: `styles/assets/home/figma-hero-*.png`, `styles/assets/home/ispy-promo.webp`
 - 가이드 탭 동작: `js/guide.js`
 - 서포트 화면 동작: `js/support.js`
 - 원클릭 스트리밍 링크와 권장곡 표시: `js/streaming.js`

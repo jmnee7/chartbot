@@ -1,9 +1,9 @@
 const streamServices = {
-    melon: { name: '멜론', icon: 'styles/assets/figma/7b895.png' },
+    melon: { name: '멜론', icon: 'styles/assets/figma/7b895.webp' },
     genie: { name: '지니', icon: 'styles/assets/figma/34632.png' },
-    bugs: { name: '벅스', icon: 'styles/assets/figma/927a8.png' },
-    vibe: { name: '바이브', icon: 'styles/assets/figma/69858.png' },
-    flo: { name: '플로', icon: 'styles/assets/figma/32d70.png' }
+    bugs: { name: '벅스', icon: 'styles/assets/figma/927a8.webp' },
+    vibe: { name: '바이브', icon: 'styles/assets/figma/69858.webp' },
+    flo: { name: '플로', icon: 'styles/assets/figma/32d70.webp' }
 };
 
 function makeStreamLink(item, className) {

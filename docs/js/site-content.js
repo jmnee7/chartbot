@@ -30,44 +30,44 @@ window.siteContent = {
     recommendedTracks: ['Hands Up', 'WISH', 'Songbird', 'Steady', 'Miracle', 'poppop', 'COLOR', 'Hello Mellow', 'Ode to Love'],
     downloadGuides: {
         audio: {
-            melon: ['styles/assets/guide/download/melon-audio-20261010.jpg'],
-            genie: ['styles/assets/guide/download/genie-audio-20261010.jpg'],
-            bugs: ['styles/assets/guide/download/bugs-audio-20261010.jpg'],
-            kakao: ['styles/assets/guide/download/kakao-audio-20261010.jpg']
+            melon: ['styles/assets/guide/download/melon-audio-20261010.webp'],
+            genie: ['styles/assets/guide/download/genie-audio-20261010.webp'],
+            bugs: ['styles/assets/guide/download/bugs-audio-20261010.webp'],
+            kakao: ['styles/assets/guide/download/kakao-audio-20261010.webp']
         },
         mv: {
-            melon: ['styles/assets/guide/download/melon-mv-20261010.jpg'],
-            bugs: ['styles/assets/guide/download/bugs-mv-20261010.jpg']
+            melon: ['styles/assets/guide/download/melon-mv-20261010.webp'],
+            bugs: ['styles/assets/guide/download/bugs-mv-20261010.webp']
         }
     },
     streamingGuides: {
         melon: [
-            'styles/assets/guide/stream/멜론 스트리밍 가이드(모바일).png?v=20261010',
-            'styles/assets/guide/stream/멜론 스트리밍 가이드(PC).png?v=20261010'
+            'styles/assets/guide/stream/멜론 스트리밍 가이드(모바일).webp?v=20261010',
+            'styles/assets/guide/stream/멜론 스트리밍 가이드(PC).webp?v=20261010'
         ],
         'melon-musicwave': [
-            'styles/assets/guide/stream/melon-musicwave-1.png?v=20261010',
-            'styles/assets/guide/stream/melon-musicwave-2.png?v=20261010'
+            'styles/assets/guide/stream/melon-musicwave-1.webp?v=20261010',
+            'styles/assets/guide/stream/melon-musicwave-2.webp?v=20261010'
         ],
         vibe: [
-            'styles/assets/guide/stream/바이브 스트리밍 가이드(모바일).png?v=20261010',
-            'styles/assets/guide/stream/바이브 스트리밍 가이드(PC).png?v=20261010'
+            'styles/assets/guide/stream/바이브 스트리밍 가이드(모바일).webp?v=20261010',
+            'styles/assets/guide/stream/바이브 스트리밍 가이드(PC).webp?v=20261010'
         ],
         bugs: [
-            'styles/assets/guide/stream/벅스 스트리밍 가이드(모바일).png?v=20261010',
-            'styles/assets/guide/stream/벅스 스트리밍 가이드(PC).png?v=20261010'
+            'styles/assets/guide/stream/벅스 스트리밍 가이드(모바일).webp?v=20261010',
+            'styles/assets/guide/stream/벅스 스트리밍 가이드(PC).webp?v=20261010'
         ],
         spotify: [],
         apple: [],
         genie: [
-            'styles/assets/guide/stream/지니 스트리밍 가이드(모바일).png?v=20261010',
-            'styles/assets/guide/stream/지니 스트리밍 가이드(PC).png?v=20261010'
+            'styles/assets/guide/stream/지니 스트리밍 가이드(모바일).webp?v=20261010',
+            'styles/assets/guide/stream/지니 스트리밍 가이드(PC).webp?v=20261010'
         ],
         flo: [
-            'styles/assets/guide/stream/플로 스트리밍 가이드(모바일).png?v=20261010',
-            'styles/assets/guide/stream/플로 스트리밍 가이드(PC).png?v=20261010'
+            'styles/assets/guide/stream/플로 스트리밍 가이드(모바일).webp?v=20261010',
+            'styles/assets/guide/stream/플로 스트리밍 가이드(PC).webp?v=20261010'
         ],
-        mv: ['styles/assets/guide/stream/뮤직비디오 스트리밍 가이드.png']
+        mv: ['styles/assets/guide/stream/뮤직비디오 스트리밍 가이드.webp']
     },
     participationLinks: {
         idDonation: {

@@ -39,15 +39,15 @@ function switchIdSubTab(sub, btn){
             dualContainer.innerHTML = `
                 <div class="guide-dual-card">
                     <h3 class="guide-dual-title">KT</h3>
-                    <img class="guide-dual-img" src="styles/assets/guide/generateid/dual/kt.PNG?v=20260927" alt="KT 듀얼 넘버 가이드" />
+                    <img class="guide-dual-img" src="styles/assets/guide/generateid/dual/kt.webp?v=20260927" alt="KT 듀얼 넘버 가이드" />
                 </div>
                 <div class="guide-dual-card">
                     <h3 class="guide-dual-title">SKT</h3>
-                    <img class="guide-dual-img" src="styles/assets/guide/generateid/dual/skt.PNG?v=20260927" alt="SKT 듀얼 넘버 가이드" />
+                    <img class="guide-dual-img" src="styles/assets/guide/generateid/dual/skt.webp?v=20260927" alt="SKT 듀얼 넘버 가이드" />
                 </div>
                 <div class="guide-dual-card">
                     <h3 class="guide-dual-title">U+</h3>
-                    <img class="guide-dual-img" src="styles/assets/guide/generateid/dual/lgu.PNG?v=20260927" alt="U+ 듀얼 넘버 가이드" />
+                    <img class="guide-dual-img" src="styles/assets/guide/generateid/dual/lgu.webp?v=20260927" alt="U+ 듀얼 넘버 가이드" />
                 </div>
             `;
         }
@@ -61,7 +61,7 @@ function switchIdSubTab(sub, btn){
         }
         const targetImg = document.getElementById('guideIdImage');
         if (targetImg){
-            targetImg.src = (sub === 'bugs') ? 'styles/assets/guide/generateid/벅스 아이디 생성 가이드(260917 ver.).jpg' : 'styles/assets/guide/generateid/지니 아이디 생성 가이드(260917 ver.).jpg';
+            targetImg.src = (sub === 'bugs') ? 'styles/assets/guide/generateid/벅스 아이디 생성 가이드(260917 ver.).webp' : 'styles/assets/guide/generateid/지니 아이디 생성 가이드(260917 ver.).webp';
         }
     }
 }

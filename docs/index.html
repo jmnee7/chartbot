@@ -12,7 +12,7 @@
     <meta name="twitter:image" content="styles/assets/thumbnail.png?v=20260420" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
     <link rel="stylesheet" href="styles/main.css?v=20260420">
-    <link rel="stylesheet" href="styles/redesign.css?v=20261011y">
+    <link rel="stylesheet" href="styles/redesign.css?v=20261011z">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -528,8 +528,8 @@
                     </section>
                     <section id="vote-tickets" class="page-section">
                         <h3>투표권 모으기</h3>
-                        <p class="section-subtitle">방법은 팀 공지 기준으로 입력해요</p>
-                        <div class="step-grid"><button type="button" onclick="openVoteCollect()"><span>1</span><span class="step-copy"><strong>앱 설치·로그인</strong><small>이미지 가이드에서 확인</small></span></button><button type="button" onclick="openVoteCollect()"><span>2</span><span class="step-copy"><strong>미션 참여</strong><small>이미지 가이드에서 확인</small></span></button><button type="button" onclick="openVoteCollect()"><span>3</span><span class="step-copy"><strong>투표권 확인</strong><small>이미지 가이드에서 확인</small></span></button></div>
+                        <p class="section-subtitle">자세한 내용은 투표권 모으기 가이드를 참고해주세요</p>
+                        <div class="step-grid"><div class="vote-step"><span>1</span><span class="step-copy"><strong>앱 설치 로그인</strong></span></div><div class="vote-step"><span>2</span><span class="step-copy"><strong>무료 미션 참여 및 유료 재화 결제</strong></span></div><div class="vote-step"><span>3</span><span class="step-copy"><strong>NCT WISH 투표</strong></span></div></div>
                         <button class="text-action" type="button" onclick="openVoteCollect()">투표권 모으기 가이드 보기 ›</button>
                     </section>
                     <section id="vote-sms" class="page-section">
@@ -778,23 +778,23 @@
         <div class="footer">
             <nav class="footer-nav">
                 <button class="footer-item" data-nav="guide" onclick="openFooterAction('guide')">
-                    <img class="footer-icon-img" src="styles/assets/navigation/bottom_navigation_bar_guide.webp" alt="" />
+                    <span class="footer-icon-img nav-icon" aria-hidden="true"></span>
                     <span class="footer-label">가이드</span>
                 </button>
                 <button class="footer-item" data-nav="streaming" onclick="openFooterAction('streaming')">
-                    <img class="footer-icon-img" src="styles/assets/navigation/bottom_navigation_bar_streaming.webp" alt="" />
+                    <span class="footer-icon-img nav-icon" aria-hidden="true"></span>
                     <span class="footer-label">스트리밍</span>
                 </button>
                 <button class="footer-item" data-nav="home" onclick="openFooterAction('home')">
-                    <img class="footer-icon-img" src="styles/assets/navigation/bottom_navigation_bar_home.webp" alt="" />
+                    <span class="footer-icon-img nav-icon" aria-hidden="true"></span>
                     <span class="footer-label">홈</span>
                 </button>
                 <button class="footer-item" data-nav="vote" onclick="openFooterAction('vote')">
-                    <img class="footer-icon-img" src="styles/assets/navigation/bottom_navigation_bar_vote.webp" alt="" />
+                    <span class="footer-icon-img nav-icon" aria-hidden="true"></span>
                     <span class="footer-label">투표</span>
                 </button>
                 <button class="footer-item" data-nav="support" onclick="openFooterAction('support')">
-                    <img class="footer-icon-img" src="styles/assets/navigation/bottom_navigation_bar_support.webp" alt="" />
+                    <span class="footer-icon-img nav-icon" aria-hidden="true"></span>
                     <span class="footer-label">서포트</span>
                 </button>
             </nav>
@@ -822,7 +822,7 @@
 
     <!-- JavaScript 파일들을 body 끝에 로드 -->
     <script src="js/site-content.js?v=20261011b"></script>
-    <script src="js/dashboard.js?v=20261011m"></script>
+    <script src="js/dashboard.js?v=20261011n"></script>
     <script src="js/streaming.js?v=20261011r"></script>
     <script src="js/guide.js?v=20261011h"></script>
     <script src="js/support.js?v=20261011g"></script>

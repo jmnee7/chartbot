@@ -501,7 +501,7 @@ body { padding-bottom: 0; }
     .page-masthead-inner { padding: 26px 16px; }
     .guide-hub { padding: 0; }
     .home-dashboard .chart-status-section::before,
-    .home-dashboard .youtube-section::before,
+    .home-dashboard .youtube-section::before { margin: -16px -16px 18px; }
     .newcomer-section::before { margin: 0; }
     .chart-grid, .hub-grid { grid-template-columns: 1fr; }
     .home-dashboard, .newcomer-section { grid-template-columns: 1fr; }
@@ -704,8 +704,8 @@ body[data-page="inner"] .container { width: min(100%, 1440px); padding: 72px 80p
 #guideHubMain .radio-card p { color: #4f5b64; font-size: 14px; line-height: 22px; }
 #guideHubMain .radio-card .primary-action, #guideHubMain .radio-card button { min-height: 44px; border-radius: 4px; font-size: 15px; font-weight: 700; }
 #vote-tickets .step-grid { gap: 24px; }
-#vote-tickets .step-grid button { min-height: 98px; padding: 24px; border: 0; border-radius: 4px; gap: 16px; align-items: flex-start; }
-#vote-tickets .step-grid button > span:first-child { width: 32px; height: 32px; border: 1px solid #d8e0e5; border-radius: 4px; color: #12c0fa; font-size: 14px; font-weight: 500; }
+#vote-tickets .step-grid .vote-step { display: flex; min-height: 98px; padding: 24px; border: 0; border-radius: 4px; gap: 16px; align-items: flex-start; background: #fff; }
+#vote-tickets .step-grid .vote-step > span:first-child { width: 32px; height: 32px; border: 1px solid #d8e0e5; border-radius: 4px; color: #12c0fa; font-size: 14px; font-weight: 500; }
 #guideHubSupport .hub-grid { gap: 24px; }
 #guideHubSupport .support-card { min-height: 238px; display: flex; flex-direction: column; padding: 24px; border-radius: 4px; box-shadow: 4px 4px 0 #c0cad1; }
 #guideHubSupport .support-card-label { align-self: flex-start; padding: 4px 8px; border-radius: 4px; background: #e9eff2; color: #38424a; font-size: 13px; font-weight: 500; line-height: 18px; }
@@ -752,7 +752,7 @@ body[data-page="inner"] .container { width: min(100%, 1440px); padding: 72px 80p
     #guideHubMain .radio-card { min-height: 180px; height: 180px; }
     .page-sections { gap: 32px; }
     #vote-tickets .step-grid { gap: 12px; }
-    #vote-tickets .step-grid button { min-height: 82px; padding: 16px; }
+    #vote-tickets .step-grid .vote-step { min-height: 82px; padding: 16px; }
     .vote-sms-grid { gap: 12px; }
     .vote-sms-grid .radio-card { min-height: 180px; padding: 16px; }
     #guideHubSupport .hub-grid { gap: 12px; }
@@ -768,8 +768,10 @@ body[data-page="home"] .app-title { font-family: 'Noto Sans KR', sans-serif; fon
 .home-dashboard .chart-status-section::before,
 .home-dashboard .youtube-section::before,
 .newcomer-section::before { height: 39px; font-size: 13px; font-weight: 500; line-height: 20px; }
-.window-controls { top: 8px; right: 8px; height: 22px; }
+.window-controls { top: 8px; right: 16px; gap: 6px; height: 22px; }
 .window-controls span { width: 22px; height: 22px; }
+.home-dashboard .chart-status-section::before,
+.home-dashboard .youtube-section::before { padding: 8px 16px; }
 .hero-pause { border-color: #10171c; border-radius: 4px; }
 .primary-action { min-height: 44px; padding: 11px 24px; border: 1px solid var(--border-default); border-radius: var(--radius-md); background: var(--brand-primary); color: var(--text-on-notice); font-family: 'Noto Sans KR', sans-serif; font-size: 15px; font-weight: 700; line-height: 20px; }
 .support-section-nav a:first-of-type { border-left: 0; color: var(--text-secondary); font-size: 14px; font-weight: 500; }
@@ -816,6 +818,18 @@ body[data-page="inner"] .app-title { color: #e8f5fc; font-family: 'Noto Sans KR'
 .music-wave-links .sheet-btn { justify-content: center; min-height: 48px; text-align: center; }
 .music-wave-pending { color: var(--text-secondary); cursor: default; }
 @media (max-width: 639px) { .music-wave-links { grid-template-columns: 1fr; } }
+.footer-item .nav-icon { display: block; width: 24px; height: 24px; flex: none; background-position: center; background-repeat: no-repeat; }
+.footer-item[data-nav="guide"] .nav-icon { background-image: url('assets/figma/48f08.svg'); background-size: 24px; }
+.footer-item[data-nav="streaming"] .nav-icon { background-image: url('assets/figma/85175.svg'); background-size: 16px 18px; }
+.footer-item[data-nav="home"] .nav-icon { background-image: url('assets/figma/b4612.svg'); background-size: 24px; }
+.footer-item[data-nav="vote"] .nav-icon { background-image: url('assets/figma/84ff4.svg'); background-size: 17px; }
+.footer-item[data-nav="support"] .nav-icon { background-image: url('assets/figma/9cb0f.svg'); background-size: 24px; }
+.footer-item.active .footer-label { color: var(--text-brand); }
+.footer-item.active[data-nav="guide"] .nav-icon { background-image: url('assets/figma/1792d.svg'); }
+.footer-item.active[data-nav="streaming"] .nav-icon { background-image: url('assets/figma/4b143.svg'); }
+.footer-item.active[data-nav="home"] .nav-icon { background-image: url('assets/figma/0422b.svg'); }
+.footer-item.active[data-nav="vote"] .nav-icon { background-image: url('assets/figma/0f435.svg'); background-size: 24px; }
+.footer-item.active[data-nav="support"] .nav-icon { background-image: url('assets/figma/60a23.svg'); background-size: 17px 18px; }
 @media (max-width: 639px) {
     .hero-caption { padding-left: 36px; padding-right: 36px; }
     .hero-caption strong { font-size: 18px; line-height: 26px; }

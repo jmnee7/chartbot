@@ -950,7 +950,7 @@ function hideAllContentSections(){
 window.addEventListener('hashchange', routeFromHash);
 function routeFromHash(){
     const hash = (location.hash || '').replace(/^#/,'');
-    if (!hash) return;
+    if (!hash) { updateBottomNav('home'); return; }
     const [path, query] = hash.split('?');
     const params = new URLSearchParams(query || '');
     const parts = path.split('/').filter(Boolean);

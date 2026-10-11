@@ -98,8 +98,6 @@ function updatePageSectionNav() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    const sheet = document.getElementById('quickStreamingLinks');
-    window.siteContent.oneClickStreams.forEach(item => sheet.append(makeStreamLink(item, 'sheet-btn')));
     const tracks = document.getElementById('recommendedTracks');
     window.siteContent.recommendedTracks.forEach(track => {
         const row = document.createElement('li');

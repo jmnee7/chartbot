@@ -128,7 +128,7 @@ async function copySupportLink(type) {
 }
 
 function openHelperApplication() {
-    alert('헬퍼 팀원 지원 폼은 준비 중입니다.');
+    window.open('https://open.kakao.com/o/s3JLYoMh', '_blank', 'noopener,noreferrer');
 }
 
 function openTeamApplication() {

@@ -12,7 +12,7 @@
     <meta name="twitter:image" content="styles/assets/thumbnail.png?v=20260420" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
     <link rel="stylesheet" href="styles/main.css?v=20260420">
-    <link rel="stylesheet" href="styles/redesign.css?v=20261011x">
+    <link rel="stylesheet" href="styles/redesign.css?v=20261011y">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -152,12 +152,12 @@
 
     <div class="container" id="mainContent">
 
-        <section class="home-campaign" aria-label="스트리밍 이벤트 안내">
+        <section class="home-campaign" aria-label="스트리밍 이벤트 안내"><a href="https://x.com/WISHSTRMEVENT" target="_blank" rel="noopener noreferrer" aria-label="스트리밍 이벤트팀 X 계정 열기">
             <picture>
                 <source media="(max-width: 639px)" srcset="styles/assets/home/promo/event-mobile.webp">
                 <source media="(max-width: 1023px)" srcset="styles/assets/home/promo/event-tablet.webp">
                 <img src="styles/assets/home/promo/event-pc.webp" alt="시즈니에게 보내는 스트리밍 이벤트팀의 편지. 12일부터 이벤트를 진행하며 이벤트팀 트위터에서 기다리고 있어요." loading="lazy">
-            </picture>
+            </picture></a>
         </section>
 
         <!-- 원클릭 바로가기 -->
@@ -309,16 +309,16 @@
             </div>
         </section>
 
-        <!-- QUICK LINK: 원클릭 스트리밍 바텀시트 -->
-        <div id="quickStreamingOverlay" class="bottom-sheet-overlay" onclick="closeStreamingSheet()"></div>
-        <aside id="quickStreamingSheet" class="bottom-sheet" aria-hidden="true" role="dialog" aria-labelledby="quickStreamingTitle">
+        <!-- QUICK LINK: 뮤직웨이브 바로가기 -->
+        <div id="musicWaveOverlay" class="bottom-sheet-overlay" onclick="closeMusicWaveSheet()"></div>
+        <aside id="musicWaveSheet" class="bottom-sheet" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="musicWaveTitle">
             <div class="sheet-inner" onclick="event.stopPropagation()">
                 <div class="sheet-header">
-                    <h3 id="quickStreamingTitle">원클릭 스트리밍 리스트</h3>
-                    <button class="sheet-close" type="button" aria-label="닫기" onclick="closeStreamingSheet()">✕</button>
+                    <h3 id="musicWaveTitle">뮤직웨이브 바로가기</h3>
+                    <button class="sheet-close" type="button" aria-label="닫기" onclick="closeMusicWaveSheet()">✕</button>
                 </div>
                 <div class="sheet-content">
-                    <div class="sheet-grid" id="quickStreamingLinks"></div>
+                    <div class="sheet-grid music-wave-links"><a class="sheet-btn" href="https://kko.to/nSf-KQyydT" target="_blank" rel="noopener noreferrer">멜론 뮤직웨이브</a><a class="sheet-btn" href="https://genie.co.kr/LZLMP5" target="_blank" rel="noopener noreferrer">지니 스트림</a><span class="sheet-btn music-wave-pending">플로 응원하기 · 13일 추가 예정</span></div>
                 </div>
             </div>
         </aside>
@@ -545,6 +545,7 @@
                         <p class="section-subtitle">투표 방법과 진행 시간은 각 방송의 공식 공지를 확인해 주세요</p>
                         <div class="vote-live-grid">
                             <article class="radio-card"><h4>더쇼</h4><p>BIGC</p><div class="vote-app-links"><a href="https://play.google.com/store/apps/details?id=im.bigc.lively" target="_blank" rel="noopener noreferrer" aria-label="BIGC Google Play에서 설치">Android · Google Play</a><a href="https://apps.apple.com/kr/app/id1575835045" target="_blank" rel="noopener noreferrer" aria-label="BIGC App Store에서 설치">iOS · App Store</a></div></article>
+                            <article class="radio-card"><h4>엠카운트다운</h4><p>Mnet Plus</p><div class="vote-app-links"><a href="https://play.google.com/store/apps/details?id=world.mnetplus" target="_blank" rel="noopener noreferrer" aria-label="Mnet Plus Google Play에서 설치">Android · Google Play</a><a href="https://apps.apple.com/kr/app/id6443405421" target="_blank" rel="noopener noreferrer" aria-label="Mnet Plus App Store에서 설치">iOS · App Store</a></div></article>
                             <article class="radio-card"><h4>쇼! 음악중심</h4><p>Mubeat · Muniverse</p><div class="vote-app-links"><span>Mubeat</span><a href="https://play.google.com/store/apps/details?id=com.vlending.apps.mubeat" target="_blank" rel="noopener noreferrer" aria-label="Mubeat Google Play에서 설치">Android · Google Play</a><a href="https://apps.apple.com/kr/app/id1320789688" target="_blank" rel="noopener noreferrer" aria-label="Mubeat App Store에서 설치">iOS · App Store</a><span>Muniverse</span><a href="https://play.google.com/store/apps/details?id=com.tnk.muniverse" target="_blank" rel="noopener noreferrer" aria-label="Muniverse Google Play에서 설치">Android · Google Play</a><a href="https://apps.apple.com/kr/app/id6749677921" target="_blank" rel="noopener noreferrer" aria-label="Muniverse App Store에서 설치">iOS · App Store</a></div></article>
                             <article class="radio-card"><h4>인기가요</h4><p>Higher</p><div class="vote-app-links"><a href="https://play.google.com/store/apps/details?id=com.dalcomsoft.mysu.a" target="_blank" rel="noopener noreferrer" aria-label="Higher Google Play에서 설치">Android · Google Play</a><a href="https://apps.apple.com/kr/app/id1672001935" target="_blank" rel="noopener noreferrer" aria-label="Higher App Store에서 설치">iOS · App Store</a></div></article>
                         </div>
@@ -821,10 +822,10 @@
 
     <!-- JavaScript 파일들을 body 끝에 로드 -->
     <script src="js/site-content.js?v=20261011b"></script>
-    <script src="js/dashboard.js?v=20261011l"></script>
-    <script src="js/streaming.js?v=20261011q"></script>
+    <script src="js/dashboard.js?v=20261011m"></script>
+    <script src="js/streaming.js?v=20261011r"></script>
     <script src="js/guide.js?v=20261011h"></script>
-    <script src="js/support.js?v=20261011f"></script>
+    <script src="js/support.js?v=20261011g"></script>
     <script src="js/chart.js?v=20260420"></script>
     
 </body>

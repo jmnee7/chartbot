@@ -298,8 +298,7 @@ function navigateToMenu(key) {
 
         // 스트리밍 하위: 동일 동작 수행
         case 'streaming-list':
-            toggleMainSections(true);
-            openStreamingSheet();
+            navigateMegaMenu('guideHubStreaming', 'stream-oneclick');
             break;
         case 'streaming-recommend':
             go({ view: 'streamingRecommend' });
@@ -1032,10 +1031,10 @@ function hideAllSupportSections(){
 function openQuickLink(key){
     switch(key){
         case 'streaming-list':
-            openStreamingSheet();
+            navigateMegaMenu('guideHubStreaming', 'stream-oneclick');
             break;
         case 'melon-musicwave':
-            go({ view: 'guideStreaming', service: 'melon-musicwave' });
+            openMusicWaveSheet();
             break;
         case 'musiccore-sms':
             window.location.href = 'sms:%230505?&body=NCT%20WISH';
@@ -1110,18 +1109,18 @@ function toggleHeroAuto(){
     if (heroAutoEnabled) startHeroAuto(); else stopHeroAuto();
 }
 
-// 바텀시트 열기/닫기
-function openStreamingSheet(){
-    const sheet = document.getElementById('quickStreamingSheet');
-    const overlay = document.getElementById('quickStreamingOverlay');
+// 뮤직웨이브 바로가기 열기/닫기
+function openMusicWaveSheet(){
+    const sheet = document.getElementById('musicWaveSheet');
+    const overlay = document.getElementById('musicWaveOverlay');
     if (overlay) overlay.classList.add('active');
-    if (sheet) sheet.classList.add('active');
+    if (sheet) { sheet.classList.add('active'); sheet.setAttribute('aria-hidden', 'false'); sheet.querySelector('.sheet-close')?.focus(); }
 }
-function closeStreamingSheet(){
-    const sheet = document.getElementById('quickStreamingSheet');
-    const overlay = document.getElementById('quickStreamingOverlay');
+function closeMusicWaveSheet(){
+    const sheet = document.getElementById('musicWaveSheet');
+    const overlay = document.getElementById('musicWaveOverlay');
     if (overlay) overlay.classList.remove('active');
-    if (sheet) sheet.classList.remove('active');
+    if (sheet) { sheet.classList.remove('active'); sheet.setAttribute('aria-hidden', 'true'); }
 }
 
 // YouTube 업데이트 시간 표시 함수

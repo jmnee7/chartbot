@@ -161,6 +161,7 @@ body[data-page="home"] .container { width: min(100%, 1440px); background: #ddf4f
     background: #393430;
 }
 .home-campaign img { display: block; width: 100%; height: auto; }
+.home-campaign a { display: block; }
 .home-dashboard { display: grid; grid-template-columns: minmax(0, .38fr) minmax(0, .62fr); gap: 24px; align-items: stretch; }
 .home-dashboard > * { min-width: 0; }
 .home-dashboard .chart-grid { grid-template-columns: 1fr; }
@@ -660,7 +661,7 @@ body[data-page="inner"] .container { width: min(100%, 1440px); padding: 72px 80p
 .vote-schedule-list strong, .vote-schedule-list button span:nth-child(2) { width: auto; min-width: 0; font-size: 14px; line-height: 22px; }
 .vote-schedule-list strong { font-weight: 700; }
 .vote-schedule-list span { color: var(--text-secondary); }
-.vote-live-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.vote-live-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
 .vote-live-grid .radio-card { display: flex; flex-direction: column; min-height: 180px; }
 .vote-live-grid .radio-card p { margin-bottom: 16px; }
 .vote-app-links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-top: auto; }
@@ -668,6 +669,7 @@ body[data-page="inner"] .container { width: min(100%, 1440px); padding: 72px 80p
 .vote-app-links span:not(:first-child) { margin-top: 8px; }
 .vote-app-links a { display: flex; align-items: center; justify-content: center; min-height: 40px; padding: 8px; border: 1px solid var(--border-default); border-radius: var(--radius-md); color: var(--text-primary); background: var(--bg-surface); font: 500 13px/20px 'Noto Sans KR', sans-serif; text-align: center; text-decoration: none; }
 .vote-app-links a:hover, .vote-app-links a:focus-visible { border-color: var(--brand-strong); color: var(--brand-strong); }
+@media (min-width: 640px) and (max-width: 1023px) { .vote-live-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 639px) {
     .vote-schedule-list button, .vote-schedule-entry { grid-template-columns: 1fr; gap: 4px; }
     .vote-live-grid { grid-template-columns: 1fr; gap: 12px; }
@@ -806,9 +808,14 @@ body[data-page="inner"] .app-logo-inverse { display: block; width: 28.2px; heigh
 body[data-page="inner"] .app-title { color: #e8f5fc; font-family: 'Noto Sans KR', sans-serif; font-size: 15px; font-weight: 700; line-height: 20px; letter-spacing: 0; }
 @media (max-width: 639px) {
     body[data-page="inner"] .top-menu-bar .logo-btn { position: absolute; left: 80px; top: 7px; height: 42px; }
-    body[data-page="inner"] .app-title-full { display: none; }
-    body[data-page="inner"] .app-title-short { display: inline; }
+    body[data-page="inner"] .app-title-full { display: inline; }
+    body[data-page="inner"] .app-title-short { display: none; }
 }
+@media (max-width: 360px) { body[data-page="inner"] .app-title { font-size: 12px; } }
+.music-wave-links { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.music-wave-links .sheet-btn { justify-content: center; min-height: 48px; text-align: center; }
+.music-wave-pending { color: var(--text-secondary); cursor: default; }
+@media (max-width: 639px) { .music-wave-links { grid-template-columns: 1fr; } }
 @media (max-width: 639px) {
     .hero-caption { padding-left: 36px; padding-right: 36px; }
     .hero-caption strong { font-size: 18px; line-height: 26px; }

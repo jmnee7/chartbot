@@ -12,7 +12,7 @@
     <meta name="twitter:image" content="styles/assets/thumbnail.png?v=20260420" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
     <link rel="stylesheet" href="styles/main.css?v=20260420">
-    <link rel="stylesheet" href="styles/redesign.css?v=20261011o">
+    <link rel="stylesheet" href="styles/redesign.css?v=20261011p">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -144,7 +144,7 @@
     <div class="container" id="mainContent">
 
         <section class="home-campaign" aria-label="I SPY YOU 캠페인">
-            <img src="styles/assets/home/ispy-promo.webp" alt="NCT WISH I SPY YOU 2026년 10월 11일 오후 6시 발매" />
+            <img src="styles/assets/home/ispy-promo.webp" alt="NCT WISH I SPY YOU 2026년 10월 11일 오후 6시 발매" loading="lazy" />
         </section>
 
         <!-- 원클릭 바로가기 -->
@@ -221,7 +221,7 @@
 
                 <div class="chart-item bugs">
                     <div class="chart-service">
-                        <img src="styles/assets/icon/bugs.ico?v=20260420" alt="벅스" class="service-icon">
+                        <img src="styles/assets/icon/bugs.webp" alt="벅스" class="service-icon">
                         <div class="service-info">
                             <span class="service-name">벅스</span>
                         </div>
@@ -268,7 +268,12 @@
                 <h2>뮤직비디오</h2>
             </div>
             <div class="youtube-content">
-                <img class="home-mv-poster" src="styles/assets/home/figma-mv-thumbnail.webp" alt="NCT WISH 영상 이미지" />
+                <div class="home-mv-player" id="homeMvPlayer">
+                    <button class="home-mv-play" type="button" aria-label="뮤직비디오 재생" onclick="playHomeMusicVideo()">
+                        <img class="home-mv-poster" src="styles/assets/home/figma-mv-thumbnail.webp" alt="NCT WISH 영상 이미지" loading="lazy" />
+                        <span aria-hidden="true">▶</span>
+                    </button>
+                </div>
                 <div class="home-mv-meta">
                     <p>조회수 <span id="youtube-views">-</span> · 좋아요 <span id="youtube-likes">-</span></p>
                     <a href="https://youtu.be/_t9bc8WNA1c?si=Q6KuEk0t_-hSs7Dh" target="_blank" rel="noopener noreferrer" aria-label="뮤직비디오 YouTube에서 보기">YouTube에서 보기</a>
@@ -441,8 +446,6 @@
                         <h3>원클릭 스트리밍</h3>
                         <p id="streamingDeviceSubtitle" class="section-subtitle">선택한 기기: Android</p>
                         <div id="streamingPlatformLinks" class="stream-service-list"></div>
-                        <button class="stream-other-device" type="button" aria-expanded="false" onclick="toggleOtherDevices(this)">다른 기기 링크 펼치기</button>
-                        <div class="stream-other-options" hidden></div>
                     </section>
                     <section id="stream-list" class="page-section">
                         <h3>권장 스트리밍 리스트</h3>
@@ -538,7 +541,7 @@
         <section id="voteRateSection" class="guide-id-section" style="display:none;">
             <h2 class="guide-id-title">음악방송 반영 비율표</h2>
             <div class="guide-id-image-container">
-                <img class="guide-id-image" src="styles/assets/vote/rate/음악방송 반영 비율표.webp" alt="음악방송 반영 비율표" />
+                <img class="guide-id-image" src="styles/assets/vote/rate/음악방송 반영 비율표.webp" alt="음악방송 반영 비율표" loading="lazy" />
             </div>
         </section>
 
@@ -546,7 +549,7 @@
         <section id="voteScheduleSection" class="guide-id-section" style="display:none;">
             <h2 class="guide-id-title">투표 일정</h2>
             <div class="guide-id-image-container">
-                <img class="guide-id-image" src="styles/assets/vote/calendar/calendar.webp?v=20260420" alt="투표 일정" />
+                <img class="guide-id-image" src="styles/assets/vote/calendar/calendar.webp?v=20260420" alt="투표 일정" loading="lazy" />
             </div>
         </section>
 
@@ -571,7 +574,7 @@
             <h2 class="guide-id-title">라디오 신청 가이드</h2>
             <div class="guide-id-date" id="guideRadioDate" hidden></div>
             <div class="guide-id-image-container">
-                <img class="guide-id-image" src="styles/assets/guide/radio/radio-request-guide-20261011.webp" alt="NCT WISH 라디오 원클릭 신청 가이드"/>
+                <img class="guide-id-image" src="styles/assets/guide/radio/radio-request-guide-20261011.webp" alt="NCT WISH 라디오 원클릭 신청 가이드" loading="lazy"/>
             </div>
             <div class="guide-actions">
                 <button class="guide-action-btn primary" onclick="openRadioHomepage()">바로가기 ></button>
@@ -618,7 +621,7 @@
         <section id="streamingRecommendSection" class="guide-id-section" style="display:none;">
             <h2 class="guide-id-title">권장 스트리밍 리스트</h2>
             <div class="guide-id-image-container">
-                <img class="guide-id-image" src="styles/assets/stream/list/strmlist.webp?v=20260420" alt="권장 스트리밍 리스트" />
+                <img class="guide-id-image" src="styles/assets/stream/list/strmlist.webp?v=20260420" alt="권장 스트리밍 리스트" loading="lazy" />
             </div>
             <div class="guide-actions">
                 <button class="guide-action-btn" onclick="shareCurrentGuide()">🔗 공유하기</button>
@@ -654,7 +657,7 @@
             <div class="support-helper-date">YYYY.MM.DD</div>
 
             <div class="support-helper-image-container">
-                <img class="support-helper-image" src="styles/assets/support/helper/download.webp?v=20261010" alt="헬퍼 팀원 지원 가이드 이미지"/>
+                <img class="support-helper-image" src="styles/assets/support/helper/download.webp?v=20261010" alt="헬퍼 팀원 지원 가이드 이미지" loading="lazy"/>
             </div>
 
             <div class="guide-actions">
@@ -669,7 +672,7 @@
             <div class="support-helper-date">YYYY.MM.DD</div>
 
             <div class="support-helper-image-container">
-                <img class="support-helper-image" src="styles/assets/support/team/스트리밍팀 신규 팀원 모집 이미지(2025.10.ver.).webp" alt="스트리밍팀 신규 팀원 모집 안내"/>
+                <img class="support-helper-image" src="styles/assets/support/team/스트리밍팀 신규 팀원 모집 이미지(2025.10.ver.).webp" alt="스트리밍팀 신규 팀원 모집 안내" loading="lazy"/>
             </div>
 
             <div class="guide-actions">
@@ -684,7 +687,7 @@
             <div class="support-id-date">YYYY.MM.DD</div>
 
             <div class="support-id-image-container">
-                <img class="support-id-image" src="styles/assets/support/id/260917 아이디 기부 공지.webp" alt="지니 벅스 아이디 기부"/>
+                <img class="support-id-image" src="styles/assets/support/id/260917 아이디 기부 공지.webp" alt="지니 벅스 아이디 기부" loading="lazy"/>
             </div>
 
             <div class="guide-actions">
@@ -700,7 +703,7 @@
             <div class="support-fundraising-date">YYYY.MM.DD</div>
 
             <div class="support-fundraising-image-container">
-                <img class="support-fundraising-image" src="styles/assets/support/fundraising/I SPY 모금 안내.webp" alt="NCT WISH I SPY 모금 안내"/>
+                <img class="support-fundraising-image" src="styles/assets/support/fundraising/I SPY 모금 안내.webp" alt="NCT WISH I SPY 모금 안내" loading="lazy"/>
             </div>
 
             <div class="guide-actions">
@@ -715,7 +718,7 @@
             <div class="support-helper-date">YYYY.MM.DD</div>
 
             <div class="support-helper-image-container">
-                <img class="support-helper-image" src="styles/assets/support/gifticon/I SPY 기프티콘 기부 공지.webp" alt="기프티콘 기부 안내"/>
+                <img class="support-helper-image" src="styles/assets/support/gifticon/I SPY 기프티콘 기부 공지.webp" alt="기프티콘 기부 안내" loading="lazy"/>
             </div>
 
             <div class="guide-actions">
@@ -766,8 +769,8 @@
 
     <!-- JavaScript 파일들을 body 끝에 로드 -->
     <script src="js/site-content.js?v=20261010"></script>
-    <script src="js/dashboard.js?v=20261011g"></script>
-    <script src="js/streaming.js?v=20261011j"></script>
+    <script src="js/dashboard.js?v=20261011h"></script>
+    <script src="js/streaming.js?v=20261011l"></script>
     <script src="js/guide.js?v=20261011f"></script>
     <script src="js/support.js?v=20261011f"></script>
     <script src="js/chart.js?v=20260420"></script>

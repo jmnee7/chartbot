@@ -841,6 +841,7 @@ function renderState(state){
             break;
         case 'guideHubStreaming':
             showGuideHub('streaming');
+            updateStreamingSectionNav();
             break;
         case 'streamingMV':
             openStreamingMV();

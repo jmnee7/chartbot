@@ -53,24 +53,28 @@ function switchStreamingPlatform(device, button) {
     });
 }
 
-function toggleOtherDevices(button) {
-    const options = button.nextElementSibling;
-    const willOpen = options.hidden;
-    if (willOpen && !options.childElementCount) {
-        ['Android', 'iOS', 'PC', 'Mac'].forEach(device => {
-            const option = document.createElement('button');
-            option.type = 'button';
-            option.textContent = device;
-            option.addEventListener('click', () => {
-                switchStreamingPlatform(device);
-                options.hidden = true;
-                button.setAttribute('aria-expanded', 'false');
-            });
-            options.append(option);
-        });
-    }
-    options.hidden = !willOpen;
-    button.setAttribute('aria-expanded', String(willOpen));
+function playHomeMusicVideo() {
+    const player = document.getElementById('homeMvPlayer');
+    if (!player) return;
+    const iframe = document.createElement('iframe');
+    iframe.src = 'https://www.youtube.com/embed/_t9bc8WNA1c?autoplay=1';
+    iframe.title = 'NCT WISH 뮤직비디오';
+    iframe.allow = 'autoplay; encrypted-media; picture-in-picture; web-share';
+    iframe.allowFullscreen = true;
+    player.replaceChildren(iframe);
+}
+
+function updateStreamingSectionNav() {
+    const hub = document.getElementById('guideHubStreaming');
+    if (!hub || hub.style.display === 'none') return;
+    const list = document.getElementById('stream-list');
+    const activeId = list.getBoundingClientRect().top <= Math.min(window.innerHeight * 0.65, 600) ? 'stream-list' : 'stream-oneclick';
+    hub.querySelectorAll('.page-section-nav a[href^="#stream-"]').forEach(link => {
+        const active = link.getAttribute('href') === `#${activeId}`;
+        link.classList.toggle('active', active);
+        if (active) link.setAttribute('aria-current', 'location');
+        else link.removeAttribute('aria-current');
+    });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -83,4 +87,6 @@ document.addEventListener('DOMContentLoaded', () => {
         tracks.append(row);
     });
     switchStreamingPlatform('Android');
+    window.addEventListener('scroll', updateStreamingSectionNav, { passive: true });
+    window.addEventListener('resize', updateStreamingSectionNav);
 });

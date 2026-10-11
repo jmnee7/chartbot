@@ -340,6 +340,7 @@ function navigateToMenu(key) {
 
 // Footer 액션 함수
 function openFooterAction(action) {
+    document.querySelector('.desktop-mega-menu')?.classList.add('dismissed');
     switch(action) {
         case 'guide':
             go({ view: 'guideHubMain' });
@@ -360,6 +361,13 @@ function openFooterAction(action) {
         default:
             console.log('알 수 없는 액션:', action);
     }
+}
+
+function navigateMegaMenu(view, targetId) {
+    document.querySelector('.desktop-mega-menu')?.classList.add('dismissed');
+    document.activeElement?.blur();
+    go({ view });
+    if (targetId) requestAnimationFrame(() => document.getElementById(targetId)?.scrollIntoView({ behavior: 'smooth' }));
 }
 
 function showGuideHub(type){
@@ -838,19 +846,22 @@ function renderState(state){
             break;
         case 'guideHubMain':
             showGuideMainHub();
+            updatePageSectionNav();
             break;
         case 'guideHubStreaming':
             showGuideHub('streaming');
-            updateStreamingSectionNav();
+            updatePageSectionNav();
             break;
         case 'streamingMV':
             openStreamingMV();
             break;
         case 'guideHubVote':
             showGuideHub('vote');
+            updatePageSectionNav();
             break;
         case 'guideHubSupport':
             showGuideHub('support');
+            updatePageSectionNav();
             break;
         case 'streamingRecommend':
             openStreamingRecommend();

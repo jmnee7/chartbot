@@ -70,16 +70,30 @@ function playHomeMusicVideo() {
     player.replaceChildren(iframe);
 }
 
-function updateStreamingSectionNav() {
-    const hub = document.getElementById('guideHubStreaming');
-    if (!hub || hub.style.display === 'none') return;
-    const list = document.getElementById('stream-list');
-    const activeId = list.getBoundingClientRect().top <= Math.min(window.innerHeight * 0.65, 600) ? 'stream-list' : 'stream-oneclick';
-    hub.querySelectorAll('.page-section-nav a[href^="#stream-"]').forEach(link => {
-        const active = link.getAttribute('href') === `#${activeId}`;
-        link.classList.toggle('active', active);
-        if (active) link.setAttribute('aria-current', 'location');
-        else link.removeAttribute('aria-current');
+function updatePageSectionNav() {
+    document.querySelectorAll('.guide-hub').forEach(hub => {
+        if (hub.style.display === 'none') return;
+        const links = [...hub.querySelectorAll('.page-section-nav a[href^="#"]')];
+        const sections = links.map(link => ({ link, section: document.getElementById(link.hash.slice(1)) }))
+            .filter(item => item.section);
+        if (!sections.length) return;
+        const threshold = hub.id === 'guideHubSupport' ? 400 : Math.min(window.innerHeight * 0.65, 600);
+        let current = sections[0];
+        let currentTop = -Infinity;
+        sections.forEach(item => {
+            const top = item.section.getBoundingClientRect().top;
+            if (top > threshold || top < currentTop - 1) return;
+            if (top > currentTop + 1 || !current.link.hasAttribute('aria-current')) {
+                current = item;
+                currentTop = top;
+            }
+        });
+        links.forEach(link => {
+            const active = link === current.link;
+            link.classList.toggle('active', active);
+            if (active) link.setAttribute('aria-current', 'location');
+            else link.removeAttribute('aria-current');
+        });
     });
 }
 
@@ -93,6 +107,6 @@ document.addEventListener('DOMContentLoaded', () => {
         tracks.append(row);
     });
     switchStreamingPlatform('Android');
-    window.addEventListener('scroll', updateStreamingSectionNav, { passive: true });
-    window.addEventListener('resize', updateStreamingSectionNav);
+    window.addEventListener('scroll', updatePageSectionNav, { passive: true });
+    window.addEventListener('resize', updatePageSectionNav);
 });

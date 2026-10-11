@@ -93,6 +93,16 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
     font-weight: 600;
 }
 .desktop-nav button:hover, .desktop-nav button:focus-visible { background: #43525a; }
+.desktop-mega-menu { display: none; }
+@media (min-width: 1024px) {
+    .top-menu-bar:hover .desktop-mega-menu:not(.dismissed),
+    .top-menu-bar:focus-within .desktop-mega-menu:not(.dismissed) { display: grid; }
+    .desktop-mega-menu { position: absolute; z-index: 30; top: 100%; left: 0; right: 0; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 48px; padding: 32px max(80px, calc((100vw - 1280px) / 2)) 48px; border-bottom: 1px solid var(--border-default); background: var(--bg-surface); box-shadow: 0 8px 16px rgba(16, 23, 28, .08); }
+    .mega-menu-column { display: flex; min-width: 0; flex-direction: column; align-items: flex-start; }
+    .mega-menu-column strong { margin-bottom: 8px; color: var(--text-primary); font-size: 15px; font-weight: 700; line-height: 20px; }
+    .mega-menu-column button { display: flex; align-items: center; min-height: 44px; width: 100%; padding: 0; border: 0; background: transparent; color: var(--text-secondary); cursor: pointer; text-align: left; font-size: 14px; line-height: 22px; }
+    .mega-menu-column button:hover, .mega-menu-column button:focus-visible { color: var(--text-primary); text-decoration: underline; }
+}
 .side-menu { background: var(--surface); }
 .side-menu-header { border-bottom: 1px solid var(--line); }
 .menu-section-header { min-height: 58px; }

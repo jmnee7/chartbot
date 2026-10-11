@@ -307,13 +307,19 @@ function navigateToMenu(key) {
 
         // 투표 하위: 상세로 이동
         case 'vote-weight':
-            openVoteRate();
+            navigateMegaMenu('guideHubVote', 'vote-ratio');
             break;
         case 'vote-collect':
-            openVoteCollect();
+            navigateMegaMenu('guideHubVote', 'vote-tickets');
             break;
         case 'vote-schedule':
-            openVoteSchedule();
+            navigateMegaMenu('guideHubVote', 'vote-schedule');
+            break;
+        case 'vote-sms':
+            navigateMegaMenu('guideHubVote', 'vote-sms');
+            break;
+        case 'vote-live':
+            navigateMegaMenu('guideHubVote', 'vote-live');
             break;
 
         // 서포트 하위: 각 상세로 이동

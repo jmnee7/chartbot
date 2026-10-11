@@ -12,7 +12,7 @@
     <meta name="twitter:image" content="styles/assets/thumbnail.png?v=20260420" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
     <link rel="stylesheet" href="styles/main.css?v=20260420">
-    <link rel="stylesheet" href="styles/redesign.css?v=20261011r">
+    <link rel="stylesheet" href="styles/redesign.css?v=20261011s">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -36,15 +36,15 @@
         </button>
         <nav class="desktop-nav" aria-label="주 메뉴">
             <button type="button" onclick="openFooterAction('home')">홈</button>
-            <button type="button" onclick="openFooterAction('streaming')">스트리밍</button>
             <button type="button" onclick="openFooterAction('guide')">가이드</button>
+            <button type="button" onclick="openFooterAction('streaming')">스트리밍</button>
             <button type="button" onclick="openFooterAction('vote')">투표</button>
             <button type="button" onclick="openFooterAction('support')">서포트</button>
         </nav>
         <nav class="desktop-mega-menu" aria-label="상세 메뉴">
-            <div class="mega-menu-column"><strong>스트리밍</strong><button type="button" onclick="navigateMegaMenu('guideHubStreaming','stream-oneclick')">원클릭 스트리밍</button><button type="button" onclick="navigateMegaMenu('guideHubStreaming','stream-list')">권장 스트리밍 리스트</button><button type="button" onclick="navigateMegaMenu('streamingMV')">뮤직비디오</button></div>
-            <div class="mega-menu-column"><strong>가이드</strong><button type="button" onclick="navigateMegaMenu('guideHubMain','guide-start')">시작하기</button><button type="button" onclick="navigateMegaMenu('guideHubMain','guide-cheer')">응원법</button><button type="button" onclick="navigateMegaMenu('guideHubMain','guide-radio')">라디오 신청</button></div>
-            <div class="mega-menu-column"><strong>투표</strong><button type="button" onclick="navigateMegaMenu('guideHubVote','vote-ratio')">반영 비율</button><button type="button" onclick="navigateMegaMenu('guideHubVote','vote-schedule')">투표 일정</button><button type="button" onclick="navigateMegaMenu('guideHubVote','vote-sms')">문자 투표</button><button type="button" onclick="navigateMegaMenu('guideHubVote','vote-live')">실시간 투표</button><button type="button" onclick="navigateMegaMenu('guideHubVote','vote-tickets')">투표권 모으기</button></div>
+            <div class="mega-menu-column"><strong>가이드</strong><button type="button" onclick="navigateMegaMenu('guideStreaming')">스트리밍</button><button type="button" onclick="navigateMegaMenu('guideDownload')">다운로드</button><button type="button" onclick="navigateMegaMenu('guideId')">아이디 생성</button><button type="button" onclick="navigateMegaMenu('guideChant')">응원법</button><button type="button" onclick="navigateMegaMenu('guideRadio')">라디오 신청</button></div>
+            <div class="mega-menu-column"><strong>스트리밍</strong><button type="button" onclick="navigateMegaMenu('guideHubStreaming','stream-list')">권장 스트리밍 리스트</button><button type="button" onclick="navigateMegaMenu('guideHubStreaming','stream-oneclick')">원클릭 스트리밍 리스트</button><button type="button" onclick="navigateMegaMenu('streamingMV')">뮤직비디오</button></div>
+            <div class="mega-menu-column"><strong>투표</strong><button type="button" onclick="navigateMegaMenu('guideHubVote','vote-schedule')">투표 일정</button><button type="button" onclick="navigateMegaMenu('guideHubVote','vote-ratio')">음악방송 반영 비율</button><button type="button" onclick="navigateMegaMenu('guideHubVote','vote-sms')">문자 투표</button><button type="button" onclick="navigateMegaMenu('guideHubVote','vote-live')">실시간 투표</button><button type="button" onclick="navigateMegaMenu('guideHubVote','vote-tickets')">투표권 모으기</button></div>
             <div class="mega-menu-column"><strong>서포트</strong><button type="button" onclick="navigateMegaMenu('guideHubSupport','support-helper-card')">헬퍼 지원</button><button type="button" onclick="navigateMegaMenu('guideHubSupport','support-team-card')">팀원 지원</button><button type="button" onclick="navigateMegaMenu('guideHubSupport','support-id-card')">아이디 기부</button><button type="button" onclick="navigateMegaMenu('guideHubSupport','support-fundraising-card')">모금</button><button type="button" onclick="navigateMegaMenu('guideHubSupport','support-gifticon-card')">기프티콘 기부</button></div>
         </nav>
         <div class="menu-placeholder"></div>
@@ -90,8 +90,10 @@
                     <span class="menu-arrow" aria-hidden="true">⌄</span>
                 </button>
                 <div class="menu-sublist">
-                    <button class="menu-subitem" type="button" onclick="navigateToMenu('vote-weight')">음악 방송 비중표</button>
                     <button class="menu-subitem" type="button" onclick="navigateToMenu('vote-schedule')">투표 일정</button>
+                    <button class="menu-subitem" type="button" onclick="navigateToMenu('vote-weight')">음악방송 반영 비율</button>
+                    <button class="menu-subitem" type="button" onclick="navigateToMenu('vote-sms')">문자 투표</button>
+                    <button class="menu-subitem" type="button" onclick="navigateToMenu('vote-live')">실시간 투표</button>
                     <button class="menu-subitem" type="button" onclick="navigateToMenu('vote-collect')">투표권 모으기</button>
                 </div>
             </section>
@@ -149,8 +151,8 @@
 
     <div class="container" id="mainContent">
 
-        <section class="home-campaign" aria-label="I SPY YOU 캠페인">
-            <img src="styles/assets/home/ispy-promo.webp" alt="NCT WISH I SPY YOU 2026년 10월 11일 오후 6시 발매" loading="lazy" />
+        <section class="home-campaign" aria-label="스트리밍 이벤트 안내">
+            <p>안녕시즈니너를처음본순간부터좋아했어얼른고백하고싶었는데바보같이용기가안나더라오늘은그래도큰마음먹고용기내어봐매일너를볼때마다두근거렸고어딜가든너만보이고너생각만났어이런내마음을전하고싶어서수많은사람들앞에서너에게고백할게사랑하는시즈니들에게선물을주기위해12일부터이벤트를진행하고있어이벤트팀트위터에서기다리고있을게 너를사랑하는위시스트리밍이벤트팀이♡</p>
         </section>
 
         <!-- 원클릭 바로가기 -->
@@ -159,19 +161,19 @@
             <div class="quick-links-list">
                 <button class="quick-link-item" onclick="openQuickLink('streaming-list')">
                     <img class="quick-link-icon" src="styles/assets/figma/9a69e.svg" alt="" aria-hidden="true">
-                    <div class="quick-link-copy"><div class="quick-link-label"><span class="desktop-label">원클릭 스트리밍</span><span class="mobile-label">원클릭</span></div><span>기기를 선택하고 바로 스트리밍 바로가기</span></div>
+                    <div class="quick-link-copy"><div class="quick-link-label"><span class="desktop-label">원클릭 스트리밍</span><span class="mobile-label">원클릭</span></div><span>권장 스트리밍 리스트 원클릭 링크 바로가기</span></div>
                 </button>
                 <button class="quick-link-item" onclick="openQuickLink('melon-musicwave')">
                     <img class="quick-link-icon" src="styles/assets/figma/be22e.svg" alt="" aria-hidden="true">
-                    <div class="quick-link-copy"><div class="quick-link-label">뮤직웨이브</div><span>스트리밍팀에 멜론 뮤직웨이브 바로가기</span></div>
+                    <div class="quick-link-copy"><div class="quick-link-label">뮤직웨이브</div><span>멜론 뮤직웨이브, 지니 스트림, 플로 응원하기 바로가기</span></div>
                 </button>
                 <button class="quick-link-item" onclick="openQuickLink('musiccore-sms')">
                     <img class="quick-link-icon" src="styles/assets/figma/5f6c6.svg" alt="" aria-hidden="true">
-                    <div class="quick-link-copy"><div class="quick-link-label">문자 투표</div><span>방송별 투표 번호와 요금 확인 바로가기</span></div>
+                    <div class="quick-link-copy"><div class="quick-link-label">문자 투표</div><span>쇼! 음악중심 생방송 문자 투표 바로가기</span></div>
                 </button>
                 <button class="quick-link-item" onclick="openQuickLink('radio-request')">
                     <img class="quick-link-icon" src="styles/assets/figma/36a85.svg" alt="" aria-hidden="true">
-                    <div class="quick-link-copy"><div class="quick-link-label"><span class="desktop-label">라디오 신청</span><span class="mobile-label">라디오</span></div><span>방송국별 문자 신청 문구 복사 바로가기</span></div>
+                    <div class="quick-link-copy"><div class="quick-link-label"><span class="desktop-label">라디오 신청</span><span class="mobile-label">라디오</span></div><span>라디오 신청 가이드 홈페이지 바로가기</span></div>
                 </button>
             </div>
         </section>
@@ -394,7 +396,9 @@
             <h2>가이드</h2>
             <div class="page-layout">
                 <nav class="page-section-nav" aria-label="가이드 목차">
-                    <a href="#guide-start" onclick="document.getElementById('guide-start').scrollIntoView(); return false;">시작하기</a>
+                    <a href="#guideStreamingSection" onclick="go({view:'guideStreaming'}); return false;">스트리밍</a>
+                    <a href="#guideDownloadSection" onclick="go({view:'guideDownload'}); return false;">다운로드</a>
+                    <a href="#guideIdSection" onclick="go({view:'guideId'}); return false;">아이디 생성</a>
                     <a href="#guide-cheer" onclick="document.getElementById('guide-cheer').scrollIntoView(); return false;">응원법</a>
                     <a href="#guide-radio" onclick="document.getElementById('guide-radio').scrollIntoView(); return false;">라디오 신청</a>
                 </nav>
@@ -422,9 +426,9 @@
                         <h3>라디오 신청</h3>
                         <p class="section-subtitle">방송국별 문자 번호와 문구를 복사해서 보내요</p>
                         <div class="radio-card-grid">
-                            <article class="radio-card"><h4>KBS <span>#8910</span></h4><p>이전 사이트에 저장된 Cool FM 번호예요. 보낼 프로그램의 번호를 확인해 주세요.</p><button class="primary-action" type="button" onclick="openRadioSms('#8910')">문자 앱 열기</button><button type="button" onclick="copyRadioRequestText()">문구 복사</button></article>
-                            <article class="radio-card"><h4>MBC <span>#8000</span></h4><p>FM4U 문자 번호예요. 보낼 프로그램의 번호를 확인해 주세요.</p><button class="primary-action" type="button" onclick="openRadioSms('#8000')">문자 앱 열기</button><button type="button" onclick="copyRadioRequestText()">문구 복사</button></article>
-                            <article class="radio-card"><h4>SBS <span>#1077</span></h4><p>파워FM 문자 번호예요. 보낼 프로그램의 번호를 확인해 주세요.</p><button class="primary-action" type="button" onclick="openRadioSms('#1077')">문자 앱 열기</button><button type="button" onclick="copyRadioRequestText()">문구 복사</button></article>
+                            <article class="radio-card"><h4>KBS <span>#8910</span></h4><p>이전 사이트에 저장된 Cool FM 번호예요. 보낼 프로그램을 확인해주세요.</p><button class="primary-action" type="button" onclick="openRadioSms('#8910')">문자 앱 열기</button><button type="button" onclick="copyRadioRequestText()">문구 복사</button></article>
+                            <article class="radio-card"><h4>MBC <span>#8000</span></h4><p>FM4U 문자 번호예요. 보낼 프로그램을 확인해주세요.</p><button class="primary-action" type="button" onclick="openRadioSms('#8000')">문자 앱 열기</button><button type="button" onclick="copyRadioRequestText()">문구 복사</button></article>
+                            <article class="radio-card"><h4>SBS <span>#1077</span></h4><p>파워FM 문자 번호예요. 보낼 프로그램을 확인해주세요.</p><button class="primary-action" type="button" onclick="openRadioSms('#1077')">문자 앱 열기</button><button type="button" onclick="copyRadioRequestText()">문구 복사</button></article>
                         </div>
                         <button class="text-action" type="button" onclick="go({view:'guideRadio'})">라디오 신청 가이드 보기 ›</button>
                     </section>
@@ -437,8 +441,8 @@
             <h2>스트리밍</h2>
             <div class="page-layout">
                 <nav class="page-section-nav" aria-label="스트리밍 목차">
-                    <a href="#stream-oneclick" onclick="document.getElementById('stream-oneclick').scrollIntoView(); return false;">원클릭 스트리밍</a>
                     <a href="#stream-list" onclick="document.getElementById('stream-list').scrollIntoView(); return false;">권장 스트리밍 리스트</a>
+                    <a href="#stream-oneclick" onclick="document.getElementById('stream-oneclick').scrollIntoView(); return false;">원클릭 스트리밍 리스트</a>
                     <a href="#stream-mv" onclick="go({ view: 'streamingMV' }); return false;">뮤직비디오</a>
                 </nav>
                 <div class="page-sections">
@@ -520,11 +524,11 @@
                         <h3>음악방송 반영 비율</h3>
                         <p class="section-subtitle">2026.04 버전 · 방송별 세부 항목은 원본 이미지에서 확인해요</p>
                         <div class="vote-ratio-wrap"><table class="vote-ratio-table"><thead><tr><th>방송</th><th>음원</th><th>음반</th><th>방송</th><th>기타·투표</th></tr></thead><tbody>
-                            <tr><th>엠카운트다운</th><td>50%</td><td>15%</td><td>10%</td><td>글로벌 소셜 미디어 15% · 사전투표 10%</td></tr>
+                            <tr><th>쇼챔피언</th><td>35%</td><td>15%</td><td>20%</td><td>SNS 10% · 사전투표 20%</td></tr>
                             <tr><th>뮤직뱅크</th><td>60%</td><td>5%</td><td>20%</td><td>소셜미디어 5% · 사전투표 10%</td></tr>
                             <tr><th>쇼! 음악중심</th><td>50%</td><td>10%</td><td>10%</td><td>동영상 10% · 사전투표 10% · 실시간투표 10%</td></tr>
                             <tr><th>인기가요</th><td>50%</td><td>10%</td><td>10%</td><td>SNS 20% · 사전투표 5% · 실시간투표 5%</td></tr>
-                            <tr><th>쇼챔피언</th><td>35%</td><td>15%</td><td>20%</td><td>SNS 10% · 사전투표 20%</td></tr>
+                            <tr><th>엠카운트다운</th><td>50%</td><td>15%</td><td>10%</td><td>글로벌 소셜 미디어 15% · 사전투표 10%</td></tr>
                         </tbody></table></div>
                         <button class="secondary-action vote-ratio-original" type="button" onclick="go({view:'voteRate'})">원본 이미지 보기</button>
                     </section>
@@ -794,8 +798,8 @@
 
     <!-- JavaScript 파일들을 body 끝에 로드 -->
     <script src="js/site-content.js?v=20261011b"></script>
-    <script src="js/dashboard.js?v=20261011j"></script>
-    <script src="js/streaming.js?v=20261011p"></script>
+    <script src="js/dashboard.js?v=20261011k"></script>
+    <script src="js/streaming.js?v=20261011q"></script>
     <script src="js/guide.js?v=20261011f"></script>
     <script src="js/support.js?v=20261011f"></script>
     <script src="js/chart.js?v=20260420"></script>

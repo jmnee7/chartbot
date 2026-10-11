@@ -75,10 +75,10 @@ function updatePageSectionNav() {
         if (hub.style.display === 'none') return;
         const links = [...hub.querySelectorAll('.page-section-nav a[href^="#"]')];
         const sections = links.map(link => ({ link, section: document.getElementById(link.hash.slice(1)) }))
-            .filter(item => item.section);
+            .filter(item => item.section && hub.contains(item.section));
         if (!sections.length) return;
         const threshold = hub.id === 'guideHubSupport' ? 400 : Math.min(window.innerHeight * 0.65, 600);
-        let current = sections[0];
+        let current = { link: links[0] };
         let currentTop = -Infinity;
         sections.forEach(item => {
             const top = item.section.getBoundingClientRect().top;

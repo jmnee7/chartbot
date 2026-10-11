@@ -7,8 +7,6 @@ on:
   #   - cron: '0 15-23,0-14 * * *'
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
   workflow_dispatch:
 
 jobs:

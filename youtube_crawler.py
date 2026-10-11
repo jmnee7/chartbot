@@ -169,11 +169,8 @@ def get_youtube_stats_for_dashboard():
             stats_path = Path('docs/youtube_stats.json')
             if stats_path.exists():
                 existing = json.loads(stats_path.read_text(encoding='utf-8'))
-                # 영상이 바뀌었으면 video_id만 맞추고 수치는 보존
-                if existing.get('video_id') != VIDEO_ID:
-                    existing['video_id'] = VIDEO_ID
-                    crawler.save_stats_to_file(existing)
-                return existing
+                if existing.get('video_id') == VIDEO_ID:
+                    return existing
         except Exception:
             pass
 
@@ -195,4 +192,4 @@ def get_youtube_stats_for_dashboard():
 if __name__ == "__main__":
     # 테스트용
     stats = get_youtube_stats_for_dashboard()
-    print(f"YouTube 통계: {stats}") 
+    print(f"YouTube 통계: {stats}")

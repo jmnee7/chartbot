@@ -12,14 +12,16 @@
     <meta name="twitter:image" content="styles/assets/thumbnail.png?v=20260420" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
     <link rel="stylesheet" href="styles/main.css?v=20260420">
+    <link rel="stylesheet" href="styles/redesign.css?v=20261011o">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css">
     <link rel="icon" href="styles/assets/icon/fabi.png?v=20260420" type="image/png">
 </head>
-<body>
-
-
+<body data-page="home">
+    <a class="skip-link" href="#mainContent">본문 바로가기</a>
+    <div class="home-announcement">스트리밍팀 홈페이지가 리뉴얼되었어요. <button type="button" class="notice-close" aria-label="공지 닫기" onclick="this.parentElement.hidden=true">×</button></div>
     <!-- 상단 메뉴바 -->
     <div class="top-menu-bar">
         <button class="hamburger-menu" onclick="toggleSideMenu()">
@@ -28,11 +30,21 @@
             <span></span>
         </button>
         <button class="logo-btn" onclick="goHome()" aria-label="홈으로">
-            <img class="app-logo" src="styles/assets/logo.png?v=20260420" alt="NCT WISH STREAM 로고" />
-            <span class="app-title">NCT WISH STREAMING TEAM</span>
+            <img class="app-logo app-logo-default" src="styles/assets/logo.png?v=20260420" alt="" aria-hidden="true" />
+            <img class="app-logo app-logo-inverse" src="styles/assets/figma/fd8bb.svg" alt="" aria-hidden="true" />
+            <span class="app-title app-title-full">NCT WISH STREAMING TEAM</span><span class="app-title app-title-short">NCT WISH</span>
         </button>
+        <nav class="desktop-nav" aria-label="주 메뉴">
+            <button type="button" onclick="openFooterAction('home')">홈</button>
+            <button type="button" onclick="openFooterAction('streaming')">스트리밍</button>
+            <button type="button" onclick="openFooterAction('guide')">가이드</button>
+            <button type="button" onclick="openFooterAction('vote')">투표</button>
+            <button type="button" onclick="openFooterAction('support')">서포트</button>
+        </nav>
         <div class="menu-placeholder"></div>
     </div>
+
+    <section class="page-masthead" id="pageMasthead" style="display:none;"><div class="page-masthead-inner"><h1 id="pageMastheadTitle"></h1><p id="pageMastheadLead"></p></div></section>
 
     <!-- 사이드 메뉴 -->
     <div class="side-menu" id="sideMenu">
@@ -98,58 +110,72 @@
     <div class="menu-overlay" id="menuOverlay" onclick="toggleSideMenu()"></div>
 
     <!-- 아티스트 이미지 (슬라이더) -->
-    <div class="artist-hero">
+    <section class="artist-hero" aria-label="주요 소식">
+        <span class="hero-title-rule" aria-hidden="true"></span>
+        <span class="hero-vertical" aria-hidden="true"><strong>STREAMING GUIDE</strong><span>기기를 고르면 맞는 링크만 보여드려요.</span></span>
+        <button class="hero-preview hero-preview-prev" type="button" aria-label="이전 배너 보기" onclick="heroPrev()"><img id="heroPreviewPrev" src="styles/assets/home/figma-hero-prev.png" alt=""></button>
+        <button class="hero-nav prev" type="button" aria-label="이전 배너" onclick="heroPrev()"></button>
         <div id="heroSlider" class="hero-slider" aria-roledescription="carousel">
             <div id="heroTrack" class="hero-track">
                 <div class="hero-slide">
-                    <img src="styles/assets/home/home1.jpg?v=20260420" alt="NCT WISH 배너 1" class="artist-image">
+                    <img src="styles/assets/home/figma-hero-current.png" alt="NCT WISH I SPY YOU 단체 사진" class="artist-image">
                 </div>
                 <div class="hero-slide">
-                    <img src="styles/assets/home/home2.jpg?v=20260420" alt="NCT WISH 배너 2" class="artist-image">
+                    <img src="styles/assets/home/figma-hero-next.png" alt="NCT WISH 단체 사진" class="artist-image">
                 </div>
                 <div class="hero-slide">
-                    <img src="styles/assets/home/home3.jpg?v=20260420" alt="NCT WISH 배너 3" class="artist-image">
-                </div>
-                <div class="hero-slide">
-                    <img src="styles/assets/home/home4.jpg?v=20260420" alt="NCT WISH 배너 4" class="artist-image">
+                    <img src="styles/assets/home/figma-hero-prev.png" alt="NCT WISH 멤버 사진" class="artist-image">
                 </div>
             </div>
-            <button class="hero-nav prev" type="button" aria-label="이전 배너" onclick="heroPrev()">‹</button>
-            <button class="hero-nav next" type="button" aria-label="다음 배너" onclick="heroNext()">›</button>
-            <div id="heroDots" class="hero-dots" aria-hidden="true"></div>
         </div>
-    </div>
+        <button class="hero-nav next" type="button" aria-label="다음 배너" onclick="heroNext()"></button>
+        <button class="hero-preview hero-preview-next" type="button" aria-label="다음 배너 보기" onclick="heroNext()"><img id="heroPreviewNext" src="styles/assets/home/figma-hero-next.png" alt=""></button>
+        <div class="hero-caption">
+            <strong>오늘도 같이 스트리밍 해요</strong>
+            <p>기기를 고르면 맞는 링크만 보여드려요.</p>
+            <button type="button" class="hero-detail" onclick="openFooterAction('streaming')">자세히 보기 <span aria-hidden="true">→</span></button>
+            <div class="hero-controls">
+                <button class="hero-pause" id="heroPause" type="button" aria-label="배너 자동 전환 일시정지" onclick="toggleHeroAuto()">Ⅱ</button>
+                <div id="heroDots" class="hero-dots" aria-label="배너 선택"></div>
+            </div>
+        </div>
+    </section>
 
-    <div class="container">
+    <div class="container" id="mainContent">
+
+        <section class="home-campaign" aria-label="I SPY YOU 캠페인">
+            <img src="styles/assets/home/ispy-promo.png" alt="NCT WISH I SPY YOU 2026년 10월 11일 오후 6시 발매" />
+        </section>
 
         <!-- 원클릭 바로가기 -->
         <section class="quick-links-section">
             <h2>원클릭 바로가기</h2>
             <div class="quick-links-list">
                 <button class="quick-link-item" onclick="openQuickLink('streaming-list')">
-                    <div class="quick-link-icon yellow">👆</div>
-                    <div class="quick-link-label">원클릭 스트리밍 리스트</div>
+                    <img class="quick-link-icon" src="styles/assets/figma/9a69e.svg" alt="" aria-hidden="true">
+                    <div class="quick-link-copy"><div class="quick-link-label"><span class="desktop-label">원클릭 스트리밍</span><span class="mobile-label">원클릭</span></div><span>기기를 선택하고 바로 스트리밍 바로가기</span></div>
                 </button>
                 <button class="quick-link-item" onclick="openQuickLink('melon-musicwave')">
-                    <div class="quick-link-icon green">💚</div>
-                    <div class="quick-link-label">스트리밍팀 멜론 뮤직웨이브</div>
+                    <img class="quick-link-icon" src="styles/assets/figma/be22e.svg" alt="" aria-hidden="true">
+                    <div class="quick-link-copy"><div class="quick-link-label">뮤직웨이브</div><span>스트리밍팀에 멜론 뮤직웨이브 바로가기</span></div>
                 </button>
                 <button class="quick-link-item" onclick="openQuickLink('musiccore-sms')">
-                    <div class="quick-link-icon blue">🗳️</div>
-                    <div class="quick-link-label">음악중심 생방송 문자 투표</div>
+                    <img class="quick-link-icon" src="styles/assets/figma/5f6c6.svg" alt="" aria-hidden="true">
+                    <div class="quick-link-copy"><div class="quick-link-label">문자 투표</div><span>방송별 투표 번호와 요금 확인 바로가기</span></div>
                 </button>
                 <button class="quick-link-item" onclick="openQuickLink('radio-request')">
-                    <div class="quick-link-icon gray">📻</div>
-                    <div class="quick-link-label">라디오 사연 신청</div>
+                    <img class="quick-link-icon" src="styles/assets/figma/36a85.svg" alt="" aria-hidden="true">
+                    <div class="quick-link-copy"><div class="quick-link-label"><span class="desktop-label">라디오 신청</span><span class="mobile-label">라디오</span></div><span>방송국별 문자 신청 문구 복사 바로가기</span></div>
                 </button>
             </div>
         </section>
 
+        <div class="home-dashboard">
         <!-- 실시간 차트 현황 -->
         <div class="chart-status-section">
+            <div class="window-controls" aria-hidden="true"><span class="window-minimize"></span><span class="window-maximize"></span><span class="window-close"></span></div>
             <div class="chart-header">
                 <h2>실시간 차트</h2>
-                <span class="update-time" id="lastUpdate">업데이트 중...</span>
             </div>
             <div class="chart-grid">
                 <div class="chart-item melon-top">
@@ -232,44 +258,38 @@
                     </div>
                 </div>
             </div>
+            <p class="chart-updated">마지막 갱신 · <span id="lastUpdate">확인 중</span></p>
         </div>
 
         <!-- 뮤직비디오 조회수 -->
         <div class="youtube-section">
+            <div class="window-controls" aria-hidden="true"><span class="window-minimize"></span><span class="window-maximize"></span><span class="window-close"></span></div>
             <div class="chart-header">
                 <h2>뮤직비디오</h2>
-                <span class="update-time" id="youtube-update-time">업데이트 중...</span>
             </div>
             <div class="youtube-content">
-                <div class="video-container">
-                    <iframe
-                        src="https://www.youtube.com/embed/1o5O2YvV3HU?mute=1&playsinline=1&rel=0"
-                        title="NCT WISH 엔시티 위시 'Ode to Love' MV"
-                        frameborder="0" 
-                        allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                        allowfullscreen>
-                    </iframe>
+                <img class="home-mv-poster" src="styles/assets/home/figma-mv-thumbnail.png" alt="NCT WISH 영상 이미지" />
+                <div class="home-mv-meta">
+                    <p>조회수 <span id="youtube-views">-</span> · 좋아요 <span id="youtube-likes">-</span></p>
+                    <a href="https://youtu.be/_t9bc8WNA1c?si=Q6KuEk0t_-hSs7Dh" target="_blank" rel="noopener noreferrer" aria-label="뮤직비디오 YouTube에서 보기">YouTube에서 보기</a>
                 </div>
-                <div class="youtube-stats-grid">
-                    <div class="youtube-stat-item">
-                        <div class="youtube-stat-icon">👁️</div>
-                        <div class="youtube-stat-info">
-                            <span class="youtube-stat-label">조회수</span>
-                            <span class="youtube-stat-value" id="youtube-views">10,796,369</span>
-                        </div>
-                    </div>
-                    <div class="youtube-stat-item">
-                        <div class="youtube-stat-icon">👍</div>
-                        <div class="youtube-stat-info">
-                            <span class="youtube-stat-label">좋아요</span>
-                            <span class="youtube-stat-value" id="youtube-likes">347,707</span>
-                        </div>
-                    </div>
-                </div>
+                <span id="youtube-update-time" hidden></span>
             </div>
         </div>
 
         
+
+        </div>
+
+        <section class="newcomer-section">
+            <div class="window-controls" aria-hidden="true"><span class="window-minimize"></span><span class="window-maximize"></span><span class="window-close"></span></div>
+            <div class="newcomer-intro"><h2>처음이세요?</h2><p>세 가지만 끝내면 바로 스트리밍할 수 있어요.</p></div>
+            <div class="newcomer-links">
+                <button type="button" onclick="go({view:'guideId'})">아이디 만들기</button>
+                <button type="button" onclick="openGuide('download')">음원 다운로드</button>
+                <button type="button" onclick="openGuide('streaming')">스트리밍 시작</button>
+            </div>
+        </section>
 
         <!-- QUICK LINK: 원클릭 스트리밍 바텀시트 -->
         <div id="quickStreamingOverlay" class="bottom-sheet-overlay" onclick="closeStreamingSheet()"></div>
@@ -280,47 +300,7 @@
                     <button class="sheet-close" type="button" aria-label="닫기" onclick="closeStreamingSheet()">✕</button>
                 </div>
                 <div class="sheet-content">
-                    <div class="sheet-grid">
-                        <!-- Melon Android -->
-                        <a class="sheet-btn" href="https://tinyurl.com/54y46szx" target="_blank" rel="noopener"><span class="sheet-icon">💚</span>멜론 안드로이드 1</a>
-                        <a class="sheet-btn" href="https://tinyurl.com/3kmxdp9e" target="_blank" rel="noopener"><span class="sheet-icon">💚</span>멜론 안드로이드 2</a>
-                        <a class="sheet-btn" href="https://tinyurl.com/bdcwrdbj" target="_blank" rel="noopener"><span class="sheet-icon">💚</span>멜론 안드로이드 3</a>
-                        <a class="sheet-btn" href="https://tinyurl.com/u6u8595x" target="_blank" rel="noopener"><span class="sheet-icon">💚</span>멜론 안드로이드 4</a>
-
-                        <!-- Melon iOS/iPad -->
-                        <a class="sheet-btn" href="https://tinyurl.com/yesbwpmx" target="_blank" rel="noopener"><span class="sheet-icon">💚</span>멜론 아이폰</a>
-                        <a class="sheet-btn" href="https://tinyurl.com/4n6maf6m" target="_blank" rel="noopener"><span class="sheet-icon">💚</span>멜론 아이패드</a>
-
-                        <!-- Melon PC (Windows) -->
-                        <a class="sheet-btn" href="https://tinyurl.com/35f55528" target="_blank" rel="noopener"><span class="sheet-icon">💚</span>멜론 PC 1</a>
-                        <a class="sheet-btn" href="https://tinyurl.com/yj6tnvyn" target="_blank" rel="noopener"><span class="sheet-icon">💚</span>멜론 PC 2</a>
-                        <a class="sheet-btn" href="https://tinyurl.com/467jxu4n" target="_blank" rel="noopener"><span class="sheet-icon">💚</span>멜론 PC 3</a>
-                        <a class="sheet-btn" href="https://tinyurl.com/ynkxsp6t" target="_blank" rel="noopener"><span class="sheet-icon">💚</span>멜론 PC 4</a>
-
-                        <!-- Melon MAC -->
-                        <a class="sheet-btn" href="https://tinyurl.com/5n8u7pdt" target="_blank" rel="noopener"><span class="sheet-icon">💚</span>멜론 맥(MAC) 1</a>
-                        <a class="sheet-btn" href="https://tinyurl.com/4f73p9j9" target="_blank" rel="noopener"><span class="sheet-icon">💚</span>멜론 맥(MAC) 2</a>
-                        <a class="sheet-btn" href="https://tinyurl.com/bpa5rcds" target="_blank" rel="noopener"><span class="sheet-icon">💚</span>멜론 맥(MAC) 3</a>
-                        <a class="sheet-btn" href="https://tinyurl.com/ymc6kfc8" target="_blank" rel="noopener"><span class="sheet-icon">💚</span>멜론 맥(MAC) 4</a>
-
-                        <!-- Genie -->
-                        <a class="sheet-btn" href="https://tinyurl.com/ysdknx6v" target="_blank" rel="noopener"><span class="sheet-icon">🩵</span>지니 안드로이드</a>
-                        <a class="sheet-btn" href="https://tinyurl.com/9m47r3e5" target="_blank" rel="noopener"><span class="sheet-icon">🩵</span>지니 iOS</a>
-                        <a class="sheet-btn" href="https://tinyurl.com/m7r3u9js" target="_blank" rel="noopener"><span class="sheet-icon">🩵</span>지니 PC</a>
-
-                        <!-- FLO (지니 PC 다음) -->
-                        <a class="sheet-btn" href="https://tinyurl.com/2zepnk4j" target="_blank" rel="noopener"><span class="sheet-icon">💙</span>플로(FLO)</a>
-
-                        <!-- Bugs -->
-                        <a class="sheet-btn" href="https://tinyurl.com/mwehxxbe" target="_blank" rel="noopener"><span class="sheet-icon">🧡</span>벅스 모바일</a>
-                        <a class="sheet-btn" href="https://tinyurl.com/bdht9sjz" target="_blank" rel="noopener"><span class="sheet-icon">🧡</span>벅스 PC</a>
-
-                        <!-- VIBE -->
-                        <a class="sheet-btn" href="https://tinyurl.com/yxu4zfnh" target="_blank" rel="noopener"><span class="sheet-icon">💜</span>바이브 1</a>
-                        <a class="sheet-btn" href="https://tinyurl.com/42nnkt6y" target="_blank" rel="noopener"><span class="sheet-icon">💜</span>바이브 2</a>
-                        <a class="sheet-btn" href="https://tinyurl.com/3zpz7etz" target="_blank" rel="noopener"><span class="sheet-icon">💜</span>바이브 3</a>
-                        <a class="sheet-btn" href="https://tinyurl.com/5d4wbwmj" target="_blank" rel="noopener"><span class="sheet-icon">💜</span>바이브 4</a>
-                    </div>
+                    <div class="sheet-grid" id="quickStreamingLinks"></div>
                 </div>
             </div>
         </aside>
@@ -357,6 +337,7 @@
                 <button class="id-subtab active" data-svc="melon" onclick="switchDownloadService('melon', this)">멜론</button>
                 <button class="id-subtab" data-svc="genie" onclick="switchDownloadService('genie', this)">지니</button>
                 <button class="id-subtab" data-svc="bugs" onclick="switchDownloadService('bugs', this)">벅스</button>
+                <button class="id-subtab" data-svc="kakao" onclick="switchDownloadService('kakao', this)">카카오뮤직</button>
             </div>
 
             <h2 id="guideDownloadTitle" class="guide-download-title">가이드 타이틀</h2>
@@ -375,10 +356,13 @@
         <section id="guideStreamingSection" class="guide-id-section" style="display:none;">
             <div class="id-subtabs" role="tablist">
                 <button class="id-subtab active" data-sub="melon" onclick="switchStreamTab('melon', this)">멜론</button>
+                <button class="id-subtab" data-sub="melon-musicwave" onclick="switchStreamTab('melon-musicwave', this)">멜론 뮤직웨이브</button>
+                <button class="id-subtab" data-sub="vibe" onclick="switchStreamTab('vibe', this)">바이브</button>
                 <button class="id-subtab" data-sub="bugs" onclick="switchStreamTab('bugs', this)">벅스</button>
+                <button class="id-subtab" data-sub="spotify" onclick="switchStreamTab('spotify', this)">스포티파이</button>
+                <button class="id-subtab" data-sub="apple" onclick="switchStreamTab('apple', this)">애플뮤직</button>
                 <button class="id-subtab" data-sub="genie" onclick="switchStreamTab('genie', this)">지니</button>
                 <button class="id-subtab" data-sub="flo" onclick="switchStreamTab('flo', this)">플로</button>
-                <button class="id-subtab" data-sub="vibe" onclick="switchStreamTab('vibe', this)">바이브</button>
                 <button class="id-subtab" data-sub="mv" onclick="switchStreamTab('mv', this)">뮤직비디오</button>
             </div>
 
@@ -397,46 +381,75 @@
         <!-- Guide Hub: Main -->
         <section id="guideHubMain" class="guide-hub hub-list" style="display:none;">
             <h2>가이드</h2>
-            <div class="hub-grid">
-                <a class="hub-card" href="#" onclick="openGuide('streaming'); return false;">
-                    <img class="hub-icon" src="styles/assets/guide/icon/stream.png?v=20260420" alt="스트리밍" />
-                    <div class="hub-title">스트리밍</div>
-                </a>
-                <a class="hub-card" href="#" onclick="openGuide('download'); return false;">
-                    <img class="hub-icon" src="styles/assets/guide/icon/download.png?v=20260420" alt="다운로드" />
-                    <div class="hub-title">다운로드</div>
-                </a>
-                <a class="hub-card" href="#" onclick="openGuide('id'); return false;">
-                    <img class="hub-icon" src="styles/assets/guide/icon/generateid.png?v=20260420" alt="아이디 생성" />
-                    <div class="hub-title">아이디 생성</div>
-                </a>
-                <a class="hub-card" href="#" onclick="openGuide('cheer'); return false;">
-                    <img class="hub-icon" src="styles/assets/guide/icon/chant.png?v=20260420" alt="응원법" />
-                    <div class="hub-title">응원법</div>
-                </a>
-                <a class="hub-card" href="#" onclick="openGuide('radio'); return false;">
-                    <img class="hub-icon" src="styles/assets/guide/icon/radio.png?v=20260420" alt="라디오 신청" />
-                    <div class="hub-title">라디오 신청</div>
-                </a>
+            <div class="page-layout">
+                <nav class="page-section-nav" aria-label="가이드 목차">
+                    <a href="#guide-start" onclick="document.getElementById('guide-start').scrollIntoView(); return false;">시작하기</a>
+                    <a href="#guide-cheer" onclick="document.getElementById('guide-cheer').scrollIntoView(); return false;">응원법</a>
+                    <a href="#guide-radio" onclick="document.getElementById('guide-radio').scrollIntoView(); return false;">라디오 신청</a>
+                </nav>
+                <div class="page-sections">
+                    <section id="guide-start" class="page-section">
+                        <h3>시작하기</h3>
+                        <p class="section-subtitle">아이디 생성 → 다운로드 → 스트리밍 순서로 진행해요</p>
+                        <div class="step-grid">
+                            <button type="button" onclick="go({view:'guideId'})"><span>1</span><span class="step-copy"><strong>아이디 만들기</strong><small>플랫폼별 계정 준비 방법</small></span></button>
+                            <button type="button" onclick="go({view:'guideDownload'})"><span>2</span><span class="step-copy"><strong>음원 다운로드</strong><small>반영에 필요한 준비</small></span></button>
+                            <button type="button" onclick="go({view:'guideStreaming'})"><span>3</span><span class="step-copy"><strong>스트리밍 방법</strong><small>원클릭 링크로 바로 재생</small></span></button>
+                        </div>
+                    </section>
+                    <section id="guide-cheer" class="page-section">
+                        <h3>응원법</h3>
+                        <p class="section-subtitle">곡별 응원법을 텍스트로 확인해요</p>
+                        <div class="feature-panel">
+                            <div class="feature-meta"><span class="feature-status">업데이트</span><span class="feature-date">2026.10.11</span></div>
+                            <strong>응원법</strong>
+                            <p>곡별 응원법을 확인해요. 영상·이미지는 보조 자료로 첨부됩니다.</p>
+                            <div class="feature-actions"><button class="primary-action" type="button" onclick="go({view:'guideChant'})">응원법 보기</button><button class="secondary-action" type="button" onclick="copyGuideSectionLink('guide-cheer')">링크 복사</button></div>
+                        </div>
+                    </section>
+                    <section id="guide-radio" class="page-section">
+                        <h3>라디오 신청</h3>
+                        <p class="section-subtitle">방송국별 문자 번호와 문구를 복사해서 보내요</p>
+                        <div class="radio-card-grid">
+                            <article class="radio-card"><h4>KBS <span>#8910</span></h4><p>이전 사이트에 저장된 Cool FM 번호예요. 보낼 프로그램의 번호를 확인해 주세요.</p><button class="primary-action" type="button" onclick="openRadioSms('#8910')">문자 앱 열기</button><button type="button" onclick="copyRadioRequestText()">문구 복사</button></article>
+                            <article class="radio-card"><h4>MBC <span>#8000</span></h4><p>FM4U 문자 번호예요. 보낼 프로그램의 번호를 확인해 주세요.</p><button class="primary-action" type="button" onclick="openRadioSms('#8000')">문자 앱 열기</button><button type="button" onclick="copyRadioRequestText()">문구 복사</button></article>
+                            <article class="radio-card"><h4>SBS <span>#1077</span></h4><p>파워FM 문자 번호예요. 보낼 프로그램의 번호를 확인해 주세요.</p><button class="primary-action" type="button" onclick="openRadioSms('#1077')">문자 앱 열기</button><button type="button" onclick="copyRadioRequestText()">문구 복사</button></article>
+                        </div>
+                    </section>
+                </div>
             </div>
         </section>
 
         <!-- Guide Hub: Streaming -->
         <section id="guideHubStreaming" class="guide-hub" style="display:none;">
             <h2>스트리밍</h2>
-            <div class="hub-grid">
-                <a class="hub-card" href="#" onclick="go({ view: 'streamingRecommend' }); return false;">
-                    <img class="hub-icon" src="styles/assets/stream/icon/recommend.png?v=20260420" alt="권장 스트리밍 리스트" />
-                    <div class="hub-title">권장 스트리밍 리스트</div>
-                </a>
-                <a class="hub-card" href="#" onclick="openStreamingSheet(); return false;">
-                    <img class="hub-icon" src="styles/assets/stream/icon/oneclick.png?v=20260420" alt="원클릭 스트리밍" />
-                    <div class="hub-title">원클릭 스트리밍</div>
-                </a>
-                <a class="hub-card" href="#" onclick="go({ view: 'streamingMV' }); return false;">
-                    <img class="hub-icon" src="styles/assets/stream/icon/mv.png?v=20260420" alt="뮤직비디오" />
-                    <div class="hub-title">뮤직비디오</div>
-                </a>
+            <div class="page-layout">
+                <nav class="page-section-nav" aria-label="스트리밍 목차">
+                    <a href="#stream-oneclick" onclick="document.getElementById('stream-oneclick').scrollIntoView(); return false;">원클릭 스트리밍</a>
+                    <a href="#stream-list" onclick="document.getElementById('stream-list').scrollIntoView(); return false;">권장 스트리밍 리스트</a>
+                    <a href="#stream-mv" onclick="go({ view: 'streamingMV' }); return false;">뮤직비디오</a>
+                </nav>
+                <div class="page-sections">
+                    <section id="stream-oneclick" class="page-section">
+                        <div class="stream-device-tabs" role="tablist" aria-label="기기 선택">
+                            <button type="button" class="active" aria-selected="true" onclick="switchStreamingPlatform('Android', this)">Android</button>
+                            <button type="button" aria-selected="false" onclick="switchStreamingPlatform('iOS', this)">iOS</button>
+                            <button type="button" aria-selected="false" onclick="switchStreamingPlatform('PC', this)">PC</button>
+                            <button type="button" aria-selected="false" onclick="switchStreamingPlatform('Mac', this)">Mac</button>
+                        </div>
+                        <div class="stream-notice"><strong>집계 기준은 플랫폼마다 달라요</strong><span>재생 시간·중복 집계 기준은 플랫폼별로 다르고 바뀔 수 있어요. 이용 전 각 플랫폼의 공식 공지를 확인해 주세요.</span></div>
+                        <h3>원클릭 스트리밍</h3>
+                        <p id="streamingDeviceSubtitle" class="section-subtitle">선택한 기기: Android</p>
+                        <div id="streamingPlatformLinks" class="stream-service-list"></div>
+                        <button class="stream-other-device" type="button" aria-expanded="false" onclick="toggleOtherDevices(this)">다른 기기 링크 펼치기</button>
+                        <div class="stream-other-options" hidden></div>
+                    </section>
+                    <section id="stream-list" class="page-section">
+                        <h3>권장 스트리밍 리스트</h3>
+                        <p class="section-subtitle">재생 순서와 반복 횟수는 스트리밍팀 공지를 확인해 주세요</p>
+                        <ol id="recommendedTracks" class="track-list"></ol>
+                    </section>
+                </div>
             </div>
         </section>
 
@@ -470,19 +483,54 @@
         <!-- Guide Hub: Vote -->
         <section id="guideHubVote" class="guide-hub" style="display:none;">
             <h2>투표</h2>
-            <div class="hub-grid">
-                <a class="hub-card" href="#" onclick="openVoteRate(); return false;">
-                    <img class="hub-icon" src="styles/assets/vote/icon/musicshow table.png" alt="음악방송 비중표" />
-                    <div class="hub-title">음악방송 비중표</div>
-                </a>
-                <a class="hub-card" href="#" onclick="go({ view: 'voteSchedule' }); return false;">
-                    <img class="hub-icon" src="styles/assets/vote/icon/vote calander.png" alt="투표일정" />
-                    <div class="hub-title">투표일정</div>
-                </a>
-                <a class="hub-card" href="#" onclick="openVoteCollect(); return false;">
-                    <img class="hub-icon" src="styles/assets/vote/icon/collect.png?v=20260420" alt="투표권 모으기" />
-                    <div class="hub-title">투표권 모으기</div>
-                </a>
+            <div class="page-layout">
+                <nav class="page-section-nav" aria-label="투표 목차">
+                    <a href="#vote-schedule" onclick="document.getElementById('vote-schedule').scrollIntoView(); return false;">투표 일정</a>
+                    <a href="#vote-ratio" onclick="document.getElementById('vote-ratio').scrollIntoView(); return false;">음악방송 반영 비율</a>
+                    <a href="#vote-sms" onclick="document.getElementById('vote-sms').scrollIntoView(); return false;">문자 투표</a>
+                    <a href="#vote-tickets" onclick="document.getElementById('vote-tickets').scrollIntoView(); return false;">투표권 모으기</a>
+                </nav>
+                <div class="page-sections">
+                    <section id="vote-schedule" class="page-section">
+                        <h3>투표 일정</h3>
+                        <p class="section-subtitle">예정·진행중·종료 상태를 한눈에 확인해요</p>
+                        <div class="vote-schedule-list">
+                            <button type="button" onclick="go({ view: 'voteSchedule' })"><span class="vote-schedule-date">날짜 확인 필요</span><strong>쇼챔피언 투표 일정</strong><span class="vote-schedule-status">확인 필요</span></button>
+                            <button type="button" onclick="go({ view: 'voteSchedule' })"><span class="vote-schedule-date">날짜 확인 필요</span><strong>뮤직뱅크 투표 일정</strong><span class="vote-schedule-status">확인 필요</span></button>
+                            <button type="button" onclick="go({ view: 'voteSchedule' })"><span class="vote-schedule-date">날짜 확인 필요</span><strong>쇼! 음악중심 투표 일정</strong><span class="vote-schedule-status">확인 필요</span></button>
+                            <button type="button" onclick="go({ view: 'voteSchedule' })"><span class="vote-schedule-date">날짜 확인 필요</span><strong>인기가요 투표 일정</strong><span class="vote-schedule-status">확인 필요</span></button>
+                            <button type="button" onclick="go({ view: 'voteSchedule' })"><span class="vote-schedule-date">날짜 확인 필요</span><strong>엠카운트다운 투표 일정</strong><span class="vote-schedule-status">확인 필요</span></button>
+                        </div>
+                    </section>
+                    <section id="vote-ratio" class="page-section">
+                        <h3>음악방송 반영 비율</h3>
+                        <p class="section-subtitle">2026.04 버전 · 방송별 세부 항목은 원본 이미지에서 확인해요</p>
+                        <div class="vote-ratio-wrap"><table class="vote-ratio-table"><thead><tr><th>방송</th><th>음원</th><th>음반</th><th>방송</th><th>기타·투표</th></tr></thead><tbody>
+                            <tr><th>엠카운트다운</th><td>50%</td><td>15%</td><td>10%</td><td>글로벌 소셜 미디어 15% · 사전투표 10%</td></tr>
+                            <tr><th>뮤직뱅크</th><td>60%</td><td>5%</td><td>20%</td><td>소셜미디어 5% · 사전투표 10%</td></tr>
+                            <tr><th>쇼! 음악중심</th><td>50%</td><td>10%</td><td>10%</td><td>동영상 10% · 사전투표 10% · 실시간투표 10%</td></tr>
+                            <tr><th>인기가요</th><td>50%</td><td>10%</td><td>10%</td><td>SNS 20% · 사전투표 5% · 실시간투표 5%</td></tr>
+                            <tr><th>쇼챔피언</th><td>35%</td><td>15%</td><td>20%</td><td>SNS 10% · 사전투표 20%</td></tr>
+                        </tbody></table></div>
+                        <button class="secondary-action vote-ratio-original" type="button" onclick="go({view:'voteRate'})">원본 이미지 보기</button>
+                    </section>
+                    <section id="vote-sms" class="page-section">
+                        <h3>문자 투표</h3>
+                        <p class="section-subtitle">번호와 문구는 방송사 공지를 확인한 뒤 입력해요</p>
+                        <p class="stream-notice">문자 투표는 방송 중에 참여해 주세요. 문자 요금이 발생할 수 있습니다.</p>
+                        <div class="radio-card-grid vote-sms-grid">
+                            <article class="radio-card"><h4>인기가요 <span>번호 확인 필요</span></h4><p>방송사 공지에서 문자 번호와 문구를 확인해 주세요.</p><button class="primary-action" type="button" disabled>문자 앱 열기</button><button type="button" disabled>문구 복사</button></article>
+                            <article class="radio-card"><h4>뮤직뱅크 <span>번호 확인 필요</span></h4><p>방송사 공지에서 문자 번호와 문구를 확인해 주세요.</p><button class="primary-action" type="button" disabled>문자 앱 열기</button><button type="button" disabled>문구 복사</button></article>
+                            <article class="radio-card"><h4>쇼챔피언 <span>번호 확인 필요</span></h4><p>방송사 공지에서 문자 번호와 문구를 확인해 주세요.</p><button class="primary-action" type="button" disabled>문자 앱 열기</button><button type="button" disabled>문구 복사</button></article>
+                        </div>
+                    </section>
+                    <section id="vote-tickets" class="page-section">
+                        <h3>투표권 모으기</h3>
+                        <p class="section-subtitle">방법은 팀 공지 기준으로 입력해요</p>
+                        <div class="step-grid"><button type="button" onclick="openVoteCollect()"><span>1</span><span class="step-copy"><strong>앱 설치·로그인</strong><small>이미지 가이드에서 확인</small></span></button><button type="button" onclick="openVoteCollect()"><span>2</span><span class="step-copy"><strong>미션 참여</strong><small>이미지 가이드에서 확인</small></span></button><button type="button" onclick="openVoteCollect()"><span>3</span><span class="step-copy"><strong>투표권 확인</strong><small>이미지 가이드에서 확인</small></span></button></div>
+                        <button class="text-action" type="button" onclick="openVoteCollect()">투표권 모으기 가이드 보기 ›</button>
+                    </section>
+                </div>
             </div>
         </section>
 
@@ -505,36 +553,25 @@
         <!-- Guide Hub: Support -->
         <section id="guideHubSupport" class="guide-hub" style="display:none;">
             <h2>서포트</h2>
+            <div class="page-layout">
+            <nav class="page-section-nav support-section-nav" aria-label="서포트 메뉴"><a href="#support-helper-card" aria-current="location">헬퍼 지원</a><a href="#support-team-card">팀원 지원</a><a href="#support-id-card">아이디 기부</a><a href="#support-fundraising-card">모금</a><a href="#support-gifticon-card">기프티콘 기부</a></nav>
             <div class="hub-grid">
-                <a class="hub-card" href="#" onclick="openSupport('helper'); return false;">
-                    <img class="hub-icon" src="styles/assets/support/icon/helper.png?v=20260420" alt="헬퍼 지원" />
-                    <div class="hub-title">헬퍼 지원</div>
-                </a>
-                <a class="hub-card" href="#" onclick="openSupport('team'); return false;">
-                    <img class="hub-icon" src="styles/assets/support/icon/team.png?v=20260420" alt="스트리밍 팀원 지원" />
-                    <div class="hub-title">스트리밍 팀원 지원</div>
-                </a>
-                <a class="hub-card" href="#" onclick="openSupport('id'); return false;">
-                    <img class="hub-icon" src="styles/assets/support/icon/id.png?v=20260420" alt="아이디 기부" />
-                    <div class="hub-title">아이디 기부</div>
-                </a>
-                <a class="hub-card" href="#" onclick="openSupport('fundraising'); return false;">
-                    <img class="hub-icon" src="styles/assets/support/icon/fundrasing.png?v=20260420" alt="모금" />
-                    <div class="hub-title">모금</div>
-                </a>
-                <a class="hub-card" href="#" onclick="openSupport('gifticon'); return false;">
-                    <img class="hub-icon" src="styles/assets/support/icon/id.png?v=20260420" alt="기프티콘 기부" />
-                    <div class="hub-title">기프티콘 기부</div>
-                </a>
+                <article class="support-card" id="support-helper-card"><span class="support-card-label">지원 안내</span><h3>헬퍼 지원</h3><p>스트리밍 헬퍼의 활동 내용과 지원 방법을 확인할 수 있어요.</p><div class="support-card-actions"><button class="primary-action" type="button" onclick="openSupport('helper')">지원하기</button><button type="button" onclick="copySupportLink('helper')">링크 복사</button></div></article>
+                <article class="support-card" id="support-team-card"><span class="support-card-label">모집 여부 확인 필요</span><h3>스트리밍 팀원 지원</h3><p>팀원 모집 안내를 확인해 주세요. 현재 모집 여부는 공지에서 확인이 필요해요.</p><div class="support-card-actions"><button class="primary-action" type="button" onclick="openSupport('team')">지원하기</button><button type="button" onclick="copySupportLink('team')">링크 복사</button></div></article>
+                <article class="support-card" id="support-id-card"><span class="support-card-label">기부</span><h3>아이디 기부</h3><p>지니·벅스 아이디 기부로 스트리밍 팀을 도와주세요. 기부 방법은 플랫폼별로 달라요.</p><div class="support-card-actions"><button class="primary-action" type="button" onclick="openIdDonation('genie')">지니 기부하기</button><button type="button" onclick="openIdDonation('bugs')">벅스 기부하기</button></div></article>
+                <article class="support-card" id="support-fundraising-card"><span class="support-card-label">기부</span><h3>모금</h3><p>모금 목표·기간·사용처는 공지에서 확인해 주세요.</p><div class="support-card-actions"><button class="primary-action" type="button" onclick="openFundraisingApplication()">참여하기</button><button type="button" onclick="copySupportLink('fundraising')">링크 복사</button></div></article>
+                <article class="support-card" id="support-gifticon-card"><span class="support-card-label">기부</span><h3>기프티콘 기부</h3><p>기프티콘 기부 방법과 기간은 공지에서 확인해 주세요.</p><div class="support-card-actions"><button class="primary-action" type="button" onclick="openGifticonDonation()">참여하기</button><button type="button" onclick="copySupportLink('gifticon')">링크 복사</button></div></article>
+                <button class="support-ended" type="button" onclick="this.nextElementSibling.hidden = !this.nextElementSibling.hidden">종료된 공지 보기</button><p class="support-ended-empty" hidden>등록된 종료 공지가 없습니다.</p>
+            </div>
             </div>
         </section>
 
         <!-- Guide: 라디오 신청 상세 화면 -->
         <section id="guideRadioSection" class="guide-id-section" style="display:none;">
             <h2 class="guide-id-title">라디오 신청 가이드</h2>
-            <div class="guide-id-date" id="guideRadioDate">YYYY.MM.DD</div>
+            <div class="guide-id-date" id="guideRadioDate" hidden></div>
             <div class="guide-id-image-container">
-                <img class="guide-id-image" src="styles/assets/guide/radio/라디오 신청 가이드 이미지.jpg" alt="라디오 신청 가이드 이미지"/>
+                <img class="guide-id-image" src="styles/assets/guide/radio/radio-request-guide-20261011.jpg" alt="NCT WISH 라디오 원클릭 신청 가이드"/>
             </div>
             <div class="guide-actions">
                 <button class="guide-action-btn primary" onclick="openRadioHomepage()">바로가기 ></button>
@@ -551,8 +588,8 @@
             <div class="youtube-content">
                 <div class="video-container">
                     <iframe
-                        src="https://www.youtube.com/embed/1o5O2YvV3HU"
-                        title="NCT WISH 엔시티 위시 'Ode to Love' MV"
+                        src="https://www.youtube.com/embed/_t9bc8WNA1c"
+                        title="NCT WISH 뮤직비디오"
                         frameborder="0" 
                         allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                         allowfullscreen>
@@ -591,6 +628,7 @@
         <!-- Vote: 투표권 모으기 상세 화면 -->
         <section id="voteCollectSection" class="guide-id-section" style="display:none;">
             <div class="id-subtabs" role="tablist">
+                <button class="id-subtab" data-sub="theshow" onclick="switchVoteCollectTab('theshow', this)">더쇼</button>
                 <button class="id-subtab active" data-sub="showchampion" onclick="switchVoteCollectTab('showchampion', this)">쇼챔</button>
                 <button class="id-subtab" data-sub="musicbank" onclick="switchVoteCollectTab('musicbank', this)">뮤직뱅크</button>
                 <button class="id-subtab" data-sub="musiccore" onclick="switchVoteCollectTab('musiccore', this)">쇼음악중심</button>
@@ -599,7 +637,7 @@
             </div>
 
             <h2 id="voteCollectTitle" class="guide-id-title">투표권 모으기</h2>
-            <div id="voteCollectDate" class="guide-id-date">YYYY.MM.DD</div>
+            <div id="voteCollectDate" class="guide-id-date" hidden></div>
 
             <div class="guide-id-image-container">
                 <img id="voteCollectImage" class="guide-id-image" alt="투표권 모으기 가이드 이미지"/>
@@ -616,7 +654,7 @@
             <div class="support-helper-date">YYYY.MM.DD</div>
 
             <div class="support-helper-image-container">
-                <img class="support-helper-image" src="styles/assets/support/helper/download.png?v=20260420" alt="헬퍼 팀원 지원 가이드 이미지"/>
+                <img class="support-helper-image" src="styles/assets/support/helper/download.png?v=20261010" alt="헬퍼 팀원 지원 가이드 이미지"/>
             </div>
 
             <div class="guide-actions">
@@ -681,144 +719,58 @@
             </div>
 
             <div class="guide-actions">
+                <button class="guide-action-btn primary" onclick="openGifticonDonation()">참여하기 ></button>
                 <button class="guide-action-btn" onclick="shareCurrentGuide()">🔗 공유하기</button>
             </div>
         </section>
 
-        <!-- 임시로 숨긴 섹션들 -->
-        <div style="display: none;">
-            <!-- 원클릭 스트리밍 -->
-            <div class="card">
-                <h2><span class="card-icon">🎵</span>원클릭 스트리밍</h2>
-                <p>각 플랫폼에서 바로 스트리밍하여 차트 순위를 올려보세요!</p>
-                <div class="streaming-links">
-                    <button class="streaming-btn melon" onclick="goToStreaming('melon')">멜론</button>
-                    <button class="streaming-btn genie" onclick="goToStreaming('genie')">지니</button>
-                    <button class="streaming-btn bugs" onclick="goToStreaming('bugs')">벅스</button>
-                    <button class="streaming-btn vibe" onclick="goToStreaming('vibe')">바이브</button>
-                    <button class="streaming-btn flo" onclick="goToStreaming('flo')">플로</button>
-                </div>
-                <div class="alert">
-                    💡 <strong>팁:</strong> 30초 이상 재생해야 차트에 반영됩니다!
-                </div>
-            </div>
-
-            <!-- 원클릭 라디오 신청 -->
-            <div class="card">
-                <h2><span class="card-icon">📻</span>원클릭 라디오 신청</h2>
-                <p>라디오 방송국에 곡을 신청하여 더 많은 사람들이 들을 수 있도록 해보세요!</p>
-                <div class="radio-request-links">
-                    <a href="sms:#8910&body=NCT WISH Ode to Love 신청합니다." class="radio-request-btn kbs">
-                        <span class="radio-icon">📻</span>
-                        KBS
-                    </a>
-                    <a href="sms:#8000&body=NCT WISH Ode to Love 신청합니다." class="radio-request-btn mbc">
-                        <span class="radio-icon">📻</span>
-                        MBC
-                    </a>
-                    <a href="sms:#1077&body=NCT WISH Ode to Love 신청합니다." class="radio-request-btn sbs">
-                        <span class="radio-icon">📻</span>
-                        SBS
-                    </a>
-                </div>
-                <div class="info-box">
-                    <strong>신청 정보:</strong><br>
-                    곡명: Ode to Love<br>
-                    가수: NCT WISH<br>
-                    앨범: NCT WISH 1st ALBUM Ode to Love<br>
-                    <br>
-                    <strong>문자 신청 방법:</strong><br>
-                    • KBS: #8910 번호로 "NCT WISH Ode to Love 신청합니다"<br>
-                    • MBC: #8000 번호로 "NCT WISH Ode to Love 신청합니다"<br>
-                    • SBS: #1077 번호로 "NCT WISH Ode to Love 신청합니다"
-                </div>
-            </div>
-
-            <!-- 멜론 충전하기 -->
-            <div class="card">
-                <h2><span class="card-icon">💰</span>멜론 충전하기</h2>
-                <p>멜론 캐시를 충전하여 더 많은 스트리밍을 지원해보세요!</p>
-                <div class="quick-actions">
-                    <a href="https://www.melon.com/buy/meloncash/charge.htm" class="btn btn-success" target="_blank">멜론 캐시 충전</a>
-                    <a href="https://www.melon.com/muid/family/ticket/index.htm" class="btn btn-success" target="_blank">이용권 구매</a>
-                </div>
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-number">1,000원</div>
-                        <div class="stat-label">최소 충전 금액</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">30일</div>
-                        <div class="stat-label">이용권 기간</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 원클릭 문자투표 -->
-            <div class="card">
-                <h2><span class="card-icon">📱</span>원클릭 문자투표</h2>
-                <p>각종 음악 방송 문자투표에 참여해보세요!</p>
-                <div class="quick-actions">
-                    <a href="sms:00000?body=NCT WISH Ode to Love" class="btn btn-warning">인기가요 투표</a>
-                    <a href="sms:00000?body=NCT WISH Ode to Love" class="btn btn-warning">뮤직뱅크 투표</a>
-                    <a href="sms:00000?body=NCT WISH Ode to Love" class="btn btn-warning">쇼챔피언 투표</a>
-                </div>
-                <div class="alert">
-                    ⚠️ <strong>주의:</strong> 문자 투표는 유료 서비스입니다. 요금을 확인하고 참여해주세요.
-                </div>
-            </div>
-
-            <!-- 공동구매 -->
-            <div class="card">
-                <h2><span class="card-icon">🛒</span>공동구매</h2>
-                <p>팬들과 함께 앨범 구매, 스트리밍 패스 등을 공동구매해보세요!</p>
-                <div class="quick-actions">
-                    <button class="btn" onclick="openGroupBuy('album')">앨범 공동구매</button>
-                    <button class="btn" onclick="openGroupBuy('streaming')">스트리밍 패스</button>
-                    <button class="btn" onclick="openGroupBuy('voting')">투표 패키지</button>
-                </div>
-                <div class="info-box">
-                    <strong>현재 진행 중인 공동구매:</strong><br>
-                    • 멜론 이용권 (10명 참여 중)<br>
-                    • 앨범 구매 (5명 참여 중)<br>
-                    • 투표 패키지 (15명 참여 중)
-                </div>
-            </div>
-        </div>
-
-
-
         <div class="footer">
             <nav class="footer-nav">
-                <button class="footer-item" onclick="openFooterAction('guide')">
-                    <img class="footer-icon-img" src="styles/assets/navigation/bottom_navigation_bar_guide.png?v=20260420" alt="가이드" />
+                <button class="footer-item" data-nav="guide" onclick="openFooterAction('guide')">
+                    <img class="footer-icon-img" src="styles/assets/navigation/bottom_navigation_bar_guide.png" alt="" />
                     <span class="footer-label">가이드</span>
                 </button>
-                <button class="footer-item" onclick="openFooterAction('streaming')">
-                    <img class="footer-icon-img" src="styles/assets/navigation/bottom_navigation_bar_streaming.png?v=20260420" alt="스트리밍" />
+                <button class="footer-item" data-nav="streaming" onclick="openFooterAction('streaming')">
+                    <img class="footer-icon-img" src="styles/assets/navigation/bottom_navigation_bar_streaming.png" alt="" />
                     <span class="footer-label">스트리밍</span>
                 </button>
-                <button class="footer-item" onclick="openFooterAction('home')">
-                    <img class="footer-icon-img" src="styles/assets/navigation/bottom_navigation_bar_home.png?v=20260420" alt="홈" />
+                <button class="footer-item" data-nav="home" onclick="openFooterAction('home')">
+                    <img class="footer-icon-img" src="styles/assets/navigation/bottom_navigation_bar_home.png" alt="" />
                     <span class="footer-label">홈</span>
                 </button>
-                <button class="footer-item" onclick="openFooterAction('vote')">
-                    <img class="footer-icon-img" src="styles/assets/navigation/bottom_navigation_bar_vote.png?v=20260420" alt="투표" />
+                <button class="footer-item" data-nav="vote" onclick="openFooterAction('vote')">
+                    <img class="footer-icon-img" src="styles/assets/navigation/bottom_navigation_bar_vote.png" alt="" />
                     <span class="footer-label">투표</span>
                 </button>
-                <button class="footer-item" onclick="openFooterAction('support')">
-                    <img class="footer-icon-img" src="styles/assets/navigation/bottom_navigation_bar_support.png?v=20260420" alt="서포트" />
+                <button class="footer-item" data-nav="support" onclick="openFooterAction('support')">
+                    <img class="footer-icon-img" src="styles/assets/navigation/bottom_navigation_bar_support.png" alt="" />
                     <span class="footer-label">서포트</span>
                 </button>
             </nav>
         </div>
     </div>
 
+    <div class="footer-desktop">
+        <div class="footer-top">
+            <nav aria-label="하단 메뉴"><button type="button" onclick="openFooterAction('streaming')">스트리밍</button><button type="button" onclick="openFooterAction('guide')">가이드</button><button type="button" onclick="openFooterAction('vote')">투표</button><button type="button" onclick="openFooterAction('support')">서포트</button></nav>
+            <details class="footer-related"><summary>관련 사이트</summary><a href="https://weverse.io/nctwish" target="_blank" rel="noopener noreferrer">Weverse</a></details>
+        </div>
+        <div class="footer-description">
+            <p>NCT WISH STREAMING TEAM은 팬이 운영하는 비공식 스트리밍 팀입니다.</p>
+            <p>투표·문자 요금과 법령 기준은 각 방송사·플랫폼 공지를 기준으로 확인해 주세요.</p>
+        </div>
+        <div class="footer-bottom"><span>© NCT WISH STREAMING TEAM</span><a href="https://weverse.io/nctwish" target="_blank" rel="noopener noreferrer">Weverse</a></div>
+    </div>
+
     
 
     <!-- JavaScript 파일들을 body 끝에 로드 -->
-    <script src="js/dashboard.js?v=20260420"></script>
+    <script src="js/site-content.js?v=20261010"></script>
+    <script src="js/dashboard.js?v=20261011g"></script>
+    <script src="js/streaming.js?v=20261011j"></script>
+    <script src="js/guide.js?v=20261011f"></script>
+    <script src="js/support.js?v=20261011f"></script>
     <script src="js/chart.js?v=20260420"></script>
     
 </body>
-</html> 
+</html>

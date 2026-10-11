@@ -65,7 +65,7 @@ window.siteContent = {
         ],
         flo: [
             'styles/assets/guide/stream/플로 스트리밍 가이드(모바일).webp?v=20261010',
-            'styles/assets/guide/stream/플로 스트리밍 가이드(PC).webp?v=20261010'
+            'styles/assets/guide/stream/플로 스트리밍 가이드(PC).webp?v=20261011opt'
         ],
         mv: ['styles/assets/guide/stream/뮤직비디오 스트리밍 가이드.webp?v=20261011']
     },

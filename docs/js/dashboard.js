@@ -708,14 +708,14 @@ function switchChantTab(sub, btn){
     if (titleEl) titleEl.textContent = `응원법 · ${titleMap[sub] || ''}`;
     if (dateEl){ const d = new Date(); const fmt = `${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,'0')}.${String(d.getDate()).padStart(2,'0')}`; dateEl.textContent = fmt; }
     const trackMap = {
-        handsup: [ { key:'handsup_jp', label:'Hands Up(日)', imgs:['styles/assets/guide/chant/1. Hands Up 응원법(日).webp'] }, { key:'wego_jp', label:'We Go!(日)', imgs:['styles/assets/guide/chant/2. We Go! 응원법(日).webp'] }, { key:'wego_kr', label:'We Go!(韓)', imgs:['styles/assets/guide/chant/7. We Go! 응원법(韓).webp'] } ],
+        handsup: [ { key:'handsup_jp', label:'Hands Up(日)', imgs:['styles/assets/guide/chant/1. Hands Up 응원법(日).webp'] }, { key:'wego_jp', label:'We Go!(日)', imgs:['styles/assets/guide/chant/2. We Go! 응원법(日).webp'] }, { key:'wego_kr', label:'We Go!(韓)', imgs:['styles/assets/guide/chant/7. We Go! 응원법(韓).webp?v=20261011opt'] } ],
         wish: [ { key:'wish', label:'WISH', imgs:['styles/assets/guide/chant/3. WISH 응원법.webp'] }, { key:'sailaway', label:'Sail Away', imgs:['styles/assets/guide/chant/4. Sail Away 응원법.webp'] } ],
         songbird: [ { key:'songbird', label:'Songbird', imgs:['styles/assets/guide/chant/5. Songbird 응원법.webp'] } ],
-        steady: [ { key:'steady', label:'Steady', imgs:['styles/assets/guide/chant/9. Steady 응원법.webp'] }, { key:'dunkshot', label:'Dunk Shot', imgs:['styles/assets/guide/chant/8. Dunk Shot 응원법.webp'] }, { key:'handsup_kr', label:'Hands Up(韓)', imgs:['styles/assets/guide/chant/6. Hands Up 응원법(韓).webp'] } ],
+        steady: [ { key:'steady', label:'Steady', imgs:['styles/assets/guide/chant/9. Steady 응원법.webp'] }, { key:'dunkshot', label:'Dunk Shot', imgs:['styles/assets/guide/chant/8. Dunk Shot 응원법.webp'] }, { key:'handsup_kr', label:'Hands Up(韓)', imgs:['styles/assets/guide/chant/6. Hands Up 응원법(韓).webp?v=20261011opt'] } ],
         miracle: [ { key:'miracle', label:'Miracle', imgs:['styles/assets/guide/chant/10. Miracle 응원법.webp'] } ],
         poppop: [ { key:'poppop', label:'poppop', imgs:['styles/assets/guide/chant/11. poppop 응원법.webp'] } ],
         color: [ { key:'surf', label:'Surf', imgs:['styles/assets/guide/chant/12. Surf 응원법.webp'] }, { key:'color', label:'COLOR', imgs:['styles/assets/guide/chant/13. COLOR 응원법.webp'] } ],
-        hellomellow: [ { key:'hellomellow', label:'Hello Mellow', imgs:['styles/assets/guide/chant/16. Hello Mellow 응원법.jpg'] } ],
+        hellomellow: [ { key:'hellomellow', label:'Hello Mellow', imgs:['styles/assets/guide/chant/16. Hello Mellow 응원법.webp?v=20261011opt'] } ],
         odetolove: [ { key:'odetolove', label:'Ode to Love', imgs:['styles/assets/guide/chant/14. Ode to Love 응원법.webp?v=20260420'] }, { key:'sticky', label:'Sticky', imgs:['styles/assets/guide/chant/15. Sticky 응원법.webp'] } ]
     };
     const tracks = trackMap[sub] || [];
@@ -734,18 +734,18 @@ function switchChantTrack(trackKey, btn){
     const all = {
         handsup_jp:['styles/assets/guide/chant/1. Hands Up 응원법(日).webp'],
         wego_jp:['styles/assets/guide/chant/2. We Go! 응원법(日).webp'],
-        wego_kr:['styles/assets/guide/chant/7. We Go! 응원법(韓).webp'],
+        wego_kr:['styles/assets/guide/chant/7. We Go! 응원법(韓).webp?v=20261011opt'],
         wish:['styles/assets/guide/chant/3. WISH 응원법.webp'],
         sailaway:['styles/assets/guide/chant/4. Sail Away 응원법.webp'],
         songbird:['styles/assets/guide/chant/5. Songbird 응원법.webp'],
         steady:['styles/assets/guide/chant/9. Steady 응원법.webp'],
         dunkshot:['styles/assets/guide/chant/8. Dunk Shot 응원법.webp'],
-        handsup_kr:['styles/assets/guide/chant/6. Hands Up 응원법(韓).webp'],
+        handsup_kr:['styles/assets/guide/chant/6. Hands Up 응원법(韓).webp?v=20261011opt'],
         miracle:['styles/assets/guide/chant/10. Miracle 응원법.webp'],
         poppop:['styles/assets/guide/chant/11. poppop 응원법.webp'],
         surf:['styles/assets/guide/chant/12. Surf 응원법.webp'],
         color:['styles/assets/guide/chant/13. COLOR 응원법.webp'],
-        hellomellow:['styles/assets/guide/chant/16. Hello Mellow 응원법.jpg'],
+        hellomellow:['styles/assets/guide/chant/16. Hello Mellow 응원법.webp?v=20261011opt'],
         odetolove:['styles/assets/guide/chant/14. Ode to Love 응원법.webp?v=20260420'],
         sticky:['styles/assets/guide/chant/15. Sticky 응원법.webp']
     };

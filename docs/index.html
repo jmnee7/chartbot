@@ -12,7 +12,7 @@
     <meta name="twitter:image" content="styles/assets/thumbnail.png?v=20260420" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
     <link rel="stylesheet" href="styles/main.css?v=20260420">
-    <link rel="stylesheet" href="styles/redesign.css?v=20261011z">
+    <link rel="stylesheet" href="styles/redesign.css?v=20261011aa">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -24,13 +24,12 @@
     <div class="home-announcement">스트리밍팀 홈페이지가 리뉴얼되었어요. <button type="button" class="notice-close" aria-label="공지 닫기" onclick="this.parentElement.hidden=true">×</button></div>
     <!-- 상단 메뉴바 -->
     <div class="top-menu-bar" onmouseenter="this.querySelector('.desktop-mega-menu').classList.remove('dismissed')" onfocusin="this.querySelector('.desktop-mega-menu').classList.remove('dismissed')">
-        <button class="hamburger-menu" onclick="toggleSideMenu()">
-            <span></span>
-            <span></span>
-            <span></span>
+        <button class="hamburger-menu" onclick="toggleSideMenu()" aria-label="메뉴 열기">
+            <img class="hamburger-icon hamburger-icon-default" src="styles/assets/figma/e08a5.svg" alt="" aria-hidden="true" />
+            <img class="hamburger-icon hamburger-icon-inverse" src="styles/assets/figma/0efb2.svg" alt="" aria-hidden="true" />
         </button>
         <button class="logo-btn" onclick="goHome()" aria-label="홈으로">
-            <img class="app-logo app-logo-default" src="styles/assets/logo.png?v=20260420" alt="" aria-hidden="true" />
+            <img class="app-logo app-logo-default" src="styles/assets/figma/8b0e1.png" alt="" aria-hidden="true" />
             <img class="app-logo app-logo-inverse" src="styles/assets/figma/fd8bb.svg" alt="" aria-hidden="true" />
             <span class="app-title app-title-full">NCT WISH STREAMING TEAM</span><span class="app-title app-title-short">NCT WISH</span>
         </button>

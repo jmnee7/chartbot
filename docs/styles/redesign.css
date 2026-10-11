@@ -803,6 +803,11 @@ body[data-page="home"] .app-title { font-family: 'Noto Sans KR', sans-serif; fon
 .logo-btn { gap: 8px; }
 .app-title-short { display: none; }
 .app-logo, body[data-page="home"] .app-logo { width: 26.8px; height: 22px; }
+.hamburger-menu { width: 40px; height: 40px; align-items: center; justify-content: center; flex: none; }
+.hamburger-icon { display: block; width: 24px; height: 24px; }
+.hamburger-icon-inverse { display: none; }
+body[data-page="inner"] .hamburger-icon-default { display: none; }
+body[data-page="inner"] .hamburger-icon-inverse { display: block; }
 body[data-page="home"] .logo-btn { gap: 8px; }
 .app-logo-inverse { display: none; }
 body[data-page="inner"] .app-logo-default { display: none; }

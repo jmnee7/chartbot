@@ -411,6 +411,8 @@ function showGuideHub(type){
 
 function toggleMainSections(show){
     const display = show ? '' : 'none';
+    const guideDetailLayout = document.getElementById('guideDetailLayout');
+    if (guideDetailLayout) guideDetailLayout.style.display = 'none';
     const mainSelectors = ['.artist-hero', '.home-campaign', '.quick-links-section', '.home-dashboard', '.newcomer-section'];
     mainSelectors.forEach(sel=>{
         document.querySelectorAll(sel).forEach(el=>{ el.style.display = display; });
@@ -529,6 +531,22 @@ function openGuide(kind, initialService){
     hideGuideTiktokSection();
     hideVoteCollectSection();
     hideStreamingMVSection();
+
+    const detailLayout = document.getElementById('guideDetailLayout');
+    const detailSlot = document.getElementById('guideDetailSlot');
+    if (detailLayout && detailSlot) {
+        ['guideStreamingSection', 'guideDownloadSection', 'guideIdSection', 'guideChantSection', 'guideRadioSection', 'guideTiktokSection'].forEach(id => {
+            const section = document.getElementById(id);
+            if (section && section.parentElement !== detailSlot) detailSlot.append(section);
+        });
+        detailLayout.style.display = 'block';
+        detailLayout.querySelectorAll('.page-section-nav a').forEach(link => {
+            const active = link.dataset.guide === kind;
+            link.classList.toggle('active', active);
+            if (active) link.setAttribute('aria-current', 'location');
+            else link.removeAttribute('aria-current');
+        });
+    }
 
     // 아이디 생성 전용 화면
     if (kind === 'id') {

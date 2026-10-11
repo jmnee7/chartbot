@@ -12,7 +12,7 @@
     <meta name="twitter:image" content="styles/assets/thumbnail.png?v=20260420" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
     <link rel="stylesheet" href="styles/main.css?v=20260420">
-    <link rel="stylesheet" href="styles/redesign.css?v=20261011ac">
+    <link rel="stylesheet" href="styles/redesign.css?v=20261011ad">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -452,6 +452,20 @@
             </div>
         </section>
 
+        <section id="guideDetailLayout" class="guide-hub guide-detail-layout" style="display:none;">
+            <div class="page-layout">
+                <nav class="page-section-nav" aria-label="가이드 목차">
+                    <a href="#guide-streaming" data-guide="streaming" onclick="navigateMegaMenu('guideHubMain','guide-streaming'); return false;">스트리밍</a>
+                    <a href="#guide-download" data-guide="download" onclick="navigateMegaMenu('guideHubMain','guide-download'); return false;">다운로드</a>
+                    <a href="#guide-id" data-guide="id" onclick="navigateMegaMenu('guideHubMain','guide-id'); return false;">아이디 생성</a>
+                    <a href="#guide-cheer" data-guide="cheer" onclick="navigateMegaMenu('guideHubMain','guide-cheer'); return false;">응원법</a>
+                    <a href="#guide-radio" data-guide="radio" onclick="navigateMegaMenu('guideHubMain','guide-radio'); return false;">라디오 신청</a>
+                    <a href="#guide-tiktok" data-guide="tiktok" onclick="navigateMegaMenu('guideHubMain','guide-tiktok'); return false;">틱톡 업로드</a>
+                </nav>
+                <div id="guideDetailSlot" class="page-sections"></div>
+            </div>
+        </section>
+
         <!-- Guide Hub: Streaming -->
         <section id="guideHubStreaming" class="guide-hub" style="display:none;">
             <h2>스트리밍</h2>
@@ -804,7 +818,7 @@
 
     <!-- JavaScript 파일들을 body 끝에 로드 -->
     <script src="js/site-content.js?v=20261011b"></script>
-    <script src="js/dashboard.js?v=20261011o"></script>
+    <script src="js/dashboard.js?v=20261011p"></script>
     <script src="js/streaming.js?v=20261011t"></script>
     <script src="js/guide.js?v=20261011i"></script>
     <script src="js/support.js?v=20261011g"></script>

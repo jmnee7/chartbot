@@ -105,6 +105,7 @@ function getCurrentShareUrl(){
     if (isVisible('guideChantSection')) return `${origin}/r/g/cheer/${encodeURIComponent(currentChantSub)}${currentChantTrack?`/${encodeURIComponent(currentChantTrack)}`:''}`;
     // Guide: radio
     if (isVisible('guideRadioSection')) return `${origin}/r/g/radio`;
+    if (isVisible('guideTiktokSection')) return `${origin}/#guide/tiktok`;
     // Vote: collect
     if (isVisible('voteCollectSection')) return `${origin}/r/vote/collect/${encodeURIComponent(currentVoteCollectSub)}`;
     // Streaming: recommend

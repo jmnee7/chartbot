@@ -292,6 +292,9 @@ function navigateToMenu(key) {
         case 'guide-radio':
             openGuide('radio');
             break;
+        case 'guide-tiktok':
+            go({ view: 'guideTiktok' });
+            break;
 
         // 스트리밍 하위: 동일 동작 수행
         case 'streaming-list':
@@ -397,6 +400,7 @@ function showGuideHub(type){
         hideGuideStreamingSection();
         hideGuideChantSection();
         hideGuideRadioSection();
+        hideGuideTiktokSection();
         hideVoteCollectSection();
         hideVoteRateSection();
         hideAllSupportSections();
@@ -434,7 +438,7 @@ function setPageMasthead(title) {
     document.getElementById('pageMastheadTitle').textContent = title;
     const leads = {
         '스트리밍': '내 기기를 고르면 맞는 링크만 보여드려요.',
-        '가이드': '처음 시작하는 방법부터 응원법, 라디오 신청까지 순서대로 안내해요.',
+        '가이드': '처음 시작하는 방법부터 응원법, 라디오 신청, 틱톡 업로드까지 안내해요.',
         '투표': '음악방송별 반영 비율과 투표 일정, 문자 투표 방법을 한곳에서 확인해요.',
         '서포트': '스트리밍 팀을 함께 도와주시는 방법을 모았어요.'
     };
@@ -455,6 +459,7 @@ function showHome(){
     hideGuideStreamingSection();
     hideGuideChantSection();
     hideGuideRadioSection();
+    hideGuideTiktokSection();
     hideVoteCollectSection();
     hideVoteRateSection();
     hideAllSupportSections();
@@ -523,6 +528,7 @@ function openGuide(kind, initialService){
     hideGuideStreamingSection();
     hideGuideChantSection();
     hideGuideRadioSection();
+    hideGuideTiktokSection();
     hideVoteCollectSection();
     hideStreamingMVSection();
 
@@ -590,6 +596,15 @@ function openGuide(kind, initialService){
         return;
     }
 
+    if (kind === 'tiktok') {
+        const section = document.getElementById('guideTiktokSection');
+        if (section){
+            section.style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        return;
+    }
+
     // 다른 가이드는 추후 연결. 일단 허브로 복귀
     showGuideMainHub();
 }
@@ -619,6 +634,7 @@ function openVoteCollect(){
     hideGuideStreamingSection();
     hideGuideChantSection();
     hideGuideRadioSection();
+    hideGuideTiktokSection();
     hideStreamingMVSection();
     hideVoteRateSection();
     hideAllSupportSections();
@@ -737,6 +753,11 @@ function hideGuideRadioSection(){
     if (el) el.style.display = 'none';
 }
 
+function hideGuideTiktokSection(){
+    const el = document.getElementById('guideTiktokSection');
+    if (el) el.style.display = 'none';
+}
+
 function hideVoteCollectSection(){
     const el = document.getElementById('voteCollectSection');
     if (el) el.style.display = 'none';
@@ -762,6 +783,7 @@ function openStreamingMV(){
     hideGuideStreamingSection();
     hideGuideChantSection();
     hideGuideRadioSection();
+    hideGuideTiktokSection();
     hideVoteCollectSection();
     hideVoteRateSection();
     hideVoteScheduleSection();
@@ -792,6 +814,7 @@ function openStreamingRecommend(){
     hideGuideStreamingSection();
     hideGuideChantSection();
     hideGuideRadioSection();
+    hideGuideTiktokSection();
     hideVoteCollectSection();
     hideStreamingMVSection();
     hideVoteRateSection();
@@ -810,6 +833,7 @@ function openVoteRate(){
     hideGuideStreamingSection();
     hideGuideChantSection();
     hideGuideRadioSection();
+    hideGuideTiktokSection();
     hideVoteCollectSection();
     hideStreamingMVSection();
     hideVoteScheduleSection();
@@ -827,6 +851,7 @@ function openVoteSchedule(){
     hideGuideStreamingSection();
     hideGuideChantSection();
     hideGuideRadioSection();
+    hideGuideTiktokSection();
     hideVoteCollectSection();
     hideStreamingMVSection();
     hideVoteRateSection();
@@ -893,6 +918,9 @@ function renderState(state){
         case 'guideRadio':
             openGuide('radio');
             break;
+        case 'guideTiktok':
+            openGuide('tiktok');
+            break;
         case 'support':
             openSupport(state.type);
             break;
@@ -911,6 +939,7 @@ function hideAllContentSections(){
     hideGuideStreamingSection();
     hideGuideChantSection();
     hideGuideRadioSection();
+    hideGuideTiktokSection();
     hideVoteCollectSection();
     hideStreamingMVSection();
     hideStreamingRecommendSection();
@@ -948,6 +977,7 @@ function routeFromHash(){
             return; 
         }
         if (parts[1] === 'radio') { openGuide('radio'); return; }
+        if (parts[1] === 'tiktok') { openGuide('tiktok'); return; }
         showGuideMainHub(); return;
     }
     if (parts[0] === 'streaming' && parts[1] === 'mv'){

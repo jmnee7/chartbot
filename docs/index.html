@@ -12,7 +12,7 @@
     <meta name="twitter:image" content="styles/assets/thumbnail.png?v=20260420" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
     <link rel="stylesheet" href="styles/main.css?v=20260420">
-    <link rel="stylesheet" href="styles/redesign.css?v=20261011t">
+    <link rel="stylesheet" href="styles/redesign.css?v=20261011u">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -42,7 +42,7 @@
             <button type="button" onclick="openFooterAction('support')">서포트</button>
         </nav>
         <nav class="desktop-mega-menu" aria-label="상세 메뉴">
-            <div class="mega-menu-column"><strong>가이드</strong><button type="button" onclick="navigateMegaMenu('guideStreaming')">스트리밍</button><button type="button" onclick="navigateMegaMenu('guideDownload')">다운로드</button><button type="button" onclick="navigateMegaMenu('guideId')">아이디 생성</button><button type="button" onclick="navigateMegaMenu('guideChant')">응원법</button><button type="button" onclick="navigateMegaMenu('guideRadio')">라디오 신청</button></div>
+            <div class="mega-menu-column"><strong>가이드</strong><button type="button" onclick="navigateMegaMenu('guideStreaming')">스트리밍</button><button type="button" onclick="navigateMegaMenu('guideDownload')">다운로드</button><button type="button" onclick="navigateMegaMenu('guideId')">아이디 생성</button><button type="button" onclick="navigateMegaMenu('guideChant')">응원법</button><button type="button" onclick="navigateMegaMenu('guideRadio')">라디오 신청</button><button type="button" onclick="navigateMegaMenu('guideTiktok')">틱톡 업로드</button></div>
             <div class="mega-menu-column"><strong>스트리밍</strong><button type="button" onclick="navigateMegaMenu('guideHubStreaming','stream-list')">권장 스트리밍 리스트</button><button type="button" onclick="navigateMegaMenu('guideHubStreaming','stream-oneclick')">원클릭 스트리밍 리스트</button><button type="button" onclick="navigateMegaMenu('streamingMV')">뮤직비디오</button></div>
             <div class="mega-menu-column"><strong>투표</strong><button type="button" onclick="navigateMegaMenu('guideHubVote','vote-schedule')">투표 일정</button><button type="button" onclick="navigateMegaMenu('guideHubVote','vote-ratio')">음악방송 반영 비율</button><button type="button" onclick="navigateMegaMenu('guideHubVote','vote-sms')">문자 투표</button><button type="button" onclick="navigateMegaMenu('guideHubVote','vote-live')">실시간 투표</button><button type="button" onclick="navigateMegaMenu('guideHubVote','vote-tickets')">투표권 모으기</button></div>
             <div class="mega-menu-column"><strong>서포트</strong><button type="button" onclick="navigateMegaMenu('guideHubSupport','support-helper-card')">헬퍼 지원</button><button type="button" onclick="navigateMegaMenu('guideHubSupport','support-team-card')">팀원 지원</button><button type="button" onclick="navigateMegaMenu('guideHubSupport','support-id-card')">아이디 기부</button><button type="button" onclick="navigateMegaMenu('guideHubSupport','support-fundraising-card')">모금</button><button type="button" onclick="navigateMegaMenu('guideHubSupport','support-gifticon-card')">기프티콘 기부</button></div>
@@ -69,6 +69,7 @@
                     <button class="menu-subitem" type="button" onclick="navigateToMenu('guide-id')">아이디 생성</button>
                     <button class="menu-subitem" type="button" onclick="navigateToMenu('guide-cheer')">응원법</button>
                     <button class="menu-subitem" type="button" onclick="navigateToMenu('guide-radio')">라디오 신청</button>
+                    <button class="menu-subitem" type="button" onclick="navigateToMenu('guide-tiktok')">틱톡 업로드</button>
                 </div>
             </section>
 
@@ -401,6 +402,7 @@
                     <a href="#guideIdSection" onclick="go({view:'guideId'}); return false;">아이디 생성</a>
                     <a href="#guide-cheer" onclick="document.getElementById('guide-cheer').scrollIntoView(); return false;">응원법</a>
                     <a href="#guide-radio" onclick="document.getElementById('guide-radio').scrollIntoView(); return false;">라디오 신청</a>
+                    <a href="#guideTiktokSection" onclick="go({view:'guideTiktok'}); return false;">틱톡 업로드</a>
                 </nav>
                 <div class="page-sections">
                     <section id="guide-start" class="page-section">
@@ -530,6 +532,7 @@
                             <tr><th>인기가요</th><td>50%</td><td>10%</td><td>10%</td><td>SNS 20% · 사전투표 5% · 실시간투표 5%</td></tr>
                             <tr><th>엠카운트다운</th><td>50%</td><td>15%</td><td>10%</td><td>글로벌 소셜 미디어 15% · 사전투표 10%</td></tr>
                         </tbody></table></div>
+                        <img class="vote-ratio-mobile-image" src="styles/assets/vote/rate/음악방송 반영 비율표.webp" alt="음악방송 접수 반영 비율표" loading="lazy" />
                         <button class="secondary-action vote-ratio-original" type="button" onclick="go({view:'voteRate'})">원본 이미지 보기</button>
                     </section>
                     <section id="vote-sms" class="page-section">
@@ -607,6 +610,17 @@
             </div>
             <div class="guide-actions">
                 <button class="guide-action-btn primary" onclick="openRadioHomepage()">바로가기 ></button>
+                <button class="guide-action-btn" onclick="shareCurrentGuide()">🔗 공유하기</button>
+            </div>
+        </section>
+
+        <!-- Guide: 틱톡 업로드 상세 화면 -->
+        <section id="guideTiktokSection" class="guide-id-section" style="display:none;">
+            <h2 class="guide-id-title">틱톡 업로드 가이드</h2>
+            <div class="guide-id-image-container">
+                <img class="guide-id-image" src="styles/assets/guide/tiktok/tiktok-upload-guide-20261011.webp" alt="NCT WISH 틱톡 숏폼 제작 및 업로드 가이드" loading="lazy"/>
+            </div>
+            <div class="guide-actions">
                 <button class="guide-action-btn" onclick="shareCurrentGuide()">🔗 공유하기</button>
             </div>
         </section>
@@ -803,9 +817,9 @@
 
     <!-- JavaScript 파일들을 body 끝에 로드 -->
     <script src="js/site-content.js?v=20261011b"></script>
-    <script src="js/dashboard.js?v=20261011k"></script>
+    <script src="js/dashboard.js?v=20261011l"></script>
     <script src="js/streaming.js?v=20261011q"></script>
-    <script src="js/guide.js?v=20261011f"></script>
+    <script src="js/guide.js?v=20261011g"></script>
     <script src="js/support.js?v=20261011f"></script>
     <script src="js/chart.js?v=20260420"></script>
     

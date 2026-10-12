@@ -63,7 +63,7 @@ function playHomeMusicVideo() {
     const player = document.getElementById('homeMvPlayer');
     if (!player) return;
     const iframe = document.createElement('iframe');
-    iframe.src = 'https://www.youtube.com/embed/_t9bc8WNA1c?autoplay=1';
+    iframe.src = 'https://www.youtube.com/embed/xIlFjHHUfI0?autoplay=1';
     iframe.title = 'NCT WISH 뮤직비디오';
     iframe.allow = 'autoplay; encrypted-media; picture-in-picture; web-share';
     iframe.allowFullscreen = true;

@@ -27,7 +27,7 @@ window.siteContent = {
         { service: 'vibe', device: 'Android', label: '바이브 3', url: 'https://tinyurl.com/3zpz7etz' },
         { service: 'vibe', device: 'Android', label: '바이브 4', url: 'https://tinyurl.com/5d4wbwmj' }
     ],
-    recommendedTracks: ['Hands Up', 'WISH', 'Songbird', 'Steady', 'Miracle', 'poppop', 'COLOR', 'Hello Mellow', 'Ode to Love'],
+    recommendedTracks: ['I SPY', 'We Own This Street', 'UPGRADE', 'Super Major', 'Hubble Time', 'I SPY', 'Ode To Love', '꿈결 (Like A Dream)', 'We Own This Street', 'Sticky', 'I SPY', 'UPGRADE', 'Super Major', 'Ode To Love', 'Hubble Time', 'I SPY', 'We Own This Street', '꿈결 (Like A Dream)', "Don't Say You Love Me", 'Ode to Love'],
     downloadGuides: {
         audio: {
             melon: ['styles/assets/guide/download/melon-audio-20261010.webp'],

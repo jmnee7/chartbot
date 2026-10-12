@@ -6,10 +6,10 @@
 TARGET_ARTIST = "NCT WISH"
 
 # 찾고 싶은 특정 곡 (단일 문자열로 최적화)
-TARGET_SONG = "Ode to Love"
+TARGET_SONG = "I SPY"
 
 # 특정 가수의 특정 곡 조합 (튜플로 최적화)
-TARGET_ARTIST_SONG = ("NCT WISH", "Ode to Love")
+TARGET_ARTIST_SONG = ("NCT WISH", "I SPY")
 
 # 검색 모드 설정
 # "artists" - 지정된 가수들의 모든 곡
@@ -73,4 +73,4 @@ def get_target_info():
         "target_artist": TARGET_ARTIST,
         "target_song": TARGET_SONG,
         "target_artist_song": TARGET_ARTIST_SONG
-    } 
+    }

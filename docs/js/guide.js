@@ -193,7 +193,7 @@ async function switchStreamTab(sub, btn){
     const titleEl = document.getElementById('guideStreamTitle');
     const dateEl = document.getElementById('guideStreamDate');
     const container = document.querySelector('#guideStreamingSection .guide-id-image-container');
-    const titleMap = { melon:'멜론 스트리밍 가이드', 'melon-musicwave':'멜론 뮤직웨이브 가이드', bugs:'벅스 스트리밍 가이드', genie:'지니 스트리밍 가이드', flo:'플로 스트리밍 가이드', vibe:'바이브 스트리밍 가이드', spotify:'스포티파이 스트리밍 가이드', apple:'애플뮤직 스트리밍 가이드', mv:'뮤직비디오 스트리밍 가이드' };
+    const titleMap = { melon:'멜론 스트리밍 가이드', 'melon-musicwave':'멜론 뮤직웨이브 가이드', bugs:'벅스 스트리밍 가이드', genie:'지니 스트리밍 가이드', flo:'플로 스트리밍 가이드', vibe:'바이브 스트리밍 가이드', spotify:'스포티파이 스트리밍 가이드', apple:'애플뮤직 스트리밍 가이드', 'youtube-music':'유튜브 뮤직 스트리밍 가이드', mv:'뮤직비디오 스트리밍 가이드' };
     if (titleEl) titleEl.textContent = titleMap[sub] || '스트리밍 가이드';
     if (dateEl){
         const d = new Date();

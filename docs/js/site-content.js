@@ -59,6 +59,7 @@ window.siteContent = {
         ],
         spotify: ['styles/assets/guide/stream/spotify-streaming-guide-mobile.webp'],
         apple: ['styles/assets/guide/stream/apple-music-streaming-guide.webp'],
+        'youtube-music': ['styles/assets/guide/stream/유튜브뮤직 스트리밍 가이드(모바일).webp'],
         genie: [
             'styles/assets/guide/stream/지니 스트리밍 가이드(모바일).webp?v=20261010',
             'styles/assets/guide/stream/지니 스트리밍 가이드(PC).webp?v=20261010'

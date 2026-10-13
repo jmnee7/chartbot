@@ -704,7 +704,7 @@ function switchChantTab(sub, btn){
     const dateEl = document.getElementById('guideChantDate');
     const container = document.getElementById('chantImagesContainer');
     const trackTabs = document.getElementById('chantTrackSubtabs');
-    const titleMap = { handsup:'Hands Up', wish:'WISH', songbird:'Songbird', steady:'Steady', miracle:'Miracle', poppop:'poppop', color:'COLOR', hellomellow:'Hello Mellow', odetolove:'Ode to Love' };
+    const titleMap = { handsup:'Hands Up', wish:'WISH', songbird:'Songbird', steady:'Steady', miracle:'Miracle', poppop:'poppop', color:'COLOR', hellomellow:'Hello Mellow', odetolove:'Ode to Love', ispy:'I SPY' };
     if (titleEl) titleEl.textContent = `응원법 · ${titleMap[sub] || ''}`;
     if (dateEl){ const d = new Date(); const fmt = `${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,'0')}.${String(d.getDate()).padStart(2,'0')}`; dateEl.textContent = fmt; }
     const trackMap = {
@@ -716,7 +716,8 @@ function switchChantTab(sub, btn){
         poppop: [ { key:'poppop', label:'poppop', imgs:['styles/assets/guide/chant/11. poppop 응원법.webp'] } ],
         color: [ { key:'surf', label:'Surf', imgs:['styles/assets/guide/chant/12. Surf 응원법.webp'] }, { key:'color', label:'COLOR', imgs:['styles/assets/guide/chant/13. COLOR 응원법.webp'] } ],
         hellomellow: [ { key:'hellomellow', label:'Hello Mellow', imgs:['styles/assets/guide/chant/16. Hello Mellow 응원법.webp?v=20261011opt'] } ],
-        odetolove: [ { key:'odetolove', label:'Ode to Love', imgs:['styles/assets/guide/chant/14. Ode to Love 응원법.webp?v=20260420'] }, { key:'sticky', label:'Sticky', imgs:['styles/assets/guide/chant/15. Sticky 응원법.webp'] } ]
+        odetolove: [ { key:'odetolove', label:'Ode to Love', imgs:['styles/assets/guide/chant/14. Ode to Love 응원법.webp?v=20260420'] }, { key:'sticky', label:'Sticky', imgs:['styles/assets/guide/chant/15. Sticky 응원법.webp'] } ],
+        ispy: [ { key:'ispy', label:'I SPY', imgs:['styles/assets/guide/chant/17. I SPY 응원법.webp'] } ]
     };
     const tracks = trackMap[sub] || [];
     if (trackTabs){
@@ -747,7 +748,8 @@ function switchChantTrack(trackKey, btn){
         color:['styles/assets/guide/chant/13. COLOR 응원법.webp'],
         hellomellow:['styles/assets/guide/chant/16. Hello Mellow 응원법.webp?v=20261011opt'],
         odetolove:['styles/assets/guide/chant/14. Ode to Love 응원법.webp?v=20260420'],
-        sticky:['styles/assets/guide/chant/15. Sticky 응원법.webp']
+        sticky:['styles/assets/guide/chant/15. Sticky 응원법.webp'],
+        ispy:['styles/assets/guide/chant/17. I SPY 응원법.webp']
     };
     const imgs = all[trackKey] || [];
     if (container){ container.innerHTML = imgs.map(src=>`<div class=\"guide-id-image-container\"><img class=\"guide-id-image\" src=\"${src}\" alt=\"응원법\"/></div>`).join(''); }

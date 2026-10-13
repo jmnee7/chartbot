@@ -31,13 +31,14 @@ function switchStreamingPlatform(device, button) {
     container.replaceChildren();
     const useAndroidLinks = {
         iOS: ['bugs', 'vibe', 'flo'],
-        PC: ['vibe', 'flo'],
+        PC: ['vibe'],
         Mac: ['genie', 'bugs', 'vibe', 'flo']
     };
     Object.entries(streamServices).forEach(([key, service]) => {
+        const unavailable = device === 'PC' && key === 'flo';
         const sharedAndroid = useAndroidLinks[device]?.includes(key);
         const links = window.siteContent.oneClickStreams.filter(item => item.service === key && item.device === (sharedAndroid ? 'Android' : device));
-        if (!links.length) return;
+        if (!links.length && !unavailable) return;
         const group = document.createElement('section');
         group.className = 'stream-service';
         const title = document.createElement('h4');
@@ -49,11 +50,18 @@ function switchStreamingPlatform(device, button) {
         chip.append(icon, service.name);
         const count = document.createElement('span');
         count.className = 'stream-platform-count';
-        count.textContent = sharedAndroid ? `${links.length}개 링크 · Android와 동일` : `${links.length}개 링크`;
+        count.textContent = unavailable ? '0개 링크' : sharedAndroid ? `${links.length}개 링크 · Android와 동일` : `${links.length}개 링크`;
         title.append(chip, count);
         const list = document.createElement('div');
         list.className = 'stream-links';
-        links.forEach(item => list.append(makeStreamLink(item, 'stream-link')));
+        if (unavailable) {
+            const message = document.createElement('span');
+            message.className = 'stream-link stream-unavailable';
+            message.textContent = 'PC 원클릭 불가능';
+            list.append(message);
+        } else {
+            links.forEach(item => list.append(makeStreamLink(item, 'stream-link')));
+        }
         group.append(title, list);
         container.append(group);
     });

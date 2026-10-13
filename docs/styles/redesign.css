@@ -357,6 +357,7 @@ body[data-page="inner"] .container { padding-top: 28px; }
 .stream-links { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
 .stream-link { min-height: 40px; padding: 9px 12px; border: 1px solid var(--line); background: #fff; color: var(--ink); text-decoration: none; }
 .stream-link:hover { border-color: var(--accent); }
+.stream-unavailable, .stream-unavailable:hover { color: #5c6973; border-color: var(--line); background: #f5f8fa; }
 .track-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 12px; list-style: none; padding: 0; margin: 0; counter-reset: track; }
 .track-list li { display: flex; align-items: center; gap: 12px; min-height: 42px; padding: 8px 12px; border: 1px solid var(--line); }
 .track-list li::before { counter-increment: track; content: counter(track, decimal-leading-zero); color: #227c9e; font-size: 12px; }

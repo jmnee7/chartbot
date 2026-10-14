@@ -20,6 +20,8 @@ window.siteContent = {
         { service: 'genie', device: 'iOS', label: 'iOS', url: 'https://tinyurl.com/y6k68fw6' },
         { service: 'genie', device: 'PC', label: 'PC', url: 'https://tinyurl.com/dfahre5v' },
         { service: 'flo', device: 'Android', label: '플로(FLO)', url: 'https://tinyurl.com/hbbwxsck' },
+        { service: 'flo', device: 'All', label: 'FLO 응원하기', url: 'https://cheer.music-flo.com/g/pgTgn0pVtu' },
+        { service: 'youtubeMusic', device: 'All', label: '스트리밍팀 권장 재생목록', url: 'https://music.youtube.com/playlist?list=PLa8cczhXMsuI&si=tJW2tj8nGqCrPJP2' },
         { service: 'bugs', device: 'Android', label: '모바일', url: 'https://tinyurl.com/55w4w9wd' },
         { service: 'bugs', device: 'PC', label: 'PC', url: 'https://tinyurl.com/3ab63hur' },
         { service: 'vibe', device: 'Android', label: '바이브 1', url: 'https://tinyurl.com/28u8wcd7' },

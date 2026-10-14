@@ -834,7 +834,6 @@ body[data-page="inner"] .app-title { color: #e8f5fc; font-family: 'Noto Sans KR'
 @media (max-width: 360px) { body[data-page="inner"] .app-title { font-size: 12px; } }
 .music-wave-links { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .music-wave-links .sheet-btn { justify-content: center; min-height: 48px; text-align: center; }
-.music-wave-pending { color: var(--text-secondary); cursor: default; }
 @media (max-width: 639px) { .music-wave-links { grid-template-columns: 1fr; } }
 .footer-item .nav-icon { display: block; width: 24px; height: 24px; flex: none; background-position: center; background-repeat: no-repeat; }
 .footer-item[data-nav="guide"] .nav-icon { background-image: url('assets/figma/48f08.svg'); background-size: 24px; }

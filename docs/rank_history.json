@@ -1,52 +1,4 @@
 {
-  "2026-10-14 07:00:00": {
-    "_processed_at": "2026-10-14T07:01:22.640698",
-    "melon_top100": [
-      {
-        "rank": 88,
-        "timestamp": "2026-10-14 07:00",
-        "chart_type": "TOP100"
-      }
-    ],
-    "melon_hot100": [
-      {
-        "rank": 7,
-        "timestamp": "2026-10-14 07:00",
-        "chart_type": "HOT100"
-      }
-    ],
-    "melon": [
-      {
-        "rank": 88,
-        "timestamp": "2026-10-14 07:00",
-        "chart_type": "TOP100"
-      }
-    ],
-    "genie": [
-      {
-        "rank": null,
-        "timestamp": "2026-10-14 07:00:00"
-      }
-    ],
-    "bugs": [
-      {
-        "rank": 75,
-        "timestamp": "2026-10-14 07:00"
-      }
-    ],
-    "vibe": [
-      {
-        "rank": null,
-        "timestamp": "2026-10-14 07:00:00"
-      }
-    ],
-    "flo": [
-      {
-        "rank": null,
-        "timestamp": "2026-10-14 07:00:00"
-      }
-    ]
-  },
   "2026-10-14 08:00:00": {
     "_processed_at": "2026-10-14T08:01:20.813827",
     "melon_top100": [
@@ -1148,6 +1100,54 @@
       {
         "rank": null,
         "timestamp": "2026-10-15 07:00:00"
+      }
+    ]
+  },
+  "2026-10-15 08:00:00": {
+    "_processed_at": "2026-10-15T08:01:20.022419",
+    "melon_top100": [
+      {
+        "rank": 18,
+        "timestamp": "2026-10-15 08:00",
+        "chart_type": "TOP100"
+      }
+    ],
+    "melon_hot100": [
+      {
+        "rank": 6,
+        "timestamp": "2026-10-15 08:00",
+        "chart_type": "HOT100"
+      }
+    ],
+    "melon": [
+      {
+        "rank": 18,
+        "timestamp": "2026-10-15 08:00",
+        "chart_type": "TOP100"
+      }
+    ],
+    "genie": [
+      {
+        "rank": null,
+        "timestamp": "2026-10-15 08:00:00"
+      }
+    ],
+    "bugs": [
+      {
+        "rank": 89,
+        "timestamp": "2026-10-15 08:00"
+      }
+    ],
+    "vibe": [
+      {
+        "rank": null,
+        "timestamp": "2026-10-15 08:00:00"
+      }
+    ],
+    "flo": [
+      {
+        "rank": null,
+        "timestamp": "2026-10-15 08:00:00"
       }
     ]
   }

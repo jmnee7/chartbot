@@ -677,15 +677,9 @@ body[data-page="inner"] .container { width: min(100%, 1440px); padding: 72px 80p
     .vote-schedule-list button, .vote-schedule-entry { grid-template-columns: 1fr; gap: 4px; }
     .vote-live-grid { grid-template-columns: 1fr; gap: 12px; }
 }
-.vote-ratio-wrap { overflow-x: auto; border: 1px solid #d8e0e5; border-radius: 4px; box-shadow: 4px 4px 0 #c0cad1; }
-.vote-ratio-mobile-image { display: none; }
-.vote-ratio-table { width: 100%; border-collapse: collapse; table-layout: fixed; font-size: 14px; line-height: 22px; }
-.vote-ratio-table th, .vote-ratio-table td { height: 54px; padding: 12px 16px; border-bottom: 1px solid #d8e0e5; text-align: left; font-weight: 400; }
-.vote-ratio-table thead { background: #f4f8fa; color: #4f5b64; }
-.vote-ratio-table thead th, .vote-ratio-table tbody th { font-weight: 500; }
-.vote-ratio-table th:first-child { width: 200px; }
-.vote-ratio-table th:last-child { width: 40%; }
-.vote-ratio-table tr:last-child th, .vote-ratio-table tr:last-child td { border-bottom: 0; }
+.vote-ratio-images { display: grid; gap: 20px; }
+.vote-ratio-images img { display: block; width: 100%; height: auto; }
+#voteRateSection .guide-id-image + .guide-id-image { margin-top: 20px; }
 #guideHubMain .step-grid { gap: 24px; }
 #guideHubMain .step-grid button { min-height: 90px; padding: 24px; border: 0; border-radius: 4px; gap: 16px; align-items: flex-start; }
 #guideHubMain .step-grid button > span:first-child { width: 32px; height: 32px; border: 1px solid #d8e0e5; border-radius: 4px; color: #12c0fa; font-size: 14px; font-weight: 500; }
@@ -856,20 +850,6 @@ body[data-page="inner"] .app-title { color: #e8f5fc; font-family: 'Noto Sans KR'
     .page-masthead p { font-size: 14px; line-height: 22px; }
     .home-dashboard .chart-header h2 { font-size: 22px; line-height: 30px; }
     .home-dashboard .service-name, .home-dashboard .service-detail { font-size: 14px; }
-    .vote-ratio-wrap, .vote-ratio-original { display: none; }
-    .vote-ratio-mobile-image { display: block; width: 100%; height: auto; }
-    .vote-ratio-table, .vote-ratio-table tbody { display: block; width: 100%; }
-    .vote-ratio-table thead { display: none; }
-    .vote-ratio-table tr { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px 12px; min-height: 172px; margin-bottom: 20px; padding: 16px; border: 1px solid #d8e0e5; border-radius: 4px; background: #fff; box-shadow: 4px 4px 0 #c0cad1; }
-    .vote-ratio-table tr:last-child { margin-bottom: 0; }
-    .vote-ratio-table tbody th { grid-column: 1 / -1; height: auto; padding: 0; border: 0; font-size: 18px; font-weight: 700; line-height: 26px; }
-    .vote-ratio-table td { display: flex; flex-direction: column; gap: 4px; min-width: 0; height: auto; padding: 0; border: 0; color: #10171c; font-size: 14px; font-weight: 500; line-height: 20px; }
-    .vote-ratio-table td::before { color: #4f5b64; font-size: 13px; font-weight: 400; line-height: 20px; }
-    .vote-ratio-table td:nth-child(2)::before { content: '음원'; }
-    .vote-ratio-table td:nth-child(3)::before { content: '음반'; }
-    .vote-ratio-table td:nth-child(4)::before { content: '방송'; }
-    .vote-ratio-table td:nth-child(5)::before { content: '기타·투표'; }
-    .vote-ratio-table td:nth-child(5) { font-size: 12px; line-height: 18px; }
     .vote-schedule-list button { flex-wrap: wrap; }
     .vote-schedule-list .vote-schedule-date { width: 83px; }
     .vote-schedule-list strong { min-width: 140px; }

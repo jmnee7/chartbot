@@ -12,7 +12,7 @@
     <meta name="twitter:image" content="https://www.nctwish-strm.xyz/styles/assets/og-ispy.jpg?v=20261012" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
     <link rel="stylesheet" href="styles/main.css?v=20260420">
-    <link rel="stylesheet" href="styles/redesign.css?v=20261014a">
+    <link rel="stylesheet" href="styles/redesign.css?v=20261028a">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -585,16 +585,12 @@
                     </section>
                     <section id="vote-ratio" class="page-section">
                         <h3>음악방송 반영 비율</h3>
-                        <p class="section-subtitle">2026.04 버전 · 방송별 세부 항목은 원본 이미지에서 확인해요</p>
-                        <div class="vote-ratio-wrap"><table class="vote-ratio-table"><thead><tr><th>방송</th><th>음원</th><th>음반</th><th>방송</th><th>기타·투표</th></tr></thead><tbody>
-                            <tr><th>쇼챔피언</th><td>35%</td><td>15%</td><td>20%</td><td>SNS 10% · 사전투표 20%</td></tr>
-                            <tr><th>뮤직뱅크</th><td>60%</td><td>5%</td><td>20%</td><td>소셜미디어 5% · 사전투표 10%</td></tr>
-                            <tr><th>쇼! 음악중심</th><td>50%</td><td>10%</td><td>10%</td><td>동영상 10% · 사전투표 10% · 실시간투표 10%</td></tr>
-                            <tr><th>인기가요</th><td>50%</td><td>10%</td><td>10%</td><td>SNS 20% · 사전투표 5% · 실시간투표 5%</td></tr>
-                            <tr><th>엠카운트다운</th><td>50%</td><td>15%</td><td>10%</td><td>글로벌 소셜 미디어 15% · 사전투표 10%</td></tr>
-                        </tbody></table></div>
-                        <img class="vote-ratio-mobile-image" src="styles/assets/vote/rate/음악방송 반영 비율표.webp" alt="음악방송 접수 반영 비율표" loading="lazy" />
-                        <button class="text-action vote-ratio-original" type="button" onclick="go({view:'voteRate'})">원본 이미지 보기 ›</button>
+                        <p class="section-subtitle">2026.10 버전 · 이미지를 눌러 크게 확인해요</p>
+                        <div class="vote-ratio-images">
+                            <a href="styles/assets/vote/rate/music-show-ratio-2610-1.webp" target="_blank" rel="noopener noreferrer"><img src="styles/assets/vote/rate/music-show-ratio-2610-1.webp" alt="2026년 10월 음악방송 반영 비율 1: 더쇼, 쇼챔피언, 엠카운트다운" loading="lazy" /></a>
+                            <a href="styles/assets/vote/rate/music-show-ratio-2610-2.webp" target="_blank" rel="noopener noreferrer"><img src="styles/assets/vote/rate/music-show-ratio-2610-2.webp" alt="2026년 10월 음악방송 반영 비율 2: 뮤직뱅크, 쇼! 음악중심, 인기가요" loading="lazy" /></a>
+                        </div>
+                        <button class="text-action" type="button" onclick="go({view:'voteRate'})">원본 이미지 보기 ›</button>
                     </section>
                 </div>
             </div>
@@ -602,9 +598,10 @@
 
         <!-- Vote: 음악방송 비중표 상세 화면 -->
         <section id="voteRateSection" class="guide-id-section" style="display:none;">
-            <h2 class="guide-id-title">음악방송 반영 비율표</h2>
+            <h2 class="guide-id-title">음악방송 반영 비율표 · 2026.10</h2>
             <div class="guide-id-image-container">
-                <img class="guide-id-image" src="styles/assets/vote/rate/음악방송 반영 비율표.webp" alt="음악방송 반영 비율표" loading="lazy" />
+                <img class="guide-id-image" src="styles/assets/vote/rate/music-show-ratio-2610-1.webp" alt="음악방송 반영 비율 1: 더쇼, 쇼챔피언, 엠카운트다운" loading="lazy" />
+                <img class="guide-id-image" src="styles/assets/vote/rate/music-show-ratio-2610-2.webp" alt="음악방송 반영 비율 2: 뮤직뱅크, 쇼! 음악중심, 인기가요" loading="lazy" />
             </div>
         </section>
 
@@ -819,7 +816,7 @@
     
 
     <!-- JavaScript 파일들을 body 끝에 로드 -->
-    <script src="js/site-content.js?v=20261014b"></script>
+    <script src="js/site-content.js?v=20261028a"></script>
     <script src="js/dashboard.js?v=20261014a"></script>
     <script src="js/streaming.js?v=20261014b"></script>
     <script src="js/guide.js?v=20261014a"></script>

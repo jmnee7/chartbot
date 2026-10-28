@@ -74,8 +74,8 @@ window.siteContent = {
     },
     participationLinks: {
         idDonation: {
-            genie: 'https://forms.gle/Y1Es6xeAzbxjKPH67',
-            bugs: 'https://forms.gle/o3NBcQiRfNnpjsAz7'
+            genie: 'https://forms.gle/ep2CoXshbMZZV8rf6',
+            bugs: 'https://forms.gle/yoUcLvZLHz3Eu7sB7'
         },
         fundraising: 'https://forms.gle/LbSFhkfkhXByNFKb9',
         gifticon: 'https://pf.kakao.com/_BprRn'
